@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medical Devices Reviewed — Best Health Devices of 2026 | HealthRankings</title>
+<meta name="description" content="Browse all medical and health devices reviewed by HealthRankings. Filter by device type and find expert-ranked Top 5 lists for every category.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:light;}
+@media(prefers-color-scheme:dark){
+  :root{--primary:#1565C0;--primary-dark:#0D47A1;--primary-light:#E3F0FF;--accent:#0097A7;--red:#C62828;--red-light:#FFEBEE;--green:#2E7D32;--gold:#F57F17;--gray:#F8FAFC;--gray-mid:#E8EDF2;--gray-dark:#64748B;--text:#1A1A2E;--text-light:#4A5568;--white:#FFFFFF;--border:#DDE3EA;}
+  body{background:#FFFFFF!important;color:#1A1A2E!important;}
+}
+:root{
+  --primary:#1565C0;--primary-dark:#0D47A1;--primary-light:#E3F0FF;
+  --accent:#0097A7;--accent-light:#E0F5F7;
+  --red:#C62828;--red-light:#FFEBEE;
+  --green:#2E7D32;--green-light:#E8F5E9;
+  --gold:#F57F17;--gold-light:#FFF8E1;
+  --gray:#F8FAFC;--gray-mid:#E8EDF2;--gray-dark:#64748B;
+  --text:#1A1A2E;--text-light:#4A5568;
+  --white:#FFFFFF;--border:#DDE3EA;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--white);font-size:16px;line-height:1.7;}
+a{text-decoration:none;color:inherit;}
+
+/* NAV */
+nav{background:var(--white);height:64px;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;border-bottom:2px solid var(--primary-light);box-shadow:0 1px 8px rgba(21,101,192,0.08);}
+.logo{font-family:'Playfair Display',serif;color:var(--primary);font-size:1.4rem;font-weight:700;}
+.logo span{color:var(--accent);}
+.nav-links{display:flex;gap:0;}
+.nav-links a{color:var(--text-light);font-size:0.875rem;font-weight:500;padding:0 1.1rem;height:64px;display:flex;align-items:center;border-bottom:2px solid transparent;transition:all 0.2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--primary);border-bottom-color:var(--primary);}
+.nav-cta{background:var(--primary)!important;color:#fff!important;padding:8px 18px!important;height:auto!important;border-radius:8px!important;border-bottom:none!important;font-size:0.82rem!important;}
+.nav-cta:hover{background:var(--primary-dark)!important;}
+
+/* PAGE HERO */
+.page-hero{background:linear-gradient(135deg,var(--primary-light) 0%,#EBF5FF 60%,var(--white) 100%);padding:3.5rem 2rem 3rem;border-bottom:1px solid var(--border);}
+.hero-inner{max-width:1100px;margin:0 auto;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--primary-light);color:var(--primary);font-size:0.72rem;font-weight:600;padding:4px 14px;border-radius:20px;margin-bottom:1rem;text-transform:uppercase;letter-spacing:0.5px;border:1px solid rgba(21,101,192,0.2);}
+.page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,2.8rem);color:var(--text);font-weight:700;margin-bottom:0.5rem;}
+.page-hero h1 em{color:var(--primary);font-style:normal;}
+.page-hero p{font-size:1rem;color:var(--text-light);max-width:580px;}
+
+/* FILTER BAR */
+.filter-wrap{background:var(--white);border-bottom:1px solid var(--border);padding:1.25rem 2rem;position:sticky;top:64px;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.04);}
+.filter-inner{max-width:1100px;margin:0 auto;}
+.filter-label{font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--gray-dark);margin-bottom:0.75rem;}
+.filter-pills{display:flex;flex-wrap:wrap;gap:0.5rem;}
+.filter-pill{padding:0.45rem 1.1rem;border-radius:20px;border:1.5px solid var(--border);background:#fff;color:var(--text-light);font-size:0.82rem;font-weight:500;cursor:pointer;transition:all 0.15s;font-family:'DM Sans',sans-serif;}
+.filter-pill:hover{border-color:var(--primary);color:var(--primary);}
+.filter-pill.active{background:var(--primary);color:#fff;border-color:var(--primary);}
+
+/* SEARCH */
+.search-wrap{max-width:1100px;margin:1rem auto 0;position:relative;}
+.device-search{width:100%;padding:0.75rem 1rem 0.75rem 2.5rem;border:1.5px solid var(--border);border-radius:10px;font-size:0.9rem;font-family:'DM Sans',sans-serif;outline:none;transition:border-color 0.2s;background:#fff;color:var(--text);}
+.device-search:focus{border-color:var(--primary);}
+.search-ico{position:absolute;left:0.8rem;top:50%;transform:translateY(-50%);color:var(--gray-dark);font-size:0.9rem;pointer-events:none;}
+
+/* MAIN */
+.main{max-width:1100px;margin:0 auto;padding:2.5rem 2rem 5rem;}
+.results-info{font-size:0.82rem;color:var(--text-light);margin-bottom:1.5rem;}
+.results-info strong{color:var(--primary);}
+
+/* DEVICE TYPE SECTION */
+.device-section{margin-bottom:3.5rem;}
+.device-section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;padding-bottom:0.875rem;border-bottom:2px solid var(--primary-light);}
+.device-section-title{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--text);}
+.device-count{font-size:0.78rem;color:var(--gray-dark);background:var(--gray);padding:3px 10px;border-radius:20px;}
+
+/* TOP 5 HIGHLIGHT BOX */
+.top5-box{background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);border-radius:14px;padding:1.5rem 1.75rem;margin-bottom:1.25rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;position:relative;overflow:hidden;}
+.top5-box::after{content:'';position:absolute;right:-30px;top:-30px;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,0.07);}
+.top5-box-left{}
+.top5-box-badge{display:inline-block;background:rgba(255,255,255,0.18);color:#fff;font-size:0.68rem;font-weight:600;padding:3px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.5rem;}
+.top5-box-title{font-family:'Playfair Display',serif;font-size:1.2rem;color:#fff;font-weight:700;margin-bottom:0.25rem;line-height:1.3;}
+.top5-box-sub{font-size:0.8rem;color:rgba(255,255,255,0.7);}
+.top5-box-btn{background:#fff;color:var(--primary);padding:0.625rem 1.5rem;border-radius:8px;font-size:0.85rem;font-weight:600;white-space:nowrap;flex-shrink:0;transition:all 0.2s;position:relative;z-index:1;}
+.top5-box-btn:hover{background:var(--primary-light);transform:translateY(-1px);}
+
+/* DEVICE CARDS GRID */
+.devices-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;}
+.device-card{background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:1.1rem;transition:all 0.2s;cursor:pointer;text-decoration:none;color:var(--text);display:flex;flex-direction:column;gap:0.4rem;}
+.device-card:hover{border-color:var(--primary);box-shadow:0 4px 16px rgba(21,101,192,0.12);transform:translateY(-2px);}
+.dc-type{font-size:0.65rem;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;color:var(--accent);margin-bottom:0.1rem;}
+.dc-name{font-size:0.9rem;font-weight:600;color:var(--text);line-height:1.3;}
+.dc-condition{font-size:0.72rem;color:var(--text-light);}
+.dc-arrow{font-size:0.75rem;color:var(--primary);font-weight:500;margin-top:auto;}
+
+/* EMPTY STATE */
+.empty{text-align:center;padding:4rem 2rem;color:var(--text-light);}
+.empty h3{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--text);margin-bottom:0.5rem;}
+
+/* FOOTER */
+footer{background:#0D3880;color:rgba(255,255,255,0.5);padding:2.5rem 2rem;text-align:center;font-size:0.8rem;}
+footer .logo{display:block;margin-bottom:0.625rem;font-size:1.2rem;color:#fff;font-family:'Playfair Display',serif;}
+.disc{margin-top:0.625rem;font-size:0.73rem;color:rgba(255,255,255,0.28);max-width:560px;margin-left:auto;margin-right:auto;}
+
+@media(max-width:768px){
+  nav .nav-links{display:none;}
+  .top5-box{flex-direction:column;align-items:flex-start;}
+  .devices-grid{grid-template-columns:repeat(2,1fr);}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">Health<span>Rankings</span></a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/healthrankings-conditions.html">Conditions</a>
+    <a href="/healthrankings-devices.html" class="active">Devices</a>
+    <a href="/healthrankings-drugs.html">Drugs A–Z</a>
+    <a href="/healthrankings-news.html">Health News</a>
+    <a href="/" class="nav-cta">← Back Home</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="hero-inner">
+    <div class="hero-badge">Expert Reviewed 2026</div>
+    <h1>Health Devices <em>Reviewed</em></h1>
+    <p>Filter by device type to find expert-ranked reviews. Every category includes a full Top 5 ranking with scores, pros & cons, and buy links.</p>
+  </div>
+  <div class="filter-inner" style="max-width:1100px;margin:1.5rem auto 0;">
+    <div class="search-wrap" style="margin:0;">
+      <span class="search-ico">🔍</span>
+      <input type="text" id="deviceSearch" class="device-search" placeholder="Search devices (e.g. blood pressure, TENS, pulse oximeter)…" autocomplete="off">
+    </div>
+  </div>
+</div>
+
+<div class="filter-wrap">
+  <div class="filter-inner">
+    <div class="filter-label">Filter by device type</div>
+    <div class="filter-pills" id="filterPills">
+      <button class="filter-pill active" data-cat="all">All Devices</button>
+      <button class="filter-pill" data-cat="monitoring">Monitoring</button>
+      <button class="filter-pill" data-cat="pain">Pain Relief</button>
+      <button class="filter-pill" data-cat="respiratory">Respiratory</button>
+      <button class="filter-pill" data-cat="dental">Dental</button>
+      <button class="filter-pill" data-cat="fitness">Fitness</button>
+      <button class="filter-pill" data-cat="diagnostic">Diagnostic</button>
+      <button class="filter-pill" data-cat="support">Supports & Braces</button>
+      <button class="filter-pill" data-cat="safety">Safety & Alerts</button>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+  <div class="results-info" id="resultsInfo">Showing all <strong>40+</strong> device categories</div>
+  <div id="deviceSections"></div>
+</div>
+
+<footer>
+  <div class="logo">Health<span style="color:#0097A7">Rankings</span></div>
+  <p>Expert-reviewed health device rankings — unbiased, research-backed, updated 2026.</p>
+  <p class="disc">HealthRankings.com is reader-supported. We may earn a commission from affiliate links. Content is for informational purposes only.</p>
+</footer>
+
+<script>
+// ── ALL DEVICE TYPES WITH THEIR PRODUCTS AND TOP 5 LINKS ─────────────────
+const DEVICE_TYPES = [
+  {
+    cat: 'monitoring',
+    name: 'Blood Pressure Monitors',
+    description: 'For hypertension, heart failure, AFib, stroke prevention',
+    top5Link: '/healthrankings-hypertension.html',
+    top5Label: 'Best Blood Pressure Monitors of 2026',
+    winner: 'Omron Platinum BP5450',
+    score: '9.5',
+    devices: [
+      {name:'Blood Pressure Monitors',condition:'Hypertension',link:'/healthrankings-hypertension.html'},
+      {name:'Blood Pressure Monitors',condition:'Hypotension (Low BP)',link:'/healthrankings-hypotension-blood-pressure-monitor.html'},
+      {name:'Blood Pressure Monitors',condition:'Coronary Artery Disease',link:'/healthrankings-coronary-artery-disease-bp-monitor.html'},
+      {name:'Blood Pressure Monitors',condition:'Stroke Prevention',link:'/healthrankings-stroke-prevention-blood-pressure.html'},
+      {name:'Blood Pressure Monitors',condition:'Atrial Fibrillation',link:'/healthrankings-afib-blood-pressure-monitor.html'},
+    ]
+  },
+  {
+    cat: 'monitoring',
+    name: 'Body Composition Monitors',
+    description: 'For obesity, diabetes, metabolic syndrome, bariatric follow-up',
+    top5Link: '/healthrankings-obesity.html',
+    top5Label: 'Best Body Composition Monitors of 2026',
+    winner: 'Withings Body Comp',
+    score: '9.4',
+    devices: [
+      {name:'Body Composition Scales',condition:'Obesity / Overweight',link:'/healthrankings-obesity.html'},
+      {name:'Body Composition Monitors',condition:'Type 2 Diabetes',link:'/healthrankings-diabetes-body-composition.html'},
+      {name:'Body Composition Monitors',condition:'Metabolic Syndrome',link:'/healthrankings-metabolic-syndrome-body-composition.html'},
+      {name:'Body Composition Monitors',condition:'Insulin Resistance',link:'/healthrankings-insulin-resistance-body-composition.html'},
+      {name:'Body Composition Monitors',condition:'Menopause',link:'/healthrankings-menopause-body-composition.html'},
+      {name:'Body Composition Monitors',condition:'Osteoporosis',link:'/healthrankings-osteoporosis-body-composition.html'},
+      {name:'Body Composition Monitors',condition:'Athletic Performance',link:'/healthrankings-athletic-body-composition.html'},
+      {name:'Body Composition Monitors',condition:'Bariatric Follow-up',link:'/healthrankings-bariatric-body-composition.html'},
+      {name:'Body Composition Monitors',condition:'Weight Management',link:'/healthrankings-weight-management-body-composition.html'},
+    ]
+  },
+  {
+    cat: 'monitoring',
+    name: 'Pulse Oximeters',
+    description: 'For asthma, COPD, sleep apnea, heart failure, Long COVID',
+    top5Link: '/healthrankings-asthma-pulse-oximeter.html',
+    top5Label: 'Best Pulse Oximeters of 2026',
+    winner: 'Masimo MightySat Rx',
+    score: '9.6',
+    devices: [
+      {name:'Pulse Oximeters',condition:'Asthma',link:'/healthrankings-asthma-pulse-oximeter.html'},
+      {name:'Pulse Oximeters',condition:'COPD',link:'/healthrankings-copd-pulse-oximeters.html'},
+      {name:'Pulse Oximeters',condition:'Sleep Apnea',link:'/healthrankings-sleep-apnea.html'},
+      {name:'Pulse Oximeters',condition:'Heart Failure',link:'/healthrankings-heart-failure-pulse-oximeter.html'},
+      {name:'Pulse Oximeters',condition:'Long COVID',link:'/healthrankings-long-covid-pulse-oximeter.html'},
+    ]
+  },
+  {
+    cat: 'monitoring',
+    name: 'Thermometers',
+    description: 'For fever monitoring, respiratory infections',
+    top5Link: '/healthrankings-thermometers.html',
+    top5Label: 'Best Thermometers of 2026',
+    winner: 'Braun No Touch + Forehead',
+    score: '9.1',
+    devices: [
+      {name:'Thermometers',condition:'Fever Monitoring',link:'/healthrankings-thermometers.html'},
+      {name:'Thermometers',condition:'Respiratory Infections',link:'/healthrankings-thermometers.html'},
+    ]
+  },
+  {
+    cat: 'monitoring',
+    name: 'Glucometers & CGM',
+    description: 'For Type 1 & 2 diabetes, ketogenic diet, insulin resistance',
+    top5Link: '/healthrankings-type1-diabetes-glucometer.html',
+    top5Label: 'Best Glucometers & CGM of 2026',
+    winner: 'Contour Next One',
+    score: '9.7',
+    devices: [
+      {name:'Glucometers / CGM',condition:'Type 1 Diabetes',link:'/healthrankings-type1-diabetes-glucometer.html'},
+      {name:'Ketone Monitors',condition:'Type 2 Diabetes',link:'/healthrankings-diabetes-ketone-monitors.html'},
+      {name:'Ketone Monitors',condition:'Ketogenic Diet',link:'/healthrankings-ketogenic-diet-ketone-monitor.html'},
+    ]
+  },
+  {
+    cat: 'pain',
+    name: 'TENS Units',
+    description: 'For arthritis, back pain, neuropathy, sports injuries, post-surgical',
+    top5Link: '/healthrankings-arthritis-tens.html',
+    top5Label: 'Best TENS Units of 2026',
+    winner: 'iReliev ET-7070',
+    score: '9.6',
+    devices: [
+      {name:'TENS Units',condition:'Arthritis',link:'/healthrankings-arthritis-tens.html'},
+      {name:'TENS Units',condition:'Back Pain',link:'/healthrankings-back-pain-tens.html'},
+      {name:'TENS Units',condition:'Neuropathy',link:'/healthrankings-neuropathy-tens-units.html'},
+      {name:'TENS Units',condition:'Sports Injuries',link:'/healthrankings-sports-injuries-tens.html'},
+      {name:'TENS Units',condition:'Post-Surgical Rehab',link:'/healthrankings-post-surgical-rehab-tens.html'},
+      {name:'TENS Units + Foot Support',condition:'Plantar Fasciitis',link:'/healthrankings-plantar-fasciitis-foot-support.html'},
+    ]
+  },
+  {
+    cat: 'pain',
+    name: 'Massage Devices',
+    description: 'For anxiety, neck pain, muscle recovery, chronic pain',
+    top5Link: '/healthrankings-percussion-massage-guns.html',
+    top5Label: 'Best Massage Devices of 2026',
+    winner: 'Theragun PRO Gen 6',
+    score: '9.4',
+    devices: [
+      {name:'Percussion Massage Guns',condition:'Muscle Recovery',link:'/healthrankings-percussion-massage-guns.html'},
+      {name:'Electric Massagers',condition:'Anxiety / Stress',link:'/healthrankings-anxiety-massagers.html'},
+      {name:'Shiatsu Massagers',condition:'Neck & Shoulder Pain',link:'/healthrankings-shiatsu-neck-massagers.html'},
+    ]
+  },
+  {
+    cat: 'pain',
+    name: 'Foot & Leg Supports',
+    description: 'For neuropathy, plantar fasciitis, arthritis',
+    top5Link: '/healthrankings-neuropathy-foot-support.html',
+    top5Label: 'Best Foot & Leg Supports of 2026',
+    winner: 'Powerstep Pinnacle Orthotics',
+    score: '9.6',
+    devices: [
+      {name:'Foot & Leg Supports',condition:'Neuropathy',link:'/healthrankings-neuropathy-foot-support.html'},
+      {name:'Foot Supports',condition:'Plantar Fasciitis',link:'/healthrankings-plantar-fasciitis-foot-support.html'},
+    ]
+  },
+  {
+    cat: 'pain',
+    name: 'Back Support Braces',
+    description: 'For back pain, post-surgical, posture support',
+    top5Link: '/healthrankings-back-support-braces.html',
+    top5Label: 'Best Back Support Braces of 2026',
+    winner: 'Sparthos Back Brace',
+    score: '9.2',
+    devices: [
+      {name:'Back Support Braces',condition:'Back Pain',link:'/healthrankings-back-support-braces.html'},
+    ]
+  },
+  {
+    cat: 'pain',
+    name: 'Arthritis Gloves',
+    description: 'For rheumatoid arthritis, osteoarthritis',
+    top5Link: '/healthrankings-arthritis-gloves.html',
+    top5Label: 'Best Arthritis Gloves of 2026',
+    winner: 'Copper Compression Gloves',
+    score: '9.0',
+    devices: [
+      {name:'Arthritis Gloves',condition:'Arthritis',link:'/healthrankings-arthritis-gloves.html'},
+    ]
+  },
+  {
+    cat: 'respiratory',
+    name: 'Breathing Trainers',
+    description: 'For COPD, asthma, anxiety, athletic performance',
+    top5Link: '/healthrankings-copd-breathing-trainers.html',
+    top5Label: 'Best Breathing Trainers of 2026',
+    winner: 'Airofit PRO 2.0',
+    score: '9.5',
+    devices: [
+      {name:'Breathing Trainers',condition:'COPD',link:'/healthrankings-copd-breathing-trainers.html'},
+      {name:'Breathing Trainers',condition:'Anxiety / Stress',link:'/healthrankings-anxiety-breathing-trainers.html'},
+      {name:'Breathing Trainers',condition:'Athletic Performance',link:'/healthrankings-athletic-breathing.html'},
+      {name:'Breathing Trainers',condition:'Endurance Training',link:'/healthrankings-endurance-training-breathing-trainer.html'},
+    ]
+  },
+  {
+    cat: 'dental',
+    name: 'Electric Toothbrushes',
+    description: 'For gum disease, diabetic oral health, general dental care',
+    top5Link: '/healthrankings-electric-toothbrushes.html',
+    top5Label: 'Best Electric Toothbrushes of 2026',
+    winner: 'Oral-B iO Series 9',
+    score: '9.3',
+    devices: [
+      {name:'Electric Toothbrushes',condition:'Gum Disease',link:'/healthrankings-electric-toothbrushes.html'},
+      {name:'Electric Toothbrushes',condition:'Oral Health in Diabetes',link:'/healthrankings-oral-health-diabetes-toothbrush.html'},
+    ]
+  },
+  {
+    cat: 'dental',
+    name: 'Water Flossers',
+    description: 'For gum disease, periodontal care',
+    top5Link: '/healthrankings-water-flossers.html',
+    top5Label: 'Best Water Flossers of 2026',
+    winner: 'Waterpik Aquarius WP-660',
+    score: '9.4',
+    devices: [
+      {name:'Water Flossers',condition:'Gum Disease',link:'/healthrankings-water-flossers.html'},
+    ]
+  },
+  {
+    cat: 'fitness',
+    name: 'Fitness & Recovery',
+    description: 'For athletic performance, muscle building, endurance',
+    top5Link: '/healthrankings-athletic-body-composition.html',
+    top5Label: 'Best Fitness Devices of 2026',
+    winner: 'Withings Body Comp',
+    score: '9.4',
+    devices: [
+      {name:'Body Composition Monitors',condition:'Athletic Performance',link:'/healthrankings-athletic-body-composition.html'},
+      {name:'Percussion Massage Guns',condition:'Recovery & Overtraining',link:'/healthrankings-percussion-massage-guns.html'},
+      {name:'Breathing Trainers',condition:'Endurance Training',link:'/healthrankings-endurance-training-breathing-trainer.html'},
+    ]
+  },
+  {
+    cat: 'diagnostic',
+    name: 'Home Test Kits',
+    description: 'For cholesterol, UTI, STI, HIV, drug screening, genetic risk',
+    top5Link: '/healthrankings-cholesterol.html',
+    top5Label: 'Best Home Test Kits of 2026',
+    winner: 'LetsGetChecked Cholesterol Panel',
+    score: '9.2',
+    devices: [
+      {name:'Cholesterol Tests',condition:'High Cholesterol',link:'/healthrankings-cholesterol.html'},
+      {name:'UTI Test Strips',condition:'UTI',link:'/healthrankings-uti.html'},
+      {name:'STI Test Kits',condition:'STI Screening',link:'/healthrankings-sti-home-testing.html'},
+      {name:'HIV Tests',condition:'HIV / AIDS',link:'/healthrankings-hiv.html'},
+      {name:'Drug Test Kits',condition:'Drug Screening',link:'/healthrankings-drug-test-kits.html'},
+      {name:'Genetic Tests',condition:'Hereditary Risk',link:'/healthrankings-hereditary-genetic-testing.html'},
+      {name:'Colorectal Screening',condition:'Colorectal Cancer',link:'/healthrankings-colorectal-cancer-screening.html'},
+      {name:'Pregnancy Tests',condition:'Pregnancy',link:'/healthrankings-pregnancy-tests.html'},
+      {name:'Ovulation Tests',condition:'Female Fertility',link:'/healthrankings-ovulation-test-kits.html'},
+      {name:'Sperm Tests',condition:'Male Fertility',link:'/healthrankings-male-fertility.html'},
+      {name:'Breathalyzers',condition:'Alcohol Monitoring',link:'/healthrankings-alcohol-breathalyzers.html'},
+      {name:'Ketone Monitors',condition:'Ketogenic Diet',link:'/healthrankings-ketogenic-diet-ketone-monitor.html'},
+    ]
+  },
+  {
+    cat: 'diagnostic',
+    name: 'Fertility & Reproductive',
+    description: 'For PCOS, ovulation tracking, pregnancy, male fertility',
+    top5Link: '/healthrankings-pcos-ovulation-monitor.html',
+    top5Label: 'Best Fertility Monitors of 2026',
+    winner: 'Inito Fertility Monitor',
+    score: '9.3',
+    devices: [
+      {name:'Ovulation Monitors',condition:'PCOS',link:'/healthrankings-pcos-ovulation-monitor.html'},
+      {name:'Ovulation Test Kits',condition:'Female Fertility',link:'/healthrankings-ovulation-test-kits.html'},
+      {name:'Sperm Test Kits',condition:'Male Fertility',link:'/healthrankings-male-fertility.html'},
+      {name:'Pregnancy Tests',condition:'Pregnancy',link:'/healthrankings-pregnancy-tests.html'},
+    ]
+  },
+  {
+    cat: 'safety',
+    name: 'GPS & Alert Systems',
+    description: 'For Alzheimer\'s, Parkinson\'s, fall detection, elderly care',
+    top5Link: '/healthrankings-dementia-alzheimers-gps-alert.html',
+    top5Label: 'Best Safety Alert Systems of 2026',
+    winner: 'Apple Watch Series 10',
+    score: '9.5',
+    devices: [
+      {name:'GPS Alert Systems',condition:"Dementia / Alzheimer's",link:'/healthrankings-dementia-alzheimers-gps-alert.html'},
+      {name:'Fall Detection Systems',condition:"Parkinson's Disease",link:'/healthrankings-parkinsons-fall-detection.html'},
+      {name:'Health Alert Systems',condition:'Cognitive Decline',link:'/healthrankings-cognitive-decline-monitoring.html'},
+    ]
+  },
+  {
+    cat: 'support',
+    name: 'Supplements',
+    description: 'For muscle building, recovery, oxidative stress',
+    top5Link: '/healthrankings-creatine-supplements.html',
+    top5Label: 'Best Health Supplements of 2026',
+    winner: 'Thorne CoQ10 Ubiquinol',
+    score: '9.6',
+    devices: [
+      {name:'Creatine Supplements',condition:'Muscle Building',link:'/healthrankings-creatine-supplements.html'},
+      {name:'BCAA Supplements',condition:'Muscle Recovery',link:'/healthrankings-bcaa-glutamine-supplements.html'},
+      {name:'Antioxidant Supplements',condition:'Oxidative Stress',link:'/healthrankings-oxidative-stress-antioxidant-supplements.html'},
+    ]
+  },
+];
+
+// ── RENDER ────────────────────────────────────────────────────────────────
+let activeCat = 'all';
+let searchQ = '';
+
+function render() {
+  const container = document.getElementById('deviceSections');
+  
+  let filtered = DEVICE_TYPES.filter(dt => {
+    const matchCat = activeCat === 'all' || dt.cat === activeCat;
+    const q = searchQ.toLowerCase();
+    const matchSearch = !q || 
+      dt.name.toLowerCase().includes(q) ||
+      dt.description.toLowerCase().includes(q) ||
+      dt.devices.some(d => d.name.toLowerCase().includes(q) || d.condition.toLowerCase().includes(q));
+    return matchCat && matchSearch;
+  });
+
+  const totalDevices = filtered.reduce((sum, dt) => sum + dt.devices.length, 0);
+  document.getElementById('resultsInfo').innerHTML = 
+    `Showing <strong>${filtered.length}</strong> device categories · <strong>${totalDevices}</strong> individual products reviewed`;
+
+  if (!filtered.length) {
+    container.innerHTML = `<div class="empty"><h3>No devices found</h3><p>Try a different search term or filter.</p></div>`;
+    return;
+  }
+
+  container.innerHTML = filtered.map(dt => `
+    <div class="device-section" data-cat="${dt.cat}">
+      <div class="device-section-header">
+        <div class="device-section-title">${dt.name}</div>
+        <span class="device-count">${dt.devices.length} product${dt.devices.length !== 1 ? 's' : ''} reviewed</span>
+      </div>
+      
+      <!-- TOP 5 HIGHLIGHT BOX -->
+      <a href="${dt.top5Link}" class="top5-box" style="display:flex;text-decoration:none;">
+        <div class="top5-box-left">
+          <div class="top5-box-badge">Expert Ranked · Top 5 of 2026</div>
+          <div class="top5-box-title">We Reviewed the Best ${dt.name} of 2026</div>
+          <div class="top5-box-sub">#1 Pick: ${dt.winner} &nbsp;·&nbsp; Score: ${dt.score}/10 &nbsp;·&nbsp; ${dt.devices.length} products tested</div>
+        </div>
+        <div class="top5-box-btn">See Full Top 5 →</div>
+      </a>
+
+      <!-- DEVICE CARDS -->
+      <div class="devices-grid">
+        ${dt.devices.map(d => `
+          <a href="${d.link}" class="device-card">
+            <div class="dc-type">${dt.name}</div>
+            <div class="dc-name">${d.condition}</div>
+            <div class="dc-condition">${d.name}</div>
+            <div class="dc-arrow">Read Review →</div>
+          </a>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+// ── FILTERS ───────────────────────────────────────────────────────────────
+document.getElementById('filterPills').addEventListener('click', e => {
+  const pill = e.target.closest('.filter-pill');
+  if (!pill) return;
+  document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+  pill.classList.add('active');
+  activeCat = pill.dataset.cat;
+  render();
+  window.scrollTo({top: document.querySelector('.main').offsetTop - 130, behavior: 'smooth'});
+});
+
+// ── SEARCH ────────────────────────────────────────────────────────────────
+let searchTimer;
+document.getElementById('deviceSearch').addEventListener('input', function() {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => {
+    searchQ = this.value.trim();
+    render();
+  }, 300);
+});
+
+// ── INIT ──────────────────────────────────────────────────────────────────
+render();
+</script>
+</body>
+</html>
