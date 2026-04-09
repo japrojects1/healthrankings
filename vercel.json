@@ -1,0 +1,9 @@
+{
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/healthrankings-homepage.html"
+    }
+  ],
+  "cleanUrls": false
+}
