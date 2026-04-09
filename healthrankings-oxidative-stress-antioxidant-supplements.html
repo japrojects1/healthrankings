@@ -337,4 +337,39 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   <p class="disclaimer">HealthRankings.com is reader-supported. We may earn a commission from affiliate links. Content is for informational purposes only and does not constitute medical advice. Always consult a qualified healthcare provider.</p>
 </footer>
 <script>document.querySelectorAll('.faq-q').forEach(q=>{q.addEventListener('click',()=>{const i=q.parentElement;const o=i.classList.contains('open');document.querySelectorAll('.faq-item').forEach(x=>x.classList.remove('open'));if(!o)i.classList.add('open');});});</script>
+
+<script>
+(function(){
+  var rh=document.getElementById('device-reviews');
+  if(!rh)return;
+  var toHide=[];
+  var sec=rh.closest('.section');
+  if(sec&&sec.querySelector('.product-card')){
+    toHide.push(sec);
+    var p=sec.previousElementSibling;
+    if(p&&(p.tagName==='HR'||p.classList.contains('section-divider')))toHide.push(p);
+    var nx=sec.nextElementSibling;
+    while(nx&&!nx.id&&nx.classList.contains('section')&&(nx.querySelector('.comparison-table')||nx.querySelector('.comparison-wrap'))){
+      toHide.push(nx);nx=nx.nextElementSibling;
+    }
+  }else{
+    var p=rh.previousElementSibling;
+    if(p&&(p.tagName==='HR'||p.classList.contains('section-divider')))toHide.push(p);
+    var el=rh;
+    while(el){
+      if(el.tagName==='FOOTER')break;
+      var isNonReviewSection=el.classList&&el.classList.contains('section')&&el.querySelector&&(el.querySelector('.faq-item')||el.id==='faq');
+      if(isNonReviewSection)break;
+      toHide.push(el);
+      el=el.nextElementSibling;
+    }
+  }
+  function hide(){toHide.forEach(function(e){e.style.display='none'});}
+  function show(){toHide.forEach(function(e){e.style.display=''});}
+  if(location.hash!=='#device-reviews')hide();
+  var box=document.querySelector('.top5-box');
+  if(box)box.onclick=function(e){e.preventDefault();show();rh.scrollIntoView({behavior:'smooth'});};
+  window.addEventListener('hashchange',function(){if(location.hash==='#device-reviews')show();});
+})();
+</script>
 </body></html>
