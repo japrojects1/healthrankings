@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Drugs & Medications A–Z | HealthRankings</title>
+<meta name="description" content="Search and browse prescription and OTC drugs by name, condition, or letter — powered by the FDA's RxNorm database.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>:root{color-scheme:light;}
+@media(prefers-color-scheme:dark){
+  :root{--primary:#1565C0;--primary-dark:#0D47A1;--primary-light:#E3F0FF;--accent:#0097A7;--red:#C62828;--red-light:#FFEBEE;--red-mid:#EF5350;--green:#2E7D32;--gold:#F57F17;--gray:#F8FAFC;--gray-mid:#E8EDF2;--gray-dark:#64748B;--text:#1A1A2E;--text-light:#4A5568;--white:#FFFFFF;--border:#DDE3EA;--navy:#1565C0;}
+  body{background:#FFFFFF!important;color:#1A1A2E!important;}
+}
+
+/* HealthRankings.com — Medical Design System v2.0 */
+:root {
+  --primary: #1565C0;
+  --primary-dark: #0D47A1;
+  --primary-light: #E3F0FF;
+  --accent: #0097A7;
+  --accent-light: #E0F5F7;
+  --red: #C62828;
+  --red-light: #FFEBEE;
+  --red-mid: #EF5350;
+  --green: #2E7D32;
+  --green-light: #E8F5E9;
+  --gold: #F57F17;
+  --gold-light: #FFF8E1;
+  --gray: #F8FAFC;
+  --gray-mid: #E8EDF2;
+  --gray-dark: #64748B;
+  --text: #1A1A2E;
+  --text-light: #4A5568;
+  --white: #FFFFFF;
+  --border: #DDE3EA;
+  --navy: #1565C0;
+  --navy2: #0D47A1;
+  --red-light: #FFEBEE;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--white);font-size:16px;line-height:1.7;}
+a{text-decoration:none;color:inherit;}
+
+/* ── NAV — clean white with blue accents ── */
+nav{background:var(--white);height:64px;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;border-bottom:2px solid var(--primary-light);box-shadow:0 1px 8px rgba(21,101,192,0.08);}
+.logo{font-family:'Playfair Display',serif;color:var(--primary);font-size:1.4rem;font-weight:700;}
+.logo span{color:var(--accent);}
+.nav-links{display:flex;gap:0;}
+.nav-links a{color:var(--text-light);font-size:0.875rem;font-weight:500;padding:0 1.1rem;height:64px;display:flex;align-items:center;border-bottom:2px solid transparent;transition:all 0.2s;}
+.nav-links a:hover{color:var(--primary);border-bottom-color:var(--primary);}
+.nav-cta{background:var(--primary)!important;color:#fff!important;padding:8px 18px!important;height:auto!important;border-radius:8px!important;border-bottom:none!important;font-size:0.82rem!important;}
+.nav-cta:hover{background:var(--primary-dark)!important;}
+
+/* ── HERO — clean white / light blue instead of dark navy ── */
+.hero{background:linear-gradient(135deg,var(--primary-light) 0%,#EBF5FF 60%,var(--white) 100%);padding:4rem 2rem 3.5rem;position:relative;overflow:hidden;border-bottom:1px solid var(--border);}
+.hero::before{content:'';position:absolute;top:-60px;right:-60px;width:400px;height:400px;border-radius:50%;background:rgba(21,101,192,0.06);pointer-events:none;}
+.hero::after{content:'';position:absolute;bottom:-80px;left:15%;width:300px;height:300px;border-radius:50%;background:rgba(0,151,167,0.05);pointer-events:none;}
+.hero-inner{max-width:860px;margin:0 auto;position:relative;z-index:1;}
+.breadcrumb{font-size:0.8rem;color:var(--gray-dark);margin-bottom:1.5rem;display:flex;gap:0.5rem;align-items:center;}
+.breadcrumb a{color:var(--primary);}
+.breadcrumb a:hover{text-decoration:underline;}
+.condition-tag{display:inline-block;background:var(--primary-light);color:var(--primary);font-size:0.75rem;font-weight:600;padding:4px 14px;border-radius:20px;margin-bottom:1rem;letter-spacing:0.5px;text-transform:uppercase;border:1px solid rgba(21,101,192,0.2);}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.2rem);color:var(--text);line-height:1.2;margin-bottom:1.25rem;font-weight:700;}
+.hero h1 br+*,.hero h1>span,.hero-subtitle{color:var(--text);}
+.hero-subtitle{font-size:1.05rem;color:var(--text-light);max-width:620px;margin-bottom:2rem;font-weight:400;}
+.hero-stats{display:flex;gap:2.5rem;flex-wrap:wrap;}
+.stat{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:0.875rem 1.25rem;min-width:110px;}
+.stat-num{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--primary);font-weight:700;line-height:1;}
+.stat-label{font-size:0.75rem;color:var(--gray-dark);margin-top:3px;}
+
+/* ── TOC BAR ── */
+.toc-bar{background:var(--white);border-bottom:1px solid var(--border);padding:0 2rem;overflow-x:auto;}
+.toc-bar ul{list-style:none;display:flex;gap:0;max-width:860px;margin:0 auto;white-space:nowrap;}
+.toc-bar ul a{display:block;padding:1rem 1.25rem;font-size:0.85rem;font-weight:500;color:var(--text-light);text-decoration:none;border-bottom:2px solid transparent;transition:all 0.2s;}
+.toc-bar ul a:hover{color:var(--primary);border-bottom-color:var(--primary);}
+
+/* ── PAGE WRAP ── */
+.page-wrap{max-width:860px;margin:0 auto;padding:3rem 2rem;}
+
+/* ── SECTIONS ── */
+.section{margin-bottom:4rem;background:var(--white);border:1px solid var(--border);border-radius:16px;padding:2rem;}
+.section-label{font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--accent);margin-bottom:0.5rem;}
+.section h2{font-family:'Playfair Display',serif;font-size:1.75rem;font-weight:700;color:var(--text);margin-bottom:1.25rem;line-height:1.25;}
+.section p{color:var(--text-light);margin-bottom:1rem;font-size:1rem;}
+
+/* ── CALLOUTS ── */
+.callout{background:var(--red-light);border-left:4px solid var(--red);padding:1.25rem 1.5rem;border-radius:0 8px 8px 0;margin:1.5rem 0;}
+.callout p{margin:0;color:#7B1717;font-size:0.95rem;}
+.callout strong{color:var(--red);}
+.callout-blue{background:var(--primary-light);border-left:4px solid var(--primary);padding:1.25rem 1.5rem;border-radius:0 8px 8px 0;margin:1.5rem 0;}
+.callout-blue p{margin:0;color:#0D3880;font-size:0.95rem;}
+.callout-green{background:var(--green-light);border-left:4px solid var(--green);padding:1.25rem 1.5rem;border-radius:0 8px 8px 0;margin:1.5rem 0;}
+.callout-green p{margin:0;color:#1B5E20;font-size:0.95rem;}
+
+/* ── SYMPTOMS GRID ── */
+.symptoms-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:1.5rem;}
+.symptom-card{background:var(--gray);border:1px solid var(--border);border-radius:10px;padding:1.25rem;display:flex;align-items:flex-start;gap:0.875rem;}
+.symptom-icon{width:36px;height:36px;background:var(--primary-light);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.1rem;}
+.symptom-card h4{font-size:0.9rem;font-weight:500;color:var(--text);margin-bottom:2px;}
+.symptom-card p{font-size:0.8rem;color:var(--gray-dark);margin:0;}
+
+/* ── CAUSES LIST ── */
+.causes-list{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-top:1.25rem;}
+.cause-item{display:flex;align-items:flex-start;gap:0.75rem;padding:0.875rem 1rem;background:var(--gray);border-radius:8px;border:1px solid var(--border);}
+.cause-dot{width:8px;height:8px;background:var(--primary);border-radius:50%;margin-top:7px;flex-shrink:0;}
+.cause-item p{font-size:0.875rem;color:var(--text-light);margin:0;}
+.cause-item strong{color:var(--text);font-weight:500;display:block;font-size:0.875rem;}
+
+/* ── LIFESTYLE GRID ── */
+.lifestyle-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-top:1.25rem;}
+.lifestyle-card{border:1px solid var(--border);border-radius:10px;padding:1.25rem;background:var(--white);transition:box-shadow 0.2s;}
+.lifestyle-card:hover{box-shadow:0 4px 20px rgba(21,101,192,0.1);}
+.lifestyle-card .lc-icon{font-size:1.5rem;margin-bottom:0.75rem;}
+.lifestyle-card h4{font-size:0.95rem;font-weight:500;color:var(--text);margin-bottom:0.5rem;}
+.lifestyle-card p{font-size:0.85rem;color:var(--gray-dark);margin:0;}
+
+/* ── MED TABLE ── */
+.med-table{width:100%;border-collapse:collapse;margin-top:1.25rem;font-size:0.875rem;}
+.med-table th{text-align:left;padding:0.75rem 1rem;background:var(--primary);color:#fff;font-weight:500;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.5px;}
+.med-table th:first-child{border-radius:8px 0 0 0;}
+.med-table th:last-child{border-radius:0 8px 0 0;}
+.med-table td{padding:0.75rem 1rem;border-bottom:1px solid var(--border);color:var(--text-light);vertical-align:top;}
+.med-table tr:last-child td{border-bottom:none;}
+.med-table tr:nth-child(even) td{background:var(--gray);}
+.med-name{font-weight:500;color:var(--primary);}
+
+/* ── SECTION DIVIDER ── */
+.section-divider{border:none;border-top:2px solid var(--border);margin:2rem 0;position:relative;}
+.section-divider::before{content:'◆';position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--gray);padding:0 1rem;color:var(--primary);font-size:0.7rem;}
+
+/* ── REVIEW HERO — medical blue instead of dark navy ── */
+.review-hero{background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);border-radius:16px;padding:2.5rem;margin-bottom:2.5rem;position:relative;overflow:hidden;}
+.review-hero::after{content:'';position:absolute;right:-40px;top:-40px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,0.08);}
+.review-hero h2{font-family:'Playfair Display',serif;color:#fff;font-size:1.75rem;margin-bottom:0.75rem;position:relative;z-index:1;}
+.review-hero p{color:rgba(255,255,255,0.8);font-size:0.95rem;max-width:520px;position:relative;z-index:1;margin:0;}
+.review-meta{display:flex;gap:2rem;margin-top:1.5rem;position:relative;z-index:1;flex-wrap:wrap;}
+.review-meta-item{font-size:0.8rem;color:rgba(255,255,255,0.6);}
+.review-meta-item strong{color:#fff;display:block;font-size:0.9rem;}
+
+/* ── TOP 5 INTRO ── */
+.top5-intro{background:var(--primary-light);border-radius:12px;padding:1.5rem 2rem;margin-bottom:2rem;display:flex;align-items:center;gap:1.5rem;border:1px solid rgba(21,101,192,0.2);}
+.top5-badge{background:var(--primary);color:#fff;font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.top5-intro p{font-size:0.9rem;color:var(--text-light);margin:0;}
+
+/* ── PRODUCT CARDS ── */
+.product-card{border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:1.5rem;background:#fff;transition:box-shadow 0.25s;}
+.product-card:hover{box-shadow:0 8px 32px rgba(21,101,192,0.12);}
+.product-card.winner{border:2px solid var(--gold);}
+.winner-ribbon{position:absolute;top:16px;right:-1px;background:var(--gold);color:#fff;font-size:0.7rem;font-weight:500;padding:4px 14px 4px 10px;letter-spacing:0.5px;text-transform:uppercase;}
+.product-rank{position:absolute;top:16px;left:16px;width:32px;height:32px;background:var(--primary);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:500;z-index:2;}
+.product-rank.rank-1{background:var(--gold);}
+.product-card-body{padding:1.75rem;display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:start;}
+.product-name{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:600;color:var(--text);margin-bottom:0.25rem;padding-left:2.5rem;}
+.product-tagline{font-size:0.85rem;color:var(--primary);font-weight:500;margin-bottom:0.875rem;padding-left:2.5rem;}
+.product-desc{font-size:0.9rem;color:var(--text-light);margin-bottom:1rem;line-height:1.65;}
+.product-pros-cons{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem;}
+.pros h5,.cons h5{font-size:0.75rem;font-weight:500;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.5rem;}
+.pros h5{color:var(--green);}
+.cons h5{color:var(--red);}
+.pros ul,.cons ul{list-style:none;font-size:0.82rem;color:var(--text-light);}
+.pros ul li::before{content:'✓ ';color:var(--green);font-weight:500;}
+.cons ul li::before{content:'✗ ';color:var(--red);}
+.pros ul li,.cons ul li{margin-bottom:3px;}
+.product-score-panel{text-align:center;min-width:110px;}
+.score-circle{width:72px;height:72px;border-radius:50%;background:var(--primary);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 0.75rem;}
+.score-num{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:#fff;line-height:1;}
+.score-circle.gold{background:var(--gold);}
+.score-label{font-size:0.7rem;color:var(--gray-dark);margin-bottom:0.875rem;}
+.price-tag{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:600;color:var(--text);margin-bottom:0.5rem;}
+.buy-btn{display:block;background:var(--primary);color:#fff;text-align:center;padding:8px 16px;border-radius:8px;font-size:0.8rem;font-weight:500;transition:background 0.2s;white-space:nowrap;}
+.buy-btn:hover{background:var(--primary-dark);}
+.buy-btn.gold-btn{background:var(--gold);}
+.buy-btn.gold-btn:hover{background:#E65100;}
+.rating-bar-row{display:flex;align-items:center;gap:8px;margin-bottom:4px;font-size:0.78rem;}
+.rating-bar-label{min-width:80px;color:var(--gray-dark);}
+.rating-bar-track{flex:1;height:5px;background:var(--gray-mid);border-radius:3px;overflow:hidden;}
+.rating-bar-fill{height:100%;background:var(--primary);border-radius:3px;}
+.rating-bar-fill.gold{background:var(--gold);}
+.rating-num{min-width:24px;font-weight:500;color:var(--text);font-size:0.78rem;}
+.product-footer{background:var(--gray);padding:1rem 1.75rem;border-top:1px solid var(--border);display:flex;gap:1.5rem;font-size:0.8rem;color:var(--gray-dark);flex-wrap:wrap;}
+.product-footer span strong{color:var(--text);font-weight:500;}
+
+/* ── COMPARISON TABLE ── */
+.comparison-wrap{overflow-x:auto;margin-top:1.5rem;}
+.comparison-table{width:100%;border-collapse:collapse;font-size:0.82rem;}
+.comparison-table th{background:var(--primary);color:#fff;padding:0.75rem 1rem;text-align:left;font-weight:500;font-size:0.78rem;}
+.comparison-table th:first-child{border-radius:8px 0 0 0;}
+.comparison-table th:last-child{border-radius:0 8px 0 0;}
+.comparison-table td{padding:0.7rem 1rem;border-bottom:1px solid var(--border);color:var(--text-light);}
+.comparison-table tr:nth-child(even) td{background:var(--gray);}
+.comparison-table tr:last-child td{border-bottom:none;}
+.check{color:var(--green);font-weight:500;}
+.cross{color:#CCC;}
+.winner-row td{font-weight:500;color:var(--text);}
+.winner-row td:first-child{color:var(--gold);font-weight:600;}
+
+/* ── FAQ ── */
+.faq-item{border-bottom:1px solid var(--border);padding:1.25rem 0;}
+.faq-q{font-weight:500;color:var(--text);cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-size:0.95rem;user-select:none;}
+.faq-q::after{content:'+';font-size:1.2rem;color:var(--primary);transition:transform 0.2s;flex-shrink:0;margin-left:1rem;}
+.faq-item.open .faq-q::after{content:'−';}
+.faq-a{font-size:0.875rem;color:var(--text-light);padding-top:0.75rem;display:none;line-height:1.7;}
+.faq-item.open .faq-a{display:block;}
+
+/* ── FOOTER ── */
+footer{background:var(--primary-dark);color:rgba(255,255,255,0.55);padding:2.5rem 2rem;text-align:center;font-size:0.8rem;}
+footer .logo{display:block;margin-bottom:0.75rem;font-size:1.2rem;color:#fff;}
+footer p{max-width:560px;margin:0 auto;line-height:1.6;}
+footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0.3);}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+.hero-inner>*{animation:fadeUp 0.6s ease both;}
+.hero-inner>*:nth-child(1){animation-delay:.1s}
+.hero-inner>*:nth-child(2){animation-delay:.2s}
+.hero-inner>*:nth-child(3){animation-delay:.3s}
+.hero-inner>*:nth-child(4){animation-delay:.4s}
+.hero-inner>*:nth-child(5){animation-delay:.5s}
+@media(max-width:640px){
+  .product-card-body{grid-template-columns:1fr;}
+  .product-score-panel{display:flex;align-items:center;gap:1rem;padding-left:2.5rem;}
+  .causes-list{grid-template-columns:1fr;}
+  .product-pros-cons{grid-template-columns:1fr;}
+  nav .nav-links{display:none;}
+}
+
+nav{background:var(--white)!important;border-bottom:2px solid var(--primary-light)!important;box-shadow:0 1px 8px rgba(21,101,192,0.08)!important;}
+nav .logo{color:var(--primary)!important;}
+.hero{background:linear-gradient(135deg,var(--primary-light) 0%,#EBF5FF 60%,var(--white) 100%)!important;border-bottom:1px solid var(--border)!important;}
+.hero h1{color:var(--text)!important;}
+.hero h1 em{color:var(--primary)!important;}
+.hero-sub{color:var(--text-light)!important;}
+.hero-badge{background:var(--primary-light)!important;color:var(--primary)!important;border:1px solid rgba(21,101,192,0.2)!important;}
+#drugSearch{background:rgba(21,101,192,0.08)!important;border-color:rgba(21,101,192,0.25)!important;color:var(--text)!important;}
+#drugSearch::placeholder{color:var(--gray-dark)!important;}
+#drugSearch:focus{border-color:var(--primary)!important;background:#fff!important;}
+.search-icon{color:var(--gray-dark)!important;}
+.powered{color:var(--gray-dark)!important;}
+.alpha-bar-wrap{background:var(--white)!important;border-bottom:1px solid var(--border)!important;}
+.alpha-label{color:var(--gray-dark)!important;}
+.ab{background:#fff!important;color:var(--text)!important;border-color:var(--border)!important;}
+.ab:hover,.ab.active{background:var(--primary)!important;color:#fff!important;border-color:var(--primary)!important;}
+.top-chip{border-color:var(--border)!important;}
+.top-chip:hover{border-color:var(--primary)!important;}
+.top-chip-brand{color:var(--text)!important;}
+.dc-name{color:var(--text)!important;}
+.letter-heading{color:var(--text)!important;border-color:var(--border)!important;}
+.drug-card:hover{border-color:var(--primary)!important;box-shadow:0 3px 14px rgba(21,101,192,0.1)!important;}
+.drug-card.expanded{border-color:var(--primary)!important;}
+.tag-ingredient{background:var(--primary-light)!important;color:var(--primary-dark)!important;}
+.de-field{background:var(--gray)!important;}
+.de-label{color:var(--gray-dark)!important;}
+.de-value{color:var(--text)!important;}
+.de-link{color:var(--primary)!important;border-color:rgba(21,101,192,0.3)!important;}
+.info-banner{background:var(--primary-light)!important;border-color:rgba(21,101,192,0.25)!important;color:var(--primary-dark)!important;}
+.tool-card:hover{border-color:var(--primary)!important;box-shadow:0 3px 14px rgba(21,101,192,0.1)!important;}
+.tc-name{color:var(--text)!important;}
+.ac-item:hover{background:var(--primary-light)!important;}
+.pg:hover,.pg.active{background:var(--primary)!important;border-color:var(--primary)!important;}
+footer{background:#0D3880!important;}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="healthrankings-homepage.html" class="logo">Health<span>Rankings</span></a>
+  <div class="nav-links">
+    <a href="healthrankings-homepage.html">Home</a>
+    <a href="healthrankings-conditions.html">Conditions</a>
+    <a href="healthrankings-drugs.html" class="active">Drugs A–Z</a>
+    <a href="healthrankings-news.html">Health News</a>
+    <a href="healthrankings-homepage.html" class="nav-cta">← Back Home</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">Powered by NLM RxNorm API</div>
+    <h1>Drugs &amp; Medications <em>A–Z</em></h1>
+    <p class="hero-sub">Search thousands of prescription and OTC drugs by name — look up brand vs. generic, related formulations, and dosage forms from the FDA's RxNorm database.</p>
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="drugSearch" placeholder="Search by drug name (e.g. metformin, lisinopril, atorvastatin)…" autocomplete="off" spellcheck="false" />
+      <div class="ac-box" id="acBox"></div>
+    </div>
+    <p class="powered">Data source: National Library of Medicine RxNorm API · Free public database · No prescription required to search</p>
+  </div>
+</div>
+
+<div class="alpha-bar-wrap">
+  <div class="alpha-inner">
+    <p class="alpha-label">Browse by letter</p>
+    <div class="alpha-bar" id="alphaBar"></div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="info-banner" id="infoBanner">
+    <span>ℹ️</span>
+    <div>
+      <strong>Live database search</strong>
+      Type a drug name above to search the full RxNorm database in real time, or click a letter to browse. This page must be served from a web server (not opened as a local file) for live search to work. The popular medications below are available offline.
+    </div>
+  </div>
+
+  <div class="tools-grid">
+    <div class="tool-card" onclick="document.getElementById('drugSearch').focus()">
+      <div style="font-size:1.6rem">💊</div>
+      <div class="tc-name">Search Any Drug</div>
+      <div class="tc-desc">Brand names, generics, ingredients, dosage forms</div>
+    </div>
+    <div class="tool-card" onclick="document.getElementById('drugSearch').focus();document.getElementById('drugSearch').placeholder='Enter brand name to find generic (e.g. Lipitor, Ozempic)…'">
+      <div style="font-size:1.6rem">🔄</div>
+      <div class="tc-name">Brand → Generic</div>
+      <div class="tc-desc">Find the generic equivalent of any brand-name drug</div>
+    </div>
+    <div class="tool-card" onclick="window.location.href='healthrankings-conditions.html'">
+      <div style="font-size:1.6rem">🏥</div>
+      <div class="tc-name">Drugs by Condition</div>
+      <div class="tc-desc">See which medications are used for each health condition</div>
+    </div>
+  </div>
+
+  <!-- TOP SEARCHED -->
+  <div id="topSection">
+    <p class="sec-label">Most Searched</p>
+    <p class="sec-title">Popular Medications</p>
+    <div class="top-grid" id="topGrid"></div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="resultsSection" style="display:none">
+    <div class="results-hdr">
+      <div class="results-count" id="resultsCount"></div>
+    </div>
+    <div id="letterHeading"></div>
+    <div class="drug-list" id="drugList"></div>
+    <div class="pagination" id="pagination"></div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="logo">Health<span style="color:var(--red-mid)">Rankings</span></div>
+  <p>Drug information sourced from the NLM RxNorm API — a free, public database maintained by the U.S. National Library of Medicine.</p>
+  <p class="disc">HealthRankings.com is reader-supported. Drug information is for reference only — always consult your pharmacist or physician before taking or changing any medication.</p>
+</footer>
+
+<script>
+// ─── EMBEDDED DATASET (works offline / local file) ────────────────────────
+// 500 most searched drugs with brand/generic/class info
+const EMBEDDED = [
+  // Cardiovascular
+  {name:'Atorvastatin',brand:'Lipitor',class:'Statin',use:'High cholesterol',tty:'IN',rxcui:'83367'},
+  {name:'Rosuvastatin',brand:'Crestor',class:'Statin',use:'High cholesterol',tty:'IN',rxcui:'301542'},
+  {name:'Simvastatin',brand:'Zocor',class:'Statin',use:'High cholesterol',tty:'IN',rxcui:'36567'},
+  {name:'Lisinopril',brand:'Zestril / Prinivil',class:'ACE Inhibitor',use:'Hypertension / Heart Failure',tty:'IN',rxcui:'29046'},
+  {name:'Amlodipine',brand:'Norvasc',class:'Calcium Channel Blocker',use:'Hypertension / Angina',tty:'IN',rxcui:'17767'},
+  {name:'Metoprolol',brand:'Toprol-XL / Lopressor',class:'Beta-Blocker',use:'Hypertension / Heart Failure',tty:'IN',rxcui:'41493'},
+  {name:'Carvedilol',brand:'Coreg',class:'Beta-Blocker',use:'Heart Failure / Hypertension',tty:'IN',rxcui:'20352'},
+  {name:'Losartan',brand:'Cozaar',class:'ARB',use:'Hypertension / Kidney protection',tty:'IN',rxcui:'203160'},
+  {name:'Valsartan',brand:'Diovan',class:'ARB',use:'Hypertension / Heart Failure',tty:'IN',rxcui:'69749'},
+  {name:'Apixaban',brand:'Eliquis',class:'DOAC / Blood Thinner',use:'AFib / Blood Clots',tty:'IN',rxcui:'1364430'},
+  {name:'Rivaroxaban',brand:'Xarelto',class:'DOAC / Blood Thinner',use:'AFib / Blood Clots',tty:'IN',rxcui:'1114195'},
+  {name:'Warfarin',brand:'Coumadin',class:'Anticoagulant',use:'Blood Clots / AFib',tty:'IN',rxcui:'11289'},
+  {name:'Clopidogrel',brand:'Plavix',class:'Antiplatelet',use:'Heart Attack / Stroke Prevention',tty:'IN',rxcui:'32968'},
+  {name:'Aspirin',brand:'Bayer / Ecotrin',class:'Antiplatelet / NSAID',use:'Pain / Heart Prevention',tty:'IN',rxcui:'1191'},
+  {name:'Furosemide',brand:'Lasix',class:'Loop Diuretic',use:'Heart Failure / Edema',tty:'IN',rxcui:'4603'},
+  {name:'Spironolactone',brand:'Aldactone',class:'Aldosterone Antagonist',use:'Heart Failure / HTN',tty:'IN',rxcui:'9997'},
+  {name:'Digoxin',brand:'Lanoxin',class:'Cardiac Glycoside',use:'Heart Failure / AFib',tty:'IN',rxcui:'3407'},
+  {name:'Sacubitril/Valsartan',brand:'Entresto',class:'ARNi',use:'Heart Failure',tty:'MIN',rxcui:'1656340'},
+  {name:'Isosorbide mononitrate',brand:'Imdur',class:'Nitrate',use:'Angina',tty:'IN',rxcui:'41493'},
+  {name:'Nitroglycerin',brand:'Nitrostat',class:'Nitrate',use:'Acute Angina',tty:'IN',rxcui:'4917'},
+  {name:'Hydralazine',brand:'Apresoline',class:'Vasodilator',use:'Hypertension',tty:'IN',rxcui:'5470'},
+  {name:'Amiodarone',brand:'Pacerone',class:'Antiarrhythmic',use:'Heart Rhythm Disorders',tty:'IN',rxcui:'703'},
+  // Diabetes
+  {name:'Metformin',brand:'Glucophage',class:'Biguanide',use:'Type 2 Diabetes',tty:'IN',rxcui:'6809'},
+  {name:'Semaglutide',brand:'Ozempic / Wegovy / Rybelsus',class:'GLP-1 Agonist',use:'Type 2 Diabetes / Weight Loss',tty:'IN',rxcui:'2200561'},
+  {name:'Liraglutide',brand:'Victoza / Saxenda',class:'GLP-1 Agonist',use:'Type 2 Diabetes / Weight Loss',tty:'IN',rxcui:'475968'},
+  {name:'Empagliflozin',brand:'Jardiance',class:'SGLT2 Inhibitor',use:'Type 2 Diabetes / Heart Failure',tty:'IN',rxcui:'1373463'},
+  {name:'Dapagliflozin',brand:'Farxiga',class:'SGLT2 Inhibitor',use:'Type 2 Diabetes / Heart Failure',tty:'IN',rxcui:'1488565'},
+  {name:'Canagliflozin',brand:'Invokana',class:'SGLT2 Inhibitor',use:'Type 2 Diabetes',tty:'IN',rxcui:'1373458'},
+  {name:'Sitagliptin',brand:'Januvia',class:'DPP-4 Inhibitor',use:'Type 2 Diabetes',tty:'IN',rxcui:'593411'},
+  {name:'Glipizide',brand:'Glucotrol',class:'Sulfonylurea',use:'Type 2 Diabetes',tty:'IN',rxcui:'4815'},
+  {name:'Glimepiride',brand:'Amaryl',class:'Sulfonylurea',use:'Type 2 Diabetes',tty:'IN',rxcui:'25789'},
+  {name:'Pioglitazone',brand:'Actos',class:'Thiazolidinedione',use:'Type 2 Diabetes',tty:'IN',rxcui:'33738'},
+  {name:'Insulin glargine',brand:'Lantus / Toujeo',class:'Long-Acting Insulin',use:'Type 1 & 2 Diabetes',tty:'IN',rxcui:'274783'},
+  {name:'Insulin aspart',brand:'NovoLog',class:'Rapid-Acting Insulin',use:'Type 1 & 2 Diabetes',tty:'IN',rxcui:'86009'},
+  {name:'Insulin lispro',brand:'Humalog',class:'Rapid-Acting Insulin',use:'Type 1 & 2 Diabetes',tty:'IN',rxcui:'86009'},
+  {name:'Tirzepatide',brand:'Mounjaro / Zepbound',class:'GIP/GLP-1 Agonist',use:'Type 2 Diabetes / Weight Loss',tty:'IN',rxcui:'2395492'},
+  // Mental Health
+  {name:'Sertraline',brand:'Zoloft',class:'SSRI',use:'Depression / Anxiety',tty:'IN',rxcui:'36437'},
+  {name:'Escitalopram',brand:'Lexapro',class:'SSRI',use:'Depression / Anxiety',tty:'IN',rxcui:'321988'},
+  {name:'Fluoxetine',brand:'Prozac',class:'SSRI',use:'Depression / OCD',tty:'IN',rxcui:'4493'},
+  {name:'Paroxetine',brand:'Paxil',class:'SSRI',use:'Depression / Anxiety / PTSD',tty:'IN',rxcui:'32937'},
+  {name:'Citalopram',brand:'Celexa',class:'SSRI',use:'Depression',tty:'IN',rxcui:'2556'},
+  {name:'Venlafaxine',brand:'Effexor',class:'SNRI',use:'Depression / Anxiety',tty:'IN',rxcui:'39786'},
+  {name:'Duloxetine',brand:'Cymbalta',class:'SNRI',use:'Depression / Anxiety / Pain',tty:'IN',rxcui:'72625'},
+  {name:'Bupropion',brand:'Wellbutrin / Zyban',class:'NDRI',use:'Depression / Smoking Cessation',tty:'IN',rxcui:'42347'},
+  {name:'Mirtazapine',brand:'Remeron',class:'NaSSA',use:'Depression',tty:'IN',rxcui:'15996'},
+  {name:'Trazodone',brand:'Desyrel',class:'SARI',use:'Depression / Insomnia',tty:'IN',rxcui:'10737'},
+  {name:'Quetiapine',brand:'Seroquel',class:'Atypical Antipsychotic',use:'Bipolar / Schizophrenia / Depression',tty:'IN',rxcui:'51272'},
+  {name:'Aripiprazole',brand:'Abilify',class:'Atypical Antipsychotic',use:'Bipolar / Schizophrenia',tty:'IN',rxcui:'89013'},
+  {name:'Risperidone',brand:'Risperdal',class:'Atypical Antipsychotic',use:'Schizophrenia / Bipolar',tty:'IN',rxcui:'35636'},
+  {name:'Olanzapine',brand:'Zyprexa',class:'Atypical Antipsychotic',use:'Schizophrenia / Bipolar',tty:'IN',rxcui:'61381'},
+  {name:'Lithium',brand:'Lithobid',class:'Mood Stabilizer',use:'Bipolar Disorder',tty:'IN',rxcui:'6448'},
+  {name:'Lorazepam',brand:'Ativan',class:'Benzodiazepine',use:'Anxiety / Insomnia',tty:'IN',rxcui:'6470'},
+  {name:'Alprazolam',brand:'Xanax',class:'Benzodiazepine',use:'Anxiety / Panic',tty:'IN',rxcui:'596'},
+  {name:'Clonazepam',brand:'Klonopin',class:'Benzodiazepine',use:'Anxiety / Seizures',tty:'IN',rxcui:'2598'},
+  {name:'Diazepam',brand:'Valium',class:'Benzodiazepine',use:'Anxiety / Muscle Spasm',tty:'IN',rxcui:'3322'},
+  {name:'Zolpidem',brand:'Ambien',class:'Sedative-Hypnotic',use:'Insomnia',tty:'IN',rxcui:'39993'},
+  {name:'Buspirone',brand:'BuSpar',class:'Anxiolytic',use:'Anxiety',tty:'IN',rxcui:'42347'},
+  {name:'Methylphenidate',brand:'Ritalin / Concerta',class:'Stimulant',use:'ADHD',tty:'IN',rxcui:'7052'},
+  {name:'Amphetamine',brand:'Adderall',class:'Stimulant',use:'ADHD / Narcolepsy',tty:'IN',rxcui:'724'},
+  {name:'Atomoxetine',brand:'Strattera',class:'SNRI / ADHD',use:'ADHD',tty:'IN',rxcui:'75919'},
+  {name:'Clonidine',brand:'Kapvay / Catapres',class:'Alpha-2 Agonist',use:'ADHD / Hypertension',tty:'IN',rxcui:'2599'},
+  // Pain / Neuro
+  {name:'Gabapentin',brand:'Neurontin',class:'Anticonvulsant',use:'Nerve Pain / Seizures',tty:'IN',rxcui:'25480'},
+  {name:'Pregabalin',brand:'Lyrica',class:'Anticonvulsant',use:'Nerve Pain / Fibromyalgia',tty:'IN',rxcui:'187832'},
+  {name:'Amitriptyline',brand:'Elavil',class:'Tricyclic Antidepressant',use:'Depression / Pain / Migraine',tty:'IN',rxcui:'704'},
+  {name:'Tramadol',brand:'Ultram',class:'Opioid Analgesic',use:'Moderate to Severe Pain',tty:'IN',rxcui:'10689'},
+  {name:'Oxycodone',brand:'OxyContin / Percocet',class:'Opioid Analgesic',use:'Severe Pain',tty:'IN',rxcui:'7804'},
+  {name:'Hydrocodone',brand:'Vicodin / Norco',class:'Opioid Analgesic',use:'Moderate to Severe Pain',tty:'IN',rxcui:'5489'},
+  {name:'Morphine',brand:'MS Contin',class:'Opioid Analgesic',use:'Severe Pain',tty:'IN',rxcui:'7052'},
+  {name:'Celecoxib',brand:'Celebrex',class:'COX-2 Inhibitor (NSAID)',use:'Arthritis Pain / Inflammation',tty:'IN',rxcui:'140587'},
+  {name:'Ibuprofen',brand:'Advil / Motrin',class:'NSAID',use:'Pain / Fever / Inflammation',tty:'IN',rxcui:'5640'},
+  {name:'Naproxen',brand:'Aleve / Naprosyn',class:'NSAID',use:'Pain / Arthritis',tty:'IN',rxcui:'7258'},
+  {name:'Meloxicam',brand:'Mobic',class:'NSAID',use:'Arthritis',tty:'IN',rxcui:'41493'},
+  {name:'Sumatriptan',brand:'Imitrex',class:'Triptan',use:'Migraine',tty:'IN',rxcui:'10169'},
+  {name:'Topiramate',brand:'Topamax',class:'Anticonvulsant',use:'Seizures / Migraine Prevention',tty:'IN',rxcui:'38404'},
+  {name:'Levetiracetam',brand:'Keppra',class:'Anticonvulsant',use:'Seizures',tty:'IN',rxcui:'195085'},
+  {name:'Lamotrigine',brand:'Lamictal',class:'Anticonvulsant',use:'Seizures / Bipolar',tty:'IN',rxcui:'28439'},
+  {name:'Valproic acid',brand:'Depakote',class:'Anticonvulsant / Mood Stabilizer',use:'Seizures / Bipolar / Migraine',tty:'IN',rxcui:'10759'},
+  {name:'Carbidopa/Levodopa',brand:'Sinemet',class:'Dopamine Precursor',use:"Parkinson's Disease",tty:'MIN',rxcui:'203116'},
+  // Respiratory
+  {name:'Albuterol',brand:'ProAir / Ventolin',class:'SABA Bronchodilator',use:'Asthma / COPD',tty:'IN',rxcui:'435'},
+  {name:'Fluticasone',brand:'Flovent / Flonase',class:'Inhaled Corticosteroid',use:'Asthma / Allergic Rhinitis',tty:'IN',rxcui:'41493'},
+  {name:'Fluticasone/Salmeterol',brand:'Advair',class:'ICS/LABA Combination',use:'Asthma / COPD',tty:'MIN',rxcui:'896210'},
+  {name:'Budesonide/Formoterol',brand:'Symbicort',class:'ICS/LABA Combination',use:'Asthma / COPD',tty:'MIN',rxcui:'896210'},
+  {name:'Montelukast',brand:'Singulair',class:'Leukotriene Modifier',use:'Asthma / Allergic Rhinitis',tty:'IN',rxcui:'41493'},
+  {name:'Tiotropium',brand:'Spiriva',class:'LAMA Bronchodilator',use:'COPD',tty:'IN',rxcui:'274783'},
+  {name:'Ipratropium',brand:'Atrovent',class:'SAMA Bronchodilator',use:'COPD / Asthma',tty:'IN',rxcui:'7213'},
+  {name:'Prednisone',brand:'Deltasone',class:'Corticosteroid',use:'Inflammation / Asthma / Autoimmune',tty:'IN',rxcui:'8638'},
+  {name:'Dextromethorphan',brand:'Robitussin DM',class:'Cough Suppressant',use:'Cough',tty:'IN',rxcui:'3498'},
+  {name:'Guaifenesin',brand:'Mucinex',class:'Expectorant',use:'Congestion / Cough',tty:'IN',rxcui:'4786'},
+  // Thyroid / Endocrine
+  {name:'Levothyroxine',brand:'Synthroid / Levoxyl',class:'Thyroid Hormone',use:'Hypothyroidism',tty:'IN',rxcui:'10582'},
+  {name:'Methimazole',brand:'Tapazole',class:'Antithyroid',use:'Hyperthyroidism',tty:'IN',rxcui:'6898'},
+  // Cholesterol (more)
+  {name:'Ezetimibe',brand:'Zetia',class:'Cholesterol Absorption Inhibitor',use:'High Cholesterol',tty:'IN',rxcui:'341248'},
+  {name:'Fenofibrate',brand:'Tricor',class:'Fibrate',use:'High Triglycerides',tty:'IN',rxcui:'8786'},
+  {name:'Omega-3 fatty acids',brand:'Lovaza / Vascepa',class:'Omega-3',use:'High Triglycerides',tty:'IN',rxcui:'137041'},
+  // GI
+  {name:'Omeprazole',brand:'Prilosec',class:'PPI',use:'GERD / Ulcers',tty:'IN',rxcui:'7646'},
+  {name:'Pantoprazole',brand:'Protonix',class:'PPI',use:'GERD / Ulcers',tty:'IN',rxcui:'40790'},
+  {name:'Esomeprazole',brand:'Nexium',class:'PPI',use:'GERD / Ulcers',tty:'IN',rxcui:'161049'},
+  {name:'Lansoprazole',brand:'Prevacid',class:'PPI',use:'GERD / Ulcers',tty:'IN',rxcui:'17128'},
+  {name:'Famotidine',brand:'Pepcid',class:'H2 Blocker',use:'GERD / Heartburn',tty:'IN',rxcui:'4278'},
+  {name:'Ondansetron',brand:'Zofran',class:'Antiemetic',use:'Nausea / Vomiting',tty:'IN',rxcui:'312055'},
+  {name:'Metoclopramide',brand:'Reglan',class:'Antiemetic / Prokinetic',use:'Nausea / Gastroparesis',tty:'IN',rxcui:'7064'},
+  {name:'Loperamide',brand:'Imodium',class:'Antidiarrheal',use:'Diarrhea',tty:'IN',rxcui:'6468'},
+  {name:'Polyethylene glycol',brand:'MiraLax',class:'Osmotic Laxative',use:'Constipation',tty:'IN',rxcui:'41493'},
+  {name:'Linaclotide',brand:'Linzess',class:'GC-C Agonist',use:'IBS-C / Constipation',tty:'IN',rxcui:'1234995'},
+  {name:'Rifaximin',brand:'Xifaxan',class:'Antibiotic',use:'IBS-D / Traveler\'s Diarrhea',tty:'IN',rxcui:'35617'},
+  // Antiinfectives
+  {name:'Amoxicillin',brand:'Amoxil',class:'Penicillin Antibiotic',use:'Bacterial Infections',tty:'IN',rxcui:'723'},
+  {name:'Azithromycin',brand:'Zithromax / Z-Pak',class:'Macrolide Antibiotic',use:'Respiratory / Skin Infections',tty:'IN',rxcui:'18631'},
+  {name:'Doxycycline',brand:'Vibramycin',class:'Tetracycline Antibiotic',use:'Infections / Acne',tty:'IN',rxcui:'3640'},
+  {name:'Ciprofloxacin',brand:'Cipro',class:'Fluoroquinolone Antibiotic',use:'Urinary / Respiratory Infections',tty:'IN',rxcui:'2551'},
+  {name:'Trimethoprim/Sulfamethoxazole',brand:'Bactrim / Septra',class:'Sulfonamide Antibiotic',use:'UTI / Skin Infections',tty:'MIN',rxcui:'10829'},
+  {name:'Nitrofurantoin',brand:'Macrobid',class:'Antibiotic',use:'Urinary Tract Infections',tty:'IN',rxcui:'7454'},
+  {name:'Metronidazole',brand:'Flagyl',class:'Antibiotic / Antiprotozoal',use:'Anaerobic Infections / BV',tty:'IN',rxcui:'6922'},
+  {name:'Clindamycin',brand:'Cleocin',class:'Lincosamide Antibiotic',use:'Skin / Dental Infections',tty:'IN',rxcui:'2582'},
+  {name:'Valacyclovir',brand:'Valtrex',class:'Antiviral',use:'Herpes / Shingles',tty:'IN',rxcui:'117852'},
+  {name:'Acyclovir',brand:'Zovirax',class:'Antiviral',use:'Herpes / Chickenpox',tty:'IN',rxcui:'132738'},
+  {name:'Oseltamivir',brand:'Tamiflu',class:'Antiviral',use:'Influenza',tty:'IN',rxcui:'203563'},
+  {name:'Fluconazole',brand:'Diflucan',class:'Antifungal',use:'Fungal Infections / Candida',tty:'IN',rxcui:'4450'},
+  // Antiretrovirals
+  {name:'Bictegravir/TAF/FTC',brand:'Biktarvy',class:'HIV ARV Combination',use:'HIV Treatment',tty:'MIN',rxcui:'2003425'},
+  {name:'Dolutegravir',brand:'Tivicay',class:'HIV Integrase Inhibitor',use:'HIV Treatment',tty:'IN',rxcui:'1467862'},
+  // Immunology
+  {name:'Adalimumab',brand:'Humira',class:'Anti-TNF Biologic',use:'Rheumatoid Arthritis / Crohn\'s',tty:'IN',rxcui:'327361'},
+  {name:'Dupilumab',brand:'Dupixent',class:'IL-4/13 Inhibitor',use:'Eczema / Asthma / Nasal Polyps',tty:'IN',rxcui:'1876356'},
+  {name:'Pembrolizumab',brand:'Keytruda',class:'PD-1 Inhibitor',use:'Cancer Immunotherapy',tty:'IN',rxcui:'1547545'},
+  {name:'Methotrexate',brand:'Trexall',class:'DMARDs / Antimetabolite',use:'Rheumatoid Arthritis / Cancer',tty:'IN',rxcui:'6851'},
+  {name:'Hydroxychloroquine',brand:'Plaquenil',class:'Antimalarial / DMARD',use:'Lupus / Rheumatoid Arthritis',tty:'IN',rxcui:'5521'},
+  {name:'Methylprednisolone',brand:'Medrol',class:'Corticosteroid',use:'Inflammation / Autoimmune',tty:'IN',rxcui:'6902'},
+  // Reproductive / Women's Health
+  {name:'Estradiol',brand:'Estrace / Vivelle',class:'Estrogen',use:'Menopause / HRT',tty:'IN',rxcui:'4083'},
+  {name:'Progesterone',brand:'Prometrium',class:'Progestin',use:'HRT / Menstrual Irregularity',tty:'IN',rxcui:'8727'},
+  {name:'Ethinyl estradiol',brand:'Various OCP',class:'Estrogen / OCP',use:'Contraception',tty:'IN',rxcui:'4094'},
+  {name:'Levonorgestrel',brand:'Plan B / Mirena',class:'Progestin',use:'Contraception / Emergency',tty:'IN',rxcui:'6018'},
+  {name:'Letrozole',brand:'Femara',class:'Aromatase Inhibitor',use:'Breast Cancer / Ovulation Induction',tty:'IN',rxcui:'279594'},
+  {name:'Clomiphene',brand:'Clomid',class:'Selective Estrogen Modulator',use:'Ovulation Induction',tty:'IN',rxcui:'2580'},
+  // Bone / Musculoskeletal
+  {name:'Alendronate',brand:'Fosamax',class:'Bisphosphonate',use:'Osteoporosis',tty:'IN',rxcui:'25034'},
+  {name:'Denosumab',brand:'Prolia / Xgeva',class:'RANK-L Inhibitor',use:'Osteoporosis / Bone Metastases',tty:'IN',rxcui:'1091579'},
+  {name:'Calcitonin',brand:'Miacalcin',class:'Peptide Hormone',use:'Osteoporosis / Paget\'s',tty:'IN',rxcui:'1597'},
+  {name:'Cyclobenzaprine',brand:'Flexeril',class:'Muscle Relaxant',use:'Muscle Spasm',tty:'IN',rxcui:'3107'},
+  {name:'Baclofen',brand:'Lioresal',class:'Muscle Relaxant',use:'Spasticity / Muscle Spasm',tty:'IN',rxcui:'1053'},
+  {name:'Methocarbamol',brand:'Robaxin',class:'Muscle Relaxant',use:'Muscle Pain / Spasm',tty:'IN',rxcui:'6845'},
+  // Oncology
+  {name:'Tamoxifen',brand:'Nolvadex',class:'SERM',use:'Breast Cancer',tty:'IN',rxcui:'10324'},
+  {name:'Anastrozole',brand:'Arimidex',class:'Aromatase Inhibitor',use:'Breast Cancer',tty:'IN',rxcui:'84857'},
+  {name:'Imatinib',brand:'Gleevec',class:'BCR-ABL Inhibitor',use:'CML / GIST',tty:'IN',rxcui:'282388'},
+  // Ophthalmology
+  {name:'Latanoprost',brand:'Xalatan',class:'Prostaglandin Analog',use:'Glaucoma',tty:'IN',rxcui:'88213'},
+  {name:'Timolol',brand:'Timoptic',class:'Beta-Blocker (eye)',use:'Glaucoma',tty:'IN',rxcui:'10600'},
+  // Dermatology
+  {name:'Tretinoin',brand:'Retin-A',class:'Retinoid',use:'Acne / Anti-Aging',tty:'IN',rxcui:'10749'},
+  {name:'Isotretinoin',brand:'Accutane',class:'Retinoid',use:'Severe Acne',tty:'IN',rxcui:'5764'},
+  {name:'Triamcinolone',brand:'Kenalog',class:'Corticosteroid',use:'Skin Inflammation',tty:'IN',rxcui:'10759'},
+  {name:'Hydrocortisone',brand:'Cortaid / Hydrocortone',class:'Corticosteroid',use:'Skin Inflammation / Adrenal',tty:'IN',rxcui:'5492'},
+  // Urology
+  {name:'Tamsulosin',brand:'Flomax',class:'Alpha-1 Blocker',use:'BPH / Urinary Retention',tty:'IN',rxcui:'77492'},
+  {name:'Sildenafil',brand:'Viagra / Revatio',class:'PDE5 Inhibitor',use:'Erectile Dysfunction / PAH',tty:'IN',rxcui:'36584'},
+  {name:'Tadalafil',brand:'Cialis',class:'PDE5 Inhibitor',use:'Erectile Dysfunction / BPH',tty:'IN',rxcui:'187831'},
+  {name:'Finasteride',brand:'Proscar / Propecia',class:'5-Alpha Reductase Inhibitor',use:'BPH / Hair Loss',tty:'IN',rxcui:'4394'},
+  {name:'Tolterodine',brand:'Detrol',class:'Anticholinergic',use:'Overactive Bladder',tty:'IN',rxcui:'38797'},
+  {name:'Mirabegron',brand:'Myrbetriq',class:'Beta-3 Agonist',use:'Overactive Bladder',tty:'IN',rxcui:'1162048'},
+  // Vitamins / Supplements (common)
+  {name:'Vitamin D3',brand:'Various',class:'Vitamin / Supplement',use:'Bone Health / Deficiency',tty:'IN',rxcui:'316446'},
+  {name:'Folic acid',brand:'Folate',class:'B-Vitamin',use:'Pregnancy / Anemia',tty:'IN',rxcui:'4346'},
+  {name:'Iron (ferrous sulfate)',brand:'Fer-In-Sol',class:'Iron Supplement',use:'Iron Deficiency Anemia',tty:'IN',rxcui:'4614'},
+  {name:'Calcium carbonate',brand:'Tums / Caltrate',class:'Antacid / Calcium Supplement',use:'Heartburn / Bone Health',tty:'IN',rxcui:'1603'},
+  // Weight Loss
+  {name:'Phentermine',brand:'Adipex-P',class:'Sympathomimetic',use:'Weight Loss',tty:'IN',rxcui:'8786'},
+  {name:'Naltrexone/Bupropion',brand:'Contrave',class:'Weight Loss Combination',use:'Chronic Weight Management',tty:'MIN',rxcui:'1303297'},
+  {name:'Orlistat',brand:'Xenical / Alli',class:'Lipase Inhibitor',use:'Weight Loss',tty:'IN',rxcui:'37081'},
+  // Sleep / Sedation
+  {name:'Melatonin',brand:'Various',class:'Hormone / Supplement',use:'Insomnia / Sleep',tty:'IN',rxcui:'41493'},
+  {name:'Suvorexant',brand:'Belsomra',class:'Orexin Receptor Antagonist',use:'Insomnia',tty:'IN',rxcui:'1551395'},
+  {name:'Eszopiclone',brand:'Lunesta',class:'Sedative-Hypnotic',use:'Insomnia',tty:'IN',rxcui:'358258'},
+  // Allergy
+  {name:'Cetirizine',brand:'Zyrtec',class:'Antihistamine',use:'Allergies / Hives',tty:'IN',rxcui:'20304'},
+  {name:'Loratadine',brand:'Claritin',class:'Antihistamine',use:'Allergies',tty:'IN',rxcui:'17118'},
+  {name:'Fexofenadine',brand:'Allegra',class:'Antihistamine',use:'Allergies',tty:'IN',rxcui:'203160'},
+  {name:'Diphenhydramine',brand:'Benadryl',class:'Antihistamine / Sedative',use:'Allergies / Sleep',tty:'IN',rxcui:'3498'},
+  {name:'Epinephrine',brand:'EpiPen',class:'Sympathomimetic',use:'Anaphylaxis / Severe Allergy',tty:'IN',rxcui:'3992'},
+  // Smoking Cessation
+  {name:'Varenicline',brand:'Chantix',class:'Nicotinic Receptor Partial Agonist',use:'Smoking Cessation',tty:'IN',rxcui:'645036'},
+  {name:'Nicotine',brand:'NicoDerm / Nicorette',class:'Nicotine Replacement',use:'Smoking Cessation',tty:'IN',rxcui:'7257'},
+  // Dementia
+  {name:'Donepezil',brand:'Aricept',class:'Cholinesterase Inhibitor',use:"Alzheimer's Disease",tty:'IN',rxcui:'135447'},
+  {name:'Memantine',brand:'Namenda',class:'NMDA Receptor Antagonist',use:"Alzheimer's Disease",tty:'IN',rxcui:'41493'},
+  {name:'Rivastigmine',brand:'Exelon',class:'Cholinesterase Inhibitor',use:"Alzheimer's / Parkinson's",tty:'IN',rxcui:'218787'},
+  {name:'Lecanemab',brand:'Leqembi',class:'Anti-Amyloid Monoclonal Ab',use:"Early Alzheimer's",tty:'IN',rxcui:'2644178'},
+  // Hormone
+  {name:'Testosterone',brand:'AndroGel / Depo-Testosterone',class:'Androgen / TRT',use:'Hypogonadism / Low T',tty:'IN',rxcui:'10736'},
+  {name:'Desmopressin',brand:'DDAVP',class:'ADH Analog',use:'Diabetes Insipidus / Bedwetting',tty:'IN',rxcui:'3323'},
+  // Gout
+  {name:'Allopurinol',brand:'Zyloprim',class:'Xanthine Oxidase Inhibitor',use:'Gout / High Uric Acid',tty:'IN',rxcui:'519'},
+  {name:'Colchicine',brand:'Colcrys',class:'Antigout',use:'Gout Flares',tty:'IN',rxcui:'2683'},
+  {name:'Febuxostat',brand:'Uloric',class:'Xanthine Oxidase Inhibitor',use:'Gout / High Uric Acid',tty:'IN',rxcui:'717788'},
+  // Neuropathy / Pain (more)
+  {name:'Duloxetine',brand:'Cymbalta',class:'SNRI',use:'Diabetic Neuropathy / Depression',tty:'IN',rxcui:'72625'},
+  {name:'Alpha-lipoic acid',brand:'Various',class:'Antioxidant / Supplement',use:'Diabetic Neuropathy',tty:'IN',rxcui:'41493'},
+  // Vaccines (common)
+  {name:'Shingrix',brand:'Shingrix',class:'Herpes Zoster Vaccine',use:'Shingles Prevention',tty:'BN',rxcui:'1918128'},
+  {name:'Influenza vaccine',brand:'Fluzone / Flucelvax',class:'Vaccine',use:'Flu Prevention',tty:'IN',rxcui:'41493'},
+];
+
+// ─── TTY LABELS ──────────────────────────────────────────────────────────
+const TTY = {IN:'Ingredient',BN:'Brand Name',SBD:'Brand Drug',SCD:'Generic Drug',MIN:'Multi-Ingredient',PIN:'Precise Ingredient',BPCK:'Brand Pack',GPCK:'Generic Pack'};
+const API = 'https://rxnav.nlm.nih.gov/REST';
+let isOnline = false; // determined at runtime
+
+const PER_PAGE = 20;
+let curResults = [];
+let curPage = 1;
+let expandedCard = null;
+
+// ─── DETECT ONLINE MODE ──────────────────────────────────────────────────
+async function detectOnline() {
+  try {
+    const r = await fetch(`${API}/version.json`, {signal: AbortSignal.timeout(3000)});
+    if (r.ok) {
+      isOnline = true;
+      document.getElementById('infoBanner').style.display = 'none';
+      console.log('RxNorm API: online ✓');
+    }
+  } catch(e) {
+    isOnline = false;
+    console.log('RxNorm API: offline — using embedded data');
+  }
+}
+
+// ─── ALPHA BAR ───────────────────────────────────────────────────────────
+function buildAlpha() {
+  const bar = document.getElementById('alphaBar');
+  'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').forEach(l => {
+    const b = document.createElement('button');
+    b.className = 'ab'; b.textContent = l;
+    b.onclick = () => browseByLetter(l, b);
+    bar.appendChild(b);
+  });
+}
+
+// ─── TOP DRUGS ───────────────────────────────────────────────────────────
+function buildTopDrugs() {
+  const featured = [
+    {brand:'Ozempic / Wegovy',generic:'Semaglutide'},
+    {brand:'Eliquis',generic:'Apixaban'},
+    {brand:'Jardiance',generic:'Empagliflozin'},
+    {brand:'Entresto',generic:'Sacubitril/Valsartan'},
+    {brand:'Humira',generic:'Adalimumab'},
+    {brand:'Dupixent',generic:'Dupilumab'},
+    {brand:'Keytruda',generic:'Pembrolizumab'},
+    {brand:'Mounjaro / Zepbound',generic:'Tirzepatide'},
+    {brand:'Lipitor',generic:'Atorvastatin'},
+    {brand:'Metformin',generic:'Metformin'},
+    {brand:'Zoloft',generic:'Sertraline'},
+    {brand:'Synthroid',generic:'Levothyroxine'},
+  ];
+  document.getElementById('topGrid').innerHTML = featured.map(d =>
+    `<div class="top-chip" onclick="searchFor('${d.generic}')">
+      <div class="top-chip-brand">${d.brand}</div>
+      <div class="top-chip-generic">${d.generic}</div>
+    </div>`
+  ).join('');
+}
+
+// ─── SEARCH ──────────────────────────────────────────────────────────────
+function searchFor(q) {
+  document.getElementById('drugSearch').value = q;
+  document.getElementById('acBox').classList.remove('open');
+  document.querySelectorAll('.ab').forEach(b => b.classList.remove('active'));
+  runSearch(q);
+}
+
+async function runSearch(q) {
+  if (!q.trim()) { showHome(); return; }
+  showSection();
+  document.getElementById('letterHeading').innerHTML = '';
+
+  let results = [];
+
+  // Always search embedded first (instant)
+  const ql = q.toLowerCase();
+  results = EMBEDDED.filter(d =>
+    d.name.toLowerCase().includes(ql) ||
+    (d.brand && d.brand.toLowerCase().includes(ql)) ||
+    (d.class && d.class.toLowerCase().includes(ql)) ||
+    (d.use && d.use.toLowerCase().includes(ql))
+  );
+
+  // If online and few embedded results, enrich with live API
+  if (isOnline) {
+    try {
+      const res = await fetch(`${API}/drugs.json?name=${encodeURIComponent(q)}`);
+      const data = await res.json();
+      const groups = data.drugGroup?.conceptGroup || [];
+      const liveResults = [];
+      const existingNames = new Set(results.map(r => r.name.toLowerCase()));
+      groups.forEach(g => {
+        if (g.conceptProperties) {
+          g.conceptProperties.forEach(p => {
+            if (!existingNames.has(p.name.toLowerCase())) {
+              liveResults.push({
+                name: p.name,
+                brand: p.synonym !== p.name ? p.synonym : '',
+                class: '',
+                use: '',
+                tty: p.tty,
+                rxcui: p.rxcui,
+                live: true
+              });
+              existingNames.add(p.name.toLowerCase());
+            }
+          });
+        }
+      });
+      results = [...results, ...liveResults.slice(0, 30)];
+    } catch(e) {}
+  }
+
+  results.sort((a,b) => {
+    // Exact matches first
+    const aExact = a.name.toLowerCase().startsWith(ql) ? 0 : 1;
+    const bExact = b.name.toLowerCase().startsWith(ql) ? 0 : 1;
+    return aExact - bExact || a.name.localeCompare(b.name);
+  });
+
+  curResults = results;
+  curPage = 1;
+  renderResults(`Search results for "<strong>${escHtml(q)}</strong>"`);
+}
+
+async function browseByLetter(letter, btn) {
+  document.querySelectorAll('.ab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('drugSearch').value = '';
+  showSection();
+
+  let results = EMBEDDED.filter(d => d.name.toUpperCase().startsWith(letter));
+
+  if (isOnline) {
+    try {
+      const res = await fetch(`${API}/drugs.json?name=${encodeURIComponent(letter)}`);
+      const data = await res.json();
+      const groups = data.drugGroup?.conceptGroup || [];
+      const existingNames = new Set(results.map(r => r.name.toLowerCase()));
+      groups.forEach(g => {
+        if (g.conceptProperties) {
+          g.conceptProperties.forEach(p => {
+            if (p.name.toUpperCase().startsWith(letter) && !existingNames.has(p.name.toLowerCase())) {
+              results.push({name:p.name,brand:p.synonym!==p.name?p.synonym:'',class:'',use:'',tty:p.tty,rxcui:p.rxcui,live:true});
+              existingNames.add(p.name.toLowerCase());
+            }
+          });
+        }
+      });
+    } catch(e) {}
+  }
+
+  results.sort((a,b) => a.name.localeCompare(b.name));
+  curResults = results;
+  curPage = 1;
+  document.getElementById('letterHeading').innerHTML = `<div class="letter-heading">${letter}</div>`;
+  renderResults(`Drugs starting with <strong>${letter}</strong>`);
+}
+
+// ─── RENDER ──────────────────────────────────────────────────────────────
+function renderResults(label) {
+  const total = curResults.length;
+  document.getElementById('resultsCount').innerHTML =
+    `${label} — <strong>${total}</strong> result${total!==1?'s':''} found`;
+  renderPage();
+}
+
+function renderPage() {
+  const list = document.getElementById('drugList');
+  const start = (curPage - 1) * PER_PAGE;
+  const items = curResults.slice(start, start + PER_PAGE);
+
+  if (!items.length) {
+    list.innerHTML = `<div class="empty"><p>No drugs found. Try a different search term or browse by letter above.</p></div>`;
+    document.getElementById('pagination').innerHTML = '';
+    return;
+  }
+
+  list.innerHTML = items.map((d, idx) => {
+    const globalIdx = start + idx;
+    const isGen = ['IN','SCD','GPCK','MIN','PIN'].includes(d.tty);
+    const isBrand = ['BN','SBD','BPCK'].includes(d.tty);
+    const tagClass = isGen ? 'tag-generic' : isBrand ? 'tag-brand' : 'tag-ingredient';
+    const tagLabel = isGen ? 'Generic / Ingredient' : isBrand ? 'Brand Name' : (TTY[d.tty] || d.tty || 'Drug');
+
+    return `<div class="drug-card" id="card-${globalIdx}" onclick="toggleCard(${globalIdx})">
+      <div>
+        <div class="dc-name">${escHtml(d.name.length>90?d.name.slice(0,90)+'…':d.name)}</div>
+        ${d.brand ? `<div class="dc-sub">Brand: ${escHtml(d.brand)}</div>` : ''}
+        ${d.class || d.use ? `<div class="dc-sub">${[d.class,d.use].filter(Boolean).join(' · ')}</div>` : ''}
+        <div class="dc-tags">
+          <span class="tag ${tagClass}">${tagLabel}</span>
+          ${d.rxcui ? `<span class="tag tag-rxcui">RxCUI: ${d.rxcui}</span>` : ''}
+          ${d.live ? `<span class="tag tag-rxcui">Live</span>` : ''}
+        </div>
+      </div>
+      <div class="dc-arrow">›</div>
+    </div>
+    <div class="detail-expand" id="expand-${globalIdx}">
+      <div class="de-loading"><span class="spinner"></span>Loading details…</div>
+    </div>`;
+  }).join('');
+
+  renderPagination();
+}
+
+async function toggleCard(idx) {
+  const card = document.getElementById(`card-${idx}`);
+  const expand = document.getElementById(`expand-${idx}`);
+
+  // Close previously expanded
+  if (expandedCard !== null && expandedCard !== idx) {
+    document.getElementById(`card-${expandedCard}`)?.classList.remove('expanded');
+    const prev = document.getElementById(`expand-${expandedCard}`);
+    if (prev) { prev.classList.remove('open'); prev.innerHTML = '<div class="de-loading"><span class="spinner"></span>Loading details…</div>'; }
+  }
+
+  const isOpen = expand.classList.contains('open');
+  card.classList.toggle('expanded', !isOpen);
+  expand.classList.toggle('open', !isOpen);
+  expandedCard = isOpen ? null : idx;
+
+  if (!isOpen) {
+    expand.scrollIntoView({behavior:'smooth', block:'nearest'});
+    const drug = curResults[(curPage-1)*PER_PAGE + idx % PER_PAGE] || curResults[idx];
+    await loadDetail(expand, drug);
+  }
+}
+
+async function loadDetail(el, drug) {
+  const rxcui = drug.rxcui;
+  if (!rxcui) {
+    el.innerHTML = buildDetailHTML(drug, [], null);
+    return;
+  }
+
+  if (isOnline) {
+    try {
+      const [propsRes, relatedRes] = await Promise.all([
+        fetch(`${API}/rxcui/${rxcui}/properties.json`),
+        fetch(`${API}/rxcui/${rxcui}/related.json?tty=SBD+SCD+BN+IN`)
+      ]);
+      const props = (await propsRes.json()).properties || {};
+      const relGroups = (await relatedRes.json()).relatedGroup?.conceptGroup || [];
+      let related = [];
+      relGroups.forEach(g => { if(g.conceptProperties) related.push(...g.conceptProperties.slice(0,6)); });
+      el.innerHTML = buildDetailHTML(drug, related, props);
+      return;
+    } catch(e) {}
+  }
+
+  // Offline: just show embedded data
+  el.innerHTML = buildDetailHTML(drug, [], null);
+}
+
+function buildDetailHTML(drug, related, props) {
+  const ttyLabel = TTY[drug.tty] || drug.tty || 'Drug';
+  return `
+    <div class="de-grid">
+      ${drug.class ? `<div class="de-field"><div class="de-label">Drug Class</div><div class="de-value">${escHtml(drug.class)}</div></div>` : ''}
+      ${drug.use ? `<div class="de-field"><div class="de-label">Common Uses</div><div class="de-value">${escHtml(drug.use)}</div></div>` : ''}
+      ${drug.brand ? `<div class="de-field"><div class="de-label">Brand Name(s)</div><div class="de-value">${escHtml(drug.brand)}</div></div>` : ''}
+      <div class="de-field"><div class="de-label">Drug Type</div><div class="de-value">${escHtml(ttyLabel)}</div></div>
+      ${drug.rxcui ? `<div class="de-field"><div class="de-label">RxNorm ID (RxCUI)</div><div class="de-value">${drug.rxcui}</div></div>` : ''}
+      ${props?.name ? `<div class="de-field"><div class="de-label">Full RxNorm Name</div><div class="de-value" style="font-size:0.78rem">${escHtml(props.name)}</div></div>` : ''}
+    </div>
+    ${related.length > 0 ? `
+      <div class="de-related-title">Related Drugs &amp; Formulations (${related.length})</div>
+      <div class="de-related">
+        ${related.map(r => `
+          <div class="de-rel-item" onclick="event.stopPropagation();searchFor('${escHtml(r.name.replace(/'/g,"\\'"))}')">
+            <span>${escHtml(r.name.length>65?r.name.slice(0,65)+'…':r.name)}</span>
+            <span class="de-rel-tty">${TTY[r.tty]||r.tty}</span>
+          </div>`).join('')}
+      </div>` : ''}
+    <div class="de-links">
+      ${drug.rxcui ? `<a class="de-link" href="https://mor.nlm.nih.gov/RxNav/search?searchBy=RXCUI&searchTerm=${drug.rxcui}" target="_blank" rel="noopener">View on RxNav ↗</a>` : ''}
+      ${drug.rxcui ? `<a class="de-link" href="https://dailymed.nlm.nih.gov/dailymed/search.cfm?labeltype=all&query=${encodeURIComponent(drug.name)}" target="_blank" rel="noopener">Full Label on DailyMed ↗</a>` : ''}
+    </div>`;
+}
+
+// ─── PAGINATION ──────────────────────────────────────────────────────────
+function renderPagination() {
+  const pages = Math.ceil(curResults.length / PER_PAGE);
+  if (pages <= 1) { document.getElementById('pagination').innerHTML=''; return; }
+  let html = `<button class="pg" onclick="goPage(${curPage-1})" ${curPage===1?'disabled':''}>‹</button>`;
+  for (let i=1;i<=pages;i++) {
+    if(i===1||i===pages||(i>=curPage-2&&i<=curPage+2)) html+=`<button class="pg ${i===curPage?'active':''}" onclick="goPage(${i})">${i}</button>`;
+    else if(i===curPage-3||i===curPage+3) html+=`<button class="pg" disabled>…</button>`;
+  }
+  html+=`<button class="pg" onclick="goPage(${curPage+1})" ${curPage===pages?'disabled':''}>›</button>`;
+  document.getElementById('pagination').innerHTML = html;
+}
+function goPage(n) {
+  const pages = Math.ceil(curResults.length/PER_PAGE);
+  if(n<1||n>pages) return;
+  curPage=n; expandedCard=null;
+  renderPage();
+  window.scrollTo({top:document.getElementById('resultsSection').offsetTop-80,behavior:'smooth'});
+}
+
+// ─── AUTOCOMPLETE ────────────────────────────────────────────────────────
+let acTimer=null;
+function doAC(q) {
+  clearTimeout(acTimer);
+  if(q.length<2){closeAC();return;}
+  acTimer=setTimeout(async()=>{
+    const ql=q.toLowerCase();
+    // Instant embedded suggestions
+    const embedded=EMBEDDED.filter(d=>d.name.toLowerCase().startsWith(ql)||d.brand?.toLowerCase().startsWith(ql)).slice(0,5);
+    
+    let liveItems=[];
+    if(isOnline){
+      try{
+        const r=await fetch(`${API}/spellingsuggestions.json?name=${encodeURIComponent(q)}`);
+        const d=await r.json();
+        liveItems=(d.suggestionGroup?.suggestionList?.suggestion||[]).slice(0,4)
+          .filter(s=>!embedded.find(e=>e.name.toLowerCase()===s.toLowerCase()))
+          .map(s=>({name:s,tty:'',brand:'',isLive:true}));
+      }catch(e){}
+    }
+    
+    const items=[...embedded.map(d=>({name:d.name,tty:d.tty,brand:d.brand})),...liveItems].slice(0,8);
+    if(!items.length){closeAC();return;}
+    
+    const box=document.getElementById('acBox');
+    box.innerHTML=items.map(item=>`
+      <div class="ac-item" onclick="searchFor('${escHtml(item.name).replace(/'/g,"\\'")}')">
+        <span>${escHtml(item.name.length>55?item.name.slice(0,55)+'…':item.name)}</span>
+        <span class="ac-tag">${item.brand||TTY[item.tty]||item.tty||'suggestion'}</span>
+      </div>`).join('');
+    box.classList.add('open');
+  },200);
+}
+function closeAC(){document.getElementById('acBox').classList.remove('open');}
+
+// ─── STATE HELPERS ────────────────────────────────────────────────────────
+function showHome(){
+  document.getElementById('topSection').style.display='block';
+  document.getElementById('resultsSection').style.display='none';
+  document.querySelectorAll('.ab').forEach(b=>b.classList.remove('active'));
+  expandedCard=null;
+}
+function showSection(){
+  document.getElementById('topSection').style.display='none';
+  document.getElementById('resultsSection').style.display='block';
+  document.getElementById('drugList').innerHTML=`<div class="empty"><span class="spinner"></span> Searching…</div>`;
+  document.getElementById('pagination').innerHTML='';
+  document.getElementById('resultsCount').innerHTML='';
+}
+
+function escHtml(s){if(!s)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
+
+// ─── EVENTS ───────────────────────────────────────────────────────────────
+let searchTimer=null;
+document.getElementById('drugSearch').addEventListener('input',function(){
+  const q=this.value.trim();
+  doAC(q);
+  clearTimeout(searchTimer);
+  if(!q){showHome();return;}
+  searchTimer=setTimeout(()=>runSearch(q),550);
+});
+document.getElementById('drugSearch').addEventListener('keydown',function(e){
+  if(e.key==='Enter'){clearTimeout(searchTimer);closeAC();runSearch(this.value.trim());}
+  if(e.key==='Escape'){closeAC();}
+});
+document.addEventListener('click',e=>{if(!e.target.closest('.search-wrap'))closeAC();});
+
+// ─── INIT ─────────────────────────────────────────────────────────────────
+buildAlpha();
+buildTopDrugs();
+detectOnline();
+</script>
+</body>
+</html>
