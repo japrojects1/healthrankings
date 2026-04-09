@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All Fitness & Recovery Tested & Reviewed | HealthRankings</title>
+<meta name="description" content="Browse all fitness & recovery tested and reviewed by HealthRankings. Compare scores and find the best device for your needs.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:light;}
+@media(prefers-color-scheme:dark){
+  :root{--primary:#1565C0;--primary-dark:#0D47A1;--primary-light:#E3F0FF;--accent:#0097A7;--red:#C62828;--red-light:#FFEBEE;--green:#2E7D32;--green-light:#E8F5E9;--gold:#F57F17;--gold-light:#FFF8E1;--gray:#F8FAFC;--gray-mid:#E8EDF2;--gray-dark:#64748B;--text:#1A1A2E;--text-light:#4A5568;--white:#FFFFFF;--border:#DDE3EA;}
+  body{background:#FFFFFF!important;color:#1A1A2E!important;}
+}
+:root{
+  --primary:#1565C0;--primary-dark:#0D47A1;--primary-light:#E3F0FF;
+  --accent:#0097A7;--accent-light:#E0F5F7;
+  --red:#C62828;--red-light:#FFEBEE;
+  --green:#2E7D32;--green-light:#E8F5E9;
+  --gold:#F57F17;--gold-light:#FFF8E1;
+  --gray:#F8FAFC;--gray-mid:#E8EDF2;--gray-dark:#64748B;
+  --text:#1A1A2E;--text-light:#4A5568;
+  --white:#FFFFFF;--border:#DDE3EA;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--white);font-size:16px;line-height:1.7;}
+a{text-decoration:none;color:inherit;}
+
+nav{background:var(--white);height:64px;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;border-bottom:2px solid var(--primary-light);box-shadow:0 1px 8px rgba(21,101,192,0.08);}
+.logo{font-family:'Playfair Display',serif;color:var(--primary);font-size:1.4rem;font-weight:700;}
+.logo span{color:var(--accent);}
+.nav-links{display:flex;gap:0;}
+.nav-links a{color:var(--text-light);font-size:0.875rem;font-weight:500;padding:0 1.1rem;height:64px;display:flex;align-items:center;border-bottom:2px solid transparent;transition:all 0.2s;}
+.nav-links a:hover{color:var(--primary);border-bottom-color:var(--primary);}
+.nav-cta{background:var(--primary)!important;color:#fff!important;padding:8px 18px!important;height:auto!important;border-radius:8px!important;border-bottom:none!important;font-size:0.82rem!important;}
+.nav-cta:hover{background:var(--primary-dark)!important;}
+
+.page-hero{background:linear-gradient(135deg,var(--primary-light) 0%,#EBF5FF 60%,var(--white) 100%);padding:2.5rem 2rem 2rem;border-bottom:1px solid var(--border);}
+.hero-inner{max-width:900px;margin:0 auto;}
+.breadcrumb{font-size:0.8rem;color:var(--gray-dark);margin-bottom:1.25rem;display:flex;gap:0.5rem;align-items:center;}
+.breadcrumb a{color:var(--primary);}
+.breadcrumb a:hover{text-decoration:underline;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--primary-light);color:var(--primary);font-size:0.72rem;font-weight:600;padding:4px 14px;border-radius:20px;margin-bottom:1rem;text-transform:uppercase;letter-spacing:0.5px;border:1px solid rgba(21,101,192,0.2);}
+.page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,4vw,2.4rem);color:var(--text);font-weight:700;margin-bottom:0.5rem;}
+.page-hero h1 em{color:var(--primary);font-style:normal;}
+.page-hero p{font-size:0.95rem;color:var(--text-light);max-width:580px;}
+
+.main{max-width:900px;margin:0 auto;padding:2.5rem 2rem 4rem;}
+.count-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.75rem;padding-bottom:1rem;border-bottom:2px solid var(--primary-light);}
+.count-bar h2{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--text);}
+.count-badge{font-size:0.78rem;color:var(--gray-dark);background:var(--gray);padding:4px 12px;border-radius:20px;}
+.top5-link{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;padding:0.75rem 1.5rem;border-radius:10px;font-size:0.88rem;font-weight:600;margin-bottom:2rem;transition:all 0.2s;}
+.top5-link:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(21,101,192,0.25);}
+
+.device-list{display:flex;flex-direction:column;gap:0.75rem;}
+.dl-item{display:flex;align-items:center;gap:1.25rem;padding:1.25rem 1.5rem;border:1.5px solid var(--border);border-radius:14px;background:#fff;transition:all 0.2s;text-decoration:none;color:var(--text);}
+.dl-item:hover{border-color:var(--primary);box-shadow:0 4px 20px rgba(21,101,192,0.1);transform:translateY(-1px);}
+.dl-item.dl-winner{border-color:var(--gold);background:linear-gradient(135deg,#FFFBF0 0%,#fff 100%);}
+.dl-rank{width:40px;height:40px;background:var(--primary);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:700;flex-shrink:0;}
+.dl-winner .dl-rank{background:var(--gold);}
+.dl-info{flex:1;min-width:0;}
+.dl-name{font-size:1.05rem;font-weight:600;color:var(--text);margin-bottom:2px;}
+.dl-tagline{font-size:0.8rem;color:var(--text-light);}
+.dl-score-col{text-align:center;flex-shrink:0;min-width:80px;}
+.dl-stars{font-size:1rem;color:var(--gold);letter-spacing:1px;}
+.dl-score{font-size:0.82rem;color:var(--gray-dark);font-weight:600;margin-top:2px;}
+.dl-cta{color:var(--primary);font-size:0.88rem;font-weight:600;white-space:nowrap;flex-shrink:0;padding:0.5rem 1rem;border:1.5px solid var(--primary);border-radius:8px;transition:all 0.2s;}
+.dl-cta:hover{background:var(--primary);color:#fff;}
+
+footer{background:#0D3880;color:rgba(255,255,255,0.5);padding:2.5rem 2rem;text-align:center;font-size:0.8rem;}
+footer .logo{display:block;margin-bottom:0.625rem;font-size:1.2rem;color:#fff;font-family:'Playfair Display',serif;}
+.disc{margin-top:0.625rem;font-size:0.73rem;color:rgba(255,255,255,0.28);max-width:560px;margin-left:auto;margin-right:auto;}
+
+@media(max-width:640px){
+  nav .nav-links{display:none;}
+  .dl-item{flex-wrap:wrap;gap:0.75rem;padding:1rem;}
+  .dl-cta{width:100%;text-align:center;}
+  .dl-score-col{order:3;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">Health<span>Rankings</span></a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/healthrankings-conditions.html">Conditions</a>
+    <a href="/healthrankings-devices.html">Devices</a>
+    <a href="/healthrankings-drugs.html">Drugs A–Z</a>
+    <a href="/healthrankings-news.html">Health News</a>
+    <a href="/" class="nav-cta">← Back Home</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="hero-inner">
+    <div class="breadcrumb"><a href="/">Home</a> <span>›</span> <a href="/healthrankings-devices.html">Devices</a> <span>›</span> All Fitness & Recovery</div>
+    <div class="hero-badge">Fitness · 5 Devices Tested</div>
+    <h1>All <em>Fitness & Recovery</em> Tested</h1>
+    <p>For athletic performance, muscle building, endurance. Browse every device we've tested, compare scores, and read full expert reviews.</p>
+  </div>
+</div>
+
+<div class="main">
+  <div class="count-bar">
+    <h2>5 Devices Reviewed</h2>
+    <span class="count-badge">Updated April 2026</span>
+  </div>
+
+  <a href="/healthrankings-athletic-body-composition-top5.html" class="top5-link">🏆 See Our Top 5 Picks →</a>
+
+  <div class="device-list">
+    <a href="/healthrankings-athletic-body-composition-top5.html#review-1" class="dl-item dl-winner">
+      <div class="dl-rank">1</div>
+      <div class="dl-info">
+        <div class="dl-name">Tanita RD-953</div>
+        <div class="dl-tagline">Best Overall for Athletes — 8-Electrode Clinical Segmental Analysis</div>
+      </div>
+      <div class="dl-score-col">
+        <div class="dl-stars">★★★★★</div>
+        <div class="dl-score">9.5/10</div>
+      </div>
+      <div class="dl-cta">Read Full Review →</div>
+    </a>
+    <a href="/healthrankings-athletic-body-composition-top5.html#review-2" class="dl-item">
+      <div class="dl-rank">2</div>
+      <div class="dl-info">
+        <div class="dl-name">Withings Body Comp</div>
+        <div class="dl-tagline">Best App Ecosystem — Most Comprehensive Non-Segmental</div>
+      </div>
+      <div class="dl-score-col">
+        <div class="dl-stars">★★★★★</div>
+        <div class="dl-score">9.1/10</div>
+      </div>
+      <div class="dl-cta">Read Full Review →</div>
+    </a>
+    <a href="/healthrankings-athletic-body-composition-top5.html#review-3" class="dl-item">
+      <div class="dl-rank">3</div>
+      <div class="dl-info">
+        <div class="dl-name">Garmin Index S2</div>
+        <div class="dl-tagline">Best for Garmin Athletes — Native Training Integration</div>
+      </div>
+      <div class="dl-score-col">
+        <div class="dl-stars">★★★★☆</div>
+        <div class="dl-score">8.9/10</div>
+      </div>
+      <div class="dl-cta">Read Full Review →</div>
+    </a>
+    <a href="/healthrankings-athletic-body-composition-top5.html#review-4" class="dl-item">
+      <div class="dl-rank">4</div>
+      <div class="dl-info">
+        <div class="dl-name">Oxiline Scale X Pro</div>
+        <div class="dl-tagline">Best Value — 20 Metrics for Athletic Tracking</div>
+      </div>
+      <div class="dl-score-col">
+        <div class="dl-stars">★★★★☆</div>
+        <div class="dl-score">8.7/10</div>
+      </div>
+      <div class="dl-cta">Read Full Review →</div>
+    </a>
+    <a href="/healthrankings-athletic-body-composition-top5.html#review-5" class="dl-item">
+      <div class="dl-rank">5</div>
+      <div class="dl-info">
+        <div class="dl-name">InBody H20N</div>
+        <div class="dl-tagline">Best Smart Mirror Integration — InBody Clinical in Consumer Form</div>
+      </div>
+      <div class="dl-score-col">
+        <div class="dl-stars">★★★★☆</div>
+        <div class="dl-score">8.5/10</div>
+      </div>
+      <div class="dl-cta">Read Full Review →</div>
+    </a>
+  </div>
+</div>
+
+<footer>
+  <div class="logo">Health<span style="color:#0097A7">Rankings</span></div>
+  <p>Expert-reviewed health device rankings — unbiased, research-backed, updated 2026.</p>
+  <p class="disc">HealthRankings.com is reader-supported. We may earn a commission from affiliate links. Content is for informational purposes only.</p>
+</footer>
+
+</body>
+</html>
