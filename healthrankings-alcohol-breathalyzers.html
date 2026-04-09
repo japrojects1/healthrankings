@@ -220,7 +220,17 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   .causes-list{grid-template-columns:1fr;}
   .product-pros-cons{grid-template-columns:1fr;}
   nav .nav-links{display:none;}
-}</style>
+}
+/* ── TOP 5 HIGHLIGHT BOX ── */
+.top5-box{background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);border-radius:14px;padding:1.5rem 1.75rem;margin-bottom:2rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;position:relative;overflow:hidden;text-decoration:none;}
+.top5-box::after{content:'';position:absolute;right:-30px;top:-30px;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,0.07);}
+.top5-box-badge{display:inline-block;background:rgba(255,255,255,0.18);color:#fff;font-size:0.68rem;font-weight:600;padding:3px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.5rem;}
+.top5-box-title{font-family:'Playfair Display',serif;font-size:1.15rem;color:#fff;font-weight:700;margin-bottom:0.25rem;line-height:1.3;}
+.top5-box-sub{font-size:0.8rem;color:rgba(255,255,255,0.7);}
+.top5-box-btn{background:#fff;color:var(--primary);padding:0.625rem 1.5rem;border-radius:8px;font-size:0.85rem;font-weight:600;white-space:nowrap;flex-shrink:0;transition:all 0.2s;position:relative;z-index:1;}
+.top5-box-btn:hover{background:var(--primary-light);transform:translateY(-1px);}
+@media(max-width:640px){.top5-box{flex-direction:column;align-items:flex-start;}}
+</style>
 </head>
 <body>
 <nav>
@@ -243,6 +253,16 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
 </div></div>
 <div class="toc-bar"><ul><li><a href="#overview">Overview</a></li><li><a href="#detection">Detection Windows</a></li><li><a href="#lifestyle">Best Practices</a></li><li><a href="#breathalyzers">Breathalyzers</a></li><li><a href="#drug_tests">Drug Test Kits</a></li><li><a href="#faq">FAQ</a></li></ul></div>
 <div class="page-wrap">
+  <!-- TOP 5 DEVICE HIGHLIGHT -->
+  <a href="#device-reviews" class="top5-box">
+    <div>
+      <div class="top5-box-badge">Expert Ranked · Top 5 of 2026</div>
+      <div class="top5-box-title">Best Alcohol Breathalyzers for Home Use</div>
+      <div class="top5-box-sub">#1 Pick: BACtrack S80 Pro Fuel Cell &nbsp;·&nbsp; Score: 9.6/10 &nbsp;·&nbsp; 5 products tested</div>
+    </div>
+    <div class="top5-box-btn">See Full Top 5 ↓</div>
+  </a>
+
 <div class="section" id="overview"><div class="section-label">Overview</div><h2>At-Home Drug & Alcohol Testing</h2><p>At-home drug and alcohol testing serves a wide range of legitimate purposes — parents monitoring for adolescent substance use, employers conducting pre-employment or reasonable-suspicion testing, individuals in recovery monitoring their own sobriety, and healthcare providers managing substance use disorder treatment. Understanding the accuracy, detection windows, and limitations of these tests is essential for using them appropriately.</p><div class="callout-blue"><p><strong>Legal and ethical note:</strong> Drug testing without consent may be illegal depending on jurisdiction and relationship. Workplace drug testing is subject to federal and state laws. Home tests are screening tools — a positive result should always be confirmed by a CLIA-certified laboratory before adverse action is taken.</p></div><div class="symptoms-grid"><div class="symptom-card"><div class="symptom-icon">🍺</div><div><h4>Alcohol Breathalyzers</h4><p>Measure BAC (blood alcohol content) from breath — accurate within minutes of drinking</p></div></div><div class="symptom-card"><div class="symptom-icon">🌿</div><div><h4>Cannabis / THC Tests</h4><p>Urine strips detect THC metabolites — detection window 3–30 days depending on use pattern</p></div></div><div class="symptom-card"><div class="symptom-icon">💊</div><div><h4>Multi-Drug Panels</h4><p>Screen for multiple substances simultaneously — 5, 10, or 12 panel tests</p></div></div><div class="symptom-card"><div class="symptom-icon">🧪</div><div><h4>Prescription Drug Monitoring</h4><p>Detect opioids, benzodiazepines, stimulants — important for addiction recovery monitoring</p></div></div><div class="symptom-card"><div class="symptom-icon">⏱️</div><div><h4>Detection Windows</h4><p>Vary dramatically by substance — alcohol clears in hours, cannabis persists weeks in heavy users</p></div></div><div class="symptom-card"><div class="symptom-icon">🔬</div><div><h4>Confirmation Testing</h4><p>Any positive screen should be confirmed by GC-MS laboratory test before consequences</p></div></div></div></div>
 <div class="section" id="detection"><div class="section-label">Detection Windows</div><h2>How Long Drugs Are Detectable</h2><div style="background:var(--gray);border-radius:12px;padding:1.5rem;margin:1.5rem 0;overflow-x:auto;">
 <table style="width:100%;font-size:0.875rem;border-collapse:collapse;">
@@ -261,7 +281,7 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
 <tr style="background:var(--gray);"><td style="padding:0.7rem 1rem;font-weight:500;color:var(--navy);">Benzodiazepines</td><td style="padding:0.7rem 1rem;">3–7 days</td><td style="padding:0.7rem 1rem;">Up to 6 weeks</td><td style="padding:0.7rem 1rem;">1–10 days</td><td style="padding:0.7rem 1rem;">Long-acting benzos (diazepam) persist longest</td></tr>
 </tbody></table></div></div>
 <div class="section" id="lifestyle"><div class="section-label">Best Practices</div><h2>Responsible Testing Practices</h2><div class="lifestyle-grid"><div class="lifestyle-card"><div class="lc-icon">📋</div><h4>Confirm Positives</h4><p>Never take adverse action based on a screening test alone. GC-MS confirmation is essential for legal or employment consequences.</p></div><div class="lifestyle-card"><div class="lc-icon">🔬</div><h4>Understand Cross-Reactivity</h4><p>Many home tests cross-react with legal medications — ibuprofen can trigger opiate false positives; certain antihistamines trigger amphetamine positives. Disclose all medications before testing.</p></div><div class="lifestyle-card"><div class="lc-icon">⚖️</div><h4>Know the Law</h4><p>Workplace drug testing laws vary by state. Employee rights regarding testing, notice, and confirmation vary significantly. Some states prohibit adverse action for off-duty cannabis use.</p></div><div class="lifestyle-card"><div class="lc-icon">💙</div><h4>Recovery Support</h4><p>For those in addiction recovery, home testing can be a positive self-accountability tool when used voluntarily. Never use testing as a replacement for treatment support.</p></div><div class="lifestyle-card"><div class="lc-icon">🏠</div><h4>Parent-Child Conversations</h4><p>Research shows conversations about substance use are more protective than testing alone. Testing without conversation often damages trust without producing behavior change.</p></div><div class="lifestyle-card"><div class="lc-icon">📱</div><h4>Telehealth for Results</h4><p>Positive results — whether self-tested or clinically confirmed — should be followed by conversation with a healthcare provider about substance use disorder treatment options.</p></div></div></div>
-<hr class="section-divider"><div class="review-hero"><h2>Best Alcohol Breathalyzers for Home Use</h2><p>We tested 12 breathalyzers — evaluating sensor type and accuracy, warm-up time, result consistency, and BAC range — to find the most reliable options for personal use.</p>
+<hr class="section-divider"><div class="review-hero" id="device-reviews"><h2>Best Alcohol Breathalyzers for Home Use</h2><p>We tested 12 breathalyzers — evaluating sensor type and accuracy, warm-up time, result consistency, and BAC range — to find the most reliable options for personal use.</p>
 <div class="review-meta">
   <div class="review-meta-item"><strong>12</strong>Products Tested</div>
   <div class="review-meta-item"><strong>Validation vs reference device</strong>Testing Period</div>

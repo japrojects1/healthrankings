@@ -220,7 +220,17 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   .causes-list{grid-template-columns:1fr;}
   .product-pros-cons{grid-template-columns:1fr;}
   nav .nav-links{display:none;}
-}</style>
+}
+/* ── TOP 5 HIGHLIGHT BOX ── */
+.top5-box{background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);border-radius:14px;padding:1.5rem 1.75rem;margin-bottom:2rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;position:relative;overflow:hidden;text-decoration:none;}
+.top5-box::after{content:'';position:absolute;right:-30px;top:-30px;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,0.07);}
+.top5-box-badge{display:inline-block;background:rgba(255,255,255,0.18);color:#fff;font-size:0.68rem;font-weight:600;padding:3px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.5rem;}
+.top5-box-title{font-family:'Playfair Display',serif;font-size:1.15rem;color:#fff;font-weight:700;margin-bottom:0.25rem;line-height:1.3;}
+.top5-box-sub{font-size:0.8rem;color:rgba(255,255,255,0.7);}
+.top5-box-btn{background:#fff;color:var(--primary);padding:0.625rem 1.5rem;border-radius:8px;font-size:0.85rem;font-weight:600;white-space:nowrap;flex-shrink:0;transition:all 0.2s;position:relative;z-index:1;}
+.top5-box-btn:hover{background:var(--primary-light);transform:translateY(-1px);}
+@media(max-width:640px){.top5-box{flex-direction:column;align-items:flex-start;}}
+</style>
 </head>
 <body>
 <nav>
@@ -243,6 +253,16 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
 </div></div>
 <div class="toc-bar"><ul><li><a href="#overview">Overview</a></li><li><a href="#cycle">Fertility Cycle</a></li><li><a href="#lifestyle">Optimizing Fertility</a></li><li><a href="#ovulation">Ovulation Tests</a></li><li><a href="#pregnancy">Pregnancy Tests</a></li><li><a href="#faq">FAQ</a></li></ul></div>
 <div class="page-wrap">
+  <!-- TOP 5 DEVICE HIGHLIGHT -->
+  <a href="#device-reviews" class="top5-box">
+    <div>
+      <div class="top5-box-badge">Expert Ranked · Top 5 of 2026</div>
+      <div class="top5-box-title">Best Ovulation Test Kits for Cycle Tracking</div>
+      <div class="top5-box-sub">#1 Pick: Clearblue Advanced Digital Ovulation Test &nbsp;·&nbsp; Score: 9.6/10 &nbsp;·&nbsp; 5 products tested</div>
+    </div>
+    <div class="top5-box-btn">See Full Top 5 ↓</div>
+  </a>
+
 <div class="section" id="overview"><div class="section-label">Overview</div><h2>Fertility, Conception & Pregnancy Monitoring at Home</h2><p>Home-based fertility and pregnancy monitoring has been transformed in recent years by increasingly accurate at-home tests — from sophisticated ovulation predictors that track multiple hormones to early-detection pregnancy tests that can identify pregnancy days before a missed period. For the roughly 1 in 7 couples experiencing fertility challenges, at-home tools provide actionable data and reduce the number of clinic visits needed.</p><p>This guide covers the full fertility journey — from ovulation tracking and fertility testing through early pregnancy confirmation and prenatal monitoring — with expert product recommendations at each stage.</p><div class="callout-blue"><p><strong>When to see a fertility specialist:</strong> If you are under 35 and have been trying to conceive for 12 months without success; over 35 after 6 months; or over 40 after 3 months. Women with irregular cycles, known PCOS, endometriosis, or prior pelvic surgery should seek evaluation sooner.</p></div></div>
 <div class="section" id="cycle"><div class="section-label">Understanding the Cycle</div><h2>Key Fertility Hormones & Timing</h2><div style="background:var(--gray);border-radius:12px;padding:1.5rem;margin:1.5rem 0;">
 <h4 style="font-size:0.85rem;font-weight:500;color:var(--navy);margin-bottom:1rem;text-transform:uppercase;letter-spacing:0.5px;">Fertility Hormone Timeline</h4>
@@ -265,7 +285,7 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
 </div>
 </div></div></div>
 <div class="section" id="lifestyle"><div class="section-label">Lifestyle</div><h2>Optimizing Fertility Naturally</h2><div class="lifestyle-grid"><div class="lifestyle-card"><div class="lc-icon">🥗</div><h4>Diet & Weight</h4><p>Both underweight and overweight status disrupt ovulation. Mediterranean diet improves egg quality. Folic acid (400–800mcg) should start 3 months before trying to conceive.</p></div><div class="lifestyle-card"><div class="lc-icon">🚭</div><h4>Eliminate Toxins</h4><p>Smoking reduces fertility by 40%, alcohol impairs both egg and sperm quality, and high caffeine intake (>200mg/day) is associated with reduced conception rates.</p></div><div class="lifestyle-card"><div class="lc-icon">🏃</div><h4>Moderate Exercise</h4><p>Moderate exercise improves fertility; excessive high-intensity exercise (marathon training) can suppress ovulation. Aim for 150 minutes of moderate activity per week.</p></div><div class="lifestyle-card"><div class="lc-icon">😴</div><h4>Sleep & Stress</h4><p>Melatonin protects egg quality — adequate sleep is essential. Chronic stress elevates cortisol which suppresses LH and disrupts ovulation timing.</p></div><div class="lifestyle-card"><div class="lc-icon">🧬</div><h4>Track Your Cycle</h4><p>Most women don't ovulate on Day 14 — cycle length varies significantly. Tracking with ovulation tests for 3 cycles reveals your personal ovulation pattern.</p></div><div class="lifestyle-card"><div class="lc-icon">💊</div><h4>Pre-conception Supplements</h4><p>Folic acid, vitamin D, CoQ10 (improves egg mitochondrial function), and omega-3 fatty acids have the strongest evidence for fertility support.</p></div></div></div>
-<hr class="section-divider"><div class="review-hero"><h2>Best Ovulation Test Kits for Cycle Tracking</h2><p>We tested 16 ovulation predictor kits (OPKs) — evaluating LH detection sensitivity, whether they track multiple hormones, ease of reading results, app connectivity, and cost per cycle — to find the best tools for identifying your fertility window.</p>
+<hr class="section-divider"><div class="review-hero" id="device-reviews"><h2>Best Ovulation Test Kits for Cycle Tracking</h2><p>We tested 16 ovulation predictor kits (OPKs) — evaluating LH detection sensitivity, whether they track multiple hormones, ease of reading results, app connectivity, and cost per cycle — to find the best tools for identifying your fertility window.</p>
 <div class="review-meta">
   <div class="review-meta-item"><strong>16</strong>Devices Tested</div>
   <div class="review-meta-item"><strong>4 cycles</strong>Testing Period</div>

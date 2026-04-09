@@ -220,7 +220,17 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   .causes-list{grid-template-columns:1fr;}
   .product-pros-cons{grid-template-columns:1fr;}
   nav .nav-links{display:none;}
-}</style>
+}
+/* ── TOP 5 HIGHLIGHT BOX ── */
+.top5-box{background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);border-radius:14px;padding:1.5rem 1.75rem;margin-bottom:2rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;position:relative;overflow:hidden;text-decoration:none;}
+.top5-box::after{content:'';position:absolute;right:-30px;top:-30px;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,0.07);}
+.top5-box-badge{display:inline-block;background:rgba(255,255,255,0.18);color:#fff;font-size:0.68rem;font-weight:600;padding:3px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.5rem;}
+.top5-box-title{font-family:'Playfair Display',serif;font-size:1.15rem;color:#fff;font-weight:700;margin-bottom:0.25rem;line-height:1.3;}
+.top5-box-sub{font-size:0.8rem;color:rgba(255,255,255,0.7);}
+.top5-box-btn{background:#fff;color:var(--primary);padding:0.625rem 1.5rem;border-radius:8px;font-size:0.85rem;font-weight:600;white-space:nowrap;flex-shrink:0;transition:all 0.2s;position:relative;z-index:1;}
+.top5-box-btn:hover{background:var(--primary-light);transform:translateY(-1px);}
+@media(max-width:640px){.top5-box{flex-direction:column;align-items:flex-start;}}
+</style>
 </head>
 <body>
 <nav>
@@ -260,6 +270,16 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   </ul>
 </div>
 <div class="page-wrap">
+  <!-- TOP 5 DEVICE HIGHLIGHT -->
+  <a href="#device-reviews" class="top5-box">
+    <div>
+      <div class="top5-box-badge">Expert Ranked · Top 5 of 2026</div>
+      <div class="top5-box-title">Best Ketone Monitors for Diabetes Management</div>
+      <div class="top5-box-sub">#1 Pick: Keto-Mojo GK+ Bluetooth &nbsp;·&nbsp; Score: 9.4/10 &nbsp;·&nbsp; 5 products tested</div>
+    </div>
+    <div class="top5-box-btn">See Full Top 5 ↓</div>
+  </a>
+
 <div class="section" id="overview">
     <div class="section-label">Overview</div>
     <h2>What is Type 2 Diabetes?</h2>
@@ -331,7 +351,7 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
     </table>
     <div class="callout"><p><strong>GLP-1 medications</strong> (semaglutide/Ozempic, tirzepatide/Mounjaro) have transformed Type 2 diabetes management with average weight loss of 15–22% in clinical trials. Ask your doctor if you're a candidate.</p></div>
   </div>
-<hr class="section-divider"><div class="review-hero">
+<hr class="section-divider"><div class="review-hero" id="device-reviews">
       <h2>Best Ketone Monitors for Diabetes Management</h2>
       <p>We tested 14 ketone monitoring devices — evaluating accuracy, cost per test, ease of use, and connectivity — to find the best options for diabetics and those managing blood sugar through dietary ketosis.</p>
       <div class="review-meta">

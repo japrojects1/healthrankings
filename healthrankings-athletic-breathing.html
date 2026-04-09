@@ -220,7 +220,17 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   .causes-list{grid-template-columns:1fr;}
   .product-pros-cons{grid-template-columns:1fr;}
   nav .nav-links{display:none;}
-}</style>
+}
+/* ── TOP 5 HIGHLIGHT BOX ── */
+.top5-box{background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);border-radius:14px;padding:1.5rem 1.75rem;margin-bottom:2rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;position:relative;overflow:hidden;text-decoration:none;}
+.top5-box::after{content:'';position:absolute;right:-30px;top:-30px;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,0.07);}
+.top5-box-badge{display:inline-block;background:rgba(255,255,255,0.18);color:#fff;font-size:0.68rem;font-weight:600;padding:3px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.5rem;}
+.top5-box-title{font-family:'Playfair Display',serif;font-size:1.15rem;color:#fff;font-weight:700;margin-bottom:0.25rem;line-height:1.3;}
+.top5-box-sub{font-size:0.8rem;color:rgba(255,255,255,0.7);}
+.top5-box-btn{background:#fff;color:var(--primary);padding:0.625rem 1.5rem;border-radius:8px;font-size:0.85rem;font-weight:600;white-space:nowrap;flex-shrink:0;transition:all 0.2s;position:relative;z-index:1;}
+.top5-box-btn:hover{background:var(--primary-light);transform:translateY(-1px);}
+@media(max-width:640px){.top5-box{flex-direction:column;align-items:flex-start;}}
+</style>
 </head>
 <body>
 <nav>
@@ -243,6 +253,16 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
 </div></div>
 <div class="toc-bar"><ul><li><a href="#overview">Overview</a></li><li><a href="#training">Training Principles</a></li><li><a href="#supplements">Supplement Guide</a></li><li><a href="#monitors">Body Composition Monitors</a></li><li><a href="#breathing">Breathing Trainers</a></li><li><a href="#faq">FAQ</a></li></ul></div>
 <div class="page-wrap">
+  <!-- TOP 5 DEVICE HIGHLIGHT -->
+  <a href="#device-reviews" class="top5-box">
+    <div>
+      <div class="top5-box-badge">Expert Ranked · Top 5 of 2026</div>
+      <div class="top5-box-title">Best Breathing Trainers for Athletic Performance</div>
+      <div class="top5-box-sub">#1 Pick: Airofit PRO &nbsp;·&nbsp; Score: 9.4/10 &nbsp;·&nbsp; 5 products tested</div>
+    </div>
+    <div class="top5-box-btn">See Full Top 5 ↓</div>
+  </a>
+
 <div class="section" id="overview"><div class="section-label">Overview</div><h2>Optimizing Athletic Performance with Science</h2><p>Athletic performance optimization has shifted from guesswork to precision — modern athletes use body composition monitoring to track muscle gain and fat loss with accuracy, breathing trainers to improve VO₂max and respiratory economy, and evidence-based supplementation to support recovery, strength, and endurance gains.</p><p>This guide covers the three pillars of home performance monitoring and supplementation: measuring what's actually changing in your body, training your respiratory system for improved output, and using supplements with genuine evidence behind them.</p><div class="callout-blue"><p><strong>The supplement reality check:</strong> The supplement industry is largely unregulated. Most products make claims not supported by peer-reviewed evidence. This guide covers only supplements with multiple published randomized controlled trials — not anecdotes or marketing claims.</p></div></div>
 <div class="section" id="training"><div class="section-label">Training Principles</div><h2>Evidence-Based Performance Training</h2><div class="lifestyle-grid"><div class="lifestyle-card"><div class="lc-icon">💪</div><h4>Progressive Overload</h4><p>The fundamental driver of strength and muscle gains. Systematically increase weight, reps, or training volume over time. Track with body composition monitoring to ensure gains are muscle, not fat.</p></div><div class="lifestyle-card"><div class="lc-icon">🔄</div><h4>Periodization</h4><p>Cycle training intensity (heavy/light weeks) to allow supercompensation. Linear, undulating, and block periodization all outperform random training across studies.</p></div><div class="lifestyle-card"><div class="lc-icon">🫁</div><h4>Respiratory Training</h4><p>Inspiratory muscle training (IMT) improves VO₂max by 3–4%, time to exhaustion by 15–20%, and reduces the oxygen cost of breathing — leaving more for working muscles.</p></div><div class="lifestyle-card"><div class="lc-icon">😴</div><h4>Sleep & Recovery</h4><p>Muscle protein synthesis peaks during sleep. Growth hormone secretion is 70% nocturnal. 8–9 hours is the research-backed target for athletes — cutting to 6 hours reduces testosterone by 15%.</p></div><div class="lifestyle-card"><div class="lc-icon">🥩</div><h4>Protein Timing</h4><p>0.4g/kg of high-quality protein per meal, spread across 4 meals. Pre-sleep casein protein (40g) measurably increases overnight muscle protein synthesis.</p></div><div class="lifestyle-card"><div class="lc-icon">📊</div><h4>Track Body Composition</h4><p>Scale weight tells you nothing about whether you're gaining muscle or losing fat. Body composition monitoring every 2 weeks gives the data needed to adjust your nutrition and training.</p></div></div></div>
 <div class="section" id="supplements"><div class="section-label">Supplement Evidence Guide</div><h2>What the Research Actually Shows</h2><table class="med-table">
@@ -257,7 +277,7 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
 <tr><td><span class="med-name">Acetyl-L-Carnitine</span></td><td>Cognitive function, mitochondrial energy</td><td>⭐⭐⭐ Moderate — cognitive + energy</td><td>1–3g daily</td></tr>
 <tr><td><span class="med-name">Alpha Lipoic Acid</span></td><td>Antioxidant, insulin sensitivity</td><td>⭐⭐⭐ Moderate — glucose metabolism</td><td>300–600mg daily with food</td></tr>
 </tbody></table></div>
-<hr class="section-divider"><div class="review-hero"><h2>Best Breathing Trainers for Athletic Performance</h2><p>Respiratory training is the most underutilized performance lever in amateur athletics. We tested 12 breathing training devices specifically for their impact on athletic performance metrics — VO₂max, time to exhaustion, and breathing economy.</p>
+<hr class="section-divider"><div class="review-hero" id="device-reviews"><h2>Best Breathing Trainers for Athletic Performance</h2><p>Respiratory training is the most underutilized performance lever in amateur athletics. We tested 12 breathing training devices specifically for their impact on athletic performance metrics — VO₂max, time to exhaustion, and breathing economy.</p>
 <div class="review-meta">
   <div class="review-meta-item"><strong>12</strong>Devices Tested</div>
   <div class="review-meta-item"><strong>8 weeks</strong>Testing Period</div>

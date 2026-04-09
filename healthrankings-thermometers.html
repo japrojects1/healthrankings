@@ -220,7 +220,17 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   .causes-list{grid-template-columns:1fr;}
   .product-pros-cons{grid-template-columns:1fr;}
   nav .nav-links{display:none;}
-}</style>
+}
+/* ── TOP 5 HIGHLIGHT BOX ── */
+.top5-box{background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);border-radius:14px;padding:1.5rem 1.75rem;margin-bottom:2rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;position:relative;overflow:hidden;text-decoration:none;}
+.top5-box::after{content:'';position:absolute;right:-30px;top:-30px;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,0.07);}
+.top5-box-badge{display:inline-block;background:rgba(255,255,255,0.18);color:#fff;font-size:0.68rem;font-weight:600;padding:3px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.5rem;}
+.top5-box-title{font-family:'Playfair Display',serif;font-size:1.15rem;color:#fff;font-weight:700;margin-bottom:0.25rem;line-height:1.3;}
+.top5-box-sub{font-size:0.8rem;color:rgba(255,255,255,0.7);}
+.top5-box-btn{background:#fff;color:var(--primary);padding:0.625rem 1.5rem;border-radius:8px;font-size:0.85rem;font-weight:600;white-space:nowrap;flex-shrink:0;transition:all 0.2s;position:relative;z-index:1;}
+.top5-box-btn:hover{background:var(--primary-light);transform:translateY(-1px);}
+@media(max-width:640px){.top5-box{flex-direction:column;align-items:flex-start;}}
+</style>
 </head>
 <body>
 <nav>
@@ -243,6 +253,16 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
 </div></div>
 <div class="toc-bar"><ul><li><a href="#overview">Overview</a></li><li><a href="#types">Types & Accuracy</a></li><li><a href="#lifestyle">Best Practices</a></li><li><a href="#thermometers">Top 5 Thermometers</a></li><li><a href="#faq">FAQ</a></li></ul></div>
 <div class="page-wrap">
+  <!-- TOP 5 DEVICE HIGHLIGHT -->
+  <a href="#device-reviews" class="top5-box">
+    <div>
+      <div class="top5-box-badge">Expert Ranked · Top 5 of 2026</div>
+      <div class="top5-box-title">Best Thermometers for Home Use</div>
+      <div class="top5-box-sub">#1 Pick: Braun No Touch + Forehead Thermometer &nbsp;·&nbsp; Score: 9.5/10 &nbsp;·&nbsp; 5 products tested</div>
+    </div>
+    <div class="top5-box-btn">See Full Top 5 ↓</div>
+  </a>
+
 <div class="section" id="overview"><div class="section-label">Overview</div><h2>Why Accurate Temperature Monitoring Matters</h2><p>A reliable thermometer is one of the most fundamental home health tools — used to detect fever (the body's primary immune response signal), monitor illness progression, track treatment response, and determine when a child needs emergency care. Yet accuracy varies enormously between thermometer types and brands, and many popular devices are far less accurate than their marketing suggests.</p><p>Fever is defined as a rectal temperature above 100.4°F (38°C) in adults and children. The site of measurement matters significantly — rectal readings are most accurate, followed by temporal artery (forehead), oral, axillary (armpit), and tympanic (ear).</p><div class="callout"><p><strong>When to seek emergency care:</strong> Any fever above 104°F (40°C) in adults; any fever in infants under 3 months; fever with stiff neck, severe headache, light sensitivity, or confusion; fever persisting more than 3 days in adults or 2 days in children.</p></div></div><div class="section" id="types"><div class="section-label">Types of Thermometers</div><h2>Accuracy by Measurement Site</h2><div style="background:var(--gray);border-radius:12px;padding:1.5rem;margin:1.5rem 0;overflow-x:auto;">
 <table style="width:100%;font-size:0.875rem;border-collapse:collapse;">
 <thead><tr style="background:var(--navy);color:#fff;">
@@ -259,7 +279,7 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
 <tr style="background:var(--gray);"><td style="padding:0.7rem 1rem;border-bottom:1px solid var(--border);font-weight:500;color:var(--navy);">Tympanic (ear)</td><td style="padding:0.7rem 1rem;border-bottom:1px solid var(--border);">⭐⭐⭐ Moderate</td><td style="padding:0.7rem 1rem;border-bottom:1px solid var(--border);">&lt;2 seconds</td><td style="padding:0.7rem 1rem;border-bottom:1px solid var(--border);">Children 6 months+</td><td style="padding:0.7rem 1rem;border-bottom:1px solid var(--border);">Technique-dependent; ear infection affects reading</td></tr>
 <tr><td style="padding:0.7rem 1rem;font-weight:500;color:var(--navy);">Axillary (armpit)</td><td style="padding:0.7rem 1rem;">⭐⭐ Fair</td><td style="padding:0.7rem 1rem;">3–5 min</td><td style="padding:0.7rem 1rem;">Screening only</td><td style="padding:0.7rem 1rem;">Reads 0.5–1°F below true temp; unreliable</td></tr>
 </tbody></table></div></div><div class="section" id="lifestyle"><div class="section-label">Best Practices</div><h2>How to Take an Accurate Temperature</h2><div class="lifestyle-grid"><div class="lifestyle-card"><div class="lc-icon">⏱️</div><h4>Wait 15–30 Minutes</h4><p>Don't measure after eating, drinking, exercise, or bathing — each temporarily raises or lowers readings by 0.5–1°F</p></div><div class="lifestyle-card"><div class="lc-icon">🌡️</div><h4>Use Correct Site</h4><p>Rectal for infants; temporal or oral for children and adults; axillary only for screening</p></div><div class="lifestyle-card"><div class="lc-icon">🧹</div><h4>Clean Between Uses</h4><p>Wipe probe with alcohol before and after each use to prevent cross-contamination</p></div><div class="lifestyle-card"><div class="lc-icon">📏</div><h4>Correct Positioning</h4><p>For forehead thermometers: place on center of forehead, slide to temple. For ear: pull ear up and back, point toward eardrum</p></div><div class="lifestyle-card"><div class="lc-icon">📊</div><h4>Track Trends</h4><p>A single reading is less informative than a trend over time — fever that's rising vs falling tells a different clinical story</p></div><div class="lifestyle-card"><div class="lc-icon">🔋</div><h4>Check Battery Regularly</h4><p>Low batteries cause consistently false-low readings — replace proactively every 6–12 months</p></div></div></div><hr class="section-divider"><div class="section" id="thermometers">
-<div class="review-hero"><h2>Best Thermometers for Home Use</h2><p>We tested 19 thermometers — validating accuracy against mercury reference standards, evaluating speed, ease of use across age groups, and feature sets — to find the most reliable options for families and individuals.</p>
+<div class="review-hero" id="device-reviews"><h2>Best Thermometers for Home Use</h2><p>We tested 19 thermometers — validating accuracy against mercury reference standards, evaluating speed, ease of use across age groups, and feature sets — to find the most reliable options for families and individuals.</p>
 <div class="review-meta">
   <div class="review-meta-item"><strong>19</strong>Devices Tested</div>
   <div class="review-meta-item"><strong>6 weeks</strong>Testing Period</div>

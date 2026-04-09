@@ -220,7 +220,17 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   .causes-list{grid-template-columns:1fr;}
   .product-pros-cons{grid-template-columns:1fr;}
   nav .nav-links{display:none;}
-}</style>
+}
+/* ── TOP 5 HIGHLIGHT BOX ── */
+.top5-box{background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);border-radius:14px;padding:1.5rem 1.75rem;margin-bottom:2rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;position:relative;overflow:hidden;text-decoration:none;}
+.top5-box::after{content:'';position:absolute;right:-30px;top:-30px;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,0.07);}
+.top5-box-badge{display:inline-block;background:rgba(255,255,255,0.18);color:#fff;font-size:0.68rem;font-weight:600;padding:3px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.5rem;}
+.top5-box-title{font-family:'Playfair Display',serif;font-size:1.15rem;color:#fff;font-weight:700;margin-bottom:0.25rem;line-height:1.3;}
+.top5-box-sub{font-size:0.8rem;color:rgba(255,255,255,0.7);}
+.top5-box-btn{background:#fff;color:var(--primary);padding:0.625rem 1.5rem;border-radius:8px;font-size:0.85rem;font-weight:600;white-space:nowrap;flex-shrink:0;transition:all 0.2s;position:relative;z-index:1;}
+.top5-box-btn:hover{background:var(--primary-light);transform:translateY(-1px);}
+@media(max-width:640px){.top5-box{flex-direction:column;align-items:flex-start;}}
+</style>
 </head>
 <body>
 <nav>
@@ -243,6 +253,16 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
 </div></div>
 <div class="toc-bar"><ul><li><a href="#overview">Overview</a></li><li><a href="#training">Training Science</a></li><li><a href="#nutrition">Nutrition</a></li><li><a href="#evidence">Supplement Evidence</a></li><li><a href="#creatine">Best Creatine</a></li><li><a href="#bcaa">Best BCAAs & Glutamine</a></li><li><a href="#faq">FAQ</a></li></ul></div>
 <div class="page-wrap">
+  <!-- TOP 5 DEVICE HIGHLIGHT -->
+  <a href="#device-reviews" class="top5-box">
+    <div>
+      <div class="top5-box-badge">Expert Ranked · Top 5 of 2026</div>
+      <div class="top5-box-title">Best BCAA & L-Glutamine Supplements — Expert Top 5</div>
+      <div class="top5-box-sub">#1 Pick: Transparent Labs BCAA Glutamine &nbsp;·&nbsp; Score: 9.5/10 &nbsp;·&nbsp; 5 products tested</div>
+    </div>
+    <div class="top5-box-btn">See Full Top 5 ↓</div>
+  </a>
+
 <div class="section" id="overview"><div class="section-label">Overview</div><h2>Muscle Building: Training, Nutrition & Evidence-Based Supplements</h2><p>Muscle hypertrophy — the growth of muscle tissue — is driven by three primary stimuli: mechanical tension (progressive overload), metabolic stress, and muscle damage. Of these, progressive overload is by far the most important and least glamorous: consistently adding weight, reps, or volume over time is the irreplaceable foundation of muscle building.</p><p>Supplements play a supporting — not central — role. The most effective supplements (creatine, leucine-dominant protein, beta-alanine) add 5–15% improvement on top of a solid training and nutrition foundation. No supplement compensates for inadequate training or protein intake.</p><div class="callout-blue"><p><strong>The supplement reality:</strong> The global sports nutrition industry generates $50+ billion annually by selling hope. Of the thousands of supplements marketed to athletes, fewer than 10 have robust peer-reviewed evidence behind them. This page covers only those with multiple published RCTs — not industry-funded observational studies or anecdotes.</p></div></div>
 <div class="section" id="training"><div class="section-label">Training Principles</div><h2>The Science of Muscle Growth</h2><div class="lifestyle-grid"><div class="lifestyle-card"><div class="lc-icon">📈</div><h4>Progressive Overload</h4><p>The non-negotiable driver of hypertrophy. Increase load, reps, sets, or frequency over time. If you're not getting stronger, you're not growing. Track every session.</p></div><div class="lifestyle-card"><div class="lc-icon">🎯</div><h4>Volume & Frequency</h4><p>10–20 sets per muscle group per week across 2+ sessions is the research-supported hypertrophy range. Spreading volume across more sessions improves protein synthesis response.</p></div><div class="lifestyle-card"><div class="lc-icon">⚖️</div><h4>Rep Range</h4><p>5–30 reps all produce hypertrophy if taken close to failure. Lower reps (5–8) emphasize mechanical tension; higher reps (15–30) emphasize metabolic stress. Mix both for complete development.</p></div><div class="lifestyle-card"><div class="lc-icon">🥩</div><h4>Protein Requirements</h4><p>1.6–2.2g of protein per kg of bodyweight per day is the research-supported range for maximum muscle protein synthesis. Spread across 4+ meals with at least 40g leucine-rich protein per meal.</p></div><div class="lifestyle-card"><div class="lc-icon">😴</div><h4>Sleep & Recovery</h4><p>70% of growth hormone is secreted during slow-wave sleep. Cutting sleep to 6 hours reduces anabolic hormone levels by 15–20% and impairs muscle protein synthesis regardless of training and nutrition.</p></div><div class="lifestyle-card"><div class="lc-icon">🔄</div><h4>Deload Weeks</h4><p>Planned periods of reduced volume every 4–8 weeks prevent overtraining, allow connective tissue recovery, and often produce supercompensation — visible strength gains the week after.</p></div></div></div>
 <div class="section" id="nutrition"><div class="section-label">Nutrition</div><h2>Muscle-Building Nutrition Fundamentals</h2><div style="background:var(--gray);border-radius:12px;padding:1.5rem;margin:1.5rem 0;overflow-x:auto;">
@@ -270,7 +290,7 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
 <tr><td><span class="med-name">HMB (Beta-Hydroxy Beta-Methylbutyrate)</span></td><td>Anti-catabolic — reduces muscle breakdown, useful during cuts</td><td>⭐⭐⭐ Moderate — most benefit for untrained or elderly</td><td>3g daily in divided doses</td></tr>
 <tr><td><span class="med-name">Vitamin D + Zinc</span></td><td>Testosterone support — deficiency in both impairs T production</td><td>⭐⭐⭐⭐ Strong if deficient — test levels before supplementing</td><td>Vitamin D: 2,000–5,000 IU; Zinc: 25–45mg</td></tr>
 </tbody></table></div>
-<hr class="section-divider"><div class="review-hero"><h2>Best BCAA & L-Glutamine Supplements — Expert Top 5</h2><p>We evaluated 10 BCAA and amino acid products — assessing leucine ratio, ingredient quality, third-party testing, amino acid profile completeness, and value.</p>
+<hr class="section-divider"><div class="review-hero" id="device-reviews"><h2>Best BCAA & L-Glutamine Supplements — Expert Top 5</h2><p>We evaluated 10 BCAA and amino acid products — assessing leucine ratio, ingredient quality, third-party testing, amino acid profile completeness, and value.</p>
 <div class="review-meta">
   <div class="review-meta-item"><strong>10</strong>Products Tested</div>
   <div class="review-meta-item"><strong>8 weeks</strong>Testing Period</div>
