@@ -80,14 +80,18 @@ nav{background:var(--white);height:64px;padding:0 2rem;display:flex;align-items:
 .top5-box-btn{background:#fff;color:var(--primary);padding:0.625rem 1.5rem;border-radius:8px;font-size:0.85rem;font-weight:600;white-space:nowrap;flex-shrink:0;transition:all 0.2s;position:relative;z-index:1;}
 .top5-box-btn:hover{background:var(--primary-light);transform:translateY(-1px);}
 
-/* DEVICE CARDS GRID */
-.devices-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;}
-.device-card{background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:1.1rem;transition:all 0.2s;cursor:pointer;text-decoration:none;color:var(--text);display:flex;flex-direction:column;gap:0.4rem;}
-.device-card:hover{border-color:var(--primary);box-shadow:0 4px 16px rgba(21,101,192,0.12);transform:translateY(-2px);}
-.dc-type{font-size:0.65rem;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;color:var(--accent);margin-bottom:0.1rem;}
-.dc-name{font-size:0.9rem;font-weight:600;color:var(--text);line-height:1.3;}
-.dc-condition{font-size:0.72rem;color:var(--text-light);}
-.dc-arrow{font-size:0.75rem;color:var(--primary);font-weight:500;margin-top:auto;}
+/* PRODUCT CARDS GRID */
+.products-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
+.product-card{background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:1.1rem;transition:all 0.2s;cursor:pointer;text-decoration:none;color:var(--text);display:flex;flex-direction:column;gap:0.5rem;}
+.product-card:hover{border-color:var(--primary);box-shadow:0 4px 16px rgba(21,101,192,0.12);transform:translateY(-2px);}
+.pc-rank{font-size:0.65rem;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;color:var(--accent);}
+.pc-name{font-size:0.88rem;font-weight:600;color:var(--text);line-height:1.3;flex:1;}
+.pc-bottom{display:flex;align-items:center;justify-content:space-between;margin-top:auto;}
+.pc-score{display:inline-flex;align-items:center;gap:4px;background:var(--green-light);color:var(--green);font-size:0.75rem;font-weight:700;padding:3px 10px;border-radius:20px;}
+.pc-arrow{font-size:0.75rem;color:var(--primary);font-weight:500;}
+.see-all-row{text-align:center;margin-top:1rem;}
+.see-all-link{display:inline-flex;align-items:center;gap:6px;color:var(--primary);font-size:0.88rem;font-weight:600;padding:0.6rem 1.5rem;border-radius:8px;border:1.5px solid var(--primary);transition:all 0.2s;}
+.see-all-link:hover{background:var(--primary);color:#fff;}
 
 /* EMPTY STATE */
 .empty{text-align:center;padding:4rem 2rem;color:var(--text-light);}
@@ -101,7 +105,10 @@ footer .logo{display:block;margin-bottom:0.625rem;font-size:1.2rem;color:#fff;fo
 @media(max-width:768px){
   nav .nav-links{display:none;}
   .top5-box{flex-direction:column;align-items:flex-start;}
-  .devices-grid{grid-template-columns:repeat(2,1fr);}
+  .products-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:480px){
+  .products-grid{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -168,267 +175,270 @@ const DEVICE_TYPES = [
     cat: 'monitoring',
     name: 'Blood Pressure Monitors',
     description: 'For hypertension, heart failure, AFib, stroke prevention',
-    top5Link: '/healthrankings-hypertension.html',
     top5Label: 'Best Blood Pressure Monitors of 2026',
     winner: 'Omron Platinum BP5450',
     score: '9.5',
-    devices: [
-      {name:'Blood Pressure Monitors',condition:'Hypertension',link:'/healthrankings-hypertension.html'},
-      {name:'Blood Pressure Monitors',condition:'Hypotension (Low BP)',link:'/healthrankings-hypotension-blood-pressure-monitor.html'},
-      {name:'Blood Pressure Monitors',condition:'Coronary Artery Disease',link:'/healthrankings-coronary-artery-disease-bp-monitor.html'},
-      {name:'Blood Pressure Monitors',condition:'Stroke Prevention',link:'/healthrankings-stroke-prevention-blood-pressure.html'},
-      {name:'Blood Pressure Monitors',condition:'Atrial Fibrillation',link:'/healthrankings-afib-blood-pressure-monitor.html'},
+    reviewPage: '/healthrankings-hypertension-top5.html',
+    products: [
+      {name:'Omron Platinum BP5450',score:'9.5'},
+      {name:'Withings BPM Connect',score:'9.2'},
+      {name:'Oxiline Pressure X Pro',score:'9.1'},
+      {name:'Omron Gold BP5195',score:'8.9'},
     ]
   },
   {
     cat: 'monitoring',
     name: 'Body Composition Monitors',
     description: 'For obesity, diabetes, metabolic syndrome, bariatric follow-up',
-    top5Link: '/healthrankings-obesity.html',
     top5Label: 'Best Body Composition Monitors of 2026',
     winner: 'Withings Body Comp',
     score: '9.4',
-    devices: [
-      {name:'Body Composition Scales',condition:'Obesity / Overweight',link:'/healthrankings-obesity.html'},
-      {name:'Body Composition Monitors',condition:'Type 2 Diabetes',link:'/healthrankings-diabetes-body-composition.html'},
-      {name:'Body Composition Monitors',condition:'Metabolic Syndrome',link:'/healthrankings-metabolic-syndrome-body-composition.html'},
-      {name:'Body Composition Monitors',condition:'Insulin Resistance',link:'/healthrankings-insulin-resistance-body-composition.html'},
-      {name:'Body Composition Monitors',condition:'Menopause',link:'/healthrankings-menopause-body-composition.html'},
-      {name:'Body Composition Monitors',condition:'Osteoporosis',link:'/healthrankings-osteoporosis-body-composition.html'},
-      {name:'Body Composition Monitors',condition:'Athletic Performance',link:'/healthrankings-athletic-body-composition.html'},
-      {name:'Body Composition Monitors',condition:'Bariatric Follow-up',link:'/healthrankings-bariatric-body-composition.html'},
-      {name:'Body Composition Monitors',condition:'Weight Management',link:'/healthrankings-weight-management-body-composition.html'},
+    reviewPage: '/healthrankings-obesity-top5.html',
+    products: [
+      {name:'Withings Body Comp',score:'9.5'},
+      {name:'Tanita RD-953',score:'9.2'},
+      {name:'Oxiline Scale X Pro',score:'9.0'},
+      {name:'Garmin Index S2',score:'8.8'},
     ]
   },
   {
     cat: 'monitoring',
     name: 'Pulse Oximeters',
     description: 'For asthma, COPD, sleep apnea, heart failure, Long COVID',
-    top5Link: '/healthrankings-asthma-pulse-oximeter.html',
     top5Label: 'Best Pulse Oximeters of 2026',
     winner: 'Masimo MightySat Rx',
     score: '9.6',
-    devices: [
-      {name:'Pulse Oximeters',condition:'Asthma',link:'/healthrankings-asthma-pulse-oximeter.html'},
-      {name:'Pulse Oximeters',condition:'COPD',link:'/healthrankings-copd-pulse-oximeters.html'},
-      {name:'Pulse Oximeters',condition:'Sleep Apnea',link:'/healthrankings-sleep-apnea.html'},
-      {name:'Pulse Oximeters',condition:'Heart Failure',link:'/healthrankings-heart-failure-pulse-oximeter.html'},
-      {name:'Pulse Oximeters',condition:'Long COVID',link:'/healthrankings-long-covid-pulse-oximeter.html'},
+    reviewPage: '/healthrankings-asthma-pulse-oximeter-top5.html',
+    products: [
+      {name:'Masimo MightySat Rx',score:'9.6'},
+      {name:'Nonin Model 3230',score:'9.3'},
+      {name:'Wellue O2Ring Gen 2',score:'9.0'},
+      {name:'Oxiline Pulse X Pro',score:'8.8'},
     ]
   },
   {
     cat: 'monitoring',
     name: 'Thermometers',
     description: 'For fever monitoring, respiratory infections',
-    top5Link: '/healthrankings-thermometers.html',
     top5Label: 'Best Thermometers of 2026',
     winner: 'Braun No Touch + Forehead',
     score: '9.1',
-    devices: [
-      {name:'Thermometers',condition:'Fever Monitoring',link:'/healthrankings-thermometers.html'},
-      {name:'Thermometers',condition:'Respiratory Infections',link:'/healthrankings-thermometers.html'},
+    reviewPage: '/healthrankings-thermometers-top5.html',
+    products: [
+      {name:'Braun No Touch + Forehead Thermometer',score:'9.5'},
+      {name:'Kinsa QuickCare Smart Thermometer',score:'9.1'},
+      {name:'Oxiline Thermo X Pro',score:'8.9'},
+      {name:'iHealth No-Touch Forehead Thermometer',score:'8.6'},
     ]
   },
   {
     cat: 'monitoring',
     name: 'Glucometers & CGM',
     description: 'For Type 1 & 2 diabetes, ketogenic diet, insulin resistance',
-    top5Link: '/healthrankings-type1-diabetes-glucometer.html',
     top5Label: 'Best Glucometers & CGM of 2026',
     winner: 'Contour Next One',
     score: '9.7',
-    devices: [
-      {name:'Glucometers / CGM',condition:'Type 1 Diabetes',link:'/healthrankings-type1-diabetes-glucometer.html'},
-      {name:'Ketone Monitors',condition:'Type 2 Diabetes',link:'/healthrankings-diabetes-ketone-monitors.html'},
-      {name:'Ketone Monitors',condition:'Ketogenic Diet',link:'/healthrankings-ketogenic-diet-ketone-monitor.html'},
+    reviewPage: '/healthrankings-type1-diabetes-glucometer-top5.html',
+    products: [
+      {name:'Contour Next One',score:'9.7'},
+      {name:'Dexcom G7 CGM',score:'9.6'},
+      {name:'Abbott FreeStyle Libre 3',score:'9.3'},
+      {name:'Accu-Chek Guide Me',score:'9.0'},
     ]
   },
   {
     cat: 'pain',
     name: 'TENS Units',
     description: 'For arthritis, back pain, neuropathy, sports injuries, post-surgical',
-    top5Link: '/healthrankings-arthritis-tens.html',
     top5Label: 'Best TENS Units of 2026',
     winner: 'iReliev ET-7070',
     score: '9.6',
-    devices: [
-      {name:'TENS Units',condition:'Arthritis',link:'/healthrankings-arthritis-tens.html'},
-      {name:'TENS Units',condition:'Back Pain',link:'/healthrankings-back-pain-tens.html'},
-      {name:'TENS Units',condition:'Neuropathy',link:'/healthrankings-neuropathy-tens-units.html'},
-      {name:'TENS Units',condition:'Sports Injuries',link:'/healthrankings-sports-injuries-tens.html'},
-      {name:'TENS Units',condition:'Post-Surgical Rehab',link:'/healthrankings-post-surgical-rehab-tens.html'},
-      {name:'TENS Units + Foot Support',condition:'Plantar Fasciitis',link:'/healthrankings-plantar-fasciitis-foot-support.html'},
+    reviewPage: '/healthrankings-arthritis-tens-top5.html',
+    products: [
+      {name:'iReliev ET-7070 TENS + EMS',score:'9.3'},
+      {name:'Compex Sport Elite 3.0',score:'9.0'},
+      {name:'Oxiline TENS X Pro',score:'8.8'},
+      {name:'Beurer EM59 Wireless TENS',score:'8.5'},
     ]
   },
   {
     cat: 'pain',
     name: 'Massage Devices',
     description: 'For anxiety, neck pain, muscle recovery, chronic pain',
-    top5Link: '/healthrankings-percussion-massage-guns.html',
     top5Label: 'Best Massage Devices of 2026',
     winner: 'Theragun PRO Gen 6',
     score: '9.4',
-    devices: [
-      {name:'Percussion Massage Guns',condition:'Muscle Recovery',link:'/healthrankings-percussion-massage-guns.html'},
-      {name:'Electric Massagers',condition:'Anxiety / Stress',link:'/healthrankings-anxiety-massagers.html'},
-      {name:'Shiatsu Massagers',condition:'Neck & Shoulder Pain',link:'/healthrankings-shiatsu-neck-massagers.html'},
+    reviewPage: '/healthrankings-percussion-massage-guns-top5.html',
+    products: [
+      {name:'Theragun PRO Gen 6',score:'9.6'},
+      {name:'Hypervolt 2 Pro',score:'9.2'},
+      {name:'Renpho R3 Percussion Massager',score:'9.0'},
+      {name:'Theragun Mini Gen 2',score:'8.7'},
     ]
   },
   {
     cat: 'pain',
     name: 'Foot & Leg Supports',
     description: 'For neuropathy, plantar fasciitis, arthritis',
-    top5Link: '/healthrankings-neuropathy-foot-support.html',
     top5Label: 'Best Foot & Leg Supports of 2026',
     winner: 'Powerstep Pinnacle Orthotics',
     score: '9.6',
-    devices: [
-      {name:'Foot & Leg Supports',condition:'Neuropathy',link:'/healthrankings-neuropathy-foot-support.html'},
-      {name:'Foot Supports',condition:'Plantar Fasciitis',link:'/healthrankings-plantar-fasciitis-foot-support.html'},
+    reviewPage: '/healthrankings-neuropathy-foot-support-top5.html',
+    products: [
+      {name:'Sockwell Plantar Ease Compression Socks',score:'9.4'},
+      {name:'Dr. Scholl\\'s Diabetic & Circulatory Socks',score:'9.0'},
+      {name:'Physix Gear Sport Compression Socks',score:'8.7'},
+      {name:'Powerstep Pinnacle Orthotic Insoles',score:'8.5'},
     ]
   },
   {
     cat: 'pain',
     name: 'Back Support Braces',
     description: 'For back pain, post-surgical, posture support',
-    top5Link: '/healthrankings-back-support-braces.html',
     top5Label: 'Best Back Support Braces of 2026',
     winner: 'Sparthos Back Brace',
     score: '9.2',
-    devices: [
-      {name:'Back Support Braces',condition:'Back Pain',link:'/healthrankings-back-support-braces.html'},
+    reviewPage: '/healthrankings-back-support-braces-top5.html',
+    products: [
+      {name:'Mueller Lumbar Support Back Brace',score:'9.3'},
+      {name:'ComfyMed Breathable Back Brace',score:'8.9'},
+      {name:'Oxiline Back Support Pro',score:'8.7'},
+      {name:'Sparthos Lumbar Support Belt',score:'8.5'},
     ]
   },
   {
     cat: 'pain',
     name: 'Arthritis Gloves',
     description: 'For rheumatoid arthritis, osteoarthritis',
-    top5Link: '/healthrankings-arthritis-gloves.html',
     top5Label: 'Best Arthritis Gloves of 2026',
     winner: 'Copper Compression Gloves',
     score: '9.0',
-    devices: [
-      {name:'Arthritis Gloves',condition:'Arthritis',link:'/healthrankings-arthritis-gloves.html'},
+    reviewPage: '/healthrankings-arthritis-gloves-top5.html',
+    products: [
+      {name:'Copper Compression Arthritis Gloves',score:'9.3'},
+      {name:'Dr. Frederick\\'s Original Arthritis Gloves',score:'8.9'},
+      {name:'IMAK Compression Arthritis Gloves',score:'8.7'},
+      {name:'Thermoskin Arthritic Gloves',score:'8.5'},
     ]
   },
   {
     cat: 'respiratory',
     name: 'Breathing Trainers',
     description: 'For COPD, asthma, anxiety, athletic performance',
-    top5Link: '/healthrankings-copd-breathing-trainers.html',
     top5Label: 'Best Breathing Trainers of 2026',
     winner: 'Airofit PRO 2.0',
     score: '9.5',
-    devices: [
-      {name:'Breathing Trainers',condition:'COPD',link:'/healthrankings-copd-breathing-trainers.html'},
-      {name:'Breathing Trainers',condition:'Anxiety / Stress',link:'/healthrankings-anxiety-breathing-trainers.html'},
-      {name:'Breathing Trainers',condition:'Athletic Performance',link:'/healthrankings-athletic-breathing.html'},
-      {name:'Breathing Trainers',condition:'Endurance Training',link:'/healthrankings-endurance-training-breathing-trainer.html'},
+    reviewPage: '/healthrankings-copd-breathing-trainers-top5.html',
+    products: [
+      {name:'Airofit PRO Breathing Trainer',score:'9.4'},
+      {name:'Threshold IMT (Philips Respironics)',score:'9.0'},
+      {name:'POWERbreathe Medic',score:'8.7'},
+      {name:'Expand-A-Lung Breathing Exerciser',score:'8.2'},
     ]
   },
   {
     cat: 'dental',
     name: 'Electric Toothbrushes',
     description: 'For gum disease, diabetic oral health, general dental care',
-    top5Link: '/healthrankings-electric-toothbrushes.html',
     top5Label: 'Best Electric Toothbrushes of 2026',
     winner: 'Oral-B iO Series 9',
     score: '9.3',
-    devices: [
-      {name:'Electric Toothbrushes',condition:'Gum Disease',link:'/healthrankings-electric-toothbrushes.html'},
-      {name:'Electric Toothbrushes',condition:'Oral Health in Diabetes',link:'/healthrankings-oral-health-diabetes-toothbrush.html'},
+    reviewPage: '/healthrankings-electric-toothbrushes-top5.html',
+    products: [
+      {name:'Oral-B iO Series 9',score:'9.5'},
+      {name:'Philips Sonicare DiamondClean Smart 9750',score:'9.2'},
+      {name:'Nuve Sonic Pro',score:'8.9'},
+      {name:'Oral-B Pro 3000',score:'8.7'},
     ]
   },
   {
     cat: 'dental',
     name: 'Water Flossers',
     description: 'For gum disease, periodontal care',
-    top5Link: '/healthrankings-water-flossers.html',
     top5Label: 'Best Water Flossers of 2026',
     winner: 'Waterpik Aquarius WP-660',
     score: '9.4',
-    devices: [
-      {name:'Water Flossers',condition:'Gum Disease',link:'/healthrankings-water-flossers.html'},
+    reviewPage: '/healthrankings-water-flossers-top5.html',
+    products: [
+      {name:'Waterpik Aquarius WP-660',score:'9.5'},
+      {name:'Waterpik Cordless Advanced WP-560',score:'9.1'},
+      {name:'Oxiline Flosser Pro',score:'8.9'},
+      {name:'Panasonic EW-DJ10-A Portable',score:'8.4'},
     ]
   },
   {
     cat: 'fitness',
     name: 'Fitness & Recovery',
     description: 'For athletic performance, muscle building, endurance',
-    top5Link: '/healthrankings-athletic-body-composition.html',
     top5Label: 'Best Fitness Devices of 2026',
     winner: 'Withings Body Comp',
     score: '9.4',
-    devices: [
-      {name:'Body Composition Monitors',condition:'Athletic Performance',link:'/healthrankings-athletic-body-composition.html'},
-      {name:'Percussion Massage Guns',condition:'Recovery & Overtraining',link:'/healthrankings-percussion-massage-guns.html'},
-      {name:'Breathing Trainers',condition:'Endurance Training',link:'/healthrankings-endurance-training-breathing-trainer.html'},
+    reviewPage: '/healthrankings-athletic-body-composition-top5.html',
+    products: [
+      {name:'Tanita RD-953',score:'9.5'},
+      {name:'Withings Body Comp',score:'9.1'},
+      {name:'Garmin Index S2',score:'8.9'},
+      {name:'Oxiline Scale X Pro',score:'8.7'},
     ]
   },
   {
     cat: 'diagnostic',
     name: 'Home Test Kits',
     description: 'For cholesterol, UTI, STI, HIV, drug screening, genetic risk',
-    top5Link: '/healthrankings-cholesterol.html',
     top5Label: 'Best Home Test Kits of 2026',
     winner: 'LetsGetChecked Cholesterol Panel',
     score: '9.2',
-    devices: [
-      {name:'Cholesterol Tests',condition:'High Cholesterol',link:'/healthrankings-cholesterol.html'},
-      {name:'UTI Test Strips',condition:'UTI',link:'/healthrankings-uti.html'},
-      {name:'STI Test Kits',condition:'STI Screening',link:'/healthrankings-sti-home-testing.html'},
-      {name:'HIV Tests',condition:'HIV / AIDS',link:'/healthrankings-hiv.html'},
-      {name:'Drug Test Kits',condition:'Drug Screening',link:'/healthrankings-drug-test-kits.html'},
-      {name:'Genetic Tests',condition:'Hereditary Risk',link:'/healthrankings-hereditary-genetic-testing.html'},
-      {name:'Colorectal Screening',condition:'Colorectal Cancer',link:'/healthrankings-colorectal-cancer-screening.html'},
-      {name:'Pregnancy Tests',condition:'Pregnancy',link:'/healthrankings-pregnancy-tests.html'},
-      {name:'Ovulation Tests',condition:'Female Fertility',link:'/healthrankings-ovulation-test-kits.html'},
-      {name:'Sperm Tests',condition:'Male Fertility',link:'/healthrankings-male-fertility.html'},
-      {name:'Breathalyzers',condition:'Alcohol Monitoring',link:'/healthrankings-alcohol-breathalyzers.html'},
-      {name:'Ketone Monitors',condition:'Ketogenic Diet',link:'/healthrankings-ketogenic-diet-ketone-monitor.html'},
+    reviewPage: '/healthrankings-cholesterol-top5.html',
+    products: [
+      {name:'Everlywell Cholesterol & Lipids Test',score:'9.5'},
+      {name:'LetsGetChecked Cholesterol Test',score:'9.1'},
+      {name:'CardioChek PA Analyzer',score:'8.9'},
+      {name:'Walk-In Lab Direct Lipid Panel',score:'8.7'},
     ]
   },
   {
     cat: 'diagnostic',
     name: 'Fertility & Reproductive',
     description: 'For PCOS, ovulation tracking, pregnancy, male fertility',
-    top5Link: '/healthrankings-pcos-ovulation-monitor.html',
     top5Label: 'Best Fertility Monitors of 2026',
     winner: 'Inito Fertility Monitor',
     score: '9.3',
-    devices: [
-      {name:'Ovulation Monitors',condition:'PCOS',link:'/healthrankings-pcos-ovulation-monitor.html'},
-      {name:'Ovulation Test Kits',condition:'Female Fertility',link:'/healthrankings-ovulation-test-kits.html'},
-      {name:'Sperm Test Kits',condition:'Male Fertility',link:'/healthrankings-male-fertility.html'},
-      {name:'Pregnancy Tests',condition:'Pregnancy',link:'/healthrankings-pregnancy-tests.html'},
+    reviewPage: '/healthrankings-pcos-ovulation-monitor-top5.html',
+    products: [
+      {name:'Mira Fertility Plus Monitor',score:'9.7'},
+      {name:'Clearblue Advanced Digital',score:'9.1'},
+      {name:'Inito Fertility Monitor',score:'9.0'},
+      {name:'Easy@Home Smart BBT Thermometer',score:'8.7'},
     ]
   },
   {
     cat: 'safety',
     name: 'GPS & Alert Systems',
     description: 'For Alzheimer\'s, Parkinson\'s, fall detection, elderly care',
-    top5Link: '/healthrankings-dementia-alzheimers-gps-alert.html',
     top5Label: 'Best Safety Alert Systems of 2026',
     winner: 'Apple Watch Series 10',
     score: '9.5',
-    devices: [
-      {name:'GPS Alert Systems',condition:"Dementia / Alzheimer's",link:'/healthrankings-dementia-alzheimers-gps-alert.html'},
-      {name:'Fall Detection Systems',condition:"Parkinson's Disease",link:'/healthrankings-parkinsons-fall-detection.html'},
-      {name:'Health Alert Systems',condition:'Cognitive Decline',link:'/healthrankings-cognitive-decline-monitoring.html'},
+    reviewPage: '/healthrankings-dementia-alzheimers-gps-alert-top5.html',
+    products: [
+      {name:'AngelSense GPS Tracker',score:'9.7'},
+      {name:'Apple Watch Series 10',score:'9.2'},
+      {name:'Medical Guardian MGHome + GPS',score:'9.0'},
+      {name:'Tile Ultra Hidden GPS Tracker',score:'8.7'},
     ]
   },
   {
     cat: 'support',
     name: 'Supplements',
     description: 'For muscle building, recovery, oxidative stress',
-    top5Link: '/healthrankings-creatine-supplements.html',
     top5Label: 'Best Health Supplements of 2026',
     winner: 'Thorne CoQ10 Ubiquinol',
     score: '9.6',
-    devices: [
-      {name:'Creatine Supplements',condition:'Muscle Building',link:'/healthrankings-creatine-supplements.html'},
-      {name:'BCAA Supplements',condition:'Muscle Recovery',link:'/healthrankings-bcaa-glutamine-supplements.html'},
-      {name:'Antioxidant Supplements',condition:'Oxidative Stress',link:'/healthrankings-oxidative-stress-antioxidant-supplements.html'},
+    reviewPage: '/healthrankings-creatine-supplements-top5.html',
+    products: [
+      {name:'Thorne Creatine (Creapure)',score:'9.6'},
+      {name:'Optimum Nutrition Micronized Creatine',score:'9.3'},
+      {name:'Klean Athlete Creatine',score:'9.0'},
+      {name:'BulkSupplements Creatine Monohydrate',score:'8.7'},
     ]
   },
 ];
@@ -446,13 +456,13 @@ function render() {
     const matchSearch = !q || 
       dt.name.toLowerCase().includes(q) ||
       dt.description.toLowerCase().includes(q) ||
-      dt.devices.some(d => d.name.toLowerCase().includes(q) || d.condition.toLowerCase().includes(q));
+      dt.products.some(p => p.name.toLowerCase().includes(q));
     return matchCat && matchSearch;
   });
 
-  const totalDevices = filtered.reduce((sum, dt) => sum + dt.devices.length, 0);
+  const totalProducts = filtered.reduce((sum, dt) => sum + dt.products.length, 0);
   document.getElementById('resultsInfo').innerHTML = 
-    `Showing <strong>${filtered.length}</strong> device categories · <strong>${totalDevices}</strong> individual products reviewed`;
+    `Showing <strong>${filtered.length}</strong> device categories · <strong>${totalProducts}</strong> products reviewed`;
 
   if (!filtered.length) {
     container.innerHTML = `<div class="empty"><h3>No devices found</h3><p>Try a different search term or filter.</p></div>`;
@@ -463,29 +473,33 @@ function render() {
     <div class="device-section" data-cat="${dt.cat}">
       <div class="device-section-header">
         <div class="device-section-title">${dt.name}</div>
-        <span class="device-count">${dt.devices.length} product${dt.devices.length !== 1 ? 's' : ''} reviewed</span>
+        <span class="device-count">${dt.products.length} products reviewed</span>
       </div>
       
-      <!-- TOP 5 HIGHLIGHT BOX -->
-      <a href="${dt.top5Link}" class="top5-box" style="display:flex;text-decoration:none;">
+      <a href="${dt.reviewPage}" class="top5-box" style="display:flex;text-decoration:none;">
         <div class="top5-box-left">
           <div class="top5-box-badge">Expert Ranked · Top 5 of 2026</div>
           <div class="top5-box-title">We Reviewed the Best ${dt.name} of 2026</div>
-          <div class="top5-box-sub">#1 Pick: ${dt.winner} &nbsp;·&nbsp; Score: ${dt.score}/10 &nbsp;·&nbsp; ${dt.devices.length} products tested</div>
+          <div class="top5-box-sub">#1 Pick: ${dt.winner} &nbsp;·&nbsp; Score: ${dt.score}/10 &nbsp;·&nbsp; ${dt.products.length} products tested</div>
         </div>
         <div class="top5-box-btn">See Full Top 5 →</div>
       </a>
 
-      <!-- DEVICE CARDS -->
-      <div class="devices-grid">
-        ${dt.devices.map(d => `
-          <a href="${d.link}" class="device-card">
-            <div class="dc-type">${dt.name}</div>
-            <div class="dc-name">${d.condition}</div>
-            <div class="dc-condition">${d.name}</div>
-            <div class="dc-arrow">Read Review →</div>
+      <div class="products-grid">
+        ${dt.products.map((p, i) => `
+          <a href="${dt.reviewPage}" class="product-card">
+            <div class="pc-rank">#${i + 1} Pick</div>
+            <div class="pc-name">${p.name}</div>
+            <div class="pc-bottom">
+              <span class="pc-score">★ ${p.score}/10</span>
+              <span class="pc-arrow">Read Review →</span>
+            </div>
           </a>
         `).join('')}
+      </div>
+
+      <div class="see-all-row">
+        <a href="${dt.reviewPage}" class="see-all-link">See All ${dt.name} Reviews →</a>
       </div>
     </div>
   `).join('');
