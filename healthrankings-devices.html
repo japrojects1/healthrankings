@@ -487,7 +487,7 @@ function render() {
 
       <div class="products-grid">
         ${dt.products.map((p, i) => `
-          <a href="${dt.reviewPage}" class="product-card">
+          <a href="${dt.reviewPage}#review-${i + 1}" class="product-card">
             <div class="pc-rank">#${i + 1} Pick</div>
             <div class="pc-name">${p.name}</div>
             <div class="pc-bottom">

@@ -230,6 +230,26 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
 .top5-box-btn{background:#fff;color:var(--primary);padding:0.625rem 1.5rem;border-radius:8px;font-size:0.85rem;font-weight:600;white-space:nowrap;flex-shrink:0;transition:all 0.2s;position:relative;z-index:1;}
 .top5-box-btn:hover{background:var(--primary-light);transform:translateY(-1px);}
 @media(max-width:640px){.top5-box{flex-direction:column;align-items:flex-start;}}
+
+/* ── PRODUCT LISTING ── */
+.product-listing{margin-bottom:2rem;}
+.pl-item{display:flex;align-items:center;gap:1rem;padding:1.1rem 1.25rem;border:1.5px solid var(--border);border-radius:12px;margin-bottom:0.75rem;background:#fff;transition:all 0.2s;text-decoration:none;color:var(--text);cursor:pointer;}
+.pl-item:hover{border-color:var(--primary);box-shadow:0 4px 16px rgba(21,101,192,0.1);transform:translateY(-1px);}
+.pl-item.pl-winner{border-color:var(--gold);background:linear-gradient(135deg,#FFFBF0 0%,#fff 100%);}
+.pl-rank{width:36px;height:36px;background:var(--primary);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.9rem;font-weight:700;flex-shrink:0;}
+.pl-winner .pl-rank{background:var(--gold);}
+.pl-info{flex:1;min-width:0;}
+.pl-name{font-size:1rem;font-weight:600;color:var(--text);}
+.pl-tagline{font-size:0.78rem;color:var(--text-light);margin-top:2px;}
+.pl-score-wrap{text-align:center;flex-shrink:0;}
+.pl-stars{font-size:0.9rem;color:var(--gold);letter-spacing:1px;}
+.pl-score{font-size:0.78rem;color:var(--gray-dark);font-weight:600;margin-top:2px;}
+.pl-cta{color:var(--primary);font-size:0.85rem;font-weight:600;white-space:nowrap;flex-shrink:0;}
+@media(max-width:640px){
+  .pl-item{flex-wrap:wrap;gap:0.75rem;}
+  .pl-score-wrap{order:3;}
+  .pl-cta{order:4;width:100%;text-align:center;padding:0.5rem;background:var(--primary-light);border-radius:8px;}
+}
 </style>
 </head>
 <body>
@@ -263,7 +283,72 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   <div class="review-meta-item"><strong>Updated</strong>April 2026</div>
 </div></div>
 <div class="top5-intro"><div class="top5-badge">5</div><p><strong>BCAA science in brief:</strong> Leucine is the key amino acid — it directly activates the mTOR signaling pathway that initiates muscle protein synthesis. The minimum threshold for triggering MPS is approximately 2.5–3g of leucine per dose. Look for a 2:1:1 or higher leucine:isoleucine:valine ratio. L-Glutamine (10–20g post-workout) reduces muscle soreness and supports gut integrity under high training stress.</p></div>
-<div class="product-card winner"><div class="winner-ribbon">Editor's Choice</div>
+<div class="product-listing">
+<h2 style="font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:1.25rem;color:var(--text);">Top 5 Ranked Products</h2>
+<a href="#review-1" class="pl-item pl-winner">
+<div class="pl-rank">1</div>
+<div class="pl-info">
+<div class="pl-name">Transparent Labs BCAA Glutamine</div>
+<div class="pl-tagline">Best Overall — High Leucine Ratio + Glutamine + Electrolytes</div>
+</div>
+<div class="pl-score-wrap">
+<div class="pl-stars">★★★★★</div>
+<div class="pl-score">9.5/10</div>
+</div>
+<div class="pl-cta">Read Full Review →</div>
+</a>
+<a href="#review-2" class="pl-item">
+<div class="pl-rank">2</div>
+<div class="pl-info">
+<div class="pl-name">Xtend Original BCAA</div>
+<div class="pl-tagline">Best Taste & Mixability — The Market Standard</div>
+</div>
+<div class="pl-score-wrap">
+<div class="pl-stars">★★★★★</div>
+<div class="pl-score">9.2/10</div>
+</div>
+<div class="pl-cta">Read Full Review →</div>
+</a>
+<a href="#review-3" class="pl-item">
+<div class="pl-rank">3</div>
+<div class="pl-info">
+<div class="pl-name">Nutricost BCAA Powder</div>
+<div class="pl-tagline">Best Budget — High Dose at Low Cost</div>
+</div>
+<div class="pl-score-wrap">
+<div class="pl-stars">★★★★☆</div>
+<div class="pl-score">8.8/10</div>
+</div>
+<div class="pl-cta">Read Full Review →</div>
+</a>
+<a href="#review-4" class="pl-item">
+<div class="pl-rank">4</div>
+<div class="pl-info">
+<div class="pl-name">NOW Sports L-Glutamine</div>
+<div class="pl-tagline">Best Standalone Glutamine — Pharmaceutical Grade at Low Price</div>
+</div>
+<div class="pl-score-wrap">
+<div class="pl-stars">★★★★★</div>
+<div class="pl-score">9.0/10</div>
+</div>
+<div class="pl-cta">Read Full Review →</div>
+</a>
+<a href="#review-5" class="pl-item">
+<div class="pl-rank">5</div>
+<div class="pl-info">
+<div class="pl-name">Optimum Nutrition Essential Amino Energy</div>
+<div class="pl-tagline">Best Pre-Workout Amino Blend — Energy + Amino Acids Combined</div>
+</div>
+<div class="pl-score-wrap">
+<div class="pl-stars">★★★★☆</div>
+<div class="pl-score">8.6/10</div>
+</div>
+<div class="pl-cta">Read Full Review →</div>
+</a>
+</div>
+<hr class="section-divider" style="margin:2.5rem 0;">
+<p style="font-size:0.85rem;color:var(--gray-dark);text-align:center;margin-bottom:2rem;">Detailed reviews below — click any product above to jump to its full review.</p>
+<div id="review-1" class="product-card winner"><div class="winner-ribbon">Editor's Choice</div>
 <div class="product-card-body"><div>
   <div class="product-rank rank-1">1</div>
   <div class="product-name">Transparent Labs BCAA Glutamine</div>
@@ -281,7 +366,7 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   <div class="price-tag">$49 (30 servings)</div>
   <a href="#" class="buy-btn gold-btn">Buy Now</a>
 </div></div>
-<div class="product-footer"><span><strong>BCAAs:</strong> 8g (2:1:1)</span><span><strong>Leucine:</strong> 4g</span><span><strong>L-Glutamine:</strong> 5g</span><span><strong>Electrolytes:</strong> Coconut water</span><span><strong>Third-party:</strong> Yes</span><span><strong>Sweetener:</strong> Stevia/monk fruit</span></div></div><div class="product-card">
+<div class="product-footer"><span><strong>BCAAs:</strong> 8g (2:1:1)</span><span><strong>Leucine:</strong> 4g</span><span><strong>L-Glutamine:</strong> 5g</span><span><strong>Electrolytes:</strong> Coconut water</span><span><strong>Third-party:</strong> Yes</span><span><strong>Sweetener:</strong> Stevia/monk fruit</span></div></div><div id="review-2" class="product-card">
 <div class="product-card-body"><div>
   <div class="product-rank">2</div>
   <div class="product-name">Xtend Original BCAA</div>
@@ -299,7 +384,7 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   <div class="price-tag">$35 (30 servings)</div>
   <a href="#" class="buy-btn">Buy Now</a>
 </div></div>
-<div class="product-footer"><span><strong>BCAAs:</strong> 7g (2:1:1)</span><span><strong>Leucine:</strong> 3.5g</span><span><strong>Certification:</strong> Informed Sport</span><span><strong>Taste:</strong> Market benchmark</span><span><strong>Sugar:</strong> Zero</span></div></div><div class="product-card">
+<div class="product-footer"><span><strong>BCAAs:</strong> 7g (2:1:1)</span><span><strong>Leucine:</strong> 3.5g</span><span><strong>Certification:</strong> Informed Sport</span><span><strong>Taste:</strong> Market benchmark</span><span><strong>Sugar:</strong> Zero</span></div></div><div id="review-3" class="product-card">
 <div class="product-card-body"><div>
   <div class="product-rank">3</div>
   <div class="product-name">Nutricost BCAA Powder</div>
@@ -317,7 +402,7 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   <div class="price-tag">$22 (60 servings)</div>
   <a href="#" class="buy-btn">Buy Now</a>
 </div></div>
-<div class="product-footer"><span><strong>BCAAs:</strong> 6g (2:1:1)</span><span><strong>Leucine:</strong> 3g</span><span><strong>Sweetener:</strong> Stevia (or unflavored)</span><span><strong>Certification:</strong> GMP certified</span><span><strong>Value:</strong> Best cost per serving</span></div></div><div class="product-card">
+<div class="product-footer"><span><strong>BCAAs:</strong> 6g (2:1:1)</span><span><strong>Leucine:</strong> 3g</span><span><strong>Sweetener:</strong> Stevia (or unflavored)</span><span><strong>Certification:</strong> GMP certified</span><span><strong>Value:</strong> Best cost per serving</span></div></div><div id="review-4" class="product-card">
 <div class="product-card-body"><div>
   <div class="product-rank">4</div>
   <div class="product-name">NOW Sports L-Glutamine</div>
@@ -335,7 +420,7 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   <div class="price-tag">$28 (170 servings × 5g)</div>
   <a href="#" class="buy-btn">Buy Now</a>
 </div></div>
-<div class="product-footer"><span><strong>Ingredient:</strong> Pure L-Glutamine</span><span><strong>Serving:</strong> 5g (stack to 10–20g)</span><span><strong>Certification:</strong> Informed Sport</span><span><strong>Flavors:</strong> Unflavored</span><span><strong>Best for:</strong> Standalone glutamine supplementation</span></div></div><div class="product-card">
+<div class="product-footer"><span><strong>Ingredient:</strong> Pure L-Glutamine</span><span><strong>Serving:</strong> 5g (stack to 10–20g)</span><span><strong>Certification:</strong> Informed Sport</span><span><strong>Flavors:</strong> Unflavored</span><span><strong>Best for:</strong> Standalone glutamine supplementation</span></div></div><div id="review-5" class="product-card">
 <div class="product-card-body"><div>
   <div class="product-rank">5</div>
   <div class="product-name">Optimum Nutrition Essential Amino Energy</div>
@@ -365,5 +450,6 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
 <script>
 document.querySelectorAll('.faq-q').forEach(q=>{q.addEventListener('click',()=>{const i=q.parentElement;const w=i.classList.contains('open');document.querySelectorAll('.faq-item').forEach(x=>x.classList.remove('open'));if(!w)i.classList.add('open');});});
 </script>
+<script>document.querySelectorAll('.pl-item').forEach(a=>{a.addEventListener('click',function(e){e.preventDefault();const t=document.querySelector(this.getAttribute('href'));if(t){t.scrollIntoView({behavior:'smooth',block:'start'});}});});</script>
 </body>
 </html>

@@ -230,6 +230,26 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
 .top5-box-btn{background:#fff;color:var(--primary);padding:0.625rem 1.5rem;border-radius:8px;font-size:0.85rem;font-weight:600;white-space:nowrap;flex-shrink:0;transition:all 0.2s;position:relative;z-index:1;}
 .top5-box-btn:hover{background:var(--primary-light);transform:translateY(-1px);}
 @media(max-width:640px){.top5-box{flex-direction:column;align-items:flex-start;}}
+
+/* ── PRODUCT LISTING ── */
+.product-listing{margin-bottom:2rem;}
+.pl-item{display:flex;align-items:center;gap:1rem;padding:1.1rem 1.25rem;border:1.5px solid var(--border);border-radius:12px;margin-bottom:0.75rem;background:#fff;transition:all 0.2s;text-decoration:none;color:var(--text);cursor:pointer;}
+.pl-item:hover{border-color:var(--primary);box-shadow:0 4px 16px rgba(21,101,192,0.1);transform:translateY(-1px);}
+.pl-item.pl-winner{border-color:var(--gold);background:linear-gradient(135deg,#FFFBF0 0%,#fff 100%);}
+.pl-rank{width:36px;height:36px;background:var(--primary);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.9rem;font-weight:700;flex-shrink:0;}
+.pl-winner .pl-rank{background:var(--gold);}
+.pl-info{flex:1;min-width:0;}
+.pl-name{font-size:1rem;font-weight:600;color:var(--text);}
+.pl-tagline{font-size:0.78rem;color:var(--text-light);margin-top:2px;}
+.pl-score-wrap{text-align:center;flex-shrink:0;}
+.pl-stars{font-size:0.9rem;color:var(--gold);letter-spacing:1px;}
+.pl-score{font-size:0.78rem;color:var(--gray-dark);font-weight:600;margin-top:2px;}
+.pl-cta{color:var(--primary);font-size:0.85rem;font-weight:600;white-space:nowrap;flex-shrink:0;}
+@media(max-width:640px){
+  .pl-item{flex-wrap:wrap;gap:0.75rem;}
+  .pl-score-wrap{order:3;}
+  .pl-cta{order:4;width:100%;text-align:center;padding:0.5rem;background:var(--primary-light);border-radius:8px;}
+}
 </style>
 </head>
 <body>
@@ -264,7 +284,72 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   <div class="review-meta-item"><strong>Updated</strong>April 2026</div>
 </div></div>
 <div class="top5-intro"><div class="top5-badge">5</div><p><strong>Why T1D glucometer needs differ from T2D:</strong> T1D patients need: (1) Accurate low readings — a 15% error at 60 mg/dL is the difference between 51 and 69 mg/dL, which changes treatment. (2) Large data memory and app connectivity — T1D generates 6–10 readings daily. (3) Fast results — hypoglycemia requires immediate action. (4) Integration with diabetes management platforms (Tidepool, LibreView).</p></div>
-<div class="product-card winner"><div class="winner-ribbon">Editor's Choice</div>
+<div class="product-listing">
+<h2 style="font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:1.25rem;color:var(--text);">Top 5 Ranked Products</h2>
+<a href="#review-1" class="pl-item pl-winner">
+<div class="pl-rank">1</div>
+<div class="pl-info">
+<div class="pl-name">Contour Next One</div>
+<div class="pl-tagline">Best Overall for T1D — Highest Low-Range Accuracy + Bluetooth</div>
+</div>
+<div class="pl-score-wrap">
+<div class="pl-stars">★★★★★</div>
+<div class="pl-score">9.7/10</div>
+</div>
+<div class="pl-cta">Read Full Review →</div>
+</a>
+<a href="#review-2" class="pl-item">
+<div class="pl-rank">2</div>
+<div class="pl-info">
+<div class="pl-name">Dexcom G7 CGM (+ backup glucometer)</div>
+<div class="pl-tagline">Best Overall System — CGM is Standard of Care for T1D</div>
+</div>
+<div class="pl-score-wrap">
+<div class="pl-stars">★★★★★</div>
+<div class="pl-score">9.6/10</div>
+</div>
+<div class="pl-cta">Read Full Review →</div>
+</a>
+<a href="#review-3" class="pl-item">
+<div class="pl-rank">3</div>
+<div class="pl-info">
+<div class="pl-name">Abbott FreeStyle Libre 3</div>
+<div class="pl-tagline">Best CGM Value — 14-Day Wear + Continuous No-Scan</div>
+</div>
+<div class="pl-score-wrap">
+<div class="pl-stars">★★★★★</div>
+<div class="pl-score">9.3/10</div>
+</div>
+<div class="pl-cta">Read Full Review →</div>
+</a>
+<a href="#review-4" class="pl-item">
+<div class="pl-rank">4</div>
+<div class="pl-info">
+<div class="pl-name">Accu-Chek Guide Me</div>
+<div class="pl-tagline">Best Backup Glucometer for CGM Users — Strip Container Innovation</div>
+</div>
+<div class="pl-score-wrap">
+<div class="pl-stars">★★★★★</div>
+<div class="pl-score">9.0/10</div>
+</div>
+<div class="pl-cta">Read Full Review →</div>
+</a>
+<a href="#review-5" class="pl-item">
+<div class="pl-rank">5</div>
+<div class="pl-info">
+<div class="pl-name">OneTouch Verio Flex</div>
+<div class="pl-tagline">Best App Integration — Color Range Indicator + OneTouch Reveal</div>
+</div>
+<div class="pl-score-wrap">
+<div class="pl-stars">★★★★☆</div>
+<div class="pl-score">8.8/10</div>
+</div>
+<div class="pl-cta">Read Full Review →</div>
+</a>
+</div>
+<hr class="section-divider" style="margin:2.5rem 0;">
+<p style="font-size:0.85rem;color:var(--gray-dark);text-align:center;margin-bottom:2rem;">Detailed reviews below — click any product above to jump to its full review.</p>
+<div id="review-1" class="product-card winner"><div class="winner-ribbon">Editor's Choice</div>
 <div class="product-card-body"><div>
   <div class="product-rank rank-1">1</div><div class="product-name">Contour Next One</div>
   <div class="product-tagline">Best Overall for T1D — Highest Low-Range Accuracy + Bluetooth</div><p class="product-desc">The Contour Next One has the best clinical accuracy data of any consumer glucometer — earning the highest ratings in multiple independent accuracy studies and consistently outperforming competitors at low glucose ranges where T1D accuracy is most critical. The Bluetooth connectivity to the Contour Diabetes app logs every reading with meal tags, insulin dose notes, and trend graphs. SmartLIGHT color feedback (red/yellow/green) provides immediate visual context. ISO 15197:2013 certified to ±15% at glucose above 75 mg/dL and ±15 mg/dL below 75 mg/dL — the latter being critical for T1D hypoglycemia detection.</p>
@@ -276,7 +361,7 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   <div class="score-label">Overall Score</div><div class="price-tag">$20 meter + ~$0.25/strip</div>
   <a href="#" class="buy-btn gold-btn">Buy Now</a>
 </div></div>
-<div class="product-footer"><span><strong>Accuracy:</strong> Best in class — especially at low range</span><span><strong>Bluetooth:</strong> Yes — Contour Diabetes app</span><span><strong>SmartLIGHT:</strong> Yes</span><span><strong>ISO 15197:2013:</strong> Yes</span><span><strong>Memory:</strong> 800 readings</span></div></div><div class="product-card">
+<div class="product-footer"><span><strong>Accuracy:</strong> Best in class — especially at low range</span><span><strong>Bluetooth:</strong> Yes — Contour Diabetes app</span><span><strong>SmartLIGHT:</strong> Yes</span><span><strong>ISO 15197:2013:</strong> Yes</span><span><strong>Memory:</strong> 800 readings</span></div></div><div id="review-2" class="product-card">
 <div class="product-card-body"><div>
   <div class="product-rank">2</div><div class="product-name">Dexcom G7 CGM (+ backup glucometer)</div>
   <div class="product-tagline">Best Overall System — CGM is Standard of Care for T1D</div><p class="product-desc">For context: continuous glucose monitoring (CGM) has largely replaced standalone glucometers as the primary monitoring tool in T1D — the Dexcom G7 provides a reading every 5 minutes, trend arrows, and alarms without finger pricks. The G7 achieves 8.2% MARD (mean absolute relative difference) — more accurate than most glucometers. Used alongside a backup fingerstick glucometer for hypoglycemia verification, CGM is the current standard of care for T1D. Prescription required; covered by most insurance for T1D.</p>
@@ -288,7 +373,7 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   <div class="score-label">Overall Score</div><div class="price-tag">$89/month (insurance often covers)</div>
   <a href="#" class="buy-btn">Buy Now</a>
 </div></div>
-<div class="product-footer"><span><strong>Type:</strong> CGM (continuous — not fingerstick)</span><span><strong>MARD:</strong> 8.2% — clinical grade</span><span><strong>Readings:</strong> Every 5 minutes</span><span><strong>Alarms:</strong> Hypo + hyper</span><span><strong>Integration:</strong> Tandem Control-IQ AID system</span><span><strong>Prescription:</strong> Required</span></div></div><div class="product-card">
+<div class="product-footer"><span><strong>Type:</strong> CGM (continuous — not fingerstick)</span><span><strong>MARD:</strong> 8.2% — clinical grade</span><span><strong>Readings:</strong> Every 5 minutes</span><span><strong>Alarms:</strong> Hypo + hyper</span><span><strong>Integration:</strong> Tandem Control-IQ AID system</span><span><strong>Prescription:</strong> Required</span></div></div><div id="review-3" class="product-card">
 <div class="product-card-body"><div>
   <div class="product-rank">3</div><div class="product-name">Abbott FreeStyle Libre 3</div>
   <div class="product-tagline">Best CGM Value — 14-Day Wear + Continuous No-Scan</div><p class="product-desc">The Abbott FreeStyle Libre 3 is the thinnest CGM sensor available — coin-sized, 14-day wear, and continuous automatic readings sent to the LibreLink app every minute. Unlike the original Libre 1 which required manual scanning, the Libre 3 provides continuous automatic monitoring with low glucose alarms. FDA cleared for insulin dosing without fingerstick confirmation in most clinical scenarios. Often less expensive than Dexcom with comparable accuracy.</p>
@@ -300,7 +385,7 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   <div class="score-label">Overall Score</div><div class="price-tag">$75/month (insurance often covers)</div>
   <a href="#" class="buy-btn">Buy Now</a>
 </div></div>
-<div class="product-footer"><span><strong>Type:</strong> CGM (14-day sensor)</span><span><strong>Wear time:</strong> 14 days</span><span><strong>Low alarm:</strong> Yes</span><span><strong>High alarm:</strong> With Libre 3 Plus update</span><span><strong>Prescription:</strong> Required</span></div></div><div class="product-card">
+<div class="product-footer"><span><strong>Type:</strong> CGM (14-day sensor)</span><span><strong>Wear time:</strong> 14 days</span><span><strong>Low alarm:</strong> Yes</span><span><strong>High alarm:</strong> With Libre 3 Plus update</span><span><strong>Prescription:</strong> Required</span></div></div><div id="review-4" class="product-card">
 <div class="product-card-body"><div>
   <div class="product-rank">4</div><div class="product-name">Accu-Chek Guide Me</div>
   <div class="product-tagline">Best Backup Glucometer for CGM Users — Strip Container Innovation</div><p class="product-desc">For T1D patients who use CGM as their primary monitoring tool and need a reliable backup glucometer for hypoglycemia verification, the Accu-Chek Guide Me provides excellent accuracy with the most innovative strip container design in the category — a spill-resistant Smartpak that dispenses one strip at a time. Critical for T1D patients who may need to check at 3am or during hypoglycemia-related cognitive impairment. Bluetooth to Accu-Chek Connect app.</p>
@@ -312,7 +397,7 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   <div class="score-label">Overall Score</div><div class="price-tag">$25 meter + ~$0.30/strip</div>
   <a href="#" class="buy-btn">Buy Now</a>
 </div></div>
-<div class="product-footer"><span><strong>Accuracy:</strong> ISO 15197:2013</span><span><strong>Smartpak:</strong> Spill-resistant one-strip dispense</span><span><strong>Bluetooth:</strong> Yes — Accu-Chek Connect</span><span><strong>Best for:</strong> T1D backup glucometer for CGM users</span></div></div><div class="product-card">
+<div class="product-footer"><span><strong>Accuracy:</strong> ISO 15197:2013</span><span><strong>Smartpak:</strong> Spill-resistant one-strip dispense</span><span><strong>Bluetooth:</strong> Yes — Accu-Chek Connect</span><span><strong>Best for:</strong> T1D backup glucometer for CGM users</span></div></div><div id="review-5" class="product-card">
 <div class="product-card-body"><div>
   <div class="product-rank">5</div><div class="product-name">OneTouch Verio Flex</div>
   <div class="product-tagline">Best App Integration — Color Range Indicator + OneTouch Reveal</div><p class="product-desc">The OneTouch Verio Flex's color-coded range indicator (red/yellow/green) and OneTouch Reveal app provide one of the most visually accessible glucose management experiences — important for children with T1D and newly diagnosed patients who are still learning glucose pattern interpretation. The OneTouch Reveal app generates pattern insights and A1C estimates from fingerstick data.</p>
@@ -336,5 +421,6 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
 <script>
 document.querySelectorAll('.faq-q').forEach(q=>{q.addEventListener('click',()=>{const i=q.parentElement;const w=i.classList.contains('open');document.querySelectorAll('.faq-item').forEach(x=>x.classList.remove('open'));if(!w)i.classList.add('open');});});
 </script>
+<script>document.querySelectorAll('.pl-item').forEach(a=>{a.addEventListener('click',function(e){e.preventDefault();const t=document.querySelector(this.getAttribute('href'));if(t){t.scrollIntoView({behavior:'smooth',block:'start'});}});});</script>
 </body>
 </html>

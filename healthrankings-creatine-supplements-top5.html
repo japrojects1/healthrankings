@@ -230,6 +230,26 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
 .top5-box-btn{background:#fff;color:var(--primary);padding:0.625rem 1.5rem;border-radius:8px;font-size:0.85rem;font-weight:600;white-space:nowrap;flex-shrink:0;transition:all 0.2s;position:relative;z-index:1;}
 .top5-box-btn:hover{background:var(--primary-light);transform:translateY(-1px);}
 @media(max-width:640px){.top5-box{flex-direction:column;align-items:flex-start;}}
+
+/* ── PRODUCT LISTING ── */
+.product-listing{margin-bottom:2rem;}
+.pl-item{display:flex;align-items:center;gap:1rem;padding:1.1rem 1.25rem;border:1.5px solid var(--border);border-radius:12px;margin-bottom:0.75rem;background:#fff;transition:all 0.2s;text-decoration:none;color:var(--text);cursor:pointer;}
+.pl-item:hover{border-color:var(--primary);box-shadow:0 4px 16px rgba(21,101,192,0.1);transform:translateY(-1px);}
+.pl-item.pl-winner{border-color:var(--gold);background:linear-gradient(135deg,#FFFBF0 0%,#fff 100%);}
+.pl-rank{width:36px;height:36px;background:var(--primary);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.9rem;font-weight:700;flex-shrink:0;}
+.pl-winner .pl-rank{background:var(--gold);}
+.pl-info{flex:1;min-width:0;}
+.pl-name{font-size:1rem;font-weight:600;color:var(--text);}
+.pl-tagline{font-size:0.78rem;color:var(--text-light);margin-top:2px;}
+.pl-score-wrap{text-align:center;flex-shrink:0;}
+.pl-stars{font-size:0.9rem;color:var(--gold);letter-spacing:1px;}
+.pl-score{font-size:0.78rem;color:var(--gray-dark);font-weight:600;margin-top:2px;}
+.pl-cta{color:var(--primary);font-size:0.85rem;font-weight:600;white-space:nowrap;flex-shrink:0;}
+@media(max-width:640px){
+  .pl-item{flex-wrap:wrap;gap:0.75rem;}
+  .pl-score-wrap{order:3;}
+  .pl-cta{order:4;width:100%;text-align:center;padding:0.5rem;background:var(--primary-light);border-radius:8px;}
+}
 </style>
 </head>
 <body>
@@ -263,7 +283,72 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   <div class="review-meta-item"><strong>Updated</strong>April 2026</div>
 </div></div>
 <div class="top5-intro"><div class="top5-badge">5</div><p><strong>The verdict on creatine forms:</strong> Creatine monohydrate has 1,000+ RCTs behind it and is the only form with definitive proof of efficacy. Creatine HCl, buffered creatine (Kre-Alkalyn), creatine ethyl ester, and other forms have not been shown to be superior in head-to-head trials despite being sold at 2–5× the cost. Buy monohydrate — specifically Creapure-sourced or third-party tested.</p></div>
-<div class="product-card winner"><div class="winner-ribbon">Editor's Choice</div>
+<div class="product-listing">
+<h2 style="font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:1.25rem;color:var(--text);">Top 5 Ranked Products</h2>
+<a href="#review-1" class="pl-item pl-winner">
+<div class="pl-rank">1</div>
+<div class="pl-info">
+<div class="pl-name">Thorne Creatine (Creapure)</div>
+<div class="pl-tagline">Best Overall — NSF Certified for Sport, Pharmaceutical Grade</div>
+</div>
+<div class="pl-score-wrap">
+<div class="pl-stars">★★★★★</div>
+<div class="pl-score">9.6/10</div>
+</div>
+<div class="pl-cta">Read Full Review →</div>
+</a>
+<a href="#review-2" class="pl-item">
+<div class="pl-rank">2</div>
+<div class="pl-info">
+<div class="pl-name">Optimum Nutrition Micronized Creatine</div>
+<div class="pl-tagline">Best Value — Most Accessible Quality Monohydrate</div>
+</div>
+<div class="pl-score-wrap">
+<div class="pl-stars">★★★★★</div>
+<div class="pl-score">9.3/10</div>
+</div>
+<div class="pl-cta">Read Full Review →</div>
+</a>
+<a href="#review-3" class="pl-item">
+<div class="pl-rank">3</div>
+<div class="pl-info">
+<div class="pl-name">Klean Athlete Creatine</div>
+<div class="pl-tagline">Best for Drug-Tested Athletes — NSF + Klean Standard</div>
+</div>
+<div class="pl-score-wrap">
+<div class="pl-stars">★★★★★</div>
+<div class="pl-score">9.0/10</div>
+</div>
+<div class="pl-cta">Read Full Review →</div>
+</a>
+<a href="#review-4" class="pl-item">
+<div class="pl-rank">4</div>
+<div class="pl-info">
+<div class="pl-name">BulkSupplements Creatine Monohydrate</div>
+<div class="pl-tagline">Best Bulk Value — Pure Powder at Lowest Cost Per Gram</div>
+</div>
+<div class="pl-score-wrap">
+<div class="pl-stars">★★★★☆</div>
+<div class="pl-score">8.7/10</div>
+</div>
+<div class="pl-cta">Read Full Review →</div>
+</a>
+<a href="#review-5" class="pl-item">
+<div class="pl-rank">5</div>
+<div class="pl-info">
+<div class="pl-name">Transparent Labs StrengthSeries Creatine HMB</div>
+<div class="pl-tagline">Best Combination — Creatine + HMB for Muscle Preservation</div>
+</div>
+<div class="pl-score-wrap">
+<div class="pl-stars">★★★★☆</div>
+<div class="pl-score">8.5/10</div>
+</div>
+<div class="pl-cta">Read Full Review →</div>
+</a>
+</div>
+<hr class="section-divider" style="margin:2.5rem 0;">
+<p style="font-size:0.85rem;color:var(--gray-dark);text-align:center;margin-bottom:2rem;">Detailed reviews below — click any product above to jump to its full review.</p>
+<div id="review-1" class="product-card winner"><div class="winner-ribbon">Editor's Choice</div>
 <div class="product-card-body"><div>
   <div class="product-rank rank-1">1</div>
   <div class="product-name">Thorne Creatine (Creapure)</div>
@@ -281,7 +366,7 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   <div class="price-tag">$43 (90 servings)</div>
   <a href="#" class="buy-btn gold-btn">Buy Now</a>
 </div></div>
-<div class="product-footer"><span><strong>Form:</strong> Creatine monohydrate (Creapure)</span><span><strong>Purity:</strong> 99.9%+</span><span><strong>Certification:</strong> NSF Certified for Sport</span><span><strong>Flavors:</strong> Unflavored</span><span><strong>Serving:</strong> 5g</span></div></div><div class="product-card">
+<div class="product-footer"><span><strong>Form:</strong> Creatine monohydrate (Creapure)</span><span><strong>Purity:</strong> 99.9%+</span><span><strong>Certification:</strong> NSF Certified for Sport</span><span><strong>Flavors:</strong> Unflavored</span><span><strong>Serving:</strong> 5g</span></div></div><div id="review-2" class="product-card">
 <div class="product-card-body"><div>
   <div class="product-rank">2</div>
   <div class="product-name">Optimum Nutrition Micronized Creatine</div>
@@ -299,7 +384,7 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   <div class="price-tag">$25 (100 servings)</div>
   <a href="#" class="buy-btn">Buy Now</a>
 </div></div>
-<div class="product-footer"><span><strong>Form:</strong> Micronized creatine monohydrate</span><span><strong>Certification:</strong> Informed Sport</span><span><strong>Flavors:</strong> Unflavored (bulk)</span><span><strong>Value:</strong> Best price per gram</span></div></div><div class="product-card">
+<div class="product-footer"><span><strong>Form:</strong> Micronized creatine monohydrate</span><span><strong>Certification:</strong> Informed Sport</span><span><strong>Flavors:</strong> Unflavored (bulk)</span><span><strong>Value:</strong> Best price per gram</span></div></div><div id="review-3" class="product-card">
 <div class="product-card-body"><div>
   <div class="product-rank">3</div>
   <div class="product-name">Klean Athlete Creatine</div>
@@ -317,7 +402,7 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   <div class="price-tag">$38 (60 servings)</div>
   <a href="#" class="buy-btn">Buy Now</a>
 </div></div>
-<div class="product-footer"><span><strong>Form:</strong> Creatine monohydrate (Creapure)</span><span><strong>Certification:</strong> NSF Certified for Sport</span><span><strong>For:</strong> Drug-tested competitive athletes</span><span><strong>Purity:</strong> Highest available</span></div></div><div class="product-card">
+<div class="product-footer"><span><strong>Form:</strong> Creatine monohydrate (Creapure)</span><span><strong>Certification:</strong> NSF Certified for Sport</span><span><strong>For:</strong> Drug-tested competitive athletes</span><span><strong>Purity:</strong> Highest available</span></div></div><div id="review-4" class="product-card">
 <div class="product-card-body"><div>
   <div class="product-rank">4</div>
   <div class="product-name">BulkSupplements Creatine Monohydrate</div>
@@ -335,7 +420,7 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   <div class="price-tag">$18 (500g)</div>
   <a href="#" class="buy-btn">Buy Now</a>
 </div></div>
-<div class="product-footer"><span><strong>Form:</strong> Creatine monohydrate</span><span><strong>Cost/serving:</strong> ~$0.18</span><span><strong>Bulk:</strong> Yes — up to 25kg</span><span><strong>Third-party:</strong> Identity tested</span><span><strong>Best for:</strong> Budget bulk purchasing</span></div></div><div class="product-card">
+<div class="product-footer"><span><strong>Form:</strong> Creatine monohydrate</span><span><strong>Cost/serving:</strong> ~$0.18</span><span><strong>Bulk:</strong> Yes — up to 25kg</span><span><strong>Third-party:</strong> Identity tested</span><span><strong>Best for:</strong> Budget bulk purchasing</span></div></div><div id="review-5" class="product-card">
 <div class="product-card-body"><div>
   <div class="product-rank">5</div>
   <div class="product-name">Transparent Labs StrengthSeries Creatine HMB</div>
@@ -366,5 +451,6 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
 <script>
 document.querySelectorAll('.faq-q').forEach(q=>{q.addEventListener('click',()=>{const i=q.parentElement;const w=i.classList.contains('open');document.querySelectorAll('.faq-item').forEach(x=>x.classList.remove('open'));if(!w)i.classList.add('open');});});
 </script>
+<script>document.querySelectorAll('.pl-item').forEach(a=>{a.addEventListener('click',function(e){e.preventDefault();const t=document.querySelector(this.getAttribute('href'));if(t){t.scrollIntoView({behavior:'smooth',block:'start'});}});});</script>
 </body>
 </html>

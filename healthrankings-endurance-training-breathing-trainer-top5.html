@@ -230,6 +230,26 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
 .top5-box-btn{background:#fff;color:var(--primary);padding:0.625rem 1.5rem;border-radius:8px;font-size:0.85rem;font-weight:600;white-space:nowrap;flex-shrink:0;transition:all 0.2s;position:relative;z-index:1;}
 .top5-box-btn:hover{background:var(--primary-light);transform:translateY(-1px);}
 @media(max-width:640px){.top5-box{flex-direction:column;align-items:flex-start;}}
+
+/* ── PRODUCT LISTING ── */
+.product-listing{margin-bottom:2rem;}
+.pl-item{display:flex;align-items:center;gap:1rem;padding:1.1rem 1.25rem;border:1.5px solid var(--border);border-radius:12px;margin-bottom:0.75rem;background:#fff;transition:all 0.2s;text-decoration:none;color:var(--text);cursor:pointer;}
+.pl-item:hover{border-color:var(--primary);box-shadow:0 4px 16px rgba(21,101,192,0.1);transform:translateY(-1px);}
+.pl-item.pl-winner{border-color:var(--gold);background:linear-gradient(135deg,#FFFBF0 0%,#fff 100%);}
+.pl-rank{width:36px;height:36px;background:var(--primary);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.9rem;font-weight:700;flex-shrink:0;}
+.pl-winner .pl-rank{background:var(--gold);}
+.pl-info{flex:1;min-width:0;}
+.pl-name{font-size:1rem;font-weight:600;color:var(--text);}
+.pl-tagline{font-size:0.78rem;color:var(--text-light);margin-top:2px;}
+.pl-score-wrap{text-align:center;flex-shrink:0;}
+.pl-stars{font-size:0.9rem;color:var(--gold);letter-spacing:1px;}
+.pl-score{font-size:0.78rem;color:var(--gray-dark);font-weight:600;margin-top:2px;}
+.pl-cta{color:var(--primary);font-size:0.85rem;font-weight:600;white-space:nowrap;flex-shrink:0;}
+@media(max-width:640px){
+  .pl-item{flex-wrap:wrap;gap:0.75rem;}
+  .pl-score-wrap{order:3;}
+  .pl-cta{order:4;width:100%;text-align:center;padding:0.5rem;background:var(--primary-light);border-radius:8px;}
+}
 </style>
 </head>
 <body>
@@ -264,7 +284,72 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   <div class="review-meta-item"><strong>Updated</strong>April 2026</div>
 </div></div>
 <div class="top5-intro"><div class="top5-badge">5</div><p><strong>IMT protocol for best results:</strong> Test maximal inspiratory pressure (MIP) on your device. Train at 50–60% of MIP. 30 breaths per set, 2 sets per day (morning + evening). Rest 1 minute between sets. Reassess MIP every 4 weeks and increase resistance to maintain 50–60% load. Continue year-round — the benefits are maintained only with ongoing training.</p></div>
-<div class="product-card winner"><div class="winner-ribbon">Editor's Choice</div>
+<div class="product-listing">
+<h2 style="font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:1.25rem;color:var(--text);">Top 5 Ranked Products</h2>
+<a href="#review-1" class="pl-item pl-winner">
+<div class="pl-rank">1</div>
+<div class="pl-info">
+<div class="pl-name">POWERbreathe Medic Plus</div>
+<div class="pl-tagline">Best Overall for Athletes — Clinical Evidence + Measurable Resistance</div>
+</div>
+<div class="pl-score-wrap">
+<div class="pl-stars">★★★★★</div>
+<div class="pl-score">9.6/10</div>
+</div>
+<div class="pl-cta">Read Full Review →</div>
+</a>
+<a href="#review-2" class="pl-item">
+<div class="pl-rank">2</div>
+<div class="pl-info">
+<div class="pl-name">POWERbreathe Classic (Flow-Resistive)</div>
+<div class="pl-tagline">Best Entry-Level IMT — Research Protocol at Lower Price</div>
+</div>
+<div class="pl-score-wrap">
+<div class="pl-stars">★★★★★</div>
+<div class="pl-score">9.2/10</div>
+</div>
+<div class="pl-cta">Read Full Review →</div>
+</a>
+<a href="#review-3" class="pl-item">
+<div class="pl-rank">3</div>
+<div class="pl-info">
+<div class="pl-name">Airofit Pro</div>
+<div class="pl-tagline">Best Tech-Forward — App-Guided Training + Breathing Assessment</div>
+</div>
+<div class="pl-score-wrap">
+<div class="pl-stars">★★★★★</div>
+<div class="pl-score">9.0/10</div>
+</div>
+<div class="pl-cta">Read Full Review →</div>
+</a>
+<a href="#review-4" class="pl-item">
+<div class="pl-rank">4</div>
+<div class="pl-info">
+<div class="pl-name">Ultrabreathe Inspiratory Trainer</div>
+<div class="pl-tagline">Best Budget — Simple Reliable IMT at Lowest Price</div>
+</div>
+<div class="pl-score-wrap">
+<div class="pl-stars">★★★★☆</div>
+<div class="pl-score">8.5/10</div>
+</div>
+<div class="pl-cta">Read Full Review →</div>
+</a>
+<a href="#review-5" class="pl-item">
+<div class="pl-rank">5</div>
+<div class="pl-info">
+<div class="pl-name">Spirometer (MicroDirect MicroLoop)</div>
+<div class="pl-tagline">Best for VO2max Monitoring — Lung Function Assessment</div>
+</div>
+<div class="pl-score-wrap">
+<div class="pl-stars">★★★★☆</div>
+<div class="pl-score">8.8/10</div>
+</div>
+<div class="pl-cta">Read Full Review →</div>
+</a>
+</div>
+<hr class="section-divider" style="margin:2.5rem 0;">
+<p style="font-size:0.85rem;color:var(--gray-dark);text-align:center;margin-bottom:2rem;">Detailed reviews below — click any product above to jump to its full review.</p>
+<div id="review-1" class="product-card winner"><div class="winner-ribbon">Editor's Choice</div>
 <div class="product-card-body"><div>
   <div class="product-rank rank-1">1</div><div class="product-name">POWERbreathe Medic Plus</div>
   <div class="product-tagline">Best Overall for Athletes — Clinical Evidence + Measurable Resistance</div><p class="product-desc">The POWERbreathe Medic Plus is the most research-validated inspiratory muscle trainer available for athletes. It features an electronic flow sensor that measures Peak Inspiratory Flow Rate (PIFR) and S-Index — giving athletes precise, quantifiable data on inspiratory muscle strength improvement over time. The adjustable resistance goes from 10–90 cm H₂O, covering the full progression from beginner to elite athlete. Published in multiple peer-reviewed athletic performance studies. The data objectively confirms whether IMT is working — unlike purely subjective feeling of improvement.</p>
@@ -276,7 +361,7 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   <div class="score-label">Overall Score</div><div class="price-tag">$149</div>
   <a href="#" class="buy-btn gold-btn">Buy Now</a>
 </div></div>
-<div class="product-footer"><span><strong>Measurement:</strong> PIFR + S-Index (electronic sensor)</span><span><strong>Resistance:</strong> 10–90 cm H₂O</span><span><strong>Research validated:</strong> Yes — multiple RCTs</span><span><strong>Used by:</strong> Olympic athletes</span><span><strong>Best for:</strong> Athletes wanting objective progress data</span></div></div><div class="product-card">
+<div class="product-footer"><span><strong>Measurement:</strong> PIFR + S-Index (electronic sensor)</span><span><strong>Resistance:</strong> 10–90 cm H₂O</span><span><strong>Research validated:</strong> Yes — multiple RCTs</span><span><strong>Used by:</strong> Olympic athletes</span><span><strong>Best for:</strong> Athletes wanting objective progress data</span></div></div><div id="review-2" class="product-card">
 <div class="product-card-body"><div>
   <div class="product-rank">2</div><div class="product-name">POWERbreathe Classic (Flow-Resistive)</div>
   <div class="product-tagline">Best Entry-Level IMT — Research Protocol at Lower Price</div><p class="product-desc">The POWERbreathe Classic uses flow-resistive loading — the same technology used in the majority of IMT research studies. Adjustable from levels 1–10 covering 25–105+ cm H₂O resistance for progressive overload. Simple, durable, no batteries or software required. The most widely used IMT device in peer-reviewed athletic research. For athletes who want the proven research protocol without the cost of electronic monitoring.</p>
@@ -288,7 +373,7 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   <div class="score-label">Overall Score</div><div class="price-tag">$49</div>
   <a href="#" class="buy-btn">Buy Now</a>
 </div></div>
-<div class="product-footer"><span><strong>Technology:</strong> Flow-resistive (research standard)</span><span><strong>Levels:</strong> 10 (25–105+ cm H₂O)</span><span><strong>Research standard:</strong> Yes</span><span><strong>Tracking:</strong> None — feel only</span><span><strong>Best for:</strong> Research-standard IMT without electronic monitoring</span></div></div><div class="product-card">
+<div class="product-footer"><span><strong>Technology:</strong> Flow-resistive (research standard)</span><span><strong>Levels:</strong> 10 (25–105+ cm H₂O)</span><span><strong>Research standard:</strong> Yes</span><span><strong>Tracking:</strong> None — feel only</span><span><strong>Best for:</strong> Research-standard IMT without electronic monitoring</span></div></div><div id="review-3" class="product-card">
 <div class="product-card-body"><div>
   <div class="product-rank">3</div><div class="product-name">Airofit Pro</div>
   <div class="product-tagline">Best Tech-Forward — App-Guided Training + Breathing Assessment</div><p class="product-desc">The Airofit Pro uses digital resistance control paired with a smartphone app that guides training sessions, tracks progress across all breathing metrics (inspiratory capacity, expiratory flow, respiratory rate), and provides personalized training programs for different athletic goals. The app library includes sport-specific breathing programs for cycling, running, triathlon, swimming, and combat sports. For tech-forward athletes who want a comprehensive guided experience.</p>
@@ -300,7 +385,7 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   <div class="score-label">Overall Score</div><div class="price-tag">$199</div>
   <a href="#" class="buy-btn">Buy Now</a>
 </div></div>
-<div class="product-footer"><span><strong>Technology:</strong> Digital resistance + app</span><span><strong>Metrics:</strong> Inspiratory capacity, expiratory flow, RR</span><span><strong>App programs:</strong> Sport-specific</span><span><strong>Best for:</strong> Tech-forward athletes wanting guided programs</span></div></div><div class="product-card">
+<div class="product-footer"><span><strong>Technology:</strong> Digital resistance + app</span><span><strong>Metrics:</strong> Inspiratory capacity, expiratory flow, RR</span><span><strong>App programs:</strong> Sport-specific</span><span><strong>Best for:</strong> Tech-forward athletes wanting guided programs</span></div></div><div id="review-4" class="product-card">
 <div class="product-card-body"><div>
   <div class="product-rank">4</div><div class="product-name">Ultrabreathe Inspiratory Trainer</div>
   <div class="product-tagline">Best Budget — Simple Reliable IMT at Lowest Price</div><p class="product-desc">The Ultrabreathe provides the core IMT stimulus — adjustable inspiratory resistance via a simple dial — at the lowest price available for a calibrated device. Five resistance levels, simple operation, no batteries, durable plastic construction. For athletes who want to start IMT without significant investment to test whether it improves their performance before upgrading to a more sophisticated device.</p>
@@ -312,7 +397,7 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   <div class="score-label">Overall Score</div><div class="price-tag">$29</div>
   <a href="#" class="buy-btn">Buy Now</a>
 </div></div>
-<div class="product-footer"><span><strong>Levels:</strong> 5</span><span><strong>Battery:</strong> None</span><span><strong>Price:</strong> Most affordable</span><span><strong>Best for:</strong> IMT entry-level trial before investment in premium device</span></div></div><div class="product-card">
+<div class="product-footer"><span><strong>Levels:</strong> 5</span><span><strong>Battery:</strong> None</span><span><strong>Price:</strong> Most affordable</span><span><strong>Best for:</strong> IMT entry-level trial before investment in premium device</span></div></div><div id="review-5" class="product-card">
 <div class="product-card-body"><div>
   <div class="product-rank">5</div><div class="product-name">Spirometer (MicroDirect MicroLoop)</div>
   <div class="product-tagline">Best for VO2max Monitoring — Lung Function Assessment</div><p class="product-desc">While not a training device, a spirometer provides the objective lung function data that contextualizes IMT progress — measuring FVC (forced vital capacity), FEV1, and peak expiratory flow. For serious endurance athletes wanting to understand their full respiratory picture, periodic spirometry testing identifies restrictive or obstructive patterns that may limit performance and tracks FVC improvement from IMT over seasons.</p>
@@ -336,5 +421,6 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
 <script>
 document.querySelectorAll('.faq-q').forEach(q=>{q.addEventListener('click',()=>{const i=q.parentElement;const w=i.classList.contains('open');document.querySelectorAll('.faq-item').forEach(x=>x.classList.remove('open'));if(!w)i.classList.add('open');});});
 </script>
+<script>document.querySelectorAll('.pl-item').forEach(a=>{a.addEventListener('click',function(e){e.preventDefault();const t=document.querySelector(this.getAttribute('href'));if(t){t.scrollIntoView({behavior:'smooth',block:'start'});}});});</script>
 </body>
 </html>

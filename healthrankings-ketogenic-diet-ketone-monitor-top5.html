@@ -230,6 +230,26 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
 .top5-box-btn{background:#fff;color:var(--primary);padding:0.625rem 1.5rem;border-radius:8px;font-size:0.85rem;font-weight:600;white-space:nowrap;flex-shrink:0;transition:all 0.2s;position:relative;z-index:1;}
 .top5-box-btn:hover{background:var(--primary-light);transform:translateY(-1px);}
 @media(max-width:640px){.top5-box{flex-direction:column;align-items:flex-start;}}
+
+/* ── PRODUCT LISTING ── */
+.product-listing{margin-bottom:2rem;}
+.pl-item{display:flex;align-items:center;gap:1rem;padding:1.1rem 1.25rem;border:1.5px solid var(--border);border-radius:12px;margin-bottom:0.75rem;background:#fff;transition:all 0.2s;text-decoration:none;color:var(--text);cursor:pointer;}
+.pl-item:hover{border-color:var(--primary);box-shadow:0 4px 16px rgba(21,101,192,0.1);transform:translateY(-1px);}
+.pl-item.pl-winner{border-color:var(--gold);background:linear-gradient(135deg,#FFFBF0 0%,#fff 100%);}
+.pl-rank{width:36px;height:36px;background:var(--primary);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.9rem;font-weight:700;flex-shrink:0;}
+.pl-winner .pl-rank{background:var(--gold);}
+.pl-info{flex:1;min-width:0;}
+.pl-name{font-size:1rem;font-weight:600;color:var(--text);}
+.pl-tagline{font-size:0.78rem;color:var(--text-light);margin-top:2px;}
+.pl-score-wrap{text-align:center;flex-shrink:0;}
+.pl-stars{font-size:0.9rem;color:var(--gold);letter-spacing:1px;}
+.pl-score{font-size:0.78rem;color:var(--gray-dark);font-weight:600;margin-top:2px;}
+.pl-cta{color:var(--primary);font-size:0.85rem;font-weight:600;white-space:nowrap;flex-shrink:0;}
+@media(max-width:640px){
+  .pl-item{flex-wrap:wrap;gap:0.75rem;}
+  .pl-score-wrap{order:3;}
+  .pl-cta{order:4;width:100%;text-align:center;padding:0.5rem;background:var(--primary-light);border-radius:8px;}
+}
 </style>
 </head>
 <body>
@@ -264,7 +284,72 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   <div class="review-meta-item"><strong>Updated</strong>April 2026</div>
 </div></div>
 <div class="top5-intro"><div class="top5-badge">5</div><p><strong>Blood vs urine vs breath ketone testing:</strong> Blood ketone meters (measuring beta-hydroxybutyrate) are the gold standard — accurate throughout all stages of keto adaptation. Urine ketone strips become unreliable after 4–6 weeks as adaptation causes ketone excretion to decline. Breath acetone meters are non-invasive but less precise. For serious keto tracking, blood meters are the only reliable long-term option.</p></div>
-<div class="product-card winner"><div class="winner-ribbon">Editor's Choice</div>
+<div class="product-listing">
+<h2 style="font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:1.25rem;color:var(--text);">Top 5 Ranked Products</h2>
+<a href="#review-1" class="pl-item pl-winner">
+<div class="pl-rank">1</div>
+<div class="pl-info">
+<div class="pl-name">Keto-Mojo GK+</div>
+<div class="pl-tagline">Best Overall — Dual Glucose + Ketone + Bluetooth + Lowest Strip Cost</div>
+</div>
+<div class="pl-score-wrap">
+<div class="pl-stars">★★★★★</div>
+<div class="pl-score">9.7/10</div>
+</div>
+<div class="pl-cta">Read Full Review →</div>
+</a>
+<a href="#review-2" class="pl-item">
+<div class="pl-rank">2</div>
+<div class="pl-info">
+<div class="pl-name">Abbott Precision Xtra</div>
+<div class="pl-tagline">Best for Diabetics on Keto — Medical-Grade Ketone + Glucose</div>
+</div>
+<div class="pl-score-wrap">
+<div class="pl-stars">★★★★★</div>
+<div class="pl-score">9.2/10</div>
+</div>
+<div class="pl-cta">Read Full Review →</div>
+</a>
+<a href="#review-3" class="pl-item">
+<div class="pl-rank">3</div>
+<div class="pl-info">
+<div class="pl-name">Biosense Breath Ketone Analyzer</div>
+<div class="pl-tagline">Best No-Prick Option — Breath Acetone Measurement</div>
+</div>
+<div class="pl-score-wrap">
+<div class="pl-stars">★★★★☆</div>
+<div class="pl-score">8.9/10</div>
+</div>
+<div class="pl-cta">Read Full Review →</div>
+</a>
+<a href="#review-4" class="pl-item">
+<div class="pl-rank">4</div>
+<div class="pl-info">
+<div class="pl-name">LifeSmart 2-in-1 Meter</div>
+<div class="pl-tagline">Best Budget Dual — Ketone + Glucose at Lowest Price</div>
+</div>
+<div class="pl-score-wrap">
+<div class="pl-stars">★★★★☆</div>
+<div class="pl-score">8.4/10</div>
+</div>
+<div class="pl-cta">Read Full Review →</div>
+</a>
+<a href="#review-5" class="pl-item">
+<div class="pl-rank">5</div>
+<div class="pl-info">
+<div class="pl-name">Dexcom G7 CGM (Glucose + Ketone Correlation)</div>
+<div class="pl-tagline">Best for Advanced Metabolic Monitoring — Continuous Glucose Sensor</div>
+</div>
+<div class="pl-score-wrap">
+<div class="pl-stars">★★★★★</div>
+<div class="pl-score">9.0/10</div>
+</div>
+<div class="pl-cta">Read Full Review →</div>
+</a>
+</div>
+<hr class="section-divider" style="margin:2.5rem 0;">
+<p style="font-size:0.85rem;color:var(--gray-dark);text-align:center;margin-bottom:2rem;">Detailed reviews below — click any product above to jump to its full review.</p>
+<div id="review-1" class="product-card winner"><div class="winner-ribbon">Editor's Choice</div>
 <div class="product-card-body"><div>
   <div class="product-rank rank-1">1</div><div class="product-name">Keto-Mojo GK+</div>
   <div class="product-tagline">Best Overall — Dual Glucose + Ketone + Bluetooth + Lowest Strip Cost</div><p class="product-desc">The Keto-Mojo GK+ is the definitive ketone monitor for serious ketogenic diet practitioners. It measures both blood glucose and blood ketones on the same device — essential for diabetics on ketogenic diet monitoring both simultaneously. Ketone strips at $0.99 each (vs $4–6 for competitor strips) make frequent testing economically feasible. Bluetooth syncs all readings to the Keto-Mojo app with trend charts. A free integration with Cronometer and MyFitnessPal connects food logging to blood glucose and ketone data. Accuracy within ±10% of clinical BHB reference measurement.</p>
@@ -276,7 +361,7 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   <div class="score-label">Overall Score</div><div class="price-tag">$49 meter + $0.99/strip</div>
   <a href="#" class="buy-btn gold-btn">Buy Now</a>
 </div></div>
-<div class="product-footer"><span><strong>Measures:</strong> BHB ketones + blood glucose</span><span><strong>Strip cost:</strong> $0.99/ketone strip (lowest)</span><span><strong>Bluetooth:</strong> Yes</span><span><strong>App integrations:</strong> Cronometer, MyFitnessPal</span><span><strong>Accuracy:</strong> ±10% clinical reference</span></div></div><div class="product-card">
+<div class="product-footer"><span><strong>Measures:</strong> BHB ketones + blood glucose</span><span><strong>Strip cost:</strong> $0.99/ketone strip (lowest)</span><span><strong>Bluetooth:</strong> Yes</span><span><strong>App integrations:</strong> Cronometer, MyFitnessPal</span><span><strong>Accuracy:</strong> ±10% clinical reference</span></div></div><div id="review-2" class="product-card">
 <div class="product-card-body"><div>
   <div class="product-rank">2</div><div class="product-name">Abbott Precision Xtra</div>
   <div class="product-tagline">Best for Diabetics on Keto — Medical-Grade Ketone + Glucose</div><p class="product-desc">The Abbott Precision Xtra is the only ketone/glucose meter used in clinical trials and hospital settings for both DKA monitoring and nutritional ketosis tracking — the most clinically validated dual meter available. Particularly important for Type 1 and insulin-dependent Type 2 diabetics who need the highest accuracy level for safety. The ketone test requires a separate strip type from glucose testing. Widely available at pharmacies.</p>
@@ -288,7 +373,7 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   <div class="score-label">Overall Score</div><div class="price-tag">$40 meter + ~$3–5/strip</div>
   <a href="#" class="buy-btn">Buy Now</a>
 </div></div>
-<div class="product-footer"><span><strong>Clinical validation:</strong> Used in clinical trials</span><span><strong>Pharmacy:</strong> Yes — widely available</span><span><strong>Bluetooth:</strong> No</span><span><strong>Best for:</strong> Diabetics requiring highest accuracy / medical grade</span></div></div><div class="product-card">
+<div class="product-footer"><span><strong>Clinical validation:</strong> Used in clinical trials</span><span><strong>Pharmacy:</strong> Yes — widely available</span><span><strong>Bluetooth:</strong> No</span><span><strong>Best for:</strong> Diabetics requiring highest accuracy / medical grade</span></div></div><div id="review-3" class="product-card">
 <div class="product-card-body"><div>
   <div class="product-rank">3</div><div class="product-name">Biosense Breath Ketone Analyzer</div>
   <div class="product-tagline">Best No-Prick Option — Breath Acetone Measurement</div><p class="product-desc">The Biosense is the most accurate breath ketone analyzer available — measuring exhaled acetone in ACEs (arbitrary clinical equivalents) that correlate with blood BHB. No finger pricks, no strips, no ongoing cost beyond the device. Bluetooth app tracks trends over time. Accuracy is ±15–20% vs blood measurement — adequate for tracking ketosis yes/no and general ketone level trends, but less precise than blood measurement for fine-tuning.</p>
@@ -300,7 +385,7 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   <div class="score-label">Overall Score</div><div class="price-tag">$299 device (no strips)</div>
   <a href="#" class="buy-btn">Buy Now</a>
 </div></div>
-<div class="product-footer"><span><strong>Method:</strong> Breath acetone (non-invasive)</span><span><strong>Accuracy:</strong> ±15–20% vs blood</span><span><strong>Ongoing cost:</strong> None (no strips)</span><span><strong>Bluetooth:</strong> Yes</span><span><strong>Best for:</strong> No-prick testing preference</span></div></div><div class="product-card">
+<div class="product-footer"><span><strong>Method:</strong> Breath acetone (non-invasive)</span><span><strong>Accuracy:</strong> ±15–20% vs blood</span><span><strong>Ongoing cost:</strong> None (no strips)</span><span><strong>Bluetooth:</strong> Yes</span><span><strong>Best for:</strong> No-prick testing preference</span></div></div><div id="review-4" class="product-card">
 <div class="product-card-body"><div>
   <div class="product-rank">4</div><div class="product-name">LifeSmart 2-in-1 Meter</div>
   <div class="product-tagline">Best Budget Dual — Ketone + Glucose at Lowest Price</div><p class="product-desc">For keto practitioners who want both ketone and glucose monitoring at the lowest possible entry price, the LifeSmart 2-in-1 provides both measurements with reasonable accuracy (±15% for ketones) at the most affordable price point. Strips are lower cost than premium brands. The device lacks Bluetooth but provides the core functionality needed to confirm ketosis and monitor glucose response to food.</p>
@@ -312,7 +397,7 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   <div class="score-label">Overall Score</div><div class="price-tag">$30 meter + ~$1.50/strip</div>
   <a href="#" class="buy-btn">Buy Now</a>
 </div></div>
-<div class="product-footer"><span><strong>Measures:</strong> BHB ketones + blood glucose</span><span><strong>Accuracy:</strong> ±15%</span><span><strong>Bluetooth:</strong> No</span><span><strong>Best for:</strong> Budget entry dual monitoring</span></div></div><div class="product-card">
+<div class="product-footer"><span><strong>Measures:</strong> BHB ketones + blood glucose</span><span><strong>Accuracy:</strong> ±15%</span><span><strong>Bluetooth:</strong> No</span><span><strong>Best for:</strong> Budget entry dual monitoring</span></div></div><div id="review-5" class="product-card">
 <div class="product-card-body"><div>
   <div class="product-rank">5</div><div class="product-name">Dexcom G7 CGM (Glucose + Ketone Correlation)</div>
   <div class="product-tagline">Best for Advanced Metabolic Monitoring — Continuous Glucose Sensor</div><p class="product-desc">While not a ketone meter, the Dexcom G7 continuous glucose monitor is increasingly used by ketogenic diet practitioners to understand how specific foods affect blood glucose in real time — the 'glucose response mapping' approach. Seeing glucose spikes from supposedly keto-safe foods reveals individual carbohydrate tolerance. Paired with periodic ketone testing (Keto-Mojo), CGM + blood ketones provides the most complete picture of metabolic response to the ketogenic diet. Requires prescription.</p>
@@ -336,5 +421,6 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
 <script>
 document.querySelectorAll('.faq-q').forEach(q=>{q.addEventListener('click',()=>{const i=q.parentElement;const w=i.classList.contains('open');document.querySelectorAll('.faq-item').forEach(x=>x.classList.remove('open'));if(!w)i.classList.add('open');});});
 </script>
+<script>document.querySelectorAll('.pl-item').forEach(a=>{a.addEventListener('click',function(e){e.preventDefault();const t=document.querySelector(this.getAttribute('href'));if(t){t.scrollIntoView({behavior:'smooth',block:'start'});}});});</script>
 </body>
 </html>

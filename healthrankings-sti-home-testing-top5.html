@@ -230,6 +230,26 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
 .top5-box-btn{background:#fff;color:var(--primary);padding:0.625rem 1.5rem;border-radius:8px;font-size:0.85rem;font-weight:600;white-space:nowrap;flex-shrink:0;transition:all 0.2s;position:relative;z-index:1;}
 .top5-box-btn:hover{background:var(--primary-light);transform:translateY(-1px);}
 @media(max-width:640px){.top5-box{flex-direction:column;align-items:flex-start;}}
+
+/* ── PRODUCT LISTING ── */
+.product-listing{margin-bottom:2rem;}
+.pl-item{display:flex;align-items:center;gap:1rem;padding:1.1rem 1.25rem;border:1.5px solid var(--border);border-radius:12px;margin-bottom:0.75rem;background:#fff;transition:all 0.2s;text-decoration:none;color:var(--text);cursor:pointer;}
+.pl-item:hover{border-color:var(--primary);box-shadow:0 4px 16px rgba(21,101,192,0.1);transform:translateY(-1px);}
+.pl-item.pl-winner{border-color:var(--gold);background:linear-gradient(135deg,#FFFBF0 0%,#fff 100%);}
+.pl-rank{width:36px;height:36px;background:var(--primary);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.9rem;font-weight:700;flex-shrink:0;}
+.pl-winner .pl-rank{background:var(--gold);}
+.pl-info{flex:1;min-width:0;}
+.pl-name{font-size:1rem;font-weight:600;color:var(--text);}
+.pl-tagline{font-size:0.78rem;color:var(--text-light);margin-top:2px;}
+.pl-score-wrap{text-align:center;flex-shrink:0;}
+.pl-stars{font-size:0.9rem;color:var(--gold);letter-spacing:1px;}
+.pl-score{font-size:0.78rem;color:var(--gray-dark);font-weight:600;margin-top:2px;}
+.pl-cta{color:var(--primary);font-size:0.85rem;font-weight:600;white-space:nowrap;flex-shrink:0;}
+@media(max-width:640px){
+  .pl-item{flex-wrap:wrap;gap:0.75rem;}
+  .pl-score-wrap{order:3;}
+  .pl-cta{order:4;width:100%;text-align:center;padding:0.5rem;background:var(--primary-light);border-radius:8px;}
+}
 </style>
 </head>
 <body>
@@ -264,7 +284,72 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   <div class="review-meta-item"><strong>Updated</strong>April 2026</div>
 </div></div>
 <div class="top5-intro"><div class="top5-badge">5</div><p><strong>How we scored:</strong> Panel completeness (35%) — more pathogens = more value. Laboratory standards (25%) — CLIA certification and methodology. Telehealth support for positive results (25%). Privacy and shipping discretion (15%).</p></div>
-<div class="product-card winner"><div class="winner-ribbon">Editor's Choice</div>
+<div class="product-listing">
+<h2 style="font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:1.25rem;color:var(--text);">Top 5 Ranked Products</h2>
+<a href="#review-1" class="pl-item pl-winner">
+<div class="pl-rank">1</div>
+<div class="pl-info">
+<div class="pl-name">Everlywell STI Test — Comprehensive Panel</div>
+<div class="pl-tagline">Best Overall — 6-Pathogen Panel + Physician Review</div>
+</div>
+<div class="pl-score-wrap">
+<div class="pl-stars">★★★★★</div>
+<div class="pl-score">9.5/10</div>
+</div>
+<div class="pl-cta">Read Full Review →</div>
+</a>
+<a href="#review-2" class="pl-item">
+<div class="pl-rank">2</div>
+<div class="pl-info">
+<div class="pl-name">myLAB Box Most Popular</div>
+<div class="pl-tagline">Best Flexibility — Build Your Own Panel</div>
+</div>
+<div class="pl-score-wrap">
+<div class="pl-stars">★★★★★</div>
+<div class="pl-score">9.2/10</div>
+</div>
+<div class="pl-cta">Read Full Review →</div>
+</a>
+<a href="#review-3" class="pl-item">
+<div class="pl-rank">3</div>
+<div class="pl-info">
+<div class="pl-name">LetsGetChecked Complete STI Panel</div>
+<div class="pl-tagline">Best Repeat Testing — Subscription Discounts + Nurse Support</div>
+</div>
+<div class="pl-score-wrap">
+<div class="pl-stars">★★★★★</div>
+<div class="pl-score">9.0/10</div>
+</div>
+<div class="pl-cta">Read Full Review →</div>
+</a>
+<a href="#review-4" class="pl-item">
+<div class="pl-rank">4</div>
+<div class="pl-info">
+<div class="pl-name">Planned Parenthood Direct / STI Testing</div>
+<div class="pl-tagline">Best Telehealth Integration — Treatment Within Platform</div>
+</div>
+<div class="pl-score-wrap">
+<div class="pl-stars">★★★★☆</div>
+<div class="pl-score">8.8/10</div>
+</div>
+<div class="pl-cta">Read Full Review →</div>
+</a>
+<a href="#review-5" class="pl-item">
+<div class="pl-rank">5</div>
+<div class="pl-info">
+<div class="pl-name">Nurx STI Testing</div>
+<div class="pl-tagline">Best for PrEP Users — Quarterly Testing + Medication Management Combined</div>
+</div>
+<div class="pl-score-wrap">
+<div class="pl-stars">★★★★☆</div>
+<div class="pl-score">8.6/10</div>
+</div>
+<div class="pl-cta">Read Full Review →</div>
+</a>
+</div>
+<hr class="section-divider" style="margin:2.5rem 0;">
+<p style="font-size:0.85rem;color:var(--gray-dark);text-align:center;margin-bottom:2rem;">Detailed reviews below — click any product above to jump to its full review.</p>
+<div id="review-1" class="product-card winner"><div class="winner-ribbon">Editor's Choice</div>
 <div class="product-card-body"><div>
   <div class="product-rank rank-1">1</div><div class="product-name">Everlywell STI Test — Comprehensive Panel</div>
   <div class="product-tagline">Best Overall — 6-Pathogen Panel + Physician Review</div><p class="product-desc">Everlywell's comprehensive STI panel tests for six of the most important sexually transmitted infections from a single at-home collection kit: HIV (4th generation), chlamydia, gonorrhea, syphilis, hepatitis C, and herpes simplex (HSV-1 and HSV-2). All samples processed in a CLIA-certified laboratory. A licensed physician reviews all results before delivery — adding clinical interpretation that most direct-to-consumer services lack. Positive results include a physician consultation and prescription assistance through Everlywell's telehealth network.</p>
@@ -276,7 +361,7 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   <div class="score-label">Overall Score</div><div class="price-tag">$149</div>
   <a href="#" class="buy-btn gold-btn">Buy Now</a>
 </div></div>
-<div class="product-footer"><span><strong>Pathogens:</strong> HIV, chlamydia, gonorrhea, syphilis, hepatitis C, HSV-1/2</span><span><strong>Lab:</strong> CLIA certified</span><span><strong>Physician review:</strong> Yes — all results</span><span><strong>Telehealth:</strong> Yes — positives include Rx</span><span><strong>Turnaround:</strong> 2–5 days</span></div></div><div class="product-card">
+<div class="product-footer"><span><strong>Pathogens:</strong> HIV, chlamydia, gonorrhea, syphilis, hepatitis C, HSV-1/2</span><span><strong>Lab:</strong> CLIA certified</span><span><strong>Physician review:</strong> Yes — all results</span><span><strong>Telehealth:</strong> Yes — positives include Rx</span><span><strong>Turnaround:</strong> 2–5 days</span></div></div><div id="review-2" class="product-card">
 <div class="product-card-body"><div>
   <div class="product-rank">2</div><div class="product-name">myLAB Box Most Popular</div>
   <div class="product-tagline">Best Flexibility — Build Your Own Panel</div><p class="product-desc">myLAB Box allows patients to build a custom panel — selecting exactly the pathogens they want to test for — with panels ranging from a single-pathogen test to their 14-panel 'Total Box.' For patients who want specific tests based on their risk profile rather than a fixed panel, myLAB Box provides maximum flexibility. Telehealth available for positive results with same-day STI prescriptions through their physician network.</p>
@@ -288,7 +373,7 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   <div class="score-label">Overall Score</div><div class="price-tag">$79–299</div>
   <a href="#" class="buy-btn">Buy Now</a>
 </div></div>
-<div class="product-footer"><span><strong>Panel:</strong> 1 to 14 pathogens (customizable)</span><span><strong>Telehealth:</strong> Yes — same-day Rx for positives</span><span><strong>Nurse line:</strong> Yes</span><span><strong>Best for:</strong> Custom panel selection based on risk</span></div></div><div class="product-card">
+<div class="product-footer"><span><strong>Panel:</strong> 1 to 14 pathogens (customizable)</span><span><strong>Telehealth:</strong> Yes — same-day Rx for positives</span><span><strong>Nurse line:</strong> Yes</span><span><strong>Best for:</strong> Custom panel selection based on risk</span></div></div><div id="review-3" class="product-card">
 <div class="product-card-body"><div>
   <div class="product-rank">3</div><div class="product-name">LetsGetChecked Complete STI Panel</div>
   <div class="product-tagline">Best Repeat Testing — Subscription Discounts + Nurse Support</div><p class="product-desc">LetsGetChecked's comprehensive STI panel tests HIV, chlamydia, gonorrhea, syphilis, trichomoniasis, herpes, and hepatitis B and C from a single kit — one of the most complete panels available. Their nurse support line provides same-day follow-up for positive results with prescription assistance. Subscription pricing provides meaningful discounts for the 3–6 monthly testing schedule recommended for high-risk individuals.</p>
@@ -300,7 +385,7 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   <div class="score-label">Overall Score</div><div class="price-tag">$149</div>
   <a href="#" class="buy-btn">Buy Now</a>
 </div></div>
-<div class="product-footer"><span><strong>Pathogens:</strong> HIV, chlamydia, gonorrhea, syphilis, trich, herpes, hep B+C</span><span><strong>Nurse support:</strong> Yes — same day</span><span><strong>Subscription:</strong> Discount pricing available</span><span><strong>Turnaround:</strong> 2–5 days</span></div></div><div class="product-card">
+<div class="product-footer"><span><strong>Pathogens:</strong> HIV, chlamydia, gonorrhea, syphilis, trich, herpes, hep B+C</span><span><strong>Nurse support:</strong> Yes — same day</span><span><strong>Subscription:</strong> Discount pricing available</span><span><strong>Turnaround:</strong> 2–5 days</span></div></div><div id="review-4" class="product-card">
 <div class="product-card-body"><div>
   <div class="product-rank">4</div><div class="product-name">Planned Parenthood Direct / STI Testing</div>
   <div class="product-tagline">Best Telehealth Integration — Treatment Within Platform</div><p class="product-desc">Planned Parenthood Direct offers at-home STI testing with the most integrated treatment pathway — a positive result is directly routed to a Planned Parenthood provider who can prescribe treatment and arrange local clinic follow-up if needed. The most clinically supported pathway for patients who want care continuity rather than just test results. Only available in select states.</p>
@@ -312,7 +397,7 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   <div class="score-label">Overall Score</div><div class="price-tag">$99</div>
   <a href="#" class="buy-btn">Buy Now</a>
 </div></div>
-<div class="product-footer"><span><strong>Clinical pathway:</strong> Yes — PP provider prescribes treatment</span><span><strong>States:</strong> Select only — check availability</span><span><strong>Best for:</strong> Patients wanting full clinical care pathway</span></div></div><div class="product-card">
+<div class="product-footer"><span><strong>Clinical pathway:</strong> Yes — PP provider prescribes treatment</span><span><strong>States:</strong> Select only — check availability</span><span><strong>Best for:</strong> Patients wanting full clinical care pathway</span></div></div><div id="review-5" class="product-card">
 <div class="product-card-body"><div>
   <div class="product-rank">5</div><div class="product-name">Nurx STI Testing</div>
   <div class="product-tagline">Best for PrEP Users — Quarterly Testing + Medication Management Combined</div><p class="product-desc">Nurx uniquely combines STI testing with HIV PrEP prescribing and monitoring in one platform — making it the best choice for patients on PrEP who need quarterly HIV/STI testing as required for continued PrEP prescription. Their platform manages the entire PrEP + STI testing workflow: testing, result review, PrEP prescription, ongoing monitoring. Also offers standalone STI panels for non-PrEP users.</p>
@@ -336,5 +421,6 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
 <script>
 document.querySelectorAll('.faq-q').forEach(q=>{q.addEventListener('click',()=>{const i=q.parentElement;const w=i.classList.contains('open');document.querySelectorAll('.faq-item').forEach(x=>x.classList.remove('open'));if(!w)i.classList.add('open');});});
 </script>
+<script>document.querySelectorAll('.pl-item').forEach(a=>{a.addEventListener('click',function(e){e.preventDefault();const t=document.querySelector(this.getAttribute('href'));if(t){t.scrollIntoView({behavior:'smooth',block:'start'});}});});</script>
 </body>
 </html>

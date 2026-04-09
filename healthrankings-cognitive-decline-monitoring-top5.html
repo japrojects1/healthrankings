@@ -230,6 +230,26 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
 .top5-box-btn{background:#fff;color:var(--primary);padding:0.625rem 1.5rem;border-radius:8px;font-size:0.85rem;font-weight:600;white-space:nowrap;flex-shrink:0;transition:all 0.2s;position:relative;z-index:1;}
 .top5-box-btn:hover{background:var(--primary-light);transform:translateY(-1px);}
 @media(max-width:640px){.top5-box{flex-direction:column;align-items:flex-start;}}
+
+/* ── PRODUCT LISTING ── */
+.product-listing{margin-bottom:2rem;}
+.pl-item{display:flex;align-items:center;gap:1rem;padding:1.1rem 1.25rem;border:1.5px solid var(--border);border-radius:12px;margin-bottom:0.75rem;background:#fff;transition:all 0.2s;text-decoration:none;color:var(--text);cursor:pointer;}
+.pl-item:hover{border-color:var(--primary);box-shadow:0 4px 16px rgba(21,101,192,0.1);transform:translateY(-1px);}
+.pl-item.pl-winner{border-color:var(--gold);background:linear-gradient(135deg,#FFFBF0 0%,#fff 100%);}
+.pl-rank{width:36px;height:36px;background:var(--primary);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.9rem;font-weight:700;flex-shrink:0;}
+.pl-winner .pl-rank{background:var(--gold);}
+.pl-info{flex:1;min-width:0;}
+.pl-name{font-size:1rem;font-weight:600;color:var(--text);}
+.pl-tagline{font-size:0.78rem;color:var(--text-light);margin-top:2px;}
+.pl-score-wrap{text-align:center;flex-shrink:0;}
+.pl-stars{font-size:0.9rem;color:var(--gold);letter-spacing:1px;}
+.pl-score{font-size:0.78rem;color:var(--gray-dark);font-weight:600;margin-top:2px;}
+.pl-cta{color:var(--primary);font-size:0.85rem;font-weight:600;white-space:nowrap;flex-shrink:0;}
+@media(max-width:640px){
+  .pl-item{flex-wrap:wrap;gap:0.75rem;}
+  .pl-score-wrap{order:3;}
+  .pl-cta{order:4;width:100%;text-align:center;padding:0.5rem;background:var(--primary-light);border-radius:8px;}
+}
 </style>
 </head>
 <body>
@@ -264,7 +284,72 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   <div class="review-meta-item"><strong>Updated</strong>April 2026</div>
 </div></div>
 <div class="top5-intro"><div class="top5-badge">5</div><p><strong>A tiered monitoring approach for cognitive decline:</strong> Early stage (SCD/MCI) — focus on cardiovascular risk monitoring (BP, body composition, activity tracking) and regular cognitive assessment. Moderate stage — add medication reminders, GPS safety capability, and caregiver notification. Advanced stage — full safety monitoring as covered in the Alzheimer's disease page. This page addresses the early-to-moderate stage monitoring priorities.</p></div>
-<div class="product-card winner"><div class="winner-ribbon">Editor's Choice</div>
+<div class="product-listing">
+<h2 style="font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:1.25rem;color:var(--text);">Top 5 Ranked Products</h2>
+<a href="#review-1" class="pl-item pl-winner">
+<div class="pl-rank">1</div>
+<div class="pl-info">
+<div class="pl-name">Apple Watch Series 10</div>
+<div class="pl-tagline">Best Overall — Cardiovascular + Fall Detection + Activity + ECG</div>
+</div>
+<div class="pl-score-wrap">
+<div class="pl-stars">★★★★★</div>
+<div class="pl-score">9.5/10</div>
+</div>
+<div class="pl-cta">Read Full Review →</div>
+</a>
+<a href="#review-2" class="pl-item">
+<div class="pl-rank">2</div>
+<div class="pl-info">
+<div class="pl-name">Withings ScanWatch 2</div>
+<div class="pl-tagline">Best Medical Smartwatch — ECG + SpO₂ + HRV + 30-Day Battery</div>
+</div>
+<div class="pl-score-wrap">
+<div class="pl-stars">★★★★★</div>
+<div class="pl-score">9.2/10</div>
+</div>
+<div class="pl-cta">Read Full Review →</div>
+</a>
+<a href="#review-3" class="pl-item">
+<div class="pl-rank">3</div>
+<div class="pl-info">
+<div class="pl-name">Oxiline Scale X Pro + Omron Platinum Bundle</div>
+<div class="pl-tagline">Best Home Risk Factor Station — Body Composition + BP Monitoring</div>
+</div>
+<div class="pl-score-wrap">
+<div class="pl-stars">★★★★★</div>
+<div class="pl-score">9.0/10</div>
+</div>
+<div class="pl-cta">Read Full Review →</div>
+</a>
+<a href="#review-4" class="pl-item">
+<div class="pl-rank">4</div>
+<div class="pl-info">
+<div class="pl-name">Garmin Venu 3</div>
+<div class="pl-tagline">Best Fitness-Focused — Sleep Coaching + Body Battery + Activity</div>
+</div>
+<div class="pl-score-wrap">
+<div class="pl-stars">★★★★☆</div>
+<div class="pl-score">8.8/10</div>
+</div>
+<div class="pl-cta">Read Full Review →</div>
+</a>
+<a href="#review-5" class="pl-item">
+<div class="pl-rank">5</div>
+<div class="pl-info">
+<div class="pl-name">Philips Lifeline Medical Alert</div>
+<div class="pl-tagline">Best Safety System — Professional Monitoring + Fall Detection for MCI</div>
+</div>
+<div class="pl-score-wrap">
+<div class="pl-stars">★★★★☆</div>
+<div class="pl-score">8.6/10</div>
+</div>
+<div class="pl-cta">Read Full Review →</div>
+</a>
+</div>
+<hr class="section-divider" style="margin:2.5rem 0;">
+<p style="font-size:0.85rem;color:var(--gray-dark);text-align:center;margin-bottom:2rem;">Detailed reviews below — click any product above to jump to its full review.</p>
+<div id="review-1" class="product-card winner"><div class="winner-ribbon">Editor's Choice</div>
 <div class="product-card-body"><div>
   <div class="product-rank rank-1">1</div><div class="product-name">Apple Watch Series 10</div>
   <div class="product-tagline">Best Overall — Cardiovascular + Fall Detection + Activity + ECG</div><p class="product-desc">For people with MCI or early cognitive decline, the Apple Watch Series 10 is the most comprehensive monitoring platform addressing both brain health risk factors and safety. Blood pressure monitoring (via the Health app), ECG for AFib detection (which increases dementia risk), SpO₂ for sleep apnea screening (another major cognitive risk factor), fall detection with automatic 911 call, and activity tracking for exercise adherence — all in one wearable. The Medication app with reminders helps MCI patients who are beginning to miss doses. Family sharing and the Health app allow caregivers to monitor health data remotely.</p>
@@ -276,7 +361,7 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   <div class="score-label">Overall Score</div><div class="price-tag">$399 + cellular</div>
   <a href="#" class="buy-btn gold-btn">Buy Now</a>
 </div></div>
-<div class="product-footer"><span><strong>Brain health monitoring:</strong> Activity, SpO₂, AFib ECG, HR</span><span><strong>Fall detection:</strong> Automatic — calls 911</span><span><strong>Medication reminders:</strong> Yes</span><span><strong>Caregiver sharing:</strong> Yes — Health app</span><span><strong>Cellular:</strong> Yes</span><span><strong>Best for:</strong> Early-moderate cognitive decline</span></div></div><div class="product-card">
+<div class="product-footer"><span><strong>Brain health monitoring:</strong> Activity, SpO₂, AFib ECG, HR</span><span><strong>Fall detection:</strong> Automatic — calls 911</span><span><strong>Medication reminders:</strong> Yes</span><span><strong>Caregiver sharing:</strong> Yes — Health app</span><span><strong>Cellular:</strong> Yes</span><span><strong>Best for:</strong> Early-moderate cognitive decline</span></div></div><div id="review-2" class="product-card">
 <div class="product-card-body"><div>
   <div class="product-rank">2</div><div class="product-name">Withings ScanWatch 2</div>
   <div class="product-tagline">Best Medical Smartwatch — ECG + SpO₂ + HRV + 30-Day Battery</div><p class="product-desc">The Withings ScanWatch 2 is the most medically rigorous smartwatch for brain health monitoring — FDA cleared for AFib detection via ECG (AFib doubles dementia risk), continuous SpO₂ for sleep apnea screening, HRV monitoring for autonomic nervous system health, and comprehensive sleep analysis. The 30-day battery life dramatically reduces compliance burden — a critical advantage for patients with MCI who may forget to charge daily. The Health Mate app provides long-term trend data in a clear format accessible for physician review.</p>
@@ -288,7 +373,7 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   <div class="score-label">Overall Score</div><div class="price-tag">$299</div>
   <a href="#" class="buy-btn">Buy Now</a>
 </div></div>
-<div class="product-footer"><span><strong>ECG:</strong> Yes — FDA cleared</span><span><strong>SpO₂:</strong> Continuous</span><span><strong>HRV:</strong> Yes</span><span><strong>Battery:</strong> 30 days — low maintenance</span><span><strong>Best for:</strong> Medical monitoring with low charging burden</span></div></div><div class="product-card">
+<div class="product-footer"><span><strong>ECG:</strong> Yes — FDA cleared</span><span><strong>SpO₂:</strong> Continuous</span><span><strong>HRV:</strong> Yes</span><span><strong>Battery:</strong> 30 days — low maintenance</span><span><strong>Best for:</strong> Medical monitoring with low charging burden</span></div></div><div id="review-3" class="product-card">
 <div class="product-card-body"><div>
   <div class="product-rank">3</div><div class="product-name">Oxiline Scale X Pro + Omron Platinum Bundle</div>
   <div class="product-tagline">Best Home Risk Factor Station — Body Composition + BP Monitoring</div><p class="product-desc">For people focused on the lifestyle-driven prevention of cognitive decline, combining a body composition monitor (Oxiline Scale X Pro — tracks visceral fat, muscle mass, and metabolic age) with a clinical BP monitor (Omron Platinum — AFib detection, TruRead averaging) creates the most comprehensive home brain health risk factor monitoring station. Visceral fat drives insulin resistance and vascular inflammation — both accelerating cognitive decline. BP monitoring addresses the #2 modifiable risk factor for dementia.</p>
@@ -300,7 +385,7 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   <div class="score-label">Overall Score</div><div class="price-tag">$79+$89 = $168 combined</div>
   <a href="#" class="buy-btn">Buy Now</a>
 </div></div>
-<div class="product-footer"><span><strong>Components:</strong> Body comp scale + BP monitor with AFib</span><span><strong>Risk factors addressed:</strong> Visceral fat, hypertension, AFib</span><span><strong>Best for:</strong> Lifestyle-focused early cognitive decline prevention</span></div></div><div class="product-card">
+<div class="product-footer"><span><strong>Components:</strong> Body comp scale + BP monitor with AFib</span><span><strong>Risk factors addressed:</strong> Visceral fat, hypertension, AFib</span><span><strong>Best for:</strong> Lifestyle-focused early cognitive decline prevention</span></div></div><div id="review-4" class="product-card">
 <div class="product-card-body"><div>
   <div class="product-rank">4</div><div class="product-name">Garmin Venu 3</div>
   <div class="product-tagline">Best Fitness-Focused — Sleep Coaching + Body Battery + Activity</div><p class="product-desc">For cognitively at-risk individuals committed to the exercise and sleep optimization that are the most evidence-based dementia prevention interventions, the Garmin Venu 3 provides the best integrated exercise + sleep coaching available. The Body Battery feature (energy reserve score based on HRV, sleep, and activity) quantifies readiness for cognitive-protective exercise. Nap detection and advanced sleep stage tracking with Sleep Score identifies poor sleep patterns that promote amyloid accumulation. HRV status provides daily autonomic nervous system assessment.</p>
@@ -312,7 +397,7 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   <div class="score-label">Overall Score</div><div class="price-tag">$450</div>
   <a href="#" class="buy-btn">Buy Now</a>
 </div></div>
-<div class="product-footer"><span><strong>Body Battery:</strong> Yes — daily exercise readiness</span><span><strong>Sleep Score:</strong> Advanced — identifies poor sleep patterns</span><span><strong>HRV status:</strong> Daily tracking</span><span><strong>Best for:</strong> Exercise and sleep optimization focus</span></div></div><div class="product-card">
+<div class="product-footer"><span><strong>Body Battery:</strong> Yes — daily exercise readiness</span><span><strong>Sleep Score:</strong> Advanced — identifies poor sleep patterns</span><span><strong>HRV status:</strong> Daily tracking</span><span><strong>Best for:</strong> Exercise and sleep optimization focus</span></div></div><div id="review-5" class="product-card">
 <div class="product-card-body"><div>
   <div class="product-rank">5</div><div class="product-name">Philips Lifeline Medical Alert</div>
   <div class="product-tagline">Best Safety System — Professional Monitoring + Fall Detection for MCI</div><p class="product-desc">For people with established MCI where safety is becoming a concern alongside cognitive monitoring, the Philips Lifeline provides 24/7 professional monitoring center coverage with fall detection, GPS for early wandering risk, and two-way communication with trained operators. The AutoAlert pendant detects falls automatically — crucial as fall risk increases with cognitive decline (reduced attention to environmental hazards). Caregiver notification included for all events.</p>
@@ -336,5 +421,6 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
 <script>
 document.querySelectorAll('.faq-q').forEach(q=>{q.addEventListener('click',()=>{const i=q.parentElement;const w=i.classList.contains('open');document.querySelectorAll('.faq-item').forEach(x=>x.classList.remove('open'));if(!w)i.classList.add('open');});});
 </script>
+<script>document.querySelectorAll('.pl-item').forEach(a=>{a.addEventListener('click',function(e){e.preventDefault();const t=document.querySelector(this.getAttribute('href'));if(t){t.scrollIntoView({behavior:'smooth',block:'start'});}});});</script>
 </body>
 </html>

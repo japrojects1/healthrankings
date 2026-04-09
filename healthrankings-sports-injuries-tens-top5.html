@@ -230,6 +230,26 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
 .top5-box-btn{background:#fff;color:var(--primary);padding:0.625rem 1.5rem;border-radius:8px;font-size:0.85rem;font-weight:600;white-space:nowrap;flex-shrink:0;transition:all 0.2s;position:relative;z-index:1;}
 .top5-box-btn:hover{background:var(--primary-light);transform:translateY(-1px);}
 @media(max-width:640px){.top5-box{flex-direction:column;align-items:flex-start;}}
+
+/* ── PRODUCT LISTING ── */
+.product-listing{margin-bottom:2rem;}
+.pl-item{display:flex;align-items:center;gap:1rem;padding:1.1rem 1.25rem;border:1.5px solid var(--border);border-radius:12px;margin-bottom:0.75rem;background:#fff;transition:all 0.2s;text-decoration:none;color:var(--text);cursor:pointer;}
+.pl-item:hover{border-color:var(--primary);box-shadow:0 4px 16px rgba(21,101,192,0.1);transform:translateY(-1px);}
+.pl-item.pl-winner{border-color:var(--gold);background:linear-gradient(135deg,#FFFBF0 0%,#fff 100%);}
+.pl-rank{width:36px;height:36px;background:var(--primary);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.9rem;font-weight:700;flex-shrink:0;}
+.pl-winner .pl-rank{background:var(--gold);}
+.pl-info{flex:1;min-width:0;}
+.pl-name{font-size:1rem;font-weight:600;color:var(--text);}
+.pl-tagline{font-size:0.78rem;color:var(--text-light);margin-top:2px;}
+.pl-score-wrap{text-align:center;flex-shrink:0;}
+.pl-stars{font-size:0.9rem;color:var(--gold);letter-spacing:1px;}
+.pl-score{font-size:0.78rem;color:var(--gray-dark);font-weight:600;margin-top:2px;}
+.pl-cta{color:var(--primary);font-size:0.85rem;font-weight:600;white-space:nowrap;flex-shrink:0;}
+@media(max-width:640px){
+  .pl-item{flex-wrap:wrap;gap:0.75rem;}
+  .pl-score-wrap{order:3;}
+  .pl-cta{order:4;width:100%;text-align:center;padding:0.5rem;background:var(--primary-light);border-radius:8px;}
+}
 </style>
 </head>
 <body>
@@ -264,7 +284,72 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   <div class="review-meta-item"><strong>Updated</strong>April 2026</div>
 </div></div>
 <div class="top5-intro"><div class="top5-badge">5</div><p><strong>TENS vs EMS for sports injuries:</strong> TENS (Transcutaneous Electrical Nerve Stimulation) — high frequency (80–150 Hz), low intensity, comfortable tingling — blocks pain signals via gate control. EMS (Electrical Muscle Stimulation) — targets motor nerves to cause muscle contractions, preventing atrophy and accelerating recovery. The best sports recovery devices combine both modalities.</p></div>
-<div class="product-card winner"><div class="winner-ribbon">Editor's Choice</div>
+<div class="product-listing">
+<h2 style="font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:1.25rem;color:var(--text);">Top 5 Ranked Products</h2>
+<a href="#review-1" class="pl-item pl-winner">
+<div class="pl-rank">1</div>
+<div class="pl-info">
+<div class="pl-name">iReliev ET-7070 TENS + EMS</div>
+<div class="pl-tagline">Best Overall — Most Comprehensive Sports Recovery Device</div>
+</div>
+<div class="pl-score-wrap">
+<div class="pl-stars">★★★★★</div>
+<div class="pl-score">9.6/10</div>
+</div>
+<div class="pl-cta">Read Full Review →</div>
+</a>
+<a href="#review-2" class="pl-item">
+<div class="pl-rank">2</div>
+<div class="pl-info">
+<div class="pl-name">PowerDot 2.0 Uno/Duo</div>
+<div class="pl-tagline">Best Smart TENS — App-Guided Sports Programs + Bluetooth</div>
+</div>
+<div class="pl-score-wrap">
+<div class="pl-stars">★★★★★</div>
+<div class="pl-score">9.2/10</div>
+</div>
+<div class="pl-cta">Read Full Review →</div>
+</a>
+<a href="#review-3" class="pl-item">
+<div class="pl-rank">3</div>
+<div class="pl-info">
+<div class="pl-name">Compex Sport Elite</div>
+<div class="pl-tagline">Best for Muscle Recovery — Clinical EMS for Athletes</div>
+</div>
+<div class="pl-score-wrap">
+<div class="pl-stars">★★★★★</div>
+<div class="pl-score">9.0/10</div>
+</div>
+<div class="pl-cta">Read Full Review →</div>
+</a>
+<a href="#review-4" class="pl-item">
+<div class="pl-rank">4</div>
+<div class="pl-info">
+<div class="pl-name">Omron Max Power Relief</div>
+<div class="pl-tagline">Best Portable — Wearable Patches for Athlete Lifestyle</div>
+</div>
+<div class="pl-score-wrap">
+<div class="pl-stars">★★★★☆</div>
+<div class="pl-score">8.7/10</div>
+</div>
+<div class="pl-cta">Read Full Review →</div>
+</a>
+<a href="#review-5" class="pl-item">
+<div class="pl-rank">5</div>
+<div class="pl-info">
+<div class="pl-name">HealthmateForever YK15AB</div>
+<div class="pl-tagline">Best Budget — 15 Programs for All Injury Types</div>
+</div>
+<div class="pl-score-wrap">
+<div class="pl-stars">★★★★☆</div>
+<div class="pl-score">8.2/10</div>
+</div>
+<div class="pl-cta">Read Full Review →</div>
+</a>
+</div>
+<hr class="section-divider" style="margin:2.5rem 0;">
+<p style="font-size:0.85rem;color:var(--gray-dark);text-align:center;margin-bottom:2rem;">Detailed reviews below — click any product above to jump to its full review.</p>
+<div id="review-1" class="product-card winner"><div class="winner-ribbon">Editor's Choice</div>
 <div class="product-card-body"><div>
   <div class="product-rank rank-1">1</div><div class="product-name">iReliev ET-7070 TENS + EMS</div>
   <div class="product-tagline">Best Overall — Most Comprehensive Sports Recovery Device</div><p class="product-desc">The iReliev ET-7070 is the top choice for sports injury recovery — combining TENS pain management with EMS muscle stimulation in one device. Its 14 programs cover the full sports injury spectrum: acute pain (conventional TENS at 80–100 Hz), chronic pain (burst TENS at 2–5 Hz), muscle recovery (EMS), and athletic performance modes. The dual channel allows simultaneous treatment of bilateral muscle groups — both quadriceps, both hamstrings, both calves — or treating a larger area with 4 electrodes. Rechargeable and portable for take-anywhere use by active athletes.</p>
@@ -276,7 +361,7 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   <div class="score-label">Overall Score</div><div class="price-tag">$89</div>
   <a href="#" class="buy-btn gold-btn">Buy Now</a>
 </div></div>
-<div class="product-footer"><span><strong>Programs:</strong> 14 (TENS + EMS)</span><span><strong>Channels:</strong> Dual</span><span><strong>Electrode pads:</strong> 4 large pads</span><span><strong>Rechargeable:</strong> Yes</span><span><strong>Best for:</strong> Comprehensive sports injury TENS + EMS</span></div></div><div class="product-card">
+<div class="product-footer"><span><strong>Programs:</strong> 14 (TENS + EMS)</span><span><strong>Channels:</strong> Dual</span><span><strong>Electrode pads:</strong> 4 large pads</span><span><strong>Rechargeable:</strong> Yes</span><span><strong>Best for:</strong> Comprehensive sports injury TENS + EMS</span></div></div><div id="review-2" class="product-card">
 <div class="product-card-body"><div>
   <div class="product-rank">2</div><div class="product-name">PowerDot 2.0 Uno/Duo</div>
   <div class="product-tagline">Best Smart TENS — App-Guided Sports Programs + Bluetooth</div><p class="product-desc">PowerDot is the most sophisticated Bluetooth-controlled TENS/EMS device designed specifically for athletes. The app provides sport-specific programs (running, cycling, strength training, swimming), guided electrode placement instructions, and automated progression over recovery weeks. The real-time app control means no buttons on the device — your phone is the remote. Used by professional sports teams and endorsed by elite athletes.</p>
@@ -288,7 +373,7 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   <div class="score-label">Overall Score</div><div class="price-tag">$149–249</div>
   <a href="#" class="buy-btn">Buy Now</a>
 </div></div>
-<div class="product-footer"><span><strong>App control:</strong> Full smartphone control</span><span><strong>Sports programs:</strong> Sport-specific (running, cycling, strength)</span><span><strong>Electrode guidance:</strong> Yes — app instructions</span><span><strong>Used by:</strong> Professional sports teams</span></div></div><div class="product-card">
+<div class="product-footer"><span><strong>App control:</strong> Full smartphone control</span><span><strong>Sports programs:</strong> Sport-specific (running, cycling, strength)</span><span><strong>Electrode guidance:</strong> Yes — app instructions</span><span><strong>Used by:</strong> Professional sports teams</span></div></div><div id="review-3" class="product-card">
 <div class="product-card-body"><div>
   <div class="product-rank">3</div><div class="product-name">Compex Sport Elite</div>
   <div class="product-tagline">Best for Muscle Recovery — Clinical EMS for Athletes</div><p class="product-desc">The Compex Sport Elite is the most advanced EMS device used in professional sports for muscle recovery, strength development, and injury prevention. Its clinical-grade EMS programs are based on research done with Olympic athletes — including Active Recovery (post-training lactic acid clearance), Endurance, Strength, and Explosive Strength programs. The muscle contraction intensity is significantly higher than consumer TENS devices — producing measurable strength and recovery outcomes rather than just pain management.</p>
@@ -300,7 +385,7 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   <div class="score-label">Overall Score</div><div class="price-tag">$200</div>
   <a href="#" class="buy-btn">Buy Now</a>
 </div></div>
-<div class="product-footer"><span><strong>Focus:</strong> EMS (muscle recovery primary)</span><span><strong>Programs:</strong> Olympic athlete-validated</span><span><strong>EMS intensity:</strong> Clinical grade</span><span><strong>Used in:</strong> Professional sports and Olympic programs</span></div></div><div class="product-card">
+<div class="product-footer"><span><strong>Focus:</strong> EMS (muscle recovery primary)</span><span><strong>Programs:</strong> Olympic athlete-validated</span><span><strong>EMS intensity:</strong> Clinical grade</span><span><strong>Used in:</strong> Professional sports and Olympic programs</span></div></div><div id="review-4" class="product-card">
 <div class="product-card-body"><div>
   <div class="product-rank">4</div><div class="product-name">Omron Max Power Relief</div>
   <div class="product-tagline">Best Portable — Wearable Patches for Athlete Lifestyle</div><p class="product-desc">The Omron Max Power Relief uses self-adhesive patch electrodes that stay in place during movement — allowing TENS therapy during light activity rather than requiring the patient to sit still. For athletes who need to stay mobile during recovery, this wearable form factor is uniquely practical. The patches can be worn under clothing, providing discreet pain management during daily activities or light rehabilitation sessions.</p>
@@ -312,7 +397,7 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   <div class="score-label">Overall Score</div><div class="price-tag">$65</div>
   <a href="#" class="buy-btn">Buy Now</a>
 </div></div>
-<div class="product-footer"><span><strong>Form:</strong> Wearable patches</span><span><strong>Movement:</strong> TENS during light activity</span><span><strong>EMS:</strong> No</span><span><strong>Best for:</strong> Mobile pain management during rehabilitation</span></div></div><div class="product-card">
+<div class="product-footer"><span><strong>Form:</strong> Wearable patches</span><span><strong>Movement:</strong> TENS during light activity</span><span><strong>EMS:</strong> No</span><span><strong>Best for:</strong> Mobile pain management during rehabilitation</span></div></div><div id="review-5" class="product-card">
 <div class="product-card-body"><div>
   <div class="product-rank">5</div><div class="product-name">HealthmateForever YK15AB</div>
   <div class="product-tagline">Best Budget — 15 Programs for All Injury Types</div><p class="product-desc">The HealthmateForever YK15AB provides 15 TENS/EMS programs at the lowest price in our review — covering acute pain, chronic pain, muscle recovery, and sport-specific modes. Four channels allow comprehensive lower-body injury treatment (both quads + both calves simultaneously). For athletes on a budget who want full-body coverage, the YK15AB offers maximum channel count per dollar spent.</p>
@@ -336,5 +421,6 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
 <script>
 document.querySelectorAll('.faq-q').forEach(q=>{q.addEventListener('click',()=>{const i=q.parentElement;const w=i.classList.contains('open');document.querySelectorAll('.faq-item').forEach(x=>x.classList.remove('open'));if(!w)i.classList.add('open');});});
 </script>
+<script>document.querySelectorAll('.pl-item').forEach(a=>{a.addEventListener('click',function(e){e.preventDefault();const t=document.querySelector(this.getAttribute('href'));if(t){t.scrollIntoView({behavior:'smooth',block:'start'});}});});</script>
 </body>
 </html>

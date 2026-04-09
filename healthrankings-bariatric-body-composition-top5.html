@@ -230,6 +230,26 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
 .top5-box-btn{background:#fff;color:var(--primary);padding:0.625rem 1.5rem;border-radius:8px;font-size:0.85rem;font-weight:600;white-space:nowrap;flex-shrink:0;transition:all 0.2s;position:relative;z-index:1;}
 .top5-box-btn:hover{background:var(--primary-light);transform:translateY(-1px);}
 @media(max-width:640px){.top5-box{flex-direction:column;align-items:flex-start;}}
+
+/* ── PRODUCT LISTING ── */
+.product-listing{margin-bottom:2rem;}
+.pl-item{display:flex;align-items:center;gap:1rem;padding:1.1rem 1.25rem;border:1.5px solid var(--border);border-radius:12px;margin-bottom:0.75rem;background:#fff;transition:all 0.2s;text-decoration:none;color:var(--text);cursor:pointer;}
+.pl-item:hover{border-color:var(--primary);box-shadow:0 4px 16px rgba(21,101,192,0.1);transform:translateY(-1px);}
+.pl-item.pl-winner{border-color:var(--gold);background:linear-gradient(135deg,#FFFBF0 0%,#fff 100%);}
+.pl-rank{width:36px;height:36px;background:var(--primary);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.9rem;font-weight:700;flex-shrink:0;}
+.pl-winner .pl-rank{background:var(--gold);}
+.pl-info{flex:1;min-width:0;}
+.pl-name{font-size:1rem;font-weight:600;color:var(--text);}
+.pl-tagline{font-size:0.78rem;color:var(--text-light);margin-top:2px;}
+.pl-score-wrap{text-align:center;flex-shrink:0;}
+.pl-stars{font-size:0.9rem;color:var(--gold);letter-spacing:1px;}
+.pl-score{font-size:0.78rem;color:var(--gray-dark);font-weight:600;margin-top:2px;}
+.pl-cta{color:var(--primary);font-size:0.85rem;font-weight:600;white-space:nowrap;flex-shrink:0;}
+@media(max-width:640px){
+  .pl-item{flex-wrap:wrap;gap:0.75rem;}
+  .pl-score-wrap{order:3;}
+  .pl-cta{order:4;width:100%;text-align:center;padding:0.5rem;background:var(--primary-light);border-radius:8px;}
+}
 </style>
 </head>
 <body>
@@ -264,7 +284,72 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   <div class="review-meta-item"><strong>Updated</strong>April 2026</div>
 </div></div>
 <div class="top5-intro"><div class="top5-badge">5</div><p><strong>What to track post-bariatric:</strong> Muscle mass (going down = warning sign of inadequate protein/resistance training). Body fat percentage (should decrease; if weight goes down but fat % stays same = muscle loss). Visceral fat index (the health metric — should decrease toward normal range). Metabolic age (should decrease as body composition improves).</p></div>
-<div class="product-card winner"><div class="winner-ribbon">Editor's Choice</div>
+<div class="product-listing">
+<h2 style="font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:1.25rem;color:var(--text);">Top 5 Ranked Products</h2>
+<a href="#review-1" class="pl-item pl-winner">
+<div class="pl-rank">1</div>
+<div class="pl-info">
+<div class="pl-name">Withings Body Comp</div>
+<div class="pl-tagline">Best Overall — Muscle Mass + Visceral Fat + Full Trend Tracking</div>
+</div>
+<div class="pl-score-wrap">
+<div class="pl-stars">★★★★★</div>
+<div class="pl-score">9.6/10</div>
+</div>
+<div class="pl-cta">Read Full Review →</div>
+</a>
+<a href="#review-2" class="pl-item">
+<div class="pl-rank">2</div>
+<div class="pl-info">
+<div class="pl-name">Tanita RD-953</div>
+<div class="pl-tagline">Best Clinical Accuracy — For Bariatric Program Use</div>
+</div>
+<div class="pl-score-wrap">
+<div class="pl-stars">★★★★★</div>
+<div class="pl-score">9.2/10</div>
+</div>
+<div class="pl-cta">Read Full Review →</div>
+</a>
+<a href="#review-3" class="pl-item">
+<div class="pl-rank">3</div>
+<div class="pl-info">
+<div class="pl-name">Oxiline Scale X Pro</div>
+<div class="pl-tagline">Best Value — Visceral Fat + Metabolic Age + Protein %</div>
+</div>
+<div class="pl-score-wrap">
+<div class="pl-stars">★★★★☆</div>
+<div class="pl-score">8.9/10</div>
+</div>
+<div class="pl-cta">Read Full Review →</div>
+</a>
+<a href="#review-4" class="pl-item">
+<div class="pl-rank">4</div>
+<div class="pl-info">
+<div class="pl-name">Garmin Index S2</div>
+<div class="pl-tagline">Best for Exercise-Focused Post-Bariatric Patients</div>
+</div>
+<div class="pl-score-wrap">
+<div class="pl-stars">★★★★☆</div>
+<div class="pl-score">8.7/10</div>
+</div>
+<div class="pl-cta">Read Full Review →</div>
+</a>
+<a href="#review-5" class="pl-item">
+<div class="pl-rank">5</div>
+<div class="pl-info">
+<div class="pl-name">RENPHO Smart Scale</div>
+<div class="pl-tagline">Best Budget + App Ecosystem — Entry-Level Bariatric Tracking</div>
+</div>
+<div class="pl-score-wrap">
+<div class="pl-stars">★★★★☆</div>
+<div class="pl-score">8.1/10</div>
+</div>
+<div class="pl-cta">Read Full Review →</div>
+</a>
+</div>
+<hr class="section-divider" style="margin:2.5rem 0;">
+<p style="font-size:0.85rem;color:var(--gray-dark);text-align:center;margin-bottom:2rem;">Detailed reviews below — click any product above to jump to its full review.</p>
+<div id="review-1" class="product-card winner"><div class="winner-ribbon">Editor's Choice</div>
 <div class="product-card-body"><div>
   <div class="product-rank rank-1">1</div><div class="product-name">Withings Body Comp</div>
   <div class="product-tagline">Best Overall — Muscle Mass + Visceral Fat + Full Trend Tracking</div><p class="product-desc">The Withings Body Comp is the ideal body composition monitor for bariatric patients for three specific reasons: (1) Segmental muscle mass analysis shows exactly where muscle is being preserved or lost — arm vs leg vs trunk, which no other consumer scale provides. (2) The visceral fat index tracks the most metabolically harmful fat type as it decreases toward the healthy range post-surgery. (3) Wi-Fi auto-sync means the Health Mate app captures every daily weigh-in automatically — the long-term trend data that shows whether the surgery is producing sustainable body composition improvement. The vascular age metric tracks improvement in the cardiovascular risk that drove the surgical decision.</p>
@@ -276,7 +361,7 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   <div class="score-label">Overall Score</div><div class="price-tag">$199</div>
   <a href="#" class="buy-btn gold-btn">Buy Now</a>
 </div></div>
-<div class="product-footer"><span><strong>Segmental muscle:</strong> Full per-limb</span><span><strong>Visceral fat:</strong> Index 1–59</span><span><strong>Wi-Fi:</strong> Yes — daily auto capture</span><span><strong>Bariatric suitability:</strong> Highest — all key metrics</span><span><strong>Users:</strong> 8</span></div></div><div class="product-card">
+<div class="product-footer"><span><strong>Segmental muscle:</strong> Full per-limb</span><span><strong>Visceral fat:</strong> Index 1–59</span><span><strong>Wi-Fi:</strong> Yes — daily auto capture</span><span><strong>Bariatric suitability:</strong> Highest — all key metrics</span><span><strong>Users:</strong> 8</span></div></div><div id="review-2" class="product-card">
 <div class="product-card-body"><div>
   <div class="product-rank">2</div><div class="product-name">Tanita RD-953</div>
   <div class="product-tagline">Best Clinical Accuracy — For Bariatric Program Use</div><p class="product-desc">Many bariatric programs use the Tanita RD-953 (or similar Tanita clinical models) as their in-clinic body composition assessment tool — meaning home use of the same Tanita technology produces directly comparable data for physician review at follow-up appointments. The 8-electrode research-grade accuracy is particularly important in bariatric patients where large, rapid body composition changes can challenge the accuracy of 4-electrode consumer devices.</p>
@@ -288,7 +373,7 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   <div class="score-label">Overall Score</div><div class="price-tag">$249</div>
   <a href="#" class="buy-btn">Buy Now</a>
 </div></div>
-<div class="product-footer"><span><strong>Research grade:</strong> Used in bariatric clinics</span><span><strong>Accuracy:</strong> Best for rapid body comp changes</span><span><strong>Muscle quality:</strong> Yes</span><span><strong>Segmental:</strong> Full per-limb</span></div></div><div class="product-card">
+<div class="product-footer"><span><strong>Research grade:</strong> Used in bariatric clinics</span><span><strong>Accuracy:</strong> Best for rapid body comp changes</span><span><strong>Muscle quality:</strong> Yes</span><span><strong>Segmental:</strong> Full per-limb</span></div></div><div id="review-3" class="product-card">
 <div class="product-card-body"><div>
   <div class="product-rank">3</div><div class="product-name">Oxiline Scale X Pro</div>
   <div class="product-tagline">Best Value — Visceral Fat + Metabolic Age + Protein %</div><p class="product-desc">For bariatric patients who want comprehensive body composition tracking without the premium price, the Oxiline Scale X Pro delivers visceral fat index (the key post-bariatric success metric), metabolic age (should decrease as body composition improves), protein percentage (muscle quality indicator), and BMR (tracks metabolic rate preservation). Eight user profiles for household use. The metabolic age trend post-bariatric surgery is one of the most rewarding metrics to track — many patients see their metabolic age drop 10–20 years in the first 12 months.</p>
@@ -300,7 +385,7 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   <div class="score-label">Overall Score</div><div class="price-tag">$79</div>
   <a href="#" class="buy-btn">Buy Now</a>
 </div></div>
-<div class="product-footer"><span><strong>Visceral fat:</strong> Yes</span><span><strong>Metabolic age:</strong> Yes — rewarding post-bariatric metric</span><span><strong>Protein %:</strong> Yes</span><span><strong>Value:</strong> Best bariatric comprehensive value</span></div></div><div class="product-card">
+<div class="product-footer"><span><strong>Visceral fat:</strong> Yes</span><span><strong>Metabolic age:</strong> Yes — rewarding post-bariatric metric</span><span><strong>Protein %:</strong> Yes</span><span><strong>Value:</strong> Best bariatric comprehensive value</span></div></div><div id="review-4" class="product-card">
 <div class="product-card-body"><div>
   <div class="product-rank">4</div><div class="product-name">Garmin Index S2</div>
   <div class="product-tagline">Best for Exercise-Focused Post-Bariatric Patients</div><p class="product-desc">For bariatric patients who have embraced the resistance training essential for muscle preservation, the Garmin Index S2's integration of workout data with body composition creates direct feedback between exercise consistency and muscle mass retention. Seeing muscle mass maintained in correlation with resistance training sessions — while body fat steadily declines — is among the most powerful visual motivations for bariatric exercise adherence.</p>
@@ -312,7 +397,7 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   <div class="score-label">Overall Score</div><div class="price-tag">$149</div>
   <a href="#" class="buy-btn">Buy Now</a>
 </div></div>
-<div class="product-footer"><span><strong>Training integration:</strong> Full Garmin Connect</span><span><strong>Limitation:</strong> No visceral fat score</span><span><strong>Best for:</strong> Exercise-adherent bariatric patients in Garmin ecosystem</span></div></div><div class="product-card">
+<div class="product-footer"><span><strong>Training integration:</strong> Full Garmin Connect</span><span><strong>Limitation:</strong> No visceral fat score</span><span><strong>Best for:</strong> Exercise-adherent bariatric patients in Garmin ecosystem</span></div></div><div id="review-5" class="product-card">
 <div class="product-card-body"><div>
   <div class="product-rank">5</div><div class="product-name">RENPHO Smart Scale</div>
   <div class="product-tagline">Best Budget + App Ecosystem — Entry-Level Bariatric Tracking</div><p class="product-desc">For bariatric patients in the early post-operative period who want to start tracking body composition without significant investment, the Renpho Smart Scale provides body fat %, muscle mass, and BMR with a clean app integrating with Baritastic (the most popular bariatric-specific app) through Apple Health. While lacking visceral fat tracking, the body fat % and muscle mass trends provide directional feedback on whether the post-bariatric program is preserving lean mass.</p>
@@ -336,5 +421,6 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
 <script>
 document.querySelectorAll('.faq-q').forEach(q=>{q.addEventListener('click',()=>{const i=q.parentElement;const w=i.classList.contains('open');document.querySelectorAll('.faq-item').forEach(x=>x.classList.remove('open'));if(!w)i.classList.add('open');});});
 </script>
+<script>document.querySelectorAll('.pl-item').forEach(a=>{a.addEventListener('click',function(e){e.preventDefault();const t=document.querySelector(this.getAttribute('href'));if(t){t.scrollIntoView({behavior:'smooth',block:'start'});}});});</script>
 </body>
 </html>

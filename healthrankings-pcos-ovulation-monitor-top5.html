@@ -230,6 +230,26 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
 .top5-box-btn{background:#fff;color:var(--primary);padding:0.625rem 1.5rem;border-radius:8px;font-size:0.85rem;font-weight:600;white-space:nowrap;flex-shrink:0;transition:all 0.2s;position:relative;z-index:1;}
 .top5-box-btn:hover{background:var(--primary-light);transform:translateY(-1px);}
 @media(max-width:640px){.top5-box{flex-direction:column;align-items:flex-start;}}
+
+/* ── PRODUCT LISTING ── */
+.product-listing{margin-bottom:2rem;}
+.pl-item{display:flex;align-items:center;gap:1rem;padding:1.1rem 1.25rem;border:1.5px solid var(--border);border-radius:12px;margin-bottom:0.75rem;background:#fff;transition:all 0.2s;text-decoration:none;color:var(--text);cursor:pointer;}
+.pl-item:hover{border-color:var(--primary);box-shadow:0 4px 16px rgba(21,101,192,0.1);transform:translateY(-1px);}
+.pl-item.pl-winner{border-color:var(--gold);background:linear-gradient(135deg,#FFFBF0 0%,#fff 100%);}
+.pl-rank{width:36px;height:36px;background:var(--primary);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.9rem;font-weight:700;flex-shrink:0;}
+.pl-winner .pl-rank{background:var(--gold);}
+.pl-info{flex:1;min-width:0;}
+.pl-name{font-size:1rem;font-weight:600;color:var(--text);}
+.pl-tagline{font-size:0.78rem;color:var(--text-light);margin-top:2px;}
+.pl-score-wrap{text-align:center;flex-shrink:0;}
+.pl-stars{font-size:0.9rem;color:var(--gold);letter-spacing:1px;}
+.pl-score{font-size:0.78rem;color:var(--gray-dark);font-weight:600;margin-top:2px;}
+.pl-cta{color:var(--primary);font-size:0.85rem;font-weight:600;white-space:nowrap;flex-shrink:0;}
+@media(max-width:640px){
+  .pl-item{flex-wrap:wrap;gap:0.75rem;}
+  .pl-score-wrap{order:3;}
+  .pl-cta{order:4;width:100%;text-align:center;padding:0.5rem;background:var(--primary-light);border-radius:8px;}
+}
 </style>
 </head>
 <body>
@@ -264,7 +284,72 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   <div class="review-meta-item"><strong>Updated</strong>April 2026</div>
 </div></div>
 <div class="top5-intro"><div class="top5-badge">5</div><p><strong>Why standard OPKs fail PCOS patients:</strong> PCOS patients often have chronically elevated LH — causing the test line to always appear as dark as the control line, making it impossible to identify the actual LH surge. The solutions: quantitative monitoring (Mira) that tracks your personal LH curve, or estrogen-tracking OPKs (Clearblue Advanced) that use estrogen rise as a more reliable PCOS signal.</p></div>
-<div class="product-card winner"><div class="winner-ribbon">Editor's Choice</div>
+<div class="product-listing">
+<h2 style="font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:1.25rem;color:var(--text);">Top 5 Ranked Products</h2>
+<a href="#review-1" class="pl-item pl-winner">
+<div class="pl-rank">1</div>
+<div class="pl-info">
+<div class="pl-name">Mira Fertility Plus Monitor</div>
+<div class="pl-tagline">Best Overall for PCOS — Quantitative Values Track Your Personal Pattern</div>
+</div>
+<div class="pl-score-wrap">
+<div class="pl-stars">★★★★★</div>
+<div class="pl-score">9.7/10</div>
+</div>
+<div class="pl-cta">Read Full Review →</div>
+</a>
+<a href="#review-2" class="pl-item">
+<div class="pl-rank">2</div>
+<div class="pl-info">
+<div class="pl-name">Clearblue Advanced Digital</div>
+<div class="pl-tagline">Best OTC for PCOS — Estrogen Tracking More Reliable Than LH Alone</div>
+</div>
+<div class="pl-score-wrap">
+<div class="pl-stars">★★★★★</div>
+<div class="pl-score">9.1/10</div>
+</div>
+<div class="pl-cta">Read Full Review →</div>
+</a>
+<a href="#review-3" class="pl-item">
+<div class="pl-rank">3</div>
+<div class="pl-info">
+<div class="pl-name">Inito Fertility Monitor</div>
+<div class="pl-tagline">Best for Confirming Ovulation — Progesterone Measurement Unique</div>
+</div>
+<div class="pl-score-wrap">
+<div class="pl-stars">★★★★★</div>
+<div class="pl-score">9.0/10</div>
+</div>
+<div class="pl-cta">Read Full Review →</div>
+</a>
+<a href="#review-4" class="pl-item">
+<div class="pl-rank">4</div>
+<div class="pl-info">
+<div class="pl-name">Easy@Home Smart BBT Thermometer</div>
+<div class="pl-tagline">Best Supplementary — Basal Temperature Confirms Ovulation</div>
+</div>
+<div class="pl-score-wrap">
+<div class="pl-stars">★★★★☆</div>
+<div class="pl-score">8.7/10</div>
+</div>
+<div class="pl-cta">Read Full Review →</div>
+</a>
+<a href="#review-5" class="pl-item">
+<div class="pl-rank">5</div>
+<div class="pl-info">
+<div class="pl-name">Premom LH Strips (100-pack)</div>
+<div class="pl-tagline">Best High-Volume Budget — Twice-Daily Testing Affordable</div>
+</div>
+<div class="pl-score-wrap">
+<div class="pl-stars">★★★★☆</div>
+<div class="pl-score">8.4/10</div>
+</div>
+<div class="pl-cta">Read Full Review →</div>
+</a>
+</div>
+<hr class="section-divider" style="margin:2.5rem 0;">
+<p style="font-size:0.85rem;color:var(--gray-dark);text-align:center;margin-bottom:2rem;">Detailed reviews below — click any product above to jump to its full review.</p>
+<div id="review-1" class="product-card winner"><div class="winner-ribbon">Editor's Choice</div>
 <div class="product-card-body"><div>
   <div class="product-rank rank-1">1</div><div class="product-name">Mira Fertility Plus Monitor</div>
   <div class="product-tagline">Best Overall for PCOS — Quantitative Values Track Your Personal Pattern</div><p class="product-desc">The Mira Fertility Plus is the single most important advancement in ovulation testing for PCOS. Instead of comparing LH to a fixed threshold (which fails in PCOS because baseline LH is already elevated), Mira measures actual quantitative hormone concentrations in mIU/mL — the same data your gynecologist uses. Its AI algorithm learns your personal hormone pattern over multiple cycles, distinguishing true LH surges from chronic LH elevation. Also tracks estrogen. Multiple fertility specialists specifically recommend Mira for PCOS patients.</p>
@@ -276,7 +361,7 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   <div class="score-label">Overall Score</div><div class="price-tag">$199 + strips</div>
   <a href="#" class="buy-btn gold-btn">Buy Now</a>
 </div></div>
-<div class="product-footer"><span><strong>Hormones:</strong> LH + Estrogen (quantitative mIU/mL)</span><span><strong>AI learning:</strong> Yes — learns PCOS pattern</span><span><strong>PCOS validation:</strong> Best available</span><span><strong>Specialist rec.:</strong> Yes</span></div></div><div class="product-card">
+<div class="product-footer"><span><strong>Hormones:</strong> LH + Estrogen (quantitative mIU/mL)</span><span><strong>AI learning:</strong> Yes — learns PCOS pattern</span><span><strong>PCOS validation:</strong> Best available</span><span><strong>Specialist rec.:</strong> Yes</span></div></div><div id="review-2" class="product-card">
 <div class="product-card-body"><div>
   <div class="product-rank">2</div><div class="product-name">Clearblue Advanced Digital</div>
   <div class="product-tagline">Best OTC for PCOS — Estrogen Tracking More Reliable Than LH Alone</div><p class="product-desc">The Clearblue Advanced is the best OTC option for PCOS because it tracks estrogen in addition to LH. The estrogen rise (preceding LH by 2–5 days) is often less disrupted by PCOS than LH patterns — giving an earlier, more reliable signal. Digital smiley face display provides clear High (estrogen) and Peak (LH) fertility identification. Test daily from cycle day 6 to catch early or late ovulation.</p>
@@ -288,7 +373,7 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   <div class="score-label">Overall Score</div><div class="price-tag">$45 (starter kit)</div>
   <a href="#" class="buy-btn">Buy Now</a>
 </div></div>
-<div class="product-footer"><span><strong>Hormones:</strong> Estrogen + LH</span><span><strong>Display:</strong> Digital smiley</span><span><strong>PCOS advantage:</strong> Estrogen rise less disrupted by PCOS</span><span><strong>Fertile window:</strong> Up to 7 days</span></div></div><div class="product-card">
+<div class="product-footer"><span><strong>Hormones:</strong> Estrogen + LH</span><span><strong>Display:</strong> Digital smiley</span><span><strong>PCOS advantage:</strong> Estrogen rise less disrupted by PCOS</span><span><strong>Fertile window:</strong> Up to 7 days</span></div></div><div id="review-3" class="product-card">
 <div class="product-card-body"><div>
   <div class="product-rank">3</div><div class="product-name">Inito Fertility Monitor</div>
   <div class="product-tagline">Best for Confirming Ovulation — Progesterone Measurement Unique</div><p class="product-desc">Inito is uniquely valuable for PCOS patients who need to confirm whether ovulation actually occurred — not just whether an LH surge was detected. PCOS patients frequently have LH surges without actual egg release (anovulatory cycles). Inito's progesterone measurement confirms whether the luteal phase progesterone rise occurred — the definitive sign that ovulation happened. Tracks 4 hormones: estrogen, LH, FSH, and progesterone.</p>
@@ -300,7 +385,7 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   <div class="score-label">Overall Score</div><div class="price-tag">$149 + strips</div>
   <a href="#" class="buy-btn">Buy Now</a>
 </div></div>
-<div class="product-footer"><span><strong>Hormones:</strong> E, LH, FSH, Progesterone</span><span><strong>Confirms ovulation:</strong> Yes — via progesterone</span><span><strong>Anovulatory detection:</strong> Yes</span><span><strong>PCOS critical:</strong> Confirms egg release, not just LH surge</span></div></div><div class="product-card">
+<div class="product-footer"><span><strong>Hormones:</strong> E, LH, FSH, Progesterone</span><span><strong>Confirms ovulation:</strong> Yes — via progesterone</span><span><strong>Anovulatory detection:</strong> Yes</span><span><strong>PCOS critical:</strong> Confirms egg release, not just LH surge</span></div></div><div id="review-4" class="product-card">
 <div class="product-card-body"><div>
   <div class="product-rank">4</div><div class="product-name">Easy@Home Smart BBT Thermometer</div>
   <div class="product-tagline">Best Supplementary — Basal Temperature Confirms Ovulation</div><p class="product-desc">Basal body temperature tracking is valuable for PCOS — a sustained temperature rise confirms ovulation retrospectively. The Easy@Home smart thermometer measures to 0.01°C precision and auto-syncs to the Premom app, identifying the biphasic temperature pattern. While BBT doesn't predict ovulation in advance, it confirms it and helps identify personal cycle patterns over time.</p>
@@ -312,7 +397,7 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
   <div class="score-label">Overall Score</div><div class="price-tag">$29</div>
   <a href="#" class="buy-btn">Buy Now</a>
 </div></div>
-<div class="product-footer"><span><strong>Precision:</strong> 0.01°C</span><span><strong>App:</strong> Premom auto-charting</span><span><strong>BBT pattern:</strong> Biphasic identification</span><span><strong>Best use:</strong> Retrospective ovulation confirmation</span></div></div><div class="product-card">
+<div class="product-footer"><span><strong>Precision:</strong> 0.01°C</span><span><strong>App:</strong> Premom auto-charting</span><span><strong>BBT pattern:</strong> Biphasic identification</span><span><strong>Best use:</strong> Retrospective ovulation confirmation</span></div></div><div id="review-5" class="product-card">
 <div class="product-card-body"><div>
   <div class="product-rank">5</div><div class="product-name">Premom LH Strips (100-pack)</div>
   <div class="product-tagline">Best High-Volume Budget — Twice-Daily Testing Affordable</div><p class="product-desc">For PCOS patients, testing twice daily throughout the cycle dramatically improves surge detection — LH surges can be short and the cycle day highly variable. At $0.20 per strip, Premom strips make twice-daily testing economically feasible. The Premom app reads strips via phone camera and generates line intensity trend charts — a budget alternative to Mira's quantitative approach.</p>
@@ -336,5 +421,6 @@ footer .disclaimer{margin-top:0.75rem;font-size:0.75rem;color:rgba(255,255,255,0
 <script>
 document.querySelectorAll('.faq-q').forEach(q=>{q.addEventListener('click',()=>{const i=q.parentElement;const w=i.classList.contains('open');document.querySelectorAll('.faq-item').forEach(x=>x.classList.remove('open'));if(!w)i.classList.add('open');});});
 </script>
+<script>document.querySelectorAll('.pl-item').forEach(a=>{a.addEventListener('click',function(e){e.preventDefault();const t=document.querySelector(this.getAttribute('href'));if(t){t.scrollIntoView({behavior:'smooth',block:'start'});}});});</script>
 </body>
 </html>
