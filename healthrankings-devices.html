@@ -196,11 +196,12 @@ const DEVICE_TYPES = [
     score: '9.5',
     reviewPage: '/healthrankings-obesity-top5.html',
     allPage: '/healthrankings-all-body-composition-monitors.html',
+    reviewCatalogCount: 22,
     products: [
       {name:'Tanita RD-953',score:'9.5'},
       {name:'Withings Body Scan',score:'9.4'},
+      {name:'Withings Body Comp',score:'9.3'},
       {name:'InBody Dial H20',score:'9.2'},
-      {name:'Tanita RD-545 InnerScan PRO',score:'9.1'},
     ]
   },
   {
@@ -491,14 +492,14 @@ function render() {
     <div class="device-section" data-cat="${dt.cat}">
       <div class="device-section-header">
         <div class="device-section-title">${dt.name}</div>
-        <span class="device-count">${dt.products.length} products reviewed</span>
+        <span class="device-count">${dt.reviewCatalogCount != null ? dt.reviewCatalogCount : dt.products.length} products reviewed</span>
       </div>
       
       <a href="${dt.reviewPage}" class="top5-box" style="display:flex;text-decoration:none;">
         <div class="top5-box-left">
           <div class="top5-box-badge">Expert Ranked · Top 5 of 2026</div>
           <div class="top5-box-title">We Reviewed the Best ${dt.name} of 2026</div>
-          <div class="top5-box-sub">#1 Pick: ${dt.winner} &nbsp;·&nbsp; Score: ${dt.score}/10 &nbsp;·&nbsp; ${dt.products.length} products tested</div>
+          <div class="top5-box-sub">#1 Pick: ${dt.winner} &nbsp;·&nbsp; Score: ${dt.score}/10 &nbsp;·&nbsp; ${dt.reviewCatalogCount != null ? dt.reviewCatalogCount + ' scales in full catalog' : dt.products.length + ' products tested'}</div>
         </div>
         <div class="top5-box-btn">See Full Top 5 →</div>
       </a>
