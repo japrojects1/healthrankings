@@ -84,6 +84,10 @@ nav{background:var(--white);height:64px;padding:0 2rem;display:flex;align-items:
 .products-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
 .product-card{background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:1.1rem;transition:all 0.2s;cursor:pointer;text-decoration:none;color:var(--text);display:flex;flex-direction:column;gap:0.5rem;}
 .product-card:hover{border-color:var(--primary);box-shadow:0 4px 16px rgba(21,101,192,0.12);transform:translateY(-2px);}
+.pc-thumb-wrap{flex-shrink:0;width:100%;aspect-ratio:1;max-height:132px;border-radius:10px;background:var(--gray);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.pc-thumb{width:100%;height:100%;object-fit:contain;padding:0.4rem;}
+.pc-thumb-missing{background:linear-gradient(145deg,var(--gray-mid) 0%,var(--gray) 100%);}
+.pc-thumb-missing::after{content:'';width:40px;height:40px;border-radius:10px;border:2px dashed rgba(100,116,139,0.35);}
 .pc-rank{font-size:0.65rem;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;color:var(--accent);}
 .pc-name{font-size:0.88rem;font-weight:600;color:var(--text);line-height:1.3;flex:1;}
 .pc-bottom{display:flex;align-items:center;justify-content:space-between;margin-top:auto;}
@@ -462,6 +466,30 @@ const DEVICE_TYPES = [
   },
 ];
 
+// Main product photos (Amazon listing images use m.media-amazon.com/.../images/I/...; add per-item `image` on a product to override)
+const PRODUCT_IMAGES = {
+  'Oxiline Pressure XS Pro': 'https://oxiline.shop/app/uploads/2024/10/Pressure-XS-Pro-Floating-1274x800.png',
+  'Omron Platinum BP5450': 'https://m.media-amazon.com/images/I/71tRxilq8eL._AC_SL400_.jpg',
+  'Withings BPM Connect': 'https://image-cache.withings.com/site/media/wi_products/bpm-connect.png',
+  'Oxiline Scale MD PRO': 'https://oxiline.shop/app/uploads/2024/11/scale-md-floating-collection.png',
+  'Tanita RD-953': 'https://cdn.sanity.io/images/pxae2rhw/production/5d6980ac8b28647481b6220e140c6f966f3d940e-1400x1400.png',
+  'Withings Body Scan': 'https://image-cache.withings.com/site/media/wi_products/body-scan-black.png',
+  'Withings Body Comp': 'https://image-cache.withings.com/site/media/wi_products/body-comp-black.png',
+  'Oxiline Pulse X Pro': 'https://oxiline.shop/app/uploads/2024/11/pulse-xs-web.png',
+  'Oxiline Thermo X Pro': 'https://oxiline.shop/app/uploads/2024/09/therma-floating-web-no-shadow.png',
+  'Oxiline TENS X Pro': 'https://oxiline.shop/app/uploads/2024/09/tensx-pro-with-pads2-copy.png',
+  'Oxiline Scale X Pro': 'https://oxiline.shop/app/uploads/2024/09/scale-x1floating.png',
+  'iReliev ET-7070 TENS + EMS': 'https://cdn.shopify.com/s/files/1/0901/0829/7504/files/61pd-pFCNkL._AC_SX679.jpg',
+};
+
+function productImageUrl(p) {
+  return (p && p.image) || PRODUCT_IMAGES[p.name] || '';
+}
+
+function escAttr(s) {
+  return String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+}
+
 // ── RENDER ────────────────────────────────────────────────────────────────
 let activeCat = 'all';
 let searchQ = '';
@@ -505,16 +533,23 @@ function render() {
       </a>
 
       <div class="products-grid">
-        ${dt.products.map((p, i) => `
-          <a href="/healthrankings-review-${p.name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').substring(0,60)}.html" class="product-card">
+        ${dt.products.map((p, i) => {
+          const reviewSlug = p.name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').substring(0,60);
+          const src = productImageUrl(p);
+          const thumb = src
+            ? `<div class="pc-thumb-wrap"><img class="pc-thumb" src="${escAttr(src)}" alt="${escAttr(p.name)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.remove();this.parentElement.classList.add('pc-thumb-missing');"></div>`
+            : `<div class="pc-thumb-wrap pc-thumb-missing" aria-hidden="true"></div>`;
+          return `
+          <a href="/healthrankings-review-${reviewSlug}.html" class="product-card">
+            ${thumb}
             <div class="pc-rank">#${i + 1} Pick</div>
             <div class="pc-name">${p.name}</div>
             <div class="pc-bottom">
               <span class="pc-score">★ ${p.score}/10</span>
               <span class="pc-arrow">Read Review →</span>
             </div>
-          </a>
-        `).join('')}
+          </a>`;
+        }).join('')}
       </div>
 
       <div class="see-all-row">
