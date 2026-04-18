@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 /**
  * Usage: node scripts/fetch-amazon-main-for-asin.js B0XXXXXXXX
- * Prints the first m.media-amazon.com ..._AC_SL1500_.jpg found on the product page (main gallery image).
+ * Prints the main gallery image URL from the product page.
  */
 const https = require('https');
+const { extractMainGalleryImageUrl } = require('./amazon-extract-main-image.js');
 
 const asin = process.argv[2];
 if (!asin || !/^[A-Z0-9]{10}$/i.test(asin)) {
@@ -19,19 +20,13 @@ https
     let d = '';
     res.on('data', (c) => (d += c));
     res.on('end', () => {
-      let m = d.match(/images\/I\/[A-Za-z0-9+_%-]+\._AC_SL1500_\.jpg/g);
-      if (!m || !m.length) {
-        const alt = d.match(/images\/I\/([A-Za-z0-9+_%-]+)\._AC_SL(1200|1000|800)_\.jpg/);
-        if (alt) {
-          const id = alt[1];
-          console.log(`https://m.media-amazon.com/images/I/${id}._AC_SL1500_.jpg`);
-          return;
-        }
-        console.error('No gallery _AC_SL####_.jpg found (captcha or layout change). Page length:', d.length);
-        process.exit(2);
+      const url = extractMainGalleryImageUrl(d);
+      if (url) {
+        console.log(url);
+        return;
       }
-      const first = m[0];
-      console.log(`https://m.media-amazon.com/${first}`);
+      console.error('No main gallery image found (captcha or layout change). Page length:', d.length);
+      process.exit(2);
     });
   })
   .on('error', (e) => {
