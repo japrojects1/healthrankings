@@ -1,10 +1,6 @@
 (function () {
   'use strict';
 
-  function escAttr(s) {
-    return String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;');
-  }
-
   function getProductName(row) {
     var el = row.querySelector('.dl-name');
     if (!el) return '';
