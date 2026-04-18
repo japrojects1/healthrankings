@@ -1,12 +1,23 @@
 /**
- * Reads healthrankings-devices.html PRODUCT_IMAGES and all healthrankings-all-*.html
- * catalog rows, then writes ../catalog-product-images.js with merged lookups.
+ * Reads:
+ *   - catalog-amazon-by-slug.json (review page stem → Amazon main image, highest priority)
+ *   - healthrankings-devices.html PRODUCT_IMAGES
+ *   - all healthrankings-all-*.html catalog rows
+ * Writes: ../catalog-product-images.js
+ *
+ * Policy: Catalog thumbnails use Amazon CDN main gallery images only (m.media-amazon.com).
+ * Non-Amazon URLs from the devices map are omitted unless overridden by slug JSON.
  */
 const fs = require('fs');
 const path = require('path');
 
 const root = path.join(__dirname, '..');
 const devicesPath = path.join(root, 'healthrankings-devices.html');
+const slugPath = path.join(root, 'catalog-amazon-by-slug.json');
+
+function isAmazonMainImageUrl(url) {
+  return typeof url === 'string' && url.includes('m.media-amazon.com/images/I/');
+}
 
 function parseProductImages(html) {
   const m = html.match(/const PRODUCT_IMAGES = \{([\s\S]*?)\n\};/);
@@ -33,6 +44,22 @@ function decodeHtmlEntities(s) {
     .trim();
 }
 
+function hrefToSlug(href) {
+  const s = href.replace(/^\//, '');
+  return s.replace(/\.html$/, '');
+}
+
+function loadSlugMap() {
+  if (!fs.existsSync(slugPath)) return {};
+  const raw = JSON.parse(fs.readFileSync(slugPath, 'utf8'));
+  const out = {};
+  for (const [k, v] of Object.entries(raw)) {
+    if (k.startsWith('_')) continue;
+    if (typeof v === 'string' && isAmazonMainImageUrl(v)) out[k] = v;
+  }
+  return out;
+}
+
 function collectCatalogRows() {
   const files = fs.readdirSync(root).filter((f) => f.startsWith('healthrankings-all-') && f.endsWith('.html'));
   const rows = [];
@@ -46,13 +73,12 @@ function collectCatalogRows() {
       const nameM = inner.match(/<div class="dl-name">([^<]+)<\/div>/);
       if (!nameM) continue;
       const name = decodeHtmlEntities(nameM[1]);
-      rows.push({ file: f, href, name });
+      rows.push({ file: f, href, name, slug: hrefToSlug(href) });
     }
   }
   return rows;
 }
 
-/** Longest device key that appears as substring of catalog name (min length avoids "Omron" alone). */
 function matchBySubstring(name, deviceKeys) {
   const n = name.toLowerCase();
   let best = '';
@@ -72,58 +98,80 @@ const EXTRA_ALIASES = {
   'Pressure XS Pro Bluetooth Monitor': 'Oxiline Pressure XS Pro',
 };
 
+/**
+ * Only Amazon URLs; representative models (avoid wrong categories, e.g. thermometer for BP).
+ */
+function brandFallbackUrl(name, deviceMap) {
+  const n = name.toLowerCase();
+  const o = (k) => {
+    const u = deviceMap[k] || '';
+    return isAmazonMainImageUrl(u) ? u : '';
+  };
+  if (n.includes('omron')) return o('Omron Platinum BP5450');
+  if (n.includes('withings')) return o('Withings BPM Connect');
+  if (n.includes('oxiline') || n.includes('pressure xs pro')) return o('Oxiline Pressure XS Pro');
+  if (n.includes('theragun')) return o('Theragun PRO Gen 6');
+  if (n.includes('hypervolt')) return o('Hypervolt 2 Pro');
+  if (n.includes('renpho') && n.includes('massage')) return o('Renpho R3 Percussion Massager');
+  if (n.includes('waterpik')) return o('Waterpik Aquarius WP-660');
+  if (n.includes('oral-b') || n.includes('oral b')) return o('Oral-B Pro 3000');
+  if (n.includes('sonicare') || n.includes('philips')) return o('Philips Sonicare DiamondClean Smart 9750');
+  if (n.includes('tanita')) return o('Tanita RD-953');
+  if (n.includes('garmin') && n.includes('index s2')) return o('Garmin Index S2');
+  if (n.includes('garmin') && n.includes('bpm')) return '';
+  return '';
+}
+
+function resolveUrl(name, slug, deviceMap, deviceKeys, slugMap) {
+  if (slugMap[slug] && isAmazonMainImageUrl(slugMap[slug])) {
+    return slugMap[slug];
+  }
+
+  let url = '';
+  if (deviceMap[name] && isAmazonMainImageUrl(deviceMap[name])) {
+    url = deviceMap[name];
+  } else if (EXTRA_ALIASES[name] && deviceMap[EXTRA_ALIASES[name]]) {
+    const u = deviceMap[EXTRA_ALIASES[name]];
+    if (isAmazonMainImageUrl(u)) url = u;
+  }
+
+  if (!url) {
+    const sub = matchBySubstring(name, deviceKeys);
+    if (sub && isAmazonMainImageUrl(deviceMap[sub])) url = deviceMap[sub];
+  }
+
+  if (!url) {
+    url = brandFallbackUrl(name, deviceMap);
+  }
+
+  if (url && !isAmazonMainImageUrl(url)) url = '';
+
+  if (!url && slugMap[slug] && isAmazonMainImageUrl(slugMap[slug])) {
+    url = slugMap[slug];
+  }
+
+  return url;
+}
+
 function main() {
   const devicesHtml = fs.readFileSync(devicesPath, 'utf8');
   const deviceMap = parseProductImages(devicesHtml);
   const deviceKeys = Object.keys(deviceMap);
+  const slugMap = loadSlugMap();
   const rows = collectCatalogRows();
 
   const byName = {};
   const seen = new Set();
 
-  for (const { name, href } of rows) {
+  for (const { name, slug } of rows) {
     if (seen.has(name)) continue;
     seen.add(name);
-
-    let url = '';
-    if (deviceMap[name]) {
-      url = deviceMap[name];
-    } else if (EXTRA_ALIASES[name] && deviceMap[EXTRA_ALIASES[name]]) {
-      url = deviceMap[EXTRA_ALIASES[name]];
-    } else {
-      const sub = matchBySubstring(name, deviceKeys);
-      if (sub) url = deviceMap[sub];
-    }
-    byName[name] = url;
-  }
-
-  /** When no device match, use brand-level hero shots (representative Amazon main image). */
-  function brandFallbackUrl(name) {
-    const n = name.toLowerCase();
-    const o = (k) => deviceMap[k] || '';
-    if (n.includes('omron')) return o('Omron Platinum BP5450');
-    if (n.includes('withings')) return o('Withings BPM Connect');
-    if (n.includes('oxiline') || n.includes('pressure xs pro')) return o('Oxiline Pressure XS Pro');
-    if (n.includes('braun') && (n.includes('exactfit') || n.includes('bua'))) return o('Braun No Touch + Forehead Thermometer');
-    if (n.includes('theragun')) return o('Theragun PRO Gen 6');
-    if (n.includes('hypervolt')) return o('Hypervolt 2 Pro');
-    if (n.includes('renpho') && n.includes('massage')) return o('Renpho R3 Percussion Massager');
-    if (n.includes('waterpik')) return o('Waterpik Aquarius WP-660');
-    if (n.includes('oral-b') || n.includes('oral b')) return o('Oral-B Pro 3000');
-    if (n.includes('sonicare') || n.includes('philips')) return o('Philips Sonicare DiamondClean Smart 9750');
-    if (n.includes('garmin')) return o('Garmin Index S2');
-    if (n.includes('tanita')) return o('Tanita RD-953');
-    return '';
-  }
-
-  for (const name of Object.keys(byName)) {
-    if (byName[name]) continue;
-    const fb = brandFallbackUrl(name);
-    if (fb) byName[name] = fb;
+    byName[name] = resolveUrl(name, slug, deviceMap, deviceKeys, slugMap);
   }
 
   const sortedNames = Object.keys(byName).sort();
   let js = `/* Auto-generated by scripts/build-catalog-product-images.js — run: node scripts/build-catalog-product-images.js */\n`;
+  js += `/* Catalog uses Amazon main gallery images (m.media-amazon.com). Add per-product overrides in catalog-amazon-by-slug.json */\n`;
   js += `(function(){\n'use strict';\nwindow.CATALOG_PRODUCT_IMAGES = {\n`;
   for (const name of sortedNames) {
     const url = byName[name];
@@ -136,7 +184,8 @@ function main() {
   fs.writeFileSync(outPath, js, 'utf8');
   const withUrl = sortedNames.filter((n) => byName[n]).length;
   console.log('Wrote', outPath);
-  console.log('Products:', sortedNames.length, 'with URL:', withUrl, 'placeholder:', sortedNames.length - withUrl);
+  console.log('Slug overrides:', Object.keys(slugMap).length);
+  console.log('Products:', sortedNames.length, 'with Amazon URL:', withUrl, 'placeholder:', sortedNames.length - withUrl);
 }
 
 main();
