@@ -466,20 +466,58 @@ const DEVICE_TYPES = [
   },
 ];
 
-// Main product photos (Amazon listing images use m.media-amazon.com/.../images/I/...; add per-item `image` on a product to override)
 const PRODUCT_IMAGES = {
-  'Oxiline Pressure XS Pro': 'https://oxiline.shop/app/uploads/2024/10/Pressure-XS-Pro-Floating-1274x800.png',
-  'Omron Platinum BP5450': 'https://m.media-amazon.com/images/I/71tRxilq8eL._AC_SL400_.jpg',
-  'Withings BPM Connect': 'https://image-cache.withings.com/site/media/wi_products/bpm-connect.png',
+  // Blood Pressure Monitors
+  'Oxiline Pressure XS Pro': 'https://m.media-amazon.com/images/I/71egB8XUykL._AC_SL1500_.jpg',
+  'Omron Platinum BP5450': 'https://m.media-amazon.com/images/I/71tRxilq8eL._AC_SL1500_.jpg',
+  'Withings BPM Connect': 'https://m.media-amazon.com/images/I/814Y-B+zqjL._AC_SL1500_.jpg',
+  'Omron Gold BP5195': 'https://m.media-amazon.com/images/I/715GwuBjP0L._AC_SL1500_.jpg',
+  // Body Composition Monitors
   'Oxiline Scale MD PRO': 'https://oxiline.shop/app/uploads/2024/11/scale-md-floating-collection.png',
-  'Tanita RD-953': 'https://cdn.sanity.io/images/pxae2rhw/production/5d6980ac8b28647481b6220e140c6f966f3d940e-1400x1400.png',
+  'Tanita RD-953': 'https://m.media-amazon.com/images/I/51mV6W-oSdL._AC_SL1500_.jpg',
   'Withings Body Scan': 'https://image-cache.withings.com/site/media/wi_products/body-scan-black.png',
   'Withings Body Comp': 'https://image-cache.withings.com/site/media/wi_products/body-comp-black.png',
+  // Pulse Oximeters
+  'Wellue O2Ring Gen 2': 'https://m.media-amazon.com/images/I/61aqztiEzeL._AC_SL1500_.jpg',
   'Oxiline Pulse X Pro': 'https://oxiline.shop/app/uploads/2024/11/pulse-xs-web.png',
+  // Thermometers
+  'Braun No Touch + Forehead Thermometer': 'https://m.media-amazon.com/images/I/61KiudGGlhL._AC_SL1500_.jpg',
+  'Kinsa QuickCare Smart Thermometer': 'https://m.media-amazon.com/images/I/41SfJw2fWAL._AC_SL1500_.jpg',
   'Oxiline Thermo X Pro': 'https://oxiline.shop/app/uploads/2024/09/therma-floating-web-no-shadow.png',
-  'Oxiline TENS X Pro': 'https://oxiline.shop/app/uploads/2024/09/tensx-pro-with-pads2-copy.png',
-  'Oxiline Scale X Pro': 'https://oxiline.shop/app/uploads/2024/09/scale-x1floating.png',
+  'iHealth No-Touch Forehead Thermometer': 'https://m.media-amazon.com/images/I/61QUEYrQgCL._AC_SL1500_.jpg',
+  // Glucometers & CGM
+  'Contour Next One': 'https://m.media-amazon.com/images/I/61GJ-QB9R9L._AC_SL1500_.jpg',
+  'Accu-Chek Guide Me': 'https://m.media-amazon.com/images/I/71UjnlRr2bL._AC_SL1500_.jpg',
+  // TENS Units
   'iReliev ET-7070 TENS + EMS': 'https://cdn.shopify.com/s/files/1/0901/0829/7504/files/61pd-pFCNkL._AC_SX679.jpg',
+  'Compex Sport Elite 3.0': 'https://m.media-amazon.com/images/I/714B214bb6L._AC_SL1500_.jpg',
+  'Oxiline TENS X Pro': 'https://oxiline.shop/app/uploads/2024/09/tensx-pro-with-pads2-copy.png',
+  'Beurer EM59 Wireless TENS': 'https://m.media-amazon.com/images/I/71-pwEDgT8L._AC_SL1500_.jpg',
+  // Massage Devices
+  'Theragun PRO Gen 6': 'https://m.media-amazon.com/images/I/71TcycbAqDL._AC_SL1500_.jpg',
+  'Hypervolt 2 Pro': 'https://m.media-amazon.com/images/I/613PE8izIRL._AC_SL1500_.jpg',
+  'Renpho R3 Percussion Massager': 'https://m.media-amazon.com/images/I/71-BpwWHsHL._AC_SL1500_.jpg',
+  // Back Supports
+  'Mueller Lumbar Support Back Brace': 'https://m.media-amazon.com/images/I/81HSF3LNecL._AC_SL1500_.jpg',
+  'Sparthos Lumbar Support Belt': 'https://m.media-amazon.com/images/I/410r55hn3ZL._AC_SL1500_.jpg',
+  // Arthritis Gloves
+  'IMAK Compression Arthritis Gloves': 'https://m.media-amazon.com/images/I/71Ek2an3kJL._AC_SL1500_.jpg',
+  // Breathing Trainers
+  'Airofit PRO Breathing Trainer': 'https://m.media-amazon.com/images/I/61VjduGJmAL._AC_SL1500_.jpg',
+  // Dental
+  'Philips Sonicare DiamondClean Smart 9750': 'https://m.media-amazon.com/images/I/71itGT991BL._AC_SL1500_.jpg',
+  'Oral-B Pro 3000': 'https://m.media-amazon.com/images/I/51NakJVrtCL._AC_SL1500_.jpg',
+  'Waterpik Aquarius WP-660': 'https://m.media-amazon.com/images/I/714Q49TDXlL._AC_SL1500_.jpg',
+  // Fitness
+  'Garmin Index S2': 'https://m.media-amazon.com/images/I/71Te2UijceL._AC_SL1500_.jpg',
+  'Oxiline Scale X Pro': 'https://oxiline.shop/app/uploads/2024/09/scale-x1floating.png',
+  // Fertility
+  'Clearblue Advanced Digital': 'https://m.media-amazon.com/images/I/41RYLNMWKXL._AC_SL1500_.jpg',
+  // GPS & Alert Systems
+  'Apple Watch Series 10': 'https://m.media-amazon.com/images/I/6105jZyXyPL._AC_SL1500_.jpg',
+  // Supplements
+  'Optimum Nutrition Micronized Creatine': 'https://m.media-amazon.com/images/I/71SGNJz5y8L._AC_SL1500_.jpg',
+  'BulkSupplements Creatine Monohydrate': 'https://m.media-amazon.com/images/I/61Tc7SOflkL._AC_SL1500_.jpg',
 };
 
 function productImageUrl(p) {
