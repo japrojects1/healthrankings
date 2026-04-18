@@ -1,5 +1,17 @@
 {
+  "_comment": "Per-review thumbnail URLs (Amazon CDN or allowlisted official CDNs). Keys = review page stem without .html",
   "healthrankings-review-garmin-index-bpm-smart-blood-pressure-monitor": "https://m.media-amazon.com/images/I/71mQGacgquL._AC_SL1500_.jpg",
   "healthrankings-review-braun-exactfit-3-bua6150": "https://m.media-amazon.com/images/I/5121R0cv9ES._AC_SL1500_.jpg",
-  "healthrankings-review-braun-exactfit-5-bua6350": "https://m.media-amazon.com/images/I/5121R0cv9ES._AC_SL1500_.jpg"
+  "healthrankings-review-braun-exactfit-5-bua6350": "https://m.media-amazon.com/images/I/5121R0cv9ES._AC_SL1500_.jpg",
+  "healthrankings-review-omron-complete-2-in-1-bp-monitor-ekg": "https://m.media-amazon.com/images/I/61jGyip72NL._AC_SL1500_.jpg",
+  "healthrankings-review-omron-evolv-wireless-blood-pressure-monitor": "https://m.media-amazon.com/images/I/71VEI1vGA2L._AC_SL1500_.jpg",
+  "healthrankings-review-omron-silver-blood-pressure-monitor": "https://m.media-amazon.com/images/I/71hSXRZxBwL._AC_SL1500_.jpg",
+  "healthrankings-review-withings-body-scan": "https://image-cache.withings.com/site/media/wi_products/body-scan-black.png",
+  "healthrankings-review-withings-body-comp": "https://image-cache.withings.com/site/media/wi_products/body-comp-black.png",
+  "healthrankings-review-withings-bpm-core": "https://image-cache.withings.com/site/media/wi_products/bpm-core.png",
+  "healthrankings-review-oxiline-scale-md-pro": "https://oxiline.shop/app/uploads/2024/11/scale-md-floating-collection.png",
+  "healthrankings-review-oxiline-scale-x-pro": "https://oxiline.shop/app/uploads/2024/09/scale-x1floating.png",
+  "healthrankings-review-oxiline-pulse-x-pro": "https://oxiline.shop/app/uploads/2024/11/pulse-xs-web.png",
+  "healthrankings-review-oxiline-thermo-x-pro": "https://oxiline.shop/app/uploads/2024/09/therma-floating-web-no-shadow.png",
+  "healthrankings-review-oxiline-tens-x-pro": "https://oxiline.shop/app/uploads/2024/09/tensx-pro-with-pads2-copy.png"
 }

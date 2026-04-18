@@ -1,12 +1,14 @@
 /**
  * Reads:
- *   - catalog-amazon-by-slug.json (review page stem → Amazon main image, highest priority)
+ *   - catalog-amazon-by-slug.json (review page stem → product image URL, highest priority)
+ *   - catalog-name-to-product-key.json (optional: catalog dl-name → PRODUCT_IMAGES key)
  *   - healthrankings-devices.html PRODUCT_IMAGES
  *   - all healthrankings-all-*.html catalog rows
  * Writes: ../catalog-product-images.js
  *
- * Policy: Catalog thumbnails use Amazon CDN main gallery images only (m.media-amazon.com).
- * Non-Amazon URLs from the devices map are omitted unless overridden by slug JSON.
+ * Policy: Prefer slug overrides, then exact device-map matches. Substring matching only uses
+ * Amazon CDN URLs (avoids wrong-category official art). Broad brand fallbacks are disabled
+ * so different models are not forced to share one stock photo.
  */
 const fs = require('fs');
 const path = require('path');
@@ -14,9 +16,24 @@ const path = require('path');
 const root = path.join(__dirname, '..');
 const devicesPath = path.join(root, 'healthrankings-devices.html');
 const slugPath = path.join(root, 'catalog-amazon-by-slug.json');
+const nameToKeyPath = path.join(root, 'catalog-name-to-product-key.json');
 
 function isAmazonMainImageUrl(url) {
   return typeof url === 'string' && url.includes('m.media-amazon.com/images/I/');
+}
+
+/** Official / storefront images we allow for exact slug or exact PRODUCT_IMAGES matches */
+function isAllowedOfficialThumbnailUrl(url) {
+  if (!url || typeof url !== 'string') return false;
+  if (!/^https:\/\//.test(url)) return false;
+  if (url.startsWith('https://image-cache.withings.com/site/media/')) return true;
+  if (url.startsWith('https://oxiline.shop/app/uploads/')) return true;
+  if (url.startsWith('https://cdn.shopify.com/')) return true;
+  return false;
+}
+
+function isAllowedCatalogThumbnailUrl(url) {
+  return isAmazonMainImageUrl(url) || isAllowedOfficialThumbnailUrl(url);
 }
 
 function parseProductImages(html) {
@@ -55,7 +72,18 @@ function loadSlugMap() {
   const out = {};
   for (const [k, v] of Object.entries(raw)) {
     if (k.startsWith('_')) continue;
-    if (typeof v === 'string' && isAmazonMainImageUrl(v)) out[k] = v;
+    if (typeof v === 'string' && isAllowedCatalogThumbnailUrl(v)) out[k] = v;
+  }
+  return out;
+}
+
+function loadNameToProductKey() {
+  if (!fs.existsSync(nameToKeyPath)) return {};
+  const raw = JSON.parse(fs.readFileSync(nameToKeyPath, 'utf8'));
+  const out = {};
+  for (const [k, v] of Object.entries(raw)) {
+    if (k.startsWith('_')) continue;
+    if (typeof v === 'string' && v.length) out[k] = v;
   }
   return out;
 }
@@ -85,7 +113,7 @@ function matchBySubstring(name, deviceKeys) {
   let bestLen = 0;
   for (const k of deviceKeys) {
     const kl = k.toLowerCase();
-    if (kl.length < 8) continue;
+    if (kl.length < 12) continue;
     if (n.includes(kl) && k.length > bestLen) {
       best = k;
       bestLen = k.length;
@@ -98,41 +126,22 @@ const EXTRA_ALIASES = {
   'Pressure XS Pro Bluetooth Monitor': 'Oxiline Pressure XS Pro',
 };
 
-/**
- * Only Amazon URLs; representative models (avoid wrong categories, e.g. thermometer for BP).
- */
-function brandFallbackUrl(name, deviceMap) {
-  const n = name.toLowerCase();
-  const o = (k) => {
-    const u = deviceMap[k] || '';
-    return isAmazonMainImageUrl(u) ? u : '';
-  };
-  if (n.includes('omron')) return o('Omron Platinum BP5450');
-  if (n.includes('withings')) return o('Withings BPM Connect');
-  if (n.includes('oxiline') || n.includes('pressure xs pro')) return o('Oxiline Pressure XS Pro');
-  if (n.includes('theragun')) return o('Theragun PRO Gen 6');
-  if (n.includes('hypervolt')) return o('Hypervolt 2 Pro');
-  if (n.includes('renpho') && n.includes('massage')) return o('Renpho R3 Percussion Massager');
-  if (n.includes('waterpik')) return o('Waterpik Aquarius WP-660');
-  if (n.includes('oral-b') || n.includes('oral b')) return o('Oral-B Pro 3000');
-  if (n.includes('sonicare') || n.includes('philips')) return o('Philips Sonicare DiamondClean Smart 9750');
-  if (n.includes('tanita')) return o('Tanita RD-953');
-  if (n.includes('garmin') && n.includes('index s2')) return o('Garmin Index S2');
-  if (n.includes('garmin') && n.includes('bpm')) return '';
-  return '';
-}
-
-function resolveUrl(name, slug, deviceMap, deviceKeys, slugMap) {
-  if (slugMap[slug] && isAmazonMainImageUrl(slugMap[slug])) {
+function resolveUrl(name, slug, deviceMap, deviceKeys, slugMap, nameToKey) {
+  if (slugMap[slug] && isAllowedCatalogThumbnailUrl(slugMap[slug])) {
     return slugMap[slug];
   }
 
+  const keyFromCatalog = nameToKey[name];
+  if (keyFromCatalog && deviceMap[keyFromCatalog] && isAllowedCatalogThumbnailUrl(deviceMap[keyFromCatalog])) {
+    return deviceMap[keyFromCatalog];
+  }
+
   let url = '';
-  if (deviceMap[name] && isAmazonMainImageUrl(deviceMap[name])) {
+  if (deviceMap[name] && isAllowedCatalogThumbnailUrl(deviceMap[name])) {
     url = deviceMap[name];
   } else if (EXTRA_ALIASES[name] && deviceMap[EXTRA_ALIASES[name]]) {
     const u = deviceMap[EXTRA_ALIASES[name]];
-    if (isAmazonMainImageUrl(u)) url = u;
+    if (isAllowedCatalogThumbnailUrl(u)) url = u;
   }
 
   if (!url) {
@@ -140,15 +149,7 @@ function resolveUrl(name, slug, deviceMap, deviceKeys, slugMap) {
     if (sub && isAmazonMainImageUrl(deviceMap[sub])) url = deviceMap[sub];
   }
 
-  if (!url) {
-    url = brandFallbackUrl(name, deviceMap);
-  }
-
-  if (url && !isAmazonMainImageUrl(url)) url = '';
-
-  if (!url && slugMap[slug] && isAmazonMainImageUrl(slugMap[slug])) {
-    url = slugMap[slug];
-  }
+  if (url && !isAllowedCatalogThumbnailUrl(url)) url = '';
 
   return url;
 }
@@ -158,6 +159,7 @@ function main() {
   const deviceMap = parseProductImages(devicesHtml);
   const deviceKeys = Object.keys(deviceMap);
   const slugMap = loadSlugMap();
+  const nameToKey = loadNameToProductKey();
   const rows = collectCatalogRows();
 
   const byName = {};
@@ -166,12 +168,12 @@ function main() {
   for (const { name, slug } of rows) {
     if (seen.has(name)) continue;
     seen.add(name);
-    byName[name] = resolveUrl(name, slug, deviceMap, deviceKeys, slugMap);
+    byName[name] = resolveUrl(name, slug, deviceMap, deviceKeys, slugMap, nameToKey);
   }
 
   const sortedNames = Object.keys(byName).sort();
   let js = `/* Auto-generated by scripts/build-catalog-product-images.js — run: node scripts/build-catalog-product-images.js */\n`;
-  js += `/* Catalog uses Amazon main gallery images (m.media-amazon.com). Add per-product overrides in catalog-amazon-by-slug.json */\n`;
+  js += `/* Per-review overrides: catalog-amazon-by-slug.json · name→device key: catalog-name-to-product-key.json */\n`;
   js += `(function(){\n'use strict';\nwindow.CATALOG_PRODUCT_IMAGES = {\n`;
   for (const name of sortedNames) {
     const url = byName[name];
@@ -185,7 +187,8 @@ function main() {
   const withUrl = sortedNames.filter((n) => byName[n]).length;
   console.log('Wrote', outPath);
   console.log('Slug overrides:', Object.keys(slugMap).length);
-  console.log('Products:', sortedNames.length, 'with Amazon URL:', withUrl, 'placeholder:', sortedNames.length - withUrl);
+  console.log('Name→key aliases:', Object.keys(nameToKey).length);
+  console.log('Products:', sortedNames.length, 'with thumbnail URL:', withUrl, 'placeholder:', sortedNames.length - withUrl);
 }
 
 main();

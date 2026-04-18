@@ -1,0 +1,3 @@
+{
+  "_comment": "Optional: catalog dl-name (exact string) → PRODUCT_IMAGES key in healthrankings-devices.html when the display name differs but the product is the same."
+}

@@ -19,9 +19,15 @@ https
     let d = '';
     res.on('data', (c) => (d += c));
     res.on('end', () => {
-      const m = d.match(/images\/I\/[A-Za-z0-9+_%-]+\._AC_SL1500_\.jpg/g);
+      let m = d.match(/images\/I\/[A-Za-z0-9+_%-]+\._AC_SL1500_\.jpg/g);
       if (!m || !m.length) {
-        console.error('No _AC_SL1500_.jpg found (captcha or layout change). Page length:', d.length);
+        const alt = d.match(/images\/I\/([A-Za-z0-9+_%-]+)\._AC_SL(1200|1000|800)_\.jpg/);
+        if (alt) {
+          const id = alt[1];
+          console.log(`https://m.media-amazon.com/images/I/${id}._AC_SL1500_.jpg`);
+          return;
+        }
+        console.error('No gallery _AC_SL####_.jpg found (captcha or layout change). Page length:', d.length);
         process.exit(2);
       }
       const first = m[0];
