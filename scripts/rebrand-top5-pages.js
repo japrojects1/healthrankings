@@ -1,14 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Best Pulse Oximeters for Long COVID Monitoring | HealthRankings</title>
-<meta name="description" content="Best Pulse Oximeters for Long COVID Monitoring — expert-reviewed and ranked by HealthRankings.">
-<meta name="theme-color" content="#0F172A">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;0,800;1,400;1,500;1,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>:root {
+#!/usr/bin/env node
+const fs = require('fs');
+const path = require('path');
+
+const dir = path.resolve(__dirname, '..');
+const files = fs.readdirSync(dir).filter(f => f.match(/healthrankings-.*-top5\.html$/));
+
+const NEW_CSS = `:root {
   --blue-50: #EFF6FF; --blue-100: #DBEAFE; --blue-200: #BFDBFE;
   --blue-300: #93C5FD; --blue-400: #60A5FA; --blue-500: #3B82F6;
   --blue-600: #2563EB; --blue-700: #1D4ED8; --blue-800: #1E40AF;
@@ -423,11 +420,9 @@ body::before {
   .causes-list { grid-template-columns: 1fr; }
   .product-pros-cons { grid-template-columns: 1fr; }
   .top5-box { flex-direction: column; align-items: flex-start; }
-}</style>
-</head>
-<body>
+}`;
 
-<header class="header">
+const NEW_NAV = `<header class="header">
   <div class="header-inner">
     <a href="/" class="logo">
       <div class="logo-tile">
@@ -454,91 +449,9 @@ body::before {
       <a href="#">About</a>
     </nav>
   </div>
-</header>
+</header>`;
 
-<div class="hero" style="padding:2rem 2rem 1.5rem;">
-  <div class="hero-inner">
-    <div class="breadcrumb"><a href="/">Home</a> <span>›</span> <a href="/healthrankings-conditions.html">Conditions</a> <span>›</span> <a href="/healthrankings-long-covid-pulse-oximeter.html">Long COVID (PASC)& Pulse Oximeter Monitoring</a> <span>›</span> Top 5 Reviews</div>
-    <div class="condition-tag">Expert Ranked 2026</div>
-    <h1 style="font-size:clamp(1.6rem,4vw,2.4rem);margin-bottom:0.5rem;">Best Pulse Oximeters for Long COVID Monitoring</h1>
-    <a href="/healthrankings-long-covid-pulse-oximeter.html" style="color:var(--primary);font-size:0.9rem;border-bottom:1px solid rgba(21,101,192,0.3);padding-bottom:2px;">← Back to Long COVID (PASC)& Pulse Oximeter Monitoring Guide</a>
-  </div>
-</div>
-
-<div class="page-wrap">
-<div class="section" id="oximeters">
-<div class="review-hero" id="device-reviews"><h2>Best Pulse Oximeters for Long COVID Monitoring</h2><p>We evaluated 13 pulse oximeters specifically for Long COVID — prioritizing SpO₂ accuracy during activity (to guide pacing), continuous monitoring for nocturnal desaturation, heart rate tracking for autonomic dysfunction assessment, and data logging for physician review.</p>
-<div class="review-meta">
-  <div class="review-meta-item"><strong>13</strong>Products Tested</div>
-  <div class="review-meta-item"><strong>10 weeks</strong>Testing Period</div>
-  <div class="review-meta-item"><strong>Updated</strong>April 2026</div>
-</div></div>
-<div class="top5-intro"><div class="top5-badge">5</div><p><strong>How pulse oximetry helps in Long COVID:</strong> SpO₂ during activity provides an objective exertion limit guide — if SpO₂ drops below 94% or more than 3% from baseline during activity, it's a signal to stop and rest. Overnight SpO₂ monitoring identifies nocturnal desaturation contributing to non-restorative sleep. Heart rate data helps identify POTS-like autonomic dysfunction patterns.</p></div>
-
-<div id="review-1" class="product-card winner"><div class="winner-ribbon">Editor's Choice</div>
-<div class="product-card-body"><div>
-  <div class="product-rank rank-1">1</div><div class="product-name">Wellue O2Ring Gen 2</div>
-  <div class="product-tagline">Best Overall for Long COVID — Continuous Monitoring + Activity Tracking</div><p class="product-desc">The Wellue O2Ring is the most appropriate pulse oximeter for Long COVID patients because it provides continuous SpO₂ and heart rate monitoring during activity and sleep — not just spot checks. The ring form stays on the finger during movement, making it practical for monitoring SpO₂ during gentle activity as patients practice pacing. The silent vibration alarm alerts when SpO₂ drops below a set threshold without disrupting rest. Overnight reports document nocturnal desaturation and sleep SpO₂ patterns. All data syncs to the ViHealth app for trend tracking and physician sharing.</p>
-  <div style='margin-bottom:0.75rem;'><div class="rating-bar-row"><span class="rating-bar-label">Continuous monitoring</span><div class="rating-bar-track"><div class="rating-bar-fill gold" style="width:99%"></div></div><span class="rating-num">9.9</span></div><div class="rating-bar-row"><span class="rating-bar-label">Pacing utility</span><div class="rating-bar-track"><div class="rating-bar-fill gold" style="width:98%"></div></div><span class="rating-num">9.8</span></div><div class="rating-bar-row"><span class="rating-bar-label">Overnight detection</span><div class="rating-bar-track"><div class="rating-bar-fill gold" style="width:97%"></div></div><span class="rating-num">9.7</span></div><div class="rating-bar-row"><span class="rating-bar-label">Long COVID suitability</span><div class="rating-bar-track"><div class="rating-bar-fill gold" style="width:98%"></div></div><span class="rating-num">9.8</span></div></div>
-  <div class="product-pros-cons"><div class="pros"><h5>Pros</h5><ul><li>Continuous monitoring during activity — essential for pacing</li><li>Silent vibration alarm prevents exertion past safe SpO₂ threshold</li><li>Overnight nocturnal desaturation detection</li><li>Heart rate trend data for POTS-like pattern identification</li><li>12-hour battery — activity + sleep monitoring</li><li>ViHealth app with physician-shareable reports</li></ul></div><div class="cons"><h5>Cons</h5><ul><li>Less accurate than fingertip clip at very low SpO₂</li><li>Single ring size (fits most)</li><li>Less accurate during intense movement (Long COVID patients should avoid)</li></ul></div></div>
-</div>
-<div class="product-score-panel">
-  <div class="score-circle gold"><div class="score-num">9.5</div></div>
-  <div class="score-label">Overall Score</div><div class="price-tag">$89</div>
-  <a href="#" class="buy-btn gold-btn">Buy Now</a>
-</div></div>
-<div class="product-footer"><span><strong>Continuous:</strong> Yes — ring form</span><span><strong>Alarm:</strong> Silent vibration</span><span><strong>Overnight:</strong> Yes — nocturnal reports</span><span><strong>Heart rate:</strong> Yes — continuous</span><span><strong>App:</strong> ViHealth with physician reports</span></div></div><div id="review-2" class="product-card">
-<div class="product-card-body"><div>
-  <div class="product-rank">2</div><div class="product-name">Masimo MightySat Rx</div>
-  <div class="product-tagline">Best Clinical Accuracy — Respiration Rate + Clinical-Grade Data</div><p class="product-desc">For Long COVID patients whose physicians need the most clinically reliable data for medical decision-making, the Masimo MightySat's SET technology provides ICU-grade accuracy alongside respiration rate — a unique feature that provides additional data on breathing pattern abnormalities common in Long COVID. The combination of SpO₂, HR, RR, and perfusion index creates a comprehensive cardiorespiratory picture.</p>
-  
-  <div class="product-pros-cons"><div class="pros"><h5>Pros</h5><ul><li>ICU-grade SET accuracy</li><li>Respiration rate — unique for Long COVID breathing pattern monitoring</li><li>Perfusion index — microcirculation assessment</li><li>Customizable alarm</li><li>Bluetooth physician-shareable data</li><li>FDA Class II cleared</li></ul></div><div class="cons"><h5>Cons</h5><ul><li>Premium price ($199)</li><li>Spot check (not continuous wearing)</li><li>Fingertip clip form</li></ul></div></div>
-</div>
-<div class="product-score-panel">
-  <div class="score-circle"><div class="score-num">9.2</div></div>
-  <div class="score-label">Overall Score</div><div class="price-tag">$199</div>
-  <a href="#" class="buy-btn">Buy Now</a>
-</div></div>
-<div class="product-footer"><span><strong>Technology:</strong> Masimo SET</span><span><strong>RR:</strong> Yes — unique feature</span><span><strong>Perfusion index:</strong> Yes</span><span><strong>Alarm:</strong> Customizable</span><span><strong>Best for:</strong> Physician-grade clinical data / respiration rate monitoring</span></div></div><div id="review-3" class="product-card">
-<div class="product-card-body"><div>
-  <div class="product-rank">3</div><div class="product-name">Garmin Pulse Ox (via Fenix/Forerunner watch)</div>
-  <div class="product-tagline">Best for Active Long COVID Recovery — Integrated Activity Pacing Tool</div><p class="product-desc">For Long COVID patients in active paced recovery who use a Garmin watch, the integrated pulse oximetry and heart rate monitoring creates the most useful pacing tool available. The Garmin Body Battery feature (energy reserve score) and HRV status combine with SpO₂ data to provide a comprehensive readiness assessment. Setting HR and SpO₂ alerts helps patients stay below their anaerobic threshold during carefully graded activity.</p>
-  
-  <div class="product-pros-cons"><div class="pros"><h5>Pros</h5><ul><li>Integrated with Garmin ecosystem — all data in one place</li><li>Body Battery / HRV status — Long COVID readiness tool</li><li>HR + SpO₂ alerts for pacing</li><li>All-day continuous wrist HR tracking</li><li>Sleep tracking with SpO₂</li></ul></div><div class="cons"><h5>Cons</h5><ul><li>Requires Garmin watch (significant investment)</li><li>Wrist SpO₂ less accurate than fingertip</li><li>Best only within Garmin ecosystem</li></ul></div></div>
-</div>
-<div class="product-score-panel">
-  <div class="score-circle"><div class="score-num">9.0</div></div>
-  <div class="score-label">Overall Score</div><div class="price-tag">$350–700 watch</div>
-  <a href="#" class="buy-btn">Buy Now</a>
-</div></div>
-<div class="product-footer"><span><strong>SpO₂:</strong> Wrist (less accurate than fingertip)</span><span><strong>HRV status:</strong> Yes — Long COVID readiness</span><span><strong>Body Battery:</strong> Yes — energy management tool</span><span><strong>Best for:</strong> Active Long COVID recovery with Garmin ecosystem</span></div></div><div id="review-4" class="product-card">
-<div class="product-card-body"><div>
-  <div class="product-rank">4</div><div class="product-name">Oxiline Pulse X Pro</div>
-  <div class="product-tagline">Best Value — Configurable Alarm + Bluetooth for Pacing</div><p class="product-desc">For Long COVID patients who need reliable daily monitoring and pacing support without premium device investment, the Oxiline Pulse X Pro delivers configurable SpO₂ alarm, Bluetooth data logging, and a large easy-to-read display at the best value price. Setting the alarm at 94% provides an automatic pacing stop-signal during activity.</p>
-  
-  <div class="product-pros-cons"><div class="pros"><h5>Pros</h5><ul><li>Configurable SpO₂ alarm — automatic pacing stop-signal</li><li>Bluetooth trend logging for physician review</li><li>Large OLED display</li><li>Reliable accuracy for pacing purposes</li><li>Excellent value</li></ul></div><div class="cons"><h5>Cons</h5><ul><li>Not continuous (spot check)</li><li>Less accurate than Masimo</li><li>No overnight monitoring</li></ul></div></div>
-</div>
-<div class="product-score-panel">
-  <div class="score-circle"><div class="score-num">8.8</div></div>
-  <div class="score-label">Overall Score</div><div class="price-tag">$49</div>
-  <a href="#" class="buy-btn">Buy Now</a>
-</div></div>
-<div class="product-footer"><span><strong>Alarm:</strong> Yes — configurable (set at 94% for pacing)</span><span><strong>Bluetooth:</strong> Yes</span><span><strong>Best for:</strong> Budget Long COVID pacing tool</span></div></div><div id="review-5" class="product-card">
-<div class="product-card-body"><div>
-  <div class="product-rank">5</div><div class="product-name">Withings ScanWatch 2</div>
-  <div class="product-tagline">Best Smartwatch — SpO₂ + ECG + Sleep + HRV for Long COVID</div><p class="product-desc">The Withings ScanWatch 2 combines SpO₂ monitoring, ECG, heart rate, HRV, and comprehensive sleep tracking in a medical-grade smartwatch — FDA cleared for irregular rhythm detection. For Long COVID patients with palpitations and autonomic dysfunction, the combination of ECG for arrhythmia documentation, HRV for autonomic nervous system tracking, and continuous SpO₂ makes it a uniquely comprehensive monitoring platform.</p>
-  
-  <div class="product-pros-cons"><div class="pros"><h5>Pros</h5><ul><li>ECG — documents Long COVID palpitations and arrhythmias</li><li>Continuous SpO₂ + HRV + sleep tracking</li><li>FDA cleared for irregular rhythm detection</li><li>Health Mate app physician integration</li><li>30-day battery life</li><li>Medical-grade smartwatch</li></ul></div><div class="cons"><h5>Cons</h5><ul><li>Premium price ($299)</li><li>Wrist SpO₂ less accurate than fingertip ring</li><li>Complex features — learning curve</li></ul></div></div>
-</div>
-<div class="product-score-panel">
-  <div class="score-circle"><div class="score-num">8.9</div></div>
-  <div class="score-label">Overall Score</div><div class="price-tag">$299</div>
-  <a href="#" class="buy-btn">Buy Now</a>
-</div></div>
-<div class="product-footer"><span><strong>ECG:</strong> Yes — FDA cleared</span><span><strong>SpO₂:</strong> Continuous wrist</span><span><strong>HRV:</strong> Yes — autonomic tracking</span><span><strong>Battery:</strong> 30 days</span><span><strong>Best for:</strong> Long COVID with palpitations / autonomic dysfunction</span></div></div><div class="section"><div class="section-label">Quick Compare</div><h2>Side-by-Side Comparison</h2><div class="comparison-wrap"><table class="comparison-table"><thead><tr><th>Device</th><th>Score</th><th>Price</th><th>Continuous</th><th>Overnight</th><th>Heart Rate</th><th>ECG</th><th>Best For</th></tr></thead><tbody><tr  class="winner-row"><td>🏆 Wellue O2Ring</td><td>9.5</td><td>$89</td><td>✓ Ring</td><td class="check">✓</td><td class="check">✓</td><td class="cross">✗</td><td>Best for Long COVID pacing</td></tr><tr><td>Masimo MightySat</td><td>9.2</td><td>$199</td><td class="cross">✗</td><td class="cross">✗</td><td class="check">✓</td><td class="cross">✗</td><td>Clinical-grade / RR monitoring</td></tr><tr><td>Withings ScanWatch 2</td><td>8.9</td><td>$299</td><td>Wrist</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td>Palpitations / autonomic</td></tr><tr><td>Garmin Fenix/FR</td><td>9.0</td><td>$350+</td><td>✓ Wrist</td><td class="check">✓</td><td class="check">✓</td><td class="cross">✗</td><td>Active recovery / pacing</td></tr><tr><td>Oxiline Pulse X Pro</td><td>8.8</td><td>$49</td><td class="cross">✗</td><td class="cross">✗</td><td class="check">✓</td><td class="cross">✗</td><td>Budget pacing tool</td></tr></tbody></table></div></div></div><hr class="section-divider">
-</div>
-
-<footer class="footer">
+const NEW_FOOTER = `<footer class="footer">
   <div class="footer-inner">
     <div class="footer-disclosure">
       <strong>How we fund our work.</strong> HealthRankings earns a small commission when you buy through the links on this page — but our rankings can't be influenced by advertisers. We buy every product we test at retail, and our medical reviewers have no financial relationship with any brand we cover.
@@ -553,10 +466,45 @@ body::before {
       </div>
     </div>
   </div>
-</footer>
+</footer>`;
 
-<script>
-document.querySelectorAll('.faq-q').forEach(q=>{q.addEventListener('click',()=>{const i=q.parentElement;const w=i.classList.contains('open');document.querySelectorAll('.faq-item').forEach(x=>x.classList.remove('open'));if(!w)i.classList.add('open');});});
-</script>
-</body>
-</html>
+let updated = 0;
+
+files.forEach(filename => {
+  const filepath = path.join(dir, filename);
+  let html = fs.readFileSync(filepath, 'utf8');
+
+  // Extract title and description
+  const titleMatch = html.match(/<title>(.*?)<\/title>/);
+  const descMatch = html.match(/<meta name="description" content="(.*?)">/);
+  const title = titleMatch ? titleMatch[1] : 'HealthRankings';
+  const desc = descMatch ? descMatch[1] : '';
+
+  // Replace everything from <link href="https://fonts... through </style> with new CSS
+  html = html.replace(
+    /<link href="https:\/\/fonts\.googleapis\.com[^"]*"[^>]*>\s*<style>[\s\S]*?<\/style>/,
+    `<meta name="theme-color" content="#0F172A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;0,800;1,400;1,500;1,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>${NEW_CSS}</style>`
+  );
+
+  // Replace old nav
+  html = html.replace(
+    /<nav>[\s\S]*?<\/nav>\s*/,
+    NEW_NAV + '\n\n'
+  );
+
+  // Replace old footer
+  html = html.replace(
+    /<footer>[\s\S]*?<\/footer>/,
+    NEW_FOOTER
+  );
+
+  fs.writeFileSync(filepath, html, 'utf8');
+  updated++;
+  console.log(`✓ ${filename}`);
+});
+
+console.log(`\nDone — updated ${updated} files.`);
