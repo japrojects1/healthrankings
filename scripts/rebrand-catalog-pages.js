@@ -1,11 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>All Fertility & Reproductive Tested & Reviewed | HealthRankings</title>
-<meta name="description" content="Browse all fertility & reproductive tested and reviewed by HealthRankings. Compare scores and find the best device for your needs.">
-<meta name="theme-color" content="#0F172A">
+#!/usr/bin/env node
+const fs = require('fs');
+const path = require('path');
+const glob = require('path');
+
+const dir = path.resolve(__dirname, '..');
+const files = fs.readdirSync(dir).filter(f => f.startsWith('healthrankings-all-') && f.endsWith('.html'));
+
+const NEW_HEAD_CSS = `<meta name="theme-color" content="#0F172A">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;0,800;1,400;1,500;1,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -223,11 +224,9 @@ body::before {
   .dl-score-col { order: 3; }
   .dl-thumb-wrap { width: 56px; height: 56px; }
 }
-</style>
-</head>
-<body>
+</style>`;
 
-<header class="header">
+const NEW_NAV = `<header class="header">
   <div class="header-inner">
     <a href="/" class="logo">
       <div class="logo-tile">
@@ -254,100 +253,9 @@ body::before {
       <a href="#">About</a>
     </nav>
   </div>
-</header>
+</header>`;
 
-<nav class="breadcrumb" aria-label="Breadcrumb">
-  <a href="/">Home</a>
-  <span class="breadcrumb-sep">/</span>
-  <a href="/healthrankings-devices.html">Devices</a>
-  <span class="breadcrumb-sep">/</span>
-  <span class="breadcrumb-current">Fertility Reproductive</span>
-</nav>
-
-<section class="page-hero">
-  <div class="hero-eyebrow">
-    <div class="hero-pulse"></div>
-    Diagnostic · 5 Devices Tested
-  </div>
-  <h1>All <em>Fertility & Reproductive</em> Tested</h1>
-  <p>For PCOS, ovulation tracking, pregnancy, male fertility. Browse every device we've tested, compare scores, and read full expert reviews.</p>
-</section>
-
-<div class="main">
-
-  <div class="count-bar">
-    <h2>5 Devices Reviewed</h2>
-    <span class="count-badge">Updated April 2026</span>
-  </div>
-
-  <a href="/healthrankings-pcos-ovulation-monitor-top5.html" class="top5-link">🏆 See Our Top 5 Picks →</a>
-
-  <div class="device-list">
-    <a href="/healthrankings-review-mira-fertility-plus-monitor.html" class="dl-item dl-winner">
-      <div class="dl-rank">1</div>
-      <div class="dl-info">
-        <div class="dl-name">Mira Fertility Plus Monitor</div>
-        <div class="dl-tagline">Best Overall for PCOS — Quantitative Values Track Your Personal Pattern</div>
-      </div>
-      <div class="dl-score-col">
-        <div class="dl-stars">★★★★★</div>
-        <div class="dl-score">9.7/10</div>
-      </div>
-      <div class="dl-cta">Read Full Review →</div>
-    </a>
-    <a href="/healthrankings-review-clearblue-advanced-digital.html" class="dl-item">
-      <div class="dl-rank">2</div>
-      <div class="dl-info">
-        <div class="dl-name">Clearblue Advanced Digital</div>
-        <div class="dl-tagline">Best OTC for PCOS — Estrogen Tracking More Reliable Than LH Alone</div>
-      </div>
-      <div class="dl-score-col">
-        <div class="dl-stars">★★★★★</div>
-        <div class="dl-score">9.1/10</div>
-      </div>
-      <div class="dl-cta">Read Full Review →</div>
-    </a>
-    <a href="/healthrankings-review-inito-fertility-monitor.html" class="dl-item">
-      <div class="dl-rank">3</div>
-      <div class="dl-info">
-        <div class="dl-name">Inito Fertility Monitor</div>
-        <div class="dl-tagline">Best for Confirming Ovulation — Progesterone Measurement Unique</div>
-      </div>
-      <div class="dl-score-col">
-        <div class="dl-stars">★★★★★</div>
-        <div class="dl-score">9.0/10</div>
-      </div>
-      <div class="dl-cta">Read Full Review →</div>
-    </a>
-    <a href="/healthrankings-review-easy-home-smart-bbt-thermometer.html" class="dl-item">
-      <div class="dl-rank">4</div>
-      <div class="dl-info">
-        <div class="dl-name">Easy@Home Smart BBT Thermometer</div>
-        <div class="dl-tagline">Best Supplementary — Basal Temperature Confirms Ovulation</div>
-      </div>
-      <div class="dl-score-col">
-        <div class="dl-stars">★★★★☆</div>
-        <div class="dl-score">8.7/10</div>
-      </div>
-      <div class="dl-cta">Read Full Review →</div>
-    </a>
-    <a href="/healthrankings-review-premom-lh-strips-100-pack.html" class="dl-item">
-      <div class="dl-rank">5</div>
-      <div class="dl-info">
-        <div class="dl-name">Premom LH Strips (100-pack)</div>
-        <div class="dl-tagline">Best High-Volume Budget — Twice-Daily Testing Affordable</div>
-      </div>
-      <div class="dl-score-col">
-        <div class="dl-stars">★★★★☆</div>
-        <div class="dl-score">8.4/10</div>
-      </div>
-      <div class="dl-cta">Read Full Review →</div>
-    </a>
-  </div>
-
-</div>
-
-<footer class="footer">
+const NEW_FOOTER = `<footer class="footer">
   <div class="footer-inner">
     <div class="footer-disclosure">
       <strong>How we fund our work.</strong> HealthRankings earns a small commission when you buy through the links on this page — but our rankings can't be influenced by advertisers. We buy every product we test at retail, and our medical reviewers have no financial relationship with any brand we cover.
@@ -362,9 +270,86 @@ body::before {
       </div>
     </div>
   </div>
-</footer>
+</footer>`;
+
+let updated = 0;
+
+files.forEach(filename => {
+  const filepath = path.join(dir, filename);
+  let html = fs.readFileSync(filepath, 'utf8');
+
+  // Extract title and description
+  const titleMatch = html.match(/<title>(.*?)<\/title>/);
+  const descMatch = html.match(/<meta name="description" content="(.*?)">/);
+  const title = titleMatch ? titleMatch[1] : 'HealthRankings';
+  const desc = descMatch ? descMatch[1] : '';
+
+  // Extract breadcrumb text from old breadcrumb
+  const bcMatch = html.match(/<div class="breadcrumb">([\s\S]*?)<\/div>/);
+  let bcLastItem = filename.replace('healthrankings-all-', '').replace('.html', '').replace(/-/g, ' ');
+  bcLastItem = bcLastItem.replace(/\b\w/g, c => c.toUpperCase());
+
+  // Extract hero badge text
+  const badgeMatch = html.match(/<div class="hero-badge">(.*?)<\/div>/);
+  const badge = badgeMatch ? badgeMatch[1] : 'Expert Reviewed';
+
+  // Extract h1
+  const h1Match = html.match(/<h1>([\s\S]*?)<\/h1>/);
+  let h1Content = h1Match ? h1Match[1].trim() : `All ${bcLastItem}`;
+
+  // Extract hero description
+  const heroPMatch = html.match(/<div class="page-hero">[\s\S]*?<p>([\s\S]*?)<\/p>\s*<\/div>\s*<\/div>/);
+  const heroP = heroPMatch ? heroPMatch[1].trim() : '';
+
+  // Extract the main content (everything from <div class="main"> to the closing </div> before footer)
+  const mainMatch = html.match(/<div class="main">([\s\S]*?)<\/div>\s*<footer/);
+  const mainContent = mainMatch ? mainMatch[1] : '';
+
+  // Build the new page
+  const newHtml = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>${title}</title>
+<meta name="description" content="${desc}">
+${NEW_HEAD_CSS}
+</head>
+<body>
+
+${NEW_NAV}
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="/">Home</a>
+  <span class="breadcrumb-sep">/</span>
+  <a href="/healthrankings-devices.html">Devices</a>
+  <span class="breadcrumb-sep">/</span>
+  <span class="breadcrumb-current">${bcLastItem}</span>
+</nav>
+
+<section class="page-hero">
+  <div class="hero-eyebrow">
+    <div class="hero-pulse"></div>
+    ${badge}
+  </div>
+  <h1>${h1Content}</h1>
+  <p>${heroP}</p>
+</section>
+
+<div class="main">
+${mainContent}
+</div>
+
+${NEW_FOOTER}
 
 <script src="/catalog-product-images.js"></script>
 <script src="/catalog-list.js"></script>
 </body>
-</html>
+</html>`;
+
+  fs.writeFileSync(filepath, newHtml, 'utf8');
+  updated++;
+  console.log(`✓ ${filename}`);
+});
+
+console.log(`\nDone — updated ${updated} files.`);
