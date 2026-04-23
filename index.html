@@ -3,15 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HealthRankings — Health Products, Ranked by the People Who Matter</title>
-<meta name="description" content="Honest, physician-reviewed top 5 health product rankings for every condition. Blood pressure monitors, pulse oximeters, glucose meters, and more — matched to your health needs.">
-<meta name="theme-color" content="#2A1A25">
-<link rel="icon" type="image/svg+xml" href="/brand/favicon.svg">
+<title>HealthRankings — Health products, ranked by the people who matter</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;0,800;1,400;1,500;1,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
+  /* Berry + Blush palette */
   --berry-50: #FDF3F8;
   --berry-100: #F9E5EC;
   --berry-200: #F0C7D8;
@@ -20,594 +18,2027 @@
   --berry-500: #B84B8F;
   --berry-600: #8B2C6F;
   --berry-700: #5D1F4C;
+  --berry-800: #3D1332;
+
+  --blush-50: #FFF9FB;
+  --blush-100: #F9E5EC;
+  --blush-200: #EFD8DF;
+
+  --cream-50: #FFFDFB;
+  --cream-100: #FFF9FB;
+  --cream-200: #FBF2F5;
+
   --honey-300: #FFE48A;
   --honey-400: #FFD166;
   --honey-500: #F5B82E;
-  --cream-100: #FFF9FB;
-  --cream-200: #FBF2F5;
-  --cream-300: #EFD8DF;
+
   --ink-600: #4A3D44;
   --ink-700: #2A1A25;
   --ink-800: #1A0F18;
+
   --muted-400: #9A8590;
   --muted-500: #7A5E6B;
+
   --gradient-berry: linear-gradient(135deg, #B84B8F 0%, #5D1F4C 100%);
   --gradient-warm: linear-gradient(135deg, #F9E5EC 0%, #FFE48A 100%);
-  --red: #C1423E;
-  --red-light: #FFF0F0;
-  --green: #2E7D32;
-  --green-light: #EEFAEF;
-  --font-display: 'DM Sans', 'Helvetica Neue', system-ui, sans-serif;
-  --font-body: 'Inter', 'Helvetica Neue', system-ui, -apple-system, sans-serif;
 }
-*{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:var(--font-body);color:var(--ink-700);background:var(--cream-100);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
-a{text-decoration:none;color:inherit;transition:color 180ms ease;}
-.hr-accent{background:var(--gradient-berry);-webkit-background-clip:text;background-clip:text;color:transparent;font-style:italic;font-weight:500;}
 
-/* ── NAV ── */
-nav{background:#fff;height:64px;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;border-bottom:1px solid var(--cream-300);box-shadow:0 4px 14px rgba(139,44,111,0.04);}
-.logo-link{display:flex;align-items:center;text-decoration:none;}
-.logo-link img{height:48px;width:auto;}
-.nav-links{display:flex;gap:0;}
-.nav-links a{color:var(--muted-500);font-size:0.875rem;font-weight:500;padding:0 1.1rem;height:64px;display:flex;align-items:center;border-bottom:2px solid transparent;transition:all 0.2s;}
-.nav-links a:hover{color:var(--berry-600);border-bottom-color:var(--berry-500);}
-.nav-cta{background:var(--berry-600)!important;color:#fff!important;padding:8px 18px!important;height:auto!important;border-radius:10px!important;border-bottom:none!important;font-size:0.82rem!important;font-weight:600!important;}
-.nav-cta:hover{background:var(--berry-700)!important;}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* ── HERO ── */
-.hero{background:linear-gradient(160deg, var(--cream-100) 0%, var(--berry-50) 50%, var(--cream-200) 100%);padding:5rem 2rem;position:relative;overflow:hidden;border-bottom:1px solid var(--cream-300);}
-.hero::before{content:'';position:absolute;top:-80px;right:-40px;width:400px;height:400px;border-radius:50%;background:rgba(184,75,143,0.06);pointer-events:none;}
-.hero::after{content:'';position:absolute;bottom:-100px;left:10%;width:350px;height:350px;border-radius:50%;background:rgba(255,209,102,0.06);pointer-events:none;}
-.hero-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;position:relative;z-index:1;}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--berry-100);color:var(--berry-600);font-size:0.75rem;font-weight:600;padding:5px 14px;border-radius:20px;margin-bottom:1.25rem;letter-spacing:0.02em;border:1px solid var(--berry-200);}
-.hero h1{font-family:var(--font-display);font-size:clamp(2.2rem,4vw,3.4rem);color:var(--ink-700);line-height:1.1;margin-bottom:1.25rem;font-weight:700;letter-spacing:-0.035em;}
-.hero h1 em{background:var(--gradient-berry);-webkit-background-clip:text;background-clip:text;color:transparent;font-style:italic;font-weight:500;}
-.hero-sub{font-size:1.05rem;color:var(--muted-500);line-height:1.65;margin-bottom:2rem;font-weight:400;max-width:480px;}
-.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;}
-.btn-primary{background:var(--gradient-berry);color:#fff;padding:13px 28px;border-radius:12px;font-size:0.9rem;font-weight:600;transition:all 0.2s;display:inline-block;box-shadow:0 4px 14px rgba(139,44,111,0.2);}
-.btn-primary:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(139,44,111,0.3);}
-.btn-ghost{background:#fff;color:var(--berry-600);padding:13px 28px;border-radius:12px;font-size:0.9rem;font-weight:600;border:1.5px solid var(--berry-200);transition:all 0.2s;display:inline-block;}
-.btn-ghost:hover{background:var(--berry-50);border-color:var(--berry-400);}
-.hero-stats{display:flex;gap:2.5rem;margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--cream-300);}
-.hstat-num{font-family:var(--font-display);font-size:1.9rem;color:var(--berry-600);font-weight:700;letter-spacing:-0.035em;}
-.hstat-label{font-size:0.75rem;color:var(--muted-400);margin-top:2px;}
-.hero-right{background:#fff;border:1px solid var(--cream-300);border-radius:20px;padding:1.5rem;box-shadow:0 10px 30px -10px rgba(139,44,111,0.1);}
-.hero-search-panel h3{font-size:0.9rem;font-weight:600;color:var(--ink-700);margin-bottom:1rem;font-family:var(--font-display);}
-.search-input-wrap{position:relative;margin-bottom:1rem;}
-.search-input-wrap input{width:100%;background:var(--cream-100);border:1.5px solid var(--cream-300);border-radius:12px;padding:12px 16px 12px 42px;color:var(--ink-700);font-family:inherit;font-size:0.9rem;outline:none;transition:border-color 180ms;}
-.search-input-wrap input::placeholder{color:var(--muted-400);}
-.search-input-wrap input:focus{border-color:var(--berry-400);background:#fff;}
-.search-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted-400);font-size:1rem;}
-.quick-conditions{display:flex;flex-wrap:wrap;gap:6px;}
-.qc-btn{background:var(--berry-50);border:1px solid var(--berry-200);color:var(--berry-600);font-size:0.75rem;padding:5px 12px;border-radius:20px;cursor:pointer;transition:all 0.2s;font-family:inherit;font-weight:500;}
-.qc-btn:hover{background:var(--berry-500);color:#fff;border-color:var(--berry-500);}
+html { scroll-behavior: smooth; }
 
-/* ── TRUST BAR ── */
-.trust-bar{background:var(--berry-50);border-bottom:1px solid var(--berry-100);padding:0.875rem 2rem;}
-.trust-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
-.trust-item{display:flex;align-items:center;gap:8px;font-size:0.8rem;color:var(--berry-700);}
-.trust-item strong{font-weight:600;}
-.trust-dot{width:6px;height:6px;border-radius:50%;background:var(--berry-500);flex-shrink:0;}
+body {
+  font-family: 'Inter', 'Helvetica Neue', system-ui, sans-serif;
+  background: var(--cream-100);
+  color: var(--ink-700);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
 
-/* ── SECTIONS ── */
-.section{padding:4.5rem 2rem;}
-.section-inner{max-width:1100px;margin:0 auto;}
-.section-header{text-align:center;margin-bottom:3rem;}
-.section-label{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:var(--berry-500);margin-bottom:0.5rem;font-family:var(--font-display);}
-.section-header h2{font-family:var(--font-display);font-size:clamp(1.8rem,3vw,2.5rem);color:var(--ink-700);font-weight:700;margin-bottom:0.75rem;letter-spacing:-0.035em;}
-.section-header p{font-size:1rem;color:var(--muted-500);max-width:520px;margin:0 auto;}
+a { color: inherit; text-decoration: none; }
 
-/* ── HOW IT WORKS ── */
-.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;}
-.how-card{text-align:center;padding:2rem 1.5rem;}
-.how-num{width:52px;height:52px;background:var(--gradient-berry);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;font-family:var(--font-display);font-size:1.3rem;color:#fff;font-weight:700;}
-.how-card h3{font-family:var(--font-display);font-size:1rem;font-weight:700;color:var(--ink-700);margin-bottom:0.625rem;}
-.how-card p{font-size:0.875rem;color:var(--muted-500);line-height:1.65;}
+.display { font-family: 'DM Sans', 'Helvetica Neue', sans-serif; letter-spacing: -0.03em; }
 
-/* ── CONDITIONS ── */
-.conditions-section{background:var(--cream-200);}
-.conditions-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem;}
-.condition-card{background:#fff;border:1px solid var(--cream-300);border-radius:16px;padding:1.5rem;cursor:pointer;transition:all 0.22s;display:flex;flex-direction:column;gap:0.875rem;text-decoration:none;color:var(--ink-700);}
-.condition-card:hover{box-shadow:0 10px 30px -10px rgba(139,44,111,0.12);transform:translateY(-2px);border-color:var(--berry-300);}
-.cc-top{display:flex;align-items:flex-start;justify-content:space-between;gap:0.75rem;}
-.cc-cat{font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;padding:3px 10px;border-radius:20px;}
-.cat-cardiovascular{background:var(--red-light);color:var(--red);}
-.cat-metabolic{background:var(--berry-50);color:var(--berry-600);}
-.cat-respiratory{background:var(--green-light);color:var(--green);}
-.cat-neurological{background:#F3E5F5;color:#6A1B9A;}
-.cat-musculoskeletal{background:#FFF5EB;color:#C77B30;}
-.cat-dental{background:var(--cream-200);color:var(--muted-500);}
-.cat-reproductive{background:#FCE4EC;color:#880E4F;}
-.cat-infectious{background:var(--red-light);color:var(--red);}
-.cc-name{font-family:var(--font-display);font-size:1.05rem;font-weight:700;color:var(--ink-700);}
-.cc-products{font-size:0.78rem;color:var(--muted-400);}
-.cc-products span{color:var(--berry-600);font-weight:500;}
-.see-all-btn{display:inline-block;background:var(--gradient-berry);color:#fff;padding:0.875rem 2.5rem;border-radius:12px;font-size:1rem;font-weight:600;letter-spacing:0.02em;transition:all 0.2s;box-shadow:0 4px 14px rgba(139,44,111,0.2);}
-.see-all-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(139,44,111,0.3);}
+/* Soft grain overlay for warmth */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: 100;
+  mix-blend-mode: multiply;
+}
 
-/* ── RANKINGS ── */
-.rankings-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem;}
-.rank-card{border:1px solid var(--cream-300);border-radius:16px;overflow:hidden;background:#fff;transition:all 0.22s;}
-.rank-card:hover{box-shadow:0 10px 30px -10px rgba(139,44,111,0.12);transform:translateY(-2px);}
-.rank-card-header{background:var(--gradient-berry);padding:1.25rem 1.5rem;position:relative;overflow:hidden;}
-.rank-card-header::after{content:'';position:absolute;right:-20px;top:-20px;width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,0.08);}
-.rank-card-header h3{font-family:var(--font-display);font-size:1rem;color:#fff;font-weight:700;margin-bottom:0.25rem;position:relative;z-index:1;}
-.rank-card-header p{font-size:0.75rem;color:rgba(255,255,255,0.6);position:relative;z-index:1;}
-.rank-card-body{padding:1.25rem 1.5rem;}
-.rank-winner{display:flex;align-items:center;gap:0.875rem;padding:0.875rem;background:var(--cream-100);border-radius:12px;margin-bottom:1rem;}
-.rank-num{width:28px;height:28px;background:var(--honey-400);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;color:var(--ink-700);flex-shrink:0;}
-.rank-product{font-size:0.875rem;font-weight:500;color:var(--ink-700);}
-.rank-product span{font-size:0.75rem;color:var(--muted-400);font-weight:400;display:block;}
-.rank-score{margin-left:auto;font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:var(--berry-500);}
-.rank-list{list-style:none;}
-.rank-list li{display:flex;align-items:center;gap:0.75rem;padding:0.5rem 0;border-bottom:1px solid var(--cream-300);font-size:0.82rem;color:var(--muted-500);}
-.rank-list li:last-child{border-bottom:none;}
-.rank-list-num{width:20px;height:20px;background:var(--berry-100);color:var(--berry-600);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;flex-shrink:0;}
-.rank-card-footer{padding:0 1.5rem 1.25rem;}
-.view-all-btn{display:block;text-align:center;padding:9px;border:1.5px solid var(--berry-400);border-radius:10px;font-size:0.8rem;font-weight:600;color:var(--berry-600);transition:all 0.2s;}
-.view-all-btn:hover{background:var(--berry-500);color:#fff;border-color:var(--berry-500);}
+/* ===== HEADER ===== */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 249, 251, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--blush-200);
+}
 
-/* ── PRODUCTS ── */
-.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;}
-.product-cat-card{background:#fff;border:1px solid var(--cream-300);border-radius:14px;padding:1.25rem;cursor:pointer;transition:all 0.2s;display:flex;flex-direction:column;gap:0.625rem;}
-.product-cat-card:hover{box-shadow:0 4px 20px rgba(139,44,111,0.08);border-color:var(--berry-300);}
-.pcc-name{font-size:0.875rem;font-weight:600;color:var(--ink-700);font-family:var(--font-display);}
-.pcc-count{font-size:0.75rem;color:var(--muted-400);}
-.pcc-arrow{font-size:0.75rem;color:var(--berry-600);font-weight:600;margin-top:auto;}
+.header-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px;
+  height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
-/* ── METHODOLOGY ── */
-.method-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
-.method-text h2{font-family:var(--font-display);font-size:2rem;color:var(--ink-700);margin-bottom:1rem;font-weight:700;letter-spacing:-0.035em;}
-.method-text p{font-size:0.95rem;color:var(--muted-500);line-height:1.75;margin-bottom:1rem;}
-.mc-item{display:flex;align-items:center;gap:1rem;padding:0.875rem 0;border-bottom:1px solid var(--cream-300);}
-.mc-item:last-child{border-bottom:none;}
-.mc-bar-wrap{flex:1;}
-.mc-label{font-size:0.82rem;font-weight:500;color:var(--ink-700);margin-bottom:4px;display:flex;justify-content:space-between;}
-.mc-bar-track{height:6px;background:var(--cream-200);border-radius:3px;overflow:hidden;}
-.mc-bar-fill{height:100%;background:var(--gradient-berry);border-radius:3px;}
-.method-badges{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
-.method-badge{background:var(--berry-50);border:1px solid var(--berry-200);border-radius:16px;padding:1.5rem;text-align:center;}
-.method-badge .mb-num{font-family:var(--font-display);font-size:2.2rem;color:var(--berry-600);font-weight:700;letter-spacing:-0.035em;}
-.method-badge .mb-label{font-size:0.8rem;color:var(--muted-400);margin-top:4px;}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  line-height: 1;
+}
 
-/* ── RECENT ── */
-.recent-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem;}
-.recent-card{border:1px solid var(--cream-300);border-radius:16px;overflow:hidden;background:#fff;transition:all 0.2s;}
-.recent-card:hover{box-shadow:0 10px 30px -10px rgba(139,44,111,0.12);transform:translateY(-2px);}
-.rc-header{height:120px;background:var(--gradient-warm);display:flex;align-items:center;justify-content:center;position:relative;}
-.rc-header-badge{position:absolute;top:12px;right:12px;background:var(--berry-600);color:#fff;font-size:0.7rem;padding:3px 10px;border-radius:20px;font-weight:600;}
-.rc-body{padding:1.25rem;}
-.rc-cat{font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--berry-500);margin-bottom:0.5rem;font-family:var(--font-display);}
-.rc-title{font-family:var(--font-display);font-size:1.05rem;font-weight:700;color:var(--ink-700);margin-bottom:0.5rem;}
-.rc-desc{font-size:0.82rem;color:var(--muted-500);line-height:1.6;margin-bottom:1rem;}
-.rc-meta{display:flex;align-items:center;justify-content:space-between;font-size:0.75rem;color:var(--muted-400);}
-.rc-read{color:var(--berry-600);font-weight:600;}
+.logo-tile {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  background: var(--blush-100);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-/* ── NEWS ── */
-.news-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem;}
-.news-card{background:#fff;border:1px solid var(--cream-300);border-radius:16px;overflow:hidden;transition:all 0.2s;text-decoration:none;color:var(--ink-700);display:flex;flex-direction:column;}
-.news-card:hover{box-shadow:0 6px 24px rgba(139,44,111,0.1);transform:translateY(-2px);border-color:var(--berry-300);}
-.news-img{width:100%;height:170px;object-fit:cover;background:var(--berry-50);}
-.news-img-placeholder{width:100%;height:170px;background:var(--gradient-warm);display:flex;align-items:center;justify-content:center;}
-.news-img-placeholder span{font-size:2.5rem;opacity:0.4;}
-.news-body{padding:1.25rem;flex:1;display:flex;flex-direction:column;}
-.news-source{font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--berry-500);margin-bottom:0.4rem;font-family:var(--font-display);}
-.news-title{font-family:var(--font-display);font-size:0.975rem;font-weight:700;color:var(--ink-700);line-height:1.4;margin-bottom:0.5rem;flex:1;}
-.news-desc{font-size:0.78rem;color:var(--muted-500);line-height:1.55;margin-bottom:0.875rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
-.news-meta{font-size:0.7rem;color:var(--muted-400);display:flex;align-items:center;justify-content:space-between;margin-top:auto;}
-.news-read{font-size:0.72rem;color:var(--berry-600);font-weight:600;}
-.news-loading{grid-column:1/-1;display:flex;align-items:center;justify-content:center;gap:0.75rem;padding:3rem;color:var(--muted-500);font-size:0.9rem;}
-.news-spinner{width:20px;height:20px;border:2.5px solid var(--cream-300);border-top-color:var(--berry-500);border-radius:50%;animation:spin 0.65s linear infinite;flex-shrink:0;}
-@keyframes spin{to{transform:rotate(360deg);}}
-.news-error{grid-column:1/-1;text-align:center;padding:2.5rem;color:var(--muted-500);font-size:0.875rem;}
-.news-error a{color:var(--berry-600);text-decoration:underline;}
+.logo-face { position: relative; }
+.logo-face svg { display: block; }
 
-/* ── EMAIL SIGNUP ── */
-.signup-section{background:var(--ink-700);padding:5rem 2rem;text-align:center;}
-.signup-inner{max-width:560px;margin:0 auto;}
-.signup-section h2{font-family:var(--font-display);font-size:2rem;color:#fff;margin-bottom:0.875rem;font-weight:700;letter-spacing:-0.035em;}
-.signup-section p{font-size:0.95rem;color:rgba(255,255,255,0.55);margin-bottom:2rem;line-height:1.7;}
-.signup-form{display:flex;gap:0.75rem;max-width:440px;margin:0 auto;}
-.signup-form input{flex:1;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:13px 16px;color:#fff;font-family:inherit;font-size:0.9rem;outline:none;transition:border-color 180ms;}
-.signup-form input::placeholder{color:rgba(255,255,255,0.3);}
-.signup-form input:focus{border-color:rgba(255,255,255,0.4);}
-.signup-form button{background:var(--honey-400);color:var(--ink-700);border:none;padding:13px 24px;border-radius:12px;font-family:inherit;font-size:0.875rem;font-weight:700;cursor:pointer;white-space:nowrap;transition:all 0.2s;}
-.signup-form button:hover{background:var(--honey-300);transform:translateY(-1px);}
-.signup-note{font-size:0.75rem;color:rgba(255,255,255,0.2);margin-top:1rem;}
+.logo-sparkle {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  color: var(--honey-400);
+}
 
-/* ── FOOTER ── */
-footer{background:var(--ink-700);padding:4rem 2rem 2rem;}
-.footer-inner{max-width:1100px;margin:0 auto;}
-.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem;}
-.footer-brand .footer-logo{display:flex;align-items:center;gap:8px;margin-bottom:1rem;}
-.footer-brand .footer-logo-text{font-family:var(--font-display);font-size:1.2rem;font-weight:500;color:var(--cream-100);letter-spacing:-0.025em;}
-.footer-brand .footer-logo-text span{font-weight:700;background:linear-gradient(135deg, #E29AB9 0%, #B84B8F 100%);-webkit-background-clip:text;background-clip:text;color:transparent;}
-.footer-brand p{font-size:0.82rem;color:rgba(255,255,255,0.3);line-height:1.7;max-width:280px;}
-.footer-col h4{font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,0.35);margin-bottom:1rem;font-family:var(--font-display);}
-.footer-col ul{list-style:none;}
-.footer-col ul li{margin-bottom:0.625rem;}
-.footer-col ul a{font-size:0.82rem;color:rgba(255,255,255,0.3);transition:color 0.2s;}
-.footer-col ul a:hover{color:rgba(255,255,255,0.65);}
-.footer-bottom{border-top:1px solid rgba(255,255,255,0.06);padding-top:2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
-.footer-bottom p{font-size:0.75rem;color:rgba(255,255,255,0.18);}
-.footer-links{display:flex;gap:1.5rem;}
-.footer-links a{font-size:0.75rem;color:rgba(255,255,255,0.18);}
-.footer-links a:hover{color:rgba(255,255,255,0.4);}
+.logo-text {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 22px;
+  letter-spacing: -0.035em;
+  line-height: 1;
+}
 
-/* ── ANIMATIONS ── */
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
-.hero-left>*{animation:fadeUp 0.6s ease both;}
-.hero-left>*:nth-child(1){animation-delay:.1s}
-.hero-left>*:nth-child(2){animation-delay:.2s}
-.hero-left>*:nth-child(3){animation-delay:.3s}
-.hero-left>*:nth-child(4){animation-delay:.4s}
-.hero-left>*:nth-child(5){animation-delay:.5s}
-.hero-right{animation:fadeUp 0.7s ease 0.3s both;}
+.logo-text .one { font-weight: 500; color: var(--ink-700); }
+.logo-text .two {
+  font-weight: 700;
+  background: var(--gradient-berry);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
 
-/* ── RESPONSIVE ── */
-@media(max-width:768px){
-  .hero-inner{grid-template-columns:1fr;}
-  .hero-right{display:none;}
-  .how-grid{grid-template-columns:1fr;}
-  .method-grid{grid-template-columns:1fr;}
-  .footer-top{grid-template-columns:1fr 1fr;}
-  .signup-form{flex-direction:column;}
-  .nav-links{display:none;}
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+}
+
+.nav a {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink-700);
+  letter-spacing: -0.01em;
+  transition: color 180ms ease;
+}
+
+.nav a:hover { color: var(--berry-500); }
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.search-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 180ms ease;
+  color: var(--ink-700);
+}
+
+.search-btn:hover { background: var(--blush-100); }
+
+.cta-btn {
+  padding: 12px 22px;
+  background: var(--gradient-berry);
+  color: var(--cream-100);
+  border-radius: 9999px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: -0.01em;
+  transition: all 200ms ease;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(139, 44, 111, 0.15);
+}
+
+.cta-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(139, 44, 111, 0.25);
+}
+
+/* ===== HERO ===== */
+.hero {
+  position: relative;
+  padding: 80px 32px 120px;
+  overflow: hidden;
+}
+
+/* Decorative blob backgrounds */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -200px;
+  right: -100px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, var(--blush-100) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -100px;
+  left: -100px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(255, 209, 102, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--blush-100);
+  padding: 8px 16px;
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--berry-600);
+  margin-bottom: 28px;
+  animation: fadeUp 600ms 100ms both ease-out;
+}
+
+.hero-eyebrow-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--berry-500);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.3); }
+}
+
+.hero h1 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(48px, 7vw, 88px);
+  font-weight: 700;
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+  color: var(--ink-700);
+  margin-bottom: 24px;
+  animation: fadeUp 800ms 200ms both ease-out;
+}
+
+.hero h1 em {
+  font-style: italic;
+  font-weight: 500;
+  background: var(--gradient-berry);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  position: relative;
+  display: inline-block;
+}
+
+.hero h1 em::after {
+  content: '';
+  position: absolute;
+  bottom: 5%;
+  left: 0;
+  width: 100%;
+  height: 14px;
+  background: var(--honey-400);
+  opacity: 0.35;
+  z-index: -1;
+  border-radius: 2px;
+  transform: rotate(-1deg);
+}
+
+.hero-sub {
+  font-size: 20px;
+  line-height: 1.55;
+  color: var(--muted-500);
+  max-width: 540px;
+  margin-bottom: 40px;
+  animation: fadeUp 800ms 300ms both ease-out;
+}
+
+.hero-search {
+  max-width: 560px;
+  background: white;
+  border: 2px solid var(--blush-200);
+  border-radius: 9999px;
+  padding: 8px 8px 8px 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 10px 40px -15px rgba(139, 44, 111, 0.15);
+  animation: fadeUp 800ms 400ms both ease-out;
+  transition: all 200ms;
+}
+
+.hero-search:focus-within {
+  border-color: var(--berry-400);
+  box-shadow: 0 10px 40px -10px rgba(139, 44, 111, 0.25);
+}
+
+.hero-search svg { color: var(--muted-400); flex-shrink: 0; }
+
+.hero-search input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  background: transparent;
+  color: var(--ink-700);
+  min-width: 0;
+}
+
+.hero-search input::placeholder { color: var(--muted-400); }
+
+.hero-search-btn {
+  padding: 14px 24px;
+  background: var(--gradient-berry);
+  color: var(--cream-100);
+  border: none;
+  border-radius: 9999px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  transition: all 200ms;
+  white-space: nowrap;
+}
+
+.hero-search-btn:hover { transform: translateY(-1px); }
+
+.hero-trust {
+  margin-top: 28px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  animation: fadeUp 800ms 500ms both ease-out;
+}
+
+.hero-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--muted-500);
+  font-weight: 500;
+}
+
+.hero-trust-check {
+  width: 22px;
+  height: 22px;
+  background: var(--berry-100);
+  color: var(--berry-600);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hero visual — product card collage */
+.hero-visual {
+  position: relative;
+  height: 520px;
+  animation: fadeIn 1200ms 600ms both ease-out;
+}
+
+.hero-card {
+  position: absolute;
+  background: white;
+  border-radius: 24px;
+  padding: 20px;
+  box-shadow: 0 20px 50px -15px rgba(93, 31, 76, 0.15);
+}
+
+.hero-card-1 {
+  top: 40px;
+  left: 10px;
+  width: 250px;
+  transform: rotate(-6deg);
+  animation: floatA 7s ease-in-out infinite;
+  z-index: 3;
+}
+
+.hero-card-2 {
+  top: 140px;
+  right: -20px;
+  width: 230px;
+  transform: rotate(4deg);
+  animation: floatA 7s ease-in-out infinite 1.5s;
+  background: var(--berry-600);
+  color: white;
+  z-index: 2;
+}
+
+.hero-card-2 .hero-card-name { color: white; }
+.hero-card-2 .hero-card-sub { color: rgba(255, 255, 255, 0.7); }
+
+.hero-card-3 {
+  bottom: 30px;
+  left: 60px;
+  width: 260px;
+  transform: rotate(-2deg);
+  animation: floatA 7s ease-in-out infinite 3s;
+  z-index: 1;
+}
+
+.hero-card-rank {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--blush-100);
+  color: var(--berry-600);
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.hero-card-2 .hero-card-rank {
+  background: rgba(255, 209, 102, 0.2);
+  color: var(--honey-400);
+}
+
+.hero-card-name {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: -0.025em;
+  color: var(--ink-700);
+  margin-bottom: 4px;
+  line-height: 1.25;
+}
+
+.hero-card-sub {
+  font-size: 12px;
+  color: var(--muted-500);
+  margin-bottom: 12px;
+}
+
+.hero-card-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 12px;
+  border-top: 1px solid var(--blush-200);
+}
+
+.hero-card-2 .hero-card-row { border-top-color: rgba(255, 255, 255, 0.15); }
+
+.hero-card-stars {
+  color: var(--honey-400);
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.hero-card-score {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--berry-600);
+}
+.hero-card-2 .hero-card-score { color: var(--honey-400); }
+
+/* Floating hearts decoration */
+.floating-hearts {
+  position: absolute;
+  pointer-events: none;
+}
+
+.floating-heart {
+  position: absolute;
+  color: var(--berry-300);
+  opacity: 0.4;
+  animation: floatHeart 10s ease-in-out infinite;
+}
+
+/* ===== "LOVED BY" BANNER ===== */
+.loved-banner {
+  padding: 32px;
+  border-top: 1px solid var(--blush-200);
+  border-bottom: 1px solid var(--blush-200);
+  background: var(--cream-200);
+}
+
+.loved-banner-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.loved-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted-500);
+}
+
+.loved-label svg { color: var(--berry-500); }
+
+.loved-logos {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.loved-logo {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--ink-700);
+  letter-spacing: -0.03em;
+  opacity: 0.4;
+  transition: opacity 200ms;
+}
+
+.loved-logo:hover { opacity: 1; }
+
+/* ===== SECTIONS ===== */
+.section {
+  padding: 100px 32px;
+  position: relative;
+}
+
+.section-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.section-header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  margin-bottom: 56px;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.section-heading {
+  max-width: 640px;
+}
+
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--blush-100);
+  padding: 6px 14px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--berry-600);
+  margin-bottom: 20px;
+}
+
+.section h2 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(36px, 5vw, 60px);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  color: var(--ink-700);
+  margin-bottom: 16px;
+}
+
+.section h2 em {
+  font-style: italic;
+  font-weight: 500;
+  background: var(--gradient-berry);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.section-intro {
+  font-size: 18px;
+  color: var(--muted-500);
+  line-height: 1.6;
+}
+
+.view-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--berry-600);
+  padding: 12px 20px;
+  background: white;
+  border: 2px solid var(--blush-200);
+  border-radius: 9999px;
+  transition: all 200ms;
+  white-space: nowrap;
+}
+
+.view-all:hover {
+  border-color: var(--berry-500);
+  background: var(--blush-100);
+  transform: translateX(4px);
+}
+
+/* ===== CONDITIONS GRID ===== */
+.conditions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.condition-card {
+  padding: 28px;
+  background: white;
+  border: 1px solid var(--blush-200);
+  border-radius: 24px;
+  transition: all 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.condition-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--berry-300);
+  box-shadow: 0 20px 40px -12px rgba(139, 44, 111, 0.15);
+}
+
+.condition-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background: var(--blush-100);
+  color: var(--berry-600);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  transition: all 250ms;
+}
+
+.condition-card:hover .condition-icon {
+  background: var(--gradient-berry);
+  color: white;
+  transform: scale(1.08) rotate(-5deg);
+}
+
+.condition-name {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  margin-bottom: 6px;
+  color: var(--ink-700);
+}
+
+.condition-meta {
+  font-size: 13px;
+  color: var(--muted-500);
+}
+
+.condition-meta strong {
+  color: var(--berry-600);
+  font-weight: 700;
+}
+
+/* ===== TOP PICK FEATURE ===== */
+.top-pick {
+  background: var(--gradient-berry);
+  color: var(--cream-100);
+  padding: 100px 32px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 32px;
+  margin: 60px 32px;
+}
+
+/* Decorative dots pattern */
+.top-pick::before {
+  content: '';
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  width: 300px;
+  height: 300px;
+  background-image: radial-gradient(circle, rgba(255, 209, 102, 0.15) 2px, transparent 2px);
+  background-size: 24px 24px;
+  pointer-events: none;
+}
+
+.top-pick::after {
+  content: '';
+  position: absolute;
+  bottom: -100px;
+  left: -100px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(255, 209, 102, 0.2) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.top-pick-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 80px;
+  align-items: center;
+  position: relative;
+}
+
+.top-pick-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.12);
+  padding: 8px 16px;
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--honey-400);
+  margin-bottom: 24px;
+  backdrop-filter: blur(10px);
+}
+
+.top-pick h2 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(40px, 5.5vw, 68px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--cream-100);
+  margin-bottom: 24px;
+}
+
+.top-pick h2 em {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--honey-400);
+}
+
+.top-pick-desc {
+  font-size: 18px;
+  line-height: 1.6;
+  color: rgba(255, 249, 251, 0.85);
+  margin-bottom: 36px;
+  max-width: 480px;
+}
+
+.top-pick-stats {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.top-pick-stat-num {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 44px;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--honey-400);
+  display: block;
+}
+
+.top-pick-stat-num .unit {
+  font-size: 24px;
+  color: rgba(255, 249, 251, 0.5);
+}
+
+.top-pick-stat-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 249, 251, 0.6);
+  margin-top: 10px;
+  display: block;
+}
+
+.top-pick-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 28px;
+  background: var(--honey-400);
+  color: var(--ink-700);
+  border-radius: 9999px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: -0.015em;
+  transition: all 250ms;
+}
+
+.top-pick-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(255, 209, 102, 0.35);
+}
+
+/* Winner card */
+.winner-card {
+  background: var(--cream-100);
+  color: var(--ink-700);
+  border-radius: 28px;
+  padding: 36px;
+  position: relative;
+  transform: rotate(2deg);
+  animation: floatSmall 8s ease-in-out infinite;
+}
+
+.winner-badge {
+  position: absolute;
+  top: -30px;
+  right: -30px;
+  width: 100px;
+  height: 100px;
+  background: var(--honey-400);
+  border: 4px solid var(--berry-600);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(12deg);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.winner-badge-heart {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--berry-600);
+}
+
+.winner-badge span:first-of-type {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--berry-700);
+}
+
+.winner-badge span:last-of-type {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--berry-700);
+  letter-spacing: -0.03em;
+}
+
+.winner-rank {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: var(--blush-100);
+  color: var(--berry-700);
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-bottom: 20px;
+}
+
+.winner-product {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+
+.winner-brand {
+  font-size: 14px;
+  color: var(--muted-500);
+  margin-bottom: 24px;
+}
+
+.winner-score-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 20px 0;
+  border-top: 1px solid var(--blush-200);
+  border-bottom: 1px solid var(--blush-200);
+  margin-bottom: 24px;
+}
+
+.winner-score-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted-500);
+  margin-bottom: 6px;
+  display: block;
+}
+
+.winner-score-value {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  letter-spacing: -0.02em;
+  color: var(--berry-600);
+}
+
+.winner-score-value .out {
+  color: var(--muted-400);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.winner-price {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.winner-price-amount {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.winner-price-amount .from {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted-500);
+  display: block;
+  margin-bottom: 2px;
+}
+
+.winner-cta {
+  padding: 12px 22px;
+  background: var(--gradient-berry);
+  color: white;
+  border-radius: 9999px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 200ms;
+}
+
+.winner-cta:hover { transform: translateY(-1px); }
+
+/* ===== HOW WE WORK ===== */
+.methodology {
+  background: var(--blush-50);
+  border-radius: 32px;
+  margin: 0 32px;
+  padding: 80px 60px;
+}
+
+.methodology-inner {
+  max-width: 1160px;
+  margin: 0 auto;
+}
+
+.methodology-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.methodology-promise {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.promise-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  background: white;
+  border-radius: 14px;
+  border: 1px solid var(--blush-200);
+}
+
+.promise-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  background: var(--berry-100);
+  color: var(--berry-600);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.promise-text {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--ink-700);
+  letter-spacing: -0.01em;
+}
+
+.methodology-steps {
+  display: grid;
+  gap: 12px;
+}
+
+.methodology-step {
+  padding: 28px;
+  background: white;
+  border: 1px solid var(--blush-200);
+  border-radius: 20px;
+  display: flex;
+  gap: 20px;
+  align-items: start;
+  transition: all 200ms;
+}
+
+.methodology-step:hover {
+  border-color: var(--berry-300);
+  transform: translateX(6px);
+}
+
+.step-number {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: var(--blush-100);
+  color: var(--berry-600);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.methodology-step:nth-child(1) .step-number {
+  background: var(--gradient-berry);
+  color: white;
+}
+
+.step-content h3 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  margin-bottom: 6px;
+  color: var(--ink-700);
+}
+
+.step-content p {
+  font-size: 14px;
+  color: var(--muted-500);
+  line-height: 1.55;
+}
+
+/* ===== REVIEWS ===== */
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.review-card {
+  background: white;
+  border: 1px solid var(--blush-200);
+  border-radius: 24px;
+  overflow: hidden;
+  transition: all 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.review-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--berry-300);
+  box-shadow: 0 20px 40px -12px rgba(139, 44, 111, 0.15);
+}
+
+.review-image {
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.review-card:nth-child(1) .review-image {
+  background: linear-gradient(135deg, #F9E5EC 0%, #E29AB9 100%);
+}
+
+.review-card:nth-child(2) .review-image {
+  background: linear-gradient(135deg, #FFE48A 0%, #FFD166 100%);
+}
+
+.review-card:nth-child(3) .review-image {
+  background: linear-gradient(135deg, #5D1F4C 0%, #8B2C6F 100%);
+}
+
+.review-image svg {
+  opacity: 0.4;
+  color: var(--berry-700);
+}
+
+.review-card:nth-child(3) .review-image svg { color: var(--cream-100); opacity: 0.3; }
+
+.review-body { padding: 28px; }
+
+.review-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.review-category {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--berry-600);
+  padding: 4px 12px;
+  background: var(--blush-100);
+  border-radius: 9999px;
+}
+
+.review-date {
+  font-size: 12px;
+  color: var(--muted-400);
+}
+
+.review-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  margin-bottom: 10px;
+  color: var(--ink-700);
+}
+
+.review-excerpt {
+  font-size: 14px;
+  color: var(--muted-500);
+  line-height: 1.55;
+  margin-bottom: 20px;
+}
+
+.review-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid var(--blush-200);
+}
+
+.review-author-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--gradient-berry);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cream-100);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.review-author-info strong {
+  font-family: 'DM Sans', sans-serif;
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-700);
+  letter-spacing: -0.015em;
+}
+
+.review-author-info span {
+  font-size: 12px;
+  color: var(--muted-400);
+}
+
+/* ===== NEWSLETTER CTA ===== */
+.cta-section {
+  padding: 120px 32px;
+  text-align: center;
+  position: relative;
+}
+
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: var(--honey-400);
+  border-radius: 2px;
+}
+
+.cta-inner {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.cta-inner h2 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(40px, 5.5vw, 64px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  margin-bottom: 20px;
+  color: var(--ink-700);
+}
+
+.cta-inner h2 em {
+  font-style: italic;
+  font-weight: 500;
+  background: var(--gradient-berry);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.cta-inner p {
+  font-size: 19px;
+  color: var(--muted-500);
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+
+.cta-form {
+  display: flex;
+  gap: 8px;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 8px;
+  background: white;
+  border: 2px solid var(--blush-200);
+  border-radius: 9999px;
+  box-shadow: 0 10px 40px -15px rgba(139, 44, 111, 0.2);
+}
+
+.cta-form input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 14px 20px;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  background: transparent;
+  color: var(--ink-700);
+}
+
+.cta-form input::placeholder { color: var(--muted-400); }
+
+.cta-form button {
+  padding: 14px 28px;
+  background: var(--gradient-berry);
+  color: var(--cream-100);
+  border: none;
+  border-radius: 9999px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 200ms;
+  white-space: nowrap;
+}
+
+.cta-form button:hover { transform: translateY(-1px); }
+
+.cta-privacy {
+  margin-top: 18px;
+  font-size: 13px;
+  color: var(--muted-400);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.cta-privacy-divider {
+  width: 4px;
+  height: 4px;
+  background: var(--muted-400);
+  border-radius: 50%;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  background: var(--ink-700);
+  color: var(--blush-200);
+  padding: 80px 32px 32px;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: -200px;
+  right: -100px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(184, 75, 143, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.footer-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr repeat(4, 1fr);
+  gap: 48px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid rgba(249, 229, 236, 0.1);
+}
+
+.footer-brand-desc {
+  font-size: 14px;
+  line-height: 1.65;
+  color: rgba(249, 229, 236, 0.5);
+  margin-top: 20px;
+  max-width: 320px;
+}
+
+.footer-col h4 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--cream-100);
+  margin-bottom: 20px;
+}
+
+.footer-col ul { list-style: none; }
+
+.footer-col li { margin-bottom: 12px; }
+
+.footer-col a {
+  font-size: 14px;
+  color: rgba(249, 229, 236, 0.55);
+  transition: color 180ms;
+}
+
+.footer-col a:hover { color: var(--berry-300); }
+
+.footer-bottom {
+  padding-top: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 12px;
+  color: rgba(249, 229, 236, 0.3);
+}
+
+/* Logo in footer */
+.footer .logo-tile {
+  background: var(--blush-100);
+}
+
+.footer .logo-text .one { color: var(--cream-100); }
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes floatA {
+  0%, 100% { transform: rotate(var(--r, 0)) translateY(0); }
+  50% { transform: rotate(var(--r, 0)) translateY(-14px); }
+}
+
+.hero-card-1 { --r: -6deg; }
+.hero-card-2 { --r: 4deg; }
+.hero-card-3 { --r: -2deg; }
+
+@keyframes floatSmall {
+  0%, 100% { transform: rotate(2deg) translateY(0); }
+  50% { transform: rotate(2deg) translateY(-8px); }
+}
+
+@keyframes floatHeart {
+  0%, 100% { transform: translateY(0) rotate(0); opacity: 0.4; }
+  50% { transform: translateY(-20px) rotate(10deg); opacity: 0.6; }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1100px) {
+  .hero-inner, .top-pick-inner, .methodology-grid { grid-template-columns: 1fr; gap: 48px; }
+  .hero-visual { display: none; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .methodology { padding: 60px 32px; }
+}
+
+@media (max-width: 768px) {
+  .header-inner { padding: 0 20px; height: 64px; }
+  .nav { display: none; }
+  .hero { padding: 48px 20px 72px; }
+  .hero h1 { font-size: 40px; }
+  .section { padding: 64px 20px; }
+  .top-pick { padding: 60px 28px; margin: 40px 16px; }
+  .methodology { padding: 48px 24px; margin: 0 16px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .cta-form { flex-direction: column; border-radius: 20px; padding: 10px; }
+  .cta-form input, .cta-form button { width: 100%; border-radius: 14px; }
+  .winner-card { transform: rotate(0); }
+  .winner-badge { width: 80px; height: 80px; top: -20px; right: -10px; }
 }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <a href="/" class="logo-link">
-    <img src="/brand/logo-wordmark.svg" alt="HealthRankings" height="48">
-  </a>
-  <div class="nav-links">
-    <a href="/#conditions">Conditions</a>
-    <a href="/healthrankings-devices.html">Devices</a>
-    <a href="/healthrankings-drugs.html">Drugs A–Z</a>
-    <a href="/healthrankings-news.html">Health News</a>
-    <a href="/" class="nav-cta">Search All</a>
+<!-- ============ HEADER ============ -->
+<header class="header">
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <div class="logo-tile">
+        <div class="logo-face">
+          <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+            <circle cx="11" cy="12" r="2" fill="#8B2C6F"/>
+            <circle cx="21" cy="12" r="2" fill="#8B2C6F"/>
+            <path d="M 8 19 Q 16 26 24 19" stroke="#8B2C6F" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="logo-sparkle">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+            <path d="M 6 0 L 7 4.5 L 12 6 L 7 7.5 L 6 12 L 5 7.5 L 0 6 L 5 4.5 Z"/>
+          </svg>
+        </div>
+      </div>
+      <div class="logo-text">
+        <span class="one">health</span><span class="two">rankings</span>
+      </div>
+    </a>
+    <nav class="nav">
+      <a href="#conditions">Conditions</a>
+      <a href="#products">Products</a>
+      <a href="#guides">Guides</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#about">About</a>
+    </nav>
+    <div class="header-actions">
+      <button class="search-btn" aria-label="Search">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/>
+          <path d="m21 21-4.3-4.3"/>
+        </svg>
+      </button>
+      <button class="cta-btn">Get started</button>
+    </div>
   </div>
-</nav>
+</header>
 
-<!-- HERO -->
+<!-- ============ HERO ============ -->
 <section class="hero">
   <div class="hero-inner">
-    <div class="hero-left">
-      <div class="hero-eyebrow">✨ Honest, Expert-Reviewed Rankings</div>
-      <h1>Health products, <em>ranked by the people</em> who matter.</h1>
-      <p class="hero-sub">We buy every product at retail, test it for weeks, and rank the top 5 for your condition. No free samples. No paid placements. Just honest reviews.</p>
-      <div class="hero-actions">
-        <a href="/#conditions" class="btn-primary">Browse by Condition</a>
-        <a href="/#rankings" class="btn-ghost">Browse Devices</a>
+    <div>
+      <div class="hero-eyebrow">
+        <div class="hero-eyebrow-dot"></div>
+        Honest reviews · Zero paid rankings
       </div>
-      <div class="hero-stats">
-        <div><div class="hstat-num">62</div><div class="hstat-label">Conditions covered</div></div>
-        <div><div class="hstat-num">40+</div><div class="hstat-label">Product categories</div></div>
-        <div><div class="hstat-num">500+</div><div class="hstat-label">Products reviewed</div></div>
+      <h1>Health products, <em>ranked by the people</em> who matter.</h1>
+      <p class="hero-sub">
+        We test every product. We talk to real patients. And we tell you the truth — even when the "best seller" isn't the best choice.
+      </p>
+      <div class="hero-search">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/>
+          <path d="m21 21-4.3-4.3"/>
+        </svg>
+        <input type="text" placeholder="What are you looking for? Blood pressure, sleep, glucose…" />
+        <button class="hero-search-btn">Find it</button>
+      </div>
+      <div class="hero-trust">
+        <div class="hero-trust-item">
+          <div class="hero-trust-check">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          </div>
+          MD reviewed
+        </div>
+        <div class="hero-trust-item">
+          <div class="hero-trust-check">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          </div>
+          We buy everything we test
+        </div>
+        <div class="hero-trust-item">
+          <div class="hero-trust-check">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          </div>
+          Zero sponsored content
+        </div>
       </div>
     </div>
-    <div class="hero-right">
-      <div class="hero-search-panel">
-        <h3>Find products for your condition</h3>
-        <div class="search-input-wrap">
-          <span class="search-icon">🔍</span>
-          <input type="text" placeholder="e.g. hypertension, diabetes, arthritis..." id="heroSearch" oninput="filterConditions(this.value)" />
+
+    <!-- Hero visual: 3 overlapping cards -->
+    <div class="hero-visual">
+      <div class="hero-card hero-card-1">
+        <div class="hero-card-rank">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg>
+          #1 Blood Pressure
         </div>
-        <p style="font-size:0.75rem;color:var(--muted-400);margin-bottom:0.75rem;">Popular conditions:</p>
-        <div class="quick-conditions">
-          <button class="qc-btn" onclick="document.getElementById('heroSearch').value=this.textContent;filterConditions(this.textContent)">Hypertension</button>
-          <button class="qc-btn" onclick="document.getElementById('heroSearch').value=this.textContent;filterConditions(this.textContent)">Diabetes</button>
-          <button class="qc-btn" onclick="document.getElementById('heroSearch').value=this.textContent;filterConditions(this.textContent)">Arthritis</button>
-          <button class="qc-btn" onclick="document.getElementById('heroSearch').value=this.textContent;filterConditions(this.textContent)">COPD</button>
-          <button class="qc-btn" onclick="document.getElementById('heroSearch').value=this.textContent;filterConditions(this.textContent)">Sleep Apnea</button>
-          <button class="qc-btn" onclick="document.getElementById('heroSearch').value=this.textContent;filterConditions(this.textContent)">Obesity</button>
-          <button class="qc-btn" onclick="document.getElementById('heroSearch').value=this.textContent;filterConditions(this.textContent)">Back Pain</button>
-          <button class="qc-btn" onclick="document.getElementById('heroSearch').value=this.textContent;filterConditions(this.textContent)">Pregnancy</button>
+        <div class="hero-card-name">Omron Platinum BP5450</div>
+        <div class="hero-card-sub">Clinically accurate · FDA cleared</div>
+        <div class="hero-card-row">
+          <span class="hero-card-stars">★★★★★</span>
+          <span class="hero-card-score">9.4</span>
+        </div>
+      </div>
+
+      <div class="hero-card hero-card-2">
+        <div class="hero-card-rank">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg>
+          #1 Smart Scale
+        </div>
+        <div class="hero-card-name">Withings Body Comp</div>
+        <div class="hero-card-sub">Complete body composition</div>
+        <div class="hero-card-row">
+          <span class="hero-card-stars">★★★★★</span>
+          <span class="hero-card-score">9.1</span>
+        </div>
+      </div>
+
+      <div class="hero-card hero-card-3">
+        <div class="hero-card-rank">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg>
+          Top Sleep Tracker
+        </div>
+        <div class="hero-card-name">Oura Ring Gen 4</div>
+        <div class="hero-card-sub">Accurate sleep stages, 7-day battery</div>
+        <div class="hero-card-row">
+          <span class="hero-card-stars">★★★★★</span>
+          <span class="hero-card-score">8.9</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- TRUST BAR -->
-<div class="trust-bar">
-  <div class="trust-inner">
-    <div class="trust-item"><div class="trust-dot"></div><span><strong>Clinically validated</strong> products only</span></div>
-    <div class="trust-item"><div class="trust-dot"></div><span><strong>Independent</strong> editorial rankings</span></div>
-    <div class="trust-item"><div class="trust-dot"></div><span><strong>AHA / ACC</strong> guidelines followed</span></div>
-    <div class="trust-item"><div class="trust-dot"></div><span><strong>Updated</strong> April 2026</span></div>
-    <div class="trust-item"><div class="trust-dot"></div><span><strong>No paid placements</strong> in rankings</span></div>
+<!-- ============ LOVED BY ============ -->
+<section class="loved-banner">
+  <div class="loved-banner-inner">
+    <div class="loved-label">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      Loved by 47,000+ readers. Featured in:
+    </div>
+    <div class="loved-logos">
+      <span class="loved-logo">The New York Times</span>
+      <span class="loved-logo">Vogue</span>
+      <span class="loved-logo">Prevention</span>
+      <span class="loved-logo">Women's Health</span>
+      <span class="loved-logo">Forbes</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONDITIONS ============ -->
+<section class="section" id="conditions">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-heading">
+        <div class="section-eyebrow">Browse by condition</div>
+        <h2>What's <em>on your mind?</em></h2>
+        <p class="section-intro">Start where you are. We'll show you the health products our team and medical reviewers actually recommend — ranked honestly, without bias, without paid placements.</p>
+      </div>
+      <a href="#" class="view-all">
+        All 60+ conditions
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <div class="conditions-grid">
+      <a class="condition-card">
+        <div class="condition-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 0C1.46 6.7 1.33 10.28 4 13l8 8 8-8c2.67-2.72 2.54-6.3.42-8.42z"/></svg>
+        </div>
+        <div class="condition-name">Heart &amp; Blood Pressure</div>
+        <div class="condition-meta"><strong>14</strong> products ranked</div>
+      </a>
+      <a class="condition-card">
+        <div class="condition-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <div class="condition-name">Diabetes &amp; Glucose</div>
+        <div class="condition-meta"><strong>18</strong> products ranked</div>
+      </a>
+      <a class="condition-card">
+        <div class="condition-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </div>
+        <div class="condition-name">Sleep &amp; Recovery</div>
+        <div class="condition-meta"><strong>13</strong> products ranked</div>
+      </a>
+      <a class="condition-card">
+        <div class="condition-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20"/></svg>
+        </div>
+        <div class="condition-name">Weight &amp; Wellness</div>
+        <div class="condition-meta"><strong>22</strong> products ranked</div>
+      </a>
+      <a class="condition-card">
+        <div class="condition-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        </div>
+        <div class="condition-name">Skin, Hair &amp; Beauty</div>
+        <div class="condition-meta"><strong>19</strong> products ranked</div>
+      </a>
+      <a class="condition-card">
+        <div class="condition-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9 9 0 0 1 9 9"/><path d="M12 3v9l4.5 4.5"/></svg>
+        </div>
+        <div class="condition-name">Pain &amp; Recovery</div>
+        <div class="condition-meta"><strong>11</strong> products ranked</div>
+      </a>
+      <a class="condition-card">
+        <div class="condition-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        </div>
+        <div class="condition-name">Sleep Apnea &amp; Breathing</div>
+        <div class="condition-meta"><strong>9</strong> products ranked</div>
+      </a>
+      <a class="condition-card">
+        <div class="condition-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11H5a2 2 0 0 0-2 2v7h18v-7a2 2 0 0 0-2-2h-4"/><path d="M12 2v9"/><path d="m8 7 4-5 4 5"/></svg>
+        </div>
+        <div class="condition-name">Women's Health</div>
+        <div class="condition-meta"><strong>16</strong> products ranked</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TOP PICK FEATURE ============ -->
+<div class="top-pick">
+  <div class="top-pick-inner">
+    <div>
+      <div class="top-pick-eyebrow">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        This month's top pick
+      </div>
+      <h2>The blood pressure monitor we'd <em>actually buy our mom.</em></h2>
+      <p class="top-pick-desc">
+        After 120 hours of testing against clinical reference devices, the Omron Platinum came out on top. It's the one we recommend without hesitation — accurate, intuitive, and built to last.
+      </p>
+
+      <div class="top-pick-stats">
+        <div>
+          <span class="top-pick-stat-num">9.4<span class="unit">/10</span></span>
+          <span class="top-pick-stat-label">Overall score</span>
+        </div>
+        <div>
+          <span class="top-pick-stat-num">14</span>
+          <span class="top-pick-stat-label">Devices tested</span>
+        </div>
+        <div>
+          <span class="top-pick-stat-num">120<span class="unit">h</span></span>
+          <span class="top-pick-stat-label">Testing time</span>
+        </div>
+      </div>
+
+      <a href="#" class="top-pick-cta">
+        Read the full review
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <div class="winner-card">
+      <div class="winner-badge">
+        <div class="winner-badge-heart">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <span>TOP PICK</span>
+        <span>2026</span>
+      </div>
+      <div class="winner-rank">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg>
+        #1 BLOOD PRESSURE MONITOR
+      </div>
+      <h3 class="winner-product">Omron Platinum BP5450</h3>
+      <p class="winner-brand">by Omron · FDA Cleared</p>
+
+      <div class="winner-score-grid">
+        <div>
+          <span class="winner-score-label">Accuracy</span>
+          <span class="winner-score-value">9.6<span class="out">/10</span></span>
+        </div>
+        <div>
+          <span class="winner-score-label">Ease of use</span>
+          <span class="winner-score-value">9.3<span class="out">/10</span></span>
+        </div>
+        <div>
+          <span class="winner-score-label">App quality</span>
+          <span class="winner-score-value">9.1<span class="out">/10</span></span>
+        </div>
+        <div>
+          <span class="winner-score-label">Value</span>
+          <span class="winner-score-value">9.4<span class="out">/10</span></span>
+        </div>
+      </div>
+
+      <div class="winner-price">
+        <div>
+          <div class="winner-price-amount">
+            <span class="from">Starts at</span>
+            $149
+          </div>
+        </div>
+        <a href="#" class="winner-cta">
+          See on Amazon
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
   </div>
 </div>
 
-<!-- HOW IT WORKS -->
+<!-- ============ METHODOLOGY ============ -->
 <section class="section">
-  <div class="section-inner">
-    <div class="section-header">
-      <div class="section-label">How it works</div>
-      <h2>From Condition to Best Product</h2>
-      <p>We connect your health condition to the right products — with full context on why they help.</p>
-    </div>
-    <div class="how-grid">
-      <div class="how-card">
-        <div class="how-num">1</div>
-        <h3>Find Your Condition</h3>
-        <p>Browse 62 health conditions across 11 categories. Each condition page explains symptoms, causes, lifestyle recommendations, and medications in plain English.</p>
-      </div>
-      <div class="how-card">
-        <div class="how-num">2</div>
-        <h3>Read Expert Reviews</h3>
-        <p>We test and review every relevant product in that category — evaluating accuracy, ease of use, comfort, connectivity, and value for money.</p>
-      </div>
-      <div class="how-card">
-        <div class="how-num">3</div>
-        <h3>Get Your Top 5</h3>
-        <p>Our scored rankings give you the top 5 products for your specific condition — with a clear winner, a best-value pick, and options for every budget.</p>
-      </div>
-    </div>
-  </div>
-</section>
+  <div class="methodology">
+    <div class="methodology-inner">
+      <div class="methodology-grid">
+        <div>
+          <div class="section-eyebrow">Our promise</div>
+          <h2>No hype. No <em>paid rankings.</em> Just the truth.</h2>
+          <p class="section-intro" style="margin-top: 20px;">
+            Our rankings aren't opinions — they come from a rigorous, repeatable process, reviewed by licensed MDs. And we'll tell you exactly how we work.
+          </p>
+          <div class="methodology-promise">
+            <div class="promise-item">
+              <div class="promise-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              </div>
+              <span class="promise-text">We buy every product at retail — never free samples</span>
+            </div>
+            <div class="promise-item">
+              <div class="promise-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              </div>
+              <span class="promise-text">Rankings can't be influenced by advertisers</span>
+            </div>
+            <div class="promise-item">
+              <div class="promise-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              </div>
+              <span class="promise-text">Every review is signed by a licensed MD reviewer</span>
+            </div>
+          </div>
+        </div>
 
-<!-- CONDITIONS -->
-<section class="section conditions-section" id="conditions">
-  <div class="section-inner">
-    <div class="section-header">
-      <div class="section-label">Browse by condition</div>
-      <h2>60+ Health Conditions Covered</h2>
-      <p>Expert-reviewed condition guides with ranked product recommendations — click any condition to read the full guide.</p>
-    </div>
-    <div class="conditions-grid" id="conditionsGrid">
-    <a href="healthrankings-anxiety-breathing-trainers.html" class="condition-card"><div class="cc-top"><span class="cc-cat cat-neurological">neurological</span></div><div class="cc-name">Anxiety / Stress</div><div class="cc-products">Top products: <span>Breathing trainer, Electric massager</span></div></a>
-    <a href="healthrankings-asthma-pulse-oximeter.html" class="condition-card"><div class="cc-top"><span class="cc-cat cat-respiratory">respiratory</span></div><div class="cc-name">Asthma</div><div class="cc-products">Top products: <span>Pulse oximeter</span></div></a>
-    <a href="healthrankings-copd-pulse-oximeters.html" class="condition-card"><div class="cc-top"><span class="cc-cat cat-respiratory">respiratory</span></div><div class="cc-name">COPD</div><div class="cc-products">Top products: <span>Pulse oximeter, Breathing trainer</span></div></a>
-    <a href="healthrankings-hypertension.html" class="condition-card"><div class="cc-top"><span class="cc-cat cat-cardiovascular">cardiovascular</span></div><div class="cc-name">Hypertension</div><div class="cc-products">Top products: <span>Blood pressure monitor</span></div></a>
-    <a href="healthrankings-obesity.html" class="condition-card"><div class="cc-top"><span class="cc-cat cat-metabolic">metabolic</span></div><div class="cc-name">Obesity / Overweight</div><div class="cc-products">Top products: <span>Body composition monitor</span></div></a>
-    <a href="healthrankings-sleep-apnea.html" class="condition-card"><div class="cc-top"><span class="cc-cat cat-respiratory">respiratory</span></div><div class="cc-name">Sleep Apnea</div><div class="cc-products">Top products: <span>Pulse oximeter, Overnight oximeter</span></div></a>
-    </div>
-    <div style="text-align:center;margin-top:2.5rem;">
-      <a href="healthrankings-conditions.html" class="see-all-btn">See All 63 Conditions →</a>
-    </div>
-  </div>
-</section>
-
-<!-- FEATURED RANKINGS -->
-<section class="section" id="rankings">
-  <div class="section-inner">
-    <div class="section-header">
-      <div class="section-label">Top 5 Lists</div>
-      <h2>Our Most Popular Rankings</h2>
-      <p>The product categories our readers search for most — with full reviews and clear winners.</p>
-    </div>
-    <div class="rankings-grid">
-      <div class="rank-card"><div class="rank-card-header"><h3>Blood Pressure Monitors</h3><p>For hypertension, heart failure, stroke prevention</p></div><div class="rank-card-body"><div class="rank-winner"><div class="rank-num">1</div><div class="rank-product">Omron Platinum BP5450<span>Editor's Choice — Best Overall</span></div><div class="rank-score">9.5</div></div><ul class="rank-list"><li><div class="rank-list-num">2</div>Withings BPM Connect — Best App</li><li><div class="rank-list-num">3</div>Oxiline Pressure XS Pro — Best Value</li><li><div class="rank-list-num">4</div>Omron Gold BP5195 — Best Large Cuff</li><li><div class="rank-list-num">5</div>Beurer BM54 — Best for Families</li></ul></div><div class="rank-card-footer"><a href="healthrankings-hypertension.html" class="view-all-btn">Read Full Reviews →</a></div></div>
-      <div class="rank-card"><div class="rank-card-header"><h3>Body Composition Monitors</h3><p>For obesity, diabetes, metabolic syndrome, fitness</p></div><div class="rank-card-body"><div class="rank-winner"><div class="rank-num">1</div><div class="rank-product">Withings Body Comp<span>Editor's Choice — Most Advanced</span></div><div class="rank-score">9.4</div></div><ul class="rank-list"><li><div class="rank-list-num">2</div>Garmin Index S2 — Best Accuracy</li><li><div class="rank-list-num">3</div>Oxiline Scale X Pro — Best Value</li><li><div class="rank-list-num">4</div>Renpho Premium — Budget Pick</li><li><div class="rank-list-num">5</div>Tanita RD-953 — Best for Athletes</li></ul></div><div class="rank-card-footer"><a href="/" class="view-all-btn">Read Full Reviews →</a></div></div>
-      <div class="rank-card"><div class="rank-card-header"><h3>Pulse Oximeters</h3><p>For COPD, asthma, sleep apnea, heart failure</p></div><div class="rank-card-body"><div class="rank-winner"><div class="rank-num">1</div><div class="rank-product">Masimo MightySat Rx<span>Editor's Choice — Clinical Grade</span></div><div class="rank-score">9.6</div></div><ul class="rank-list"><li><div class="rank-list-num">2</div>Nonin Onyx Vantage 9590</li><li><div class="rank-list-num">3</div>Oxiline Pulse X Pro — Best Value</li><li><div class="rank-list-num">4</div>Wellue O2Ring — Best Overnight</li><li><div class="rank-list-num">5</div>Contec CMS50D+ — Budget Pick</li></ul></div><div class="rank-card-footer"><a href="/" class="view-all-btn">Read Full Reviews →</a></div></div>
-      <div class="rank-card"><div class="rank-card-header"><h3>Electric Toothbrushes</h3><p>For gingivitis, periodontal disease, oral care</p></div><div class="rank-card-body"><div class="rank-winner"><div class="rank-num">1</div><div class="rank-product">Oral-B iO Series 9<span>Editor's Choice — Best Sonic</span></div><div class="rank-score">9.3</div></div><ul class="rank-list"><li><div class="rank-list-num">2</div>Philips Sonicare DiamondClean</li><li><div class="rank-list-num">3</div>Nuve Sonic Pro — Best Value</li><li><div class="rank-list-num">4</div>Colgate hum Smart — Budget</li><li><div class="rank-list-num">5</div>Oclean X Pro Elite</li></ul></div><div class="rank-card-footer"><a href="/" class="view-all-btn">Read Full Reviews →</a></div></div>
-      <div class="rank-card"><div class="rank-card-header"><h3>TENS Units</h3><p>For back pain, arthritis, neuropathy, recovery</p></div><div class="rank-card-body"><div class="rank-winner"><div class="rank-num">1</div><div class="rank-product">Compex Sport Elite<span>Editor's Choice — Professional</span></div><div class="rank-score">9.2</div></div><ul class="rank-list"><li><div class="rank-list-num">2</div>iReliev ET-7070 — Best Value</li><li><div class="rank-list-num">3</div>Oxiline TENS X Pro</li><li><div class="rank-list-num">4</div>Beurer EM59 — Best Wireless</li><li><div class="rank-list-num">5</div>HealthmateForever YK15AB</li></ul></div><div class="rank-card-footer"><a href="/" class="view-all-btn">Read Full Reviews →</a></div></div>
-      <div class="rank-card"><div class="rank-card-header"><h3>Thermometers</h3><p>For fever, infections, respiratory illness</p></div><div class="rank-card-body"><div class="rank-winner"><div class="rank-num">1</div><div class="rank-product">Braun No Touch + Forehead<span>Editor's Choice — Fastest</span></div><div class="rank-score">9.1</div></div><ul class="rank-list"><li><div class="rank-list-num">2</div>Kinsa QuickCare Smart</li><li><div class="rank-list-num">3</div>Oxiline Thermo X — Best Value</li><li><div class="rank-list-num">4</div>iHealth PT3 No Touch</li><li><div class="rank-list-num">5</div>Vicks ComfortFlex</li></ul></div><div class="rank-card-footer"><a href="/" class="view-all-btn">Read Full Reviews →</a></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- PRODUCT CATEGORIES -->
-<section class="section" style="background:var(--cream-200)" id="products">
-  <div class="section-inner">
-    <div class="section-header">
-      <div class="section-label">All product categories</div>
-      <h2>40+ Product Categories Reviewed</h2>
-      <p>Every category has full individual reviews and a scored Top 5 ranking.</p>
-    </div>
-    <div class="products-grid">
-      <div class="product-cat-card"><div class="pcc-name">Blood Pressure Monitors</div><div class="pcc-count">23 products reviewed</div><div class="pcc-arrow">View Top 5 →</div></div>
-      <div class="product-cat-card"><div class="pcc-name">Body Composition Scales</div><div class="pcc-count">18 products reviewed</div><div class="pcc-arrow">View Top 5 →</div></div>
-      <div class="product-cat-card"><div class="pcc-name">Pulse Oximeters</div><div class="pcc-count">21 products reviewed</div><div class="pcc-arrow">View Top 5 →</div></div>
-      <div class="product-cat-card"><div class="pcc-name">Breathing Trainers</div><div class="pcc-count">14 products reviewed</div><div class="pcc-arrow">View Top 5 →</div></div>
-      <div class="product-cat-card"><div class="pcc-name">Health Alert Systems</div><div class="pcc-count">11 products reviewed</div><div class="pcc-arrow">View Top 5 →</div></div>
-      <div class="product-cat-card"><div class="pcc-name">Ketone Monitors</div><div class="pcc-count">12 products reviewed</div><div class="pcc-arrow">View Top 5 →</div></div>
-      <div class="product-cat-card"><div class="pcc-name">Thermometers</div><div class="pcc-count">19 products reviewed</div><div class="pcc-arrow">View Top 5 →</div></div>
-      <div class="product-cat-card"><div class="pcc-name">Stethoscopes</div><div class="pcc-count">10 products reviewed</div><div class="pcc-arrow">View Top 5 →</div></div>
-      <div class="product-cat-card"><div class="pcc-name">Cholesterol Tests</div><div class="pcc-count">8 products reviewed</div><div class="pcc-arrow">View Top 5 →</div></div>
-      <div class="product-cat-card"><div class="pcc-name">Genetic Tests</div><div class="pcc-count">7 products reviewed</div><div class="pcc-arrow">View Top 5 →</div></div>
-      <div class="product-cat-card"><div class="pcc-name">Pregnancy & Fertility</div><div class="pcc-count">16 products reviewed</div><div class="pcc-arrow">View Top 5 →</div></div>
-      <div class="product-cat-card"><div class="pcc-name">Electric Toothbrushes</div><div class="pcc-count">24 products reviewed</div><div class="pcc-arrow">View Top 5 →</div></div>
-      <div class="product-cat-card"><div class="pcc-name">Water Flossers</div><div class="pcc-count">15 products reviewed</div><div class="pcc-arrow">View Top 5 →</div></div>
-      <div class="product-cat-card"><div class="pcc-name">Teeth Grinding Guards</div><div class="pcc-count">11 products reviewed</div><div class="pcc-arrow">View Top 5 →</div></div>
-      <div class="product-cat-card"><div class="pcc-name">TENS Units</div><div class="pcc-count">17 products reviewed</div><div class="pcc-arrow">View Top 5 →</div></div>
-      <div class="product-cat-card"><div class="pcc-name">Electric Massagers</div><div class="pcc-count">20 products reviewed</div><div class="pcc-arrow">View Top 5 →</div></div>
-      <div class="product-cat-card"><div class="pcc-name">Arthritis Gloves</div><div class="pcc-count">13 products reviewed</div><div class="pcc-arrow">View Top 5 →</div></div>
-      <div class="product-cat-card"><div class="pcc-name">Leg & Foot Support</div><div class="pcc-count">16 products reviewed</div><div class="pcc-arrow">View Top 5 →</div></div>
-      <div class="product-cat-card"><div class="pcc-name">Drug & Alcohol Tests</div><div class="pcc-count">14 products reviewed</div><div class="pcc-arrow">View Top 5 →</div></div>
-      <div class="product-cat-card"><div class="pcc-name">Supplements & Amino Acids</div><div class="pcc-count">30+ products reviewed</div><div class="pcc-arrow">View Top 5 →</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- METHODOLOGY -->
-<section class="section" id="methodology">
-  <div class="section-inner">
-    <div class="method-grid">
-      <div class="method-text">
-        <div class="section-label">Our methodology</div>
-        <h2>How We Rank Health Products</h2>
-        <p>Every product on HealthRankings goes through a structured evaluation against five weighted criteria. We only include clinically validated devices and products with documented safety records. Our rankings are never influenced by brand partnerships or advertising relationships.</p>
-        <p>We test products over a minimum of four weeks, validate readings against clinical reference devices where applicable, and consult with healthcare professionals on condition-specific requirements.</p>
-        <div class="method-criteria">
-          <div class="mc-item"><div class="mc-bar-wrap"><div class="mc-label"><span>Accuracy & Clinical Validation</span><span>30%</span></div><div class="mc-bar-track"><div class="mc-bar-fill" style="width:100%"></div></div></div></div>
-          <div class="mc-item"><div class="mc-bar-wrap"><div class="mc-label"><span>Ease of Use</span><span>25%</span></div><div class="mc-bar-track"><div class="mc-bar-fill" style="width:83%"></div></div></div></div>
-          <div class="mc-item"><div class="mc-bar-wrap"><div class="mc-label"><span>Comfort & Build Quality</span><span>20%</span></div><div class="mc-bar-track"><div class="mc-bar-fill" style="width:67%"></div></div></div></div>
-          <div class="mc-item"><div class="mc-bar-wrap"><div class="mc-label"><span>App & Connectivity</span><span>15%</span></div><div class="mc-bar-track"><div class="mc-bar-fill" style="width:50%"></div></div></div></div>
-          <div class="mc-item"><div class="mc-bar-wrap"><div class="mc-label"><span>Value for Money</span><span>10%</span></div><div class="mc-bar-track"><div class="mc-bar-fill" style="width:33%"></div></div></div></div>
+        <div class="methodology-steps">
+          <div class="methodology-step">
+            <div class="step-number">01</div>
+            <div class="step-content">
+              <h3>We set the criteria</h3>
+              <p>Our MD review board defines what makes a great device — before testing begins.</p>
+            </div>
+          </div>
+          <div class="methodology-step">
+            <div class="step-number">02</div>
+            <div class="step-content">
+              <h3>We buy everything</h3>
+              <p>Every product we review is bought at retail. No samples, no deals, no strings attached.</p>
+            </div>
+          </div>
+          <div class="methodology-step">
+            <div class="step-number">03</div>
+            <div class="step-content">
+              <h3>Real people, real trials</h3>
+              <p>We run 30-day patient trials with people who actually have the condition.</p>
+            </div>
+          </div>
+          <div class="methodology-step">
+            <div class="step-number">04</div>
+            <div class="step-content">
+              <h3>An MD signs off</h3>
+              <p>A licensed physician reviews every ranking before it's published — with their name on the review.</p>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="method-badges">
-        <div class="method-badge"><div class="mb-num">500+</div><div class="mb-label">Products tested</div></div>
-        <div class="method-badge"><div class="mb-num">62</div><div class="mb-label">Conditions covered</div></div>
-        <div class="method-badge"><div class="mb-num">4wk</div><div class="mb-label">Minimum test period</div></div>
-        <div class="method-badge"><div class="mb-num">0</div><div class="mb-label">Paid placements in rankings</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REVIEWS ============ -->
+<section class="section" id="reviews">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-heading">
+        <div class="section-eyebrow">Fresh from the team</div>
+        <h2>Reviews worth <em>your time.</em></h2>
+        <p class="section-intro">In-depth testing, buyer's guides, and condition-specific explainers — written by doctors, clinicians, and people who actually use these products.</p>
       </div>
+      <a href="#" class="view-all">
+        All reviews
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <div class="reviews-grid">
+      <article class="review-card">
+        <div class="review-image">
+          <svg width="90" height="90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 0C1.46 6.7 1.33 10.28 4 13l8 8 8-8c2.67-2.72 2.54-6.3.42-8.42z"/></svg>
+        </div>
+        <div class="review-body">
+          <div class="review-meta">
+            <span class="review-category">Heart Health</span>
+            <span class="review-date">2 days ago</span>
+          </div>
+          <h3 class="review-title">5 blood pressure monitors we'd actually recommend</h3>
+          <p class="review-excerpt">We tested 14 monitors for two months. Here's what earned our top marks — and the one to skip.</p>
+          <div class="review-author">
+            <div class="review-author-avatar">MC</div>
+            <div class="review-author-info">
+              <strong>Dr. Maria Chen, MD</strong>
+              <span>Cardiology · 14 min read</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="review-card">
+        <div class="review-image">
+          <svg width="90" height="90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <div class="review-body">
+          <div class="review-meta">
+            <span class="review-category">Diabetes</span>
+            <span class="review-date">5 days ago</span>
+          </div>
+          <h3 class="review-title">Dexcom G7 vs FreeStyle Libre 3: a 30-day showdown</h3>
+          <p class="review-excerpt">We wore both continuous glucose monitors for a month. One clearly edges out the other — and it's not the one you might think.</p>
+          <div class="review-author">
+            <div class="review-author-avatar">JR</div>
+            <div class="review-author-info">
+              <strong>Dr. James Rodriguez, MD</strong>
+              <span>Endocrinology · 18 min read</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="review-card">
+        <div class="review-image">
+          <svg width="90" height="90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </div>
+        <div class="review-body">
+          <div class="review-meta">
+            <span class="review-category">Sleep</span>
+            <span class="review-date">1 week ago</span>
+          </div>
+          <h3 class="review-title">Do sleep trackers actually help? A 3-month deep dive</h3>
+          <p class="review-excerpt">We had 8 patients with insomnia wear 3 trackers each. The results surprised us — and probably will you.</p>
+          <div class="review-author">
+            <div class="review-author-avatar">SP</div>
+            <div class="review-author-info">
+              <strong>Dr. Sarah Park, MD</strong>
+              <span>Sleep Medicine · 22 min read</span>
+            </div>
+          </div>
+        </div>
+      </article>
     </div>
   </div>
 </section>
 
-<!-- RECENT REVIEWS -->
-<section class="section" style="background:var(--cream-200)">
-  <div class="section-inner">
-    <div class="section-header">
-      <div class="section-label">Latest reviews</div>
-      <h2>Recently Published</h2>
-      <p>Our most recently updated condition guides and product rankings.</p>
-    </div>
-    <div class="recent-grid">
-      <div class="recent-card"><div class="rc-header"><div style="font-size:2.5rem">💓</div><div class="rc-header-badge">Full Guide</div></div><div class="rc-body"><div class="rc-cat">Cardiovascular</div><div class="rc-title">Hypertension: Symptoms, Causes & Best Blood Pressure Monitors</div><div class="rc-desc">A complete guide to managing high blood pressure at home, with our top 5 blood pressure monitor picks including the Omron Platinum as our editor's choice.</div><div class="rc-meta"><span>Updated April 2026 · 23 monitors tested</span><a href="healthrankings-hypertension.html" class="rc-read">Read guide →</a></div></div></div>
-      <div class="recent-card"><div class="rc-header"><div style="font-size:2.5rem">🍬</div><div class="rc-header-badge">Coming Soon</div></div><div class="rc-body"><div class="rc-cat">Metabolic</div><div class="rc-title">Type 2 Diabetes: Management Guide & Best Ketone Monitors</div><div class="rc-desc">Everything diabetics need to know about home monitoring — from ketone testing to body composition tracking — with our top picks for each device category.</div><div class="rc-meta"><span>Publishing May 2026</span><span style="color:var(--muted-400)">Coming soon</span></div></div></div>
-      <div class="recent-card"><div class="rc-header"><div style="font-size:2.5rem">🦴</div><div class="rc-header-badge">Coming Soon</div></div><div class="rc-body"><div class="rc-cat">Musculoskeletal</div><div class="rc-title">Arthritis: Complete Guide & Best Arthritis Gloves + TENS Units</div><div class="rc-desc">How to manage joint pain at home with the right combination of arthritis gloves, TENS therapy, and compression supports — ranked by our expert reviewers.</div><div class="rc-meta"><span>Publishing May 2026</span><span style="color:var(--muted-400)">Coming soon</span></div></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- HEALTH NEWS -->
-<section class="section" id="health-news" style="background:var(--cream-200);">
-  <div class="section-inner">
-    <div class="section-header">
-      <div class="section-label">Latest Headlines</div>
-      <h2>Health News Today</h2>
-      <p>Live health and medical news from top sources — updated in real time.</p>
-    </div>
-    <div id="newsGrid" class="news-grid">
-      <div class="news-loading"><div class="news-spinner"></div><span>Loading latest health news…</span></div>
-    </div>
-    <div style="text-align:center;margin-top:2rem;" id="newsFooter" style="display:none">
-      <p style="font-size:0.78rem;color:var(--muted-400);">Powered by NewsAPI · Health & Medical headlines · Updated hourly</p>
+<!-- ============ NEWSLETTER CTA ============ -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <h2>One review a week. <em>That's it.</em></h2>
+    <p>Every Tuesday, we send you the single most useful review we published that week. No spam, no affiliate pitches, no clickbait — just the work.</p>
+    <form class="cta-form" onsubmit="event.preventDefault(); alert('Thanks — this is a mockup!');">
+      <input type="email" placeholder="your@email.com" required />
+      <button type="submit">Subscribe</button>
+    </form>
+    <div class="cta-privacy">
+      <span>47,000+ subscribers</span>
+      <span class="cta-privacy-divider"></span>
+      <span>Unsubscribe any time</span>
+      <span class="cta-privacy-divider"></span>
+      <span>No spam, ever</span>
     </div>
   </div>
 </section>
 
-<!-- EMAIL SIGNUP -->
-<section class="signup-section">
-  <div class="signup-inner">
-    <h2>Get New Rankings First</h2>
-    <p>We publish new condition guides and product rankings every week. Subscribe to get honest health product recommendations delivered to your inbox — no spam, unsubscribe anytime.</p>
-    <div class="signup-form">
-      <input type="email" placeholder="Your email address" />
-      <button type="button">Subscribe</button>
-    </div>
-    <p class="signup-note">Join 12,000+ readers. One email per week. No spam ever.</p>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
   <div class="footer-inner">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <div class="footer-logo"><span class="footer-logo-text">health<span>rankings</span></span></div>
-        <p>Honest, physician-reviewed health product rankings matched to your condition. We help you make confident, informed decisions about managing your health at home.</p>
+    <div class="footer-grid">
+      <div>
+        <a href="#" class="logo">
+          <div class="logo-tile">
+            <div class="logo-face">
+              <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+                <circle cx="11" cy="12" r="2" fill="#8B2C6F"/>
+                <circle cx="21" cy="12" r="2" fill="#8B2C6F"/>
+                <path d="M 8 19 Q 16 26 24 19" stroke="#8B2C6F" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="logo-sparkle">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+                <path d="M 6 0 L 7 4.5 L 12 6 L 7 7.5 L 6 12 L 5 7.5 L 0 6 L 5 4.5 Z"/>
+              </svg>
+            </div>
+          </div>
+          <div class="logo-text">
+            <span class="one">health</span><span class="two">rankings</span>
+          </div>
+        </a>
+        <p class="footer-brand-desc">
+          Honest, physician-reviewed rankings of the best health products — so you can skip the guesswork and choose what actually works.
+        </p>
       </div>
-      <div class="footer-col"><h4>Conditions</h4><ul><li><a href="/">Hypertension</a></li><li><a href="/">Type 2 Diabetes</a></li><li><a href="/">Arthritis</a></li><li><a href="/">COPD / Asthma</a></li><li><a href="/">Sleep Apnea</a></li><li><a href="/">Back Pain</a></li><li><a href="/">View all 62 →</a></li></ul></div>
-      <div class="footer-col"><h4>Top 5 Lists</h4><ul><li><a href="/">Blood Pressure Monitors</a></li><li><a href="/">Pulse Oximeters</a></li><li><a href="/">Body Composition Scales</a></li><li><a href="/">TENS Units</a></li><li><a href="/">Thermometers</a></li><li><a href="/">Electric Toothbrushes</a></li><li><a href="/">View all lists →</a></li></ul></div>
-      <div class="footer-col"><h4>About</h4><ul><li><a href="/">Our Methodology</a></li><li><a href="/">Editorial Team</a></li><li><a href="/">Affiliate Disclosure</a></li><li><a href="/">Privacy Policy</a></li><li><a href="/">Terms of Use</a></li><li><a href="/">Contact Us</a></li></ul></div>
+
+      <div class="footer-col">
+        <h4>Conditions</h4>
+        <ul>
+          <li><a href="#">Heart health</a></li>
+          <li><a href="#">Diabetes</a></li>
+          <li><a href="#">Sleep</a></li>
+          <li><a href="#">Women's health</a></li>
+          <li><a href="#">View all</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Products</h4>
+        <ul>
+          <li><a href="#">Blood pressure</a></li>
+          <li><a href="#">Glucose meters</a></li>
+          <li><a href="#">Smart scales</a></li>
+          <li><a href="#">Sleep trackers</a></li>
+          <li><a href="#">Wearables</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>About</h4>
+        <ul>
+          <li><a href="#">Our methodology</a></li>
+          <li><a href="#">Medical review board</a></li>
+          <li><a href="#">Editorial policy</a></li>
+          <li><a href="#">Disclosures</a></li>
+          <li><a href="#">Contact us</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Also from us</h4>
+        <ul>
+          <li><a href="#">RankedRx →</a></li>
+          <li><a href="#">Weekly newsletter</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Press</a></li>
+        </ul>
+      </div>
     </div>
+
     <div class="footer-bottom">
-      <p>© 2026 HealthRankings.com · Content is for informational purposes only and does not constitute medical advice. Always consult a qualified healthcare professional.</p>
-      <div class="footer-links"><a href="/">Privacy</a><a href="/">Terms</a><a href="/">Disclosure</a><a href="/">Sitemap</a></div>
+      <div>© 2026 HealthRankings. Made with care in Miami.</div>
+      <div style="display:flex; gap:24px">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Accessibility</a>
+      </div>
     </div>
   </div>
 </footer>
 
-<script>
-const CONDITIONS = [
-  {name:"Hypertension",cat:"cardiovascular",icon:"💓",products:["Blood pressure monitor"],link:"healthrankings-hypertension.html"},
-  {name:"Hypotension",cat:"cardiovascular",icon:"💔",products:["Blood pressure monitor"],link:"healthrankings-hypotension-blood-pressure-monitor.html"},
-  {name:"Heart Failure / CHF",cat:"cardiovascular",icon:"🫀",products:["Blood pressure monitor","Pulse oximeter","Health alert system"],link:"healthrankings-heart-failure-pulse-oximeter.html"},
-  {name:"Atrial Fibrillation",cat:"cardiovascular",icon:"⚡",products:["Blood pressure monitor","Health alert system"],link:"healthrankings-afib-blood-pressure-monitor.html"},
-  {name:"Coronary Artery Disease",cat:"cardiovascular",icon:"🩺",products:["Blood pressure monitor","Pulse oximeter"],link:"healthrankings-coronary-artery-disease-bp-monitor.html"},
-  {name:"Peripheral Artery Disease",cat:"cardiovascular",icon:"🦵",products:["Pulse oximeter","Leg support"]},
-  {name:"Stroke / Post-Stroke",cat:"cardiovascular",icon:"🧠",products:["Blood pressure monitor","Health alert system"],link:"healthrankings-stroke-prevention-blood-pressure.html"},
-  {name:"High Cholesterol",cat:"cardiovascular",icon:"🔬",products:["Cholesterol test"],link:"healthrankings-cholesterol.html"},
-  {name:"Obesity / Overweight",cat:"metabolic",icon:"⚖️",products:["Body composition monitor","Blood pressure monitor"],link:"healthrankings-obesity.html"},
-  {name:"Type 2 Diabetes",cat:"metabolic",icon:"🍬",products:["Blood pressure monitor","Body composition monitor","Ketone monitor"],link:"healthrankings-diabetes-ketone-monitors.html"},
-  {name:"Type 1 Diabetes / DKA",cat:"metabolic",icon:"💉",products:["Ketone monitor"],link:"healthrankings-type1-diabetes-glucometer.html"},
-  {name:"Insulin Resistance",cat:"metabolic",icon:"🧪",products:["Body composition monitor","Ketone monitor"],link:"healthrankings-insulin-resistance-body-composition.html"},
-  {name:"Metabolic Syndrome",cat:"metabolic",icon:"📊",products:["Body comp monitor","Blood pressure monitor","Cholesterol test"],link:"healthrankings-metabolic-syndrome-body-composition.html"},
-  {name:"Ketogenic Diet",cat:"metabolic",icon:"🥑",products:["Ketone monitor","Body composition monitor"],link:"healthrankings-ketogenic-diet-ketone-monitor.html"},
-  {name:"Bariatric Follow-up",cat:"metabolic",icon:"🏥",products:["Body composition monitor"],link:"healthrankings-bariatric-body-composition.html"},
-  {name:"Asthma",cat:"respiratory",icon:"🌬️",products:["Breathing trainer","Pulse oximeter"],link:"healthrankings-asthma-pulse-oximeter.html"},
-  {name:"COPD",cat:"respiratory",icon:"🫁",products:["Breathing trainer","Pulse oximeter","Health alert system"],link:"healthrankings-copd-pulse-oximeters.html"},
-  {name:"Sleep Apnea",cat:"respiratory",icon:"😴",products:["Pulse oximeter","Health alert system"],link:"healthrankings-sleep-apnea.html"},
-  {name:"Long COVID",cat:"respiratory",icon:"🦠",products:["Breathing trainer","Pulse oximeter"],link:"healthrankings-long-covid-pulse-oximeter.html"},
-  {name:"Pulmonary Hypertension",cat:"respiratory",icon:"🩸",products:["Pulse oximeter","Blood pressure monitor"]},
-  {name:"Cystic Fibrosis",cat:"respiratory",icon:"🫧",products:["Breathing trainer","Pulse oximeter"]},
-  {name:"Respiratory Infections",cat:"respiratory",icon:"🤒",products:["Pulse oximeter","Thermometer"],link:"healthrankings-thermometers.html"},
-  {name:"Fever Monitoring",cat:"respiratory",icon:"🌡️",products:["Thermometer","Pulse oximeter"],link:"healthrankings-thermometers.html"},
-  {name:"Anxiety / Stress",cat:"neurological",icon:"🧘",products:["Breathing trainer","Electric massager"],link:"healthrankings-anxiety-breathing-trainers.html"},
-  {name:"Chronic Pain",cat:"neurological",icon:"⚡",products:["TENS unit","Electric massager","Back support"],link:"healthrankings-percussion-massage-guns.html"},
-  {name:"Neuropathy",cat:"neurological",icon:"🔌",products:["TENS unit","Leg & foot support"],link:"healthrankings-neuropathy-tens-units.html"},
-  {name:"Parkinson's Disease",cat:"neurological",icon:"🤲",products:["Health alert system","Blood pressure monitor"],link:"healthrankings-parkinsons-fall-detection.html"},
-  {name:"Dementia / Alzheimer's",cat:"neurological",icon:"🧩",products:["Health alert system","Thermometer"],link:"healthrankings-dementia-alzheimers-gps-alert.html"},
-  {name:"Depression (Adjunct)",cat:"neurological",icon:"💙",products:["5-HTP supplement","Electric massager"]},
-  {name:"Cognitive Decline",cat:"neurological",icon:"🧠",products:["Acetyl-L-Carnitine","Alpha lipoic acid"],link:"healthrankings-cognitive-decline-monitoring.html"},
-  {name:"Osteoporosis",cat:"musculoskeletal",icon:"🦴",products:["Body comp monitor","Back support","Athletic tape"],link:"healthrankings-osteoporosis-body-composition.html"},
-  {name:"Osteoarthritis",cat:"musculoskeletal",icon:"🦵",products:["Arthritis gloves","TENS unit","Electric massager"],link:"healthrankings-arthritis-gloves.html"},
-  {name:"Rheumatoid Arthritis",cat:"musculoskeletal",icon:"🧤",products:["Arthritis gloves","TENS unit"],link:"healthrankings-arthritis-gloves.html"},
-  {name:"Back Pain",cat:"musculoskeletal",icon:"🔙",products:["Back support","TENS unit","Electric massager"],link:"healthrankings-back-support-braces.html"},
-  {name:"Neck Pain",cat:"musculoskeletal",icon:"🧘",products:["Neck support","TENS unit","Massager"]},
-  {name:"Plantar Fasciitis",cat:"musculoskeletal",icon:"👣",products:["Foot support","Athletic tape"],link:"healthrankings-plantar-fasciitis-foot-support.html"},
-  {name:"Sports Injuries",cat:"musculoskeletal",icon:"🏃",products:["Athletic tape","Leg support","TENS unit"],link:"healthrankings-sports-injuries-tens.html"},
-  {name:"Post-Surgical Rehab",cat:"musculoskeletal",icon:"🏥",products:["TENS unit","Athletic tape","Leg support"],link:"healthrankings-post-surgical-rehab-tens.html"},
-  {name:"Sarcopenia",cat:"musculoskeletal",icon:"💪",products:["Body comp monitor","BCAAs","Creatine"],link:"healthrankings-creatine-supplements.html"},
-  {name:"Bruxism",cat:"dental",icon:"😬",products:["Teeth grinding guard"],link:"healthrankings-electric-toothbrushes.html"},
-  {name:"Dry Mouth",cat:"dental",icon:"💧",products:["Dry mouth relief"]},
-  {name:"Periodontal Disease",cat:"dental",icon:"🦷",products:["Sonic toothbrush","Water irrigator","Power flosser"],link:"healthrankings-electric-toothbrushes.html"},
-  {name:"Dental Caries",cat:"dental",icon:"🪥",products:["Electric toothbrush","Water irrigator"],link:"healthrankings-electric-toothbrushes.html"},
-  {name:"Oral Health in Diabetes",cat:"dental",icon:"🔬",products:["Sonic toothbrush","Water irrigator","Dry mouth relief"],link:"healthrankings-oral-health-diabetes-toothbrush.html"},
-  {name:"Pregnancy",cat:"reproductive",icon:"🤰",products:["Pregnancy test","Blood pressure monitor","Thermometer"],link:"healthrankings-ovulation-test-kits.html"},
-  {name:"Female Infertility",cat:"reproductive",icon:"🌸",products:["Ovulation test","Fertility test"],link:"healthrankings-ovulation-test-kits.html"},
-  {name:"Male Infertility",cat:"reproductive",icon:"🧬",products:["Male fertility test"],link:"healthrankings-male-fertility.html"},
-  {name:"PCOS",cat:"reproductive",icon:"⭕",products:["Ovulation test","Body comp monitor","Blood pressure monitor"],link:"healthrankings-pcos-ovulation-monitor.html"},
-  {name:"Menopause",cat:"reproductive",icon:"🌿",products:["Thermometer","Blood pressure monitor","Body comp monitor"],link:"healthrankings-menopause-body-composition.html"},
-  {name:"HIV / AIDS",cat:"infectious",icon:"🔴",products:["HIV test","Pulse oximeter","Thermometer"],link:"healthrankings-hiv.html"},
-  {name:"UTI",cat:"infectious",icon:"🧫",products:["UTI test"],link:"healthrankings-uti.html"},
-  {name:"STI Screening",cat:"infectious",icon:"🧪",products:["HIV test","Multi-drug test"],link:"healthrankings-sti-home-testing.html"},
-  {name:"Genetic Disease Risk",cat:"infectious",icon:"🧬",products:["Genetic test"],link:"healthrankings-colorectal-cancer-screening.html"},
-  {name:"Colorectal Cancer",cat:"gastrointestinal",icon:"🔬",products:["Colorectal disease test"],link:"healthrankings-colorectal-cancer-screening.html"},
-  {name:"IBS / Digestive Issues",cat:"gastrointestinal",icon:"🫄",products:["Colorectal disease test"]},
-  {name:"Athletic Performance",cat:"fitness",icon:"🏆",products:["Body comp monitor","Breathing trainer","BCAAs","Creatine"],link:"healthrankings-athletic-body-composition.html"},
-  {name:"Weight Management",cat:"fitness",icon:"🎯",products:["Body comp monitor","Ketone monitor","L-Carnitine"],link:"healthrankings-weight-management-body-composition.html"},
-  {name:"Muscle Building",cat:"fitness",icon:"💪",products:["Body comp monitor","Creatine","BCAAs","L-Leucine"],link:"healthrankings-creatine-supplements.html"},
-  {name:"Endurance Training",cat:"fitness",icon:"🏃",products:["Breathing trainer","Beta-alanine","Pulse oximeter"],link:"healthrankings-endurance-training-breathing-trainer.html"},
-  {name:"Recovery & Overtraining",cat:"fitness",icon:"🛌",products:["Electric massager","L-Glutamine","BCAAs"],link:"healthrankings-percussion-massage-guns.html"},
-  {name:"Oxidative Stress",cat:"fitness",icon:"⚗️",products:["Alpha lipoic acid","Antioxidants","Acetyl-L-Carnitine"],link:"healthrankings-oxidative-stress-antioxidant-supplements.html"},
-  {name:"Alcohol Monitoring",cat:"substance",icon:"🍺",products:["Alcohol breathalyzer"],link:"healthrankings-alcohol-breathalyzers.html"},
-  {name:"Drug Screening",cat:"substance",icon:"🧪",products:["Multi-drug test","Drug test strips"],link:"healthrankings-alcohol-breathalyzers.html"},
-];
-
-(async function loadHealthNews() {
-  const APIKEY = 'e04bd0358a39467ca36049d387ef1759';
-  const grid   = document.getElementById('newsGrid');
-  const footer = document.getElementById('newsFooter');
-  try {
-    const res  = await fetch(`https://newsapi.org/v2/top-headlines?category=health&country=us&pageSize=6&apiKey=${APIKEY}`);
-    const data = await res.json();
-    if (data.status !== 'ok' || !data.articles?.length) throw new Error(data.message || 'No articles returned');
-    const articles = data.articles.filter(a => a.title && a.title !== '[Removed]');
-    grid.innerHTML = articles.slice(0, 6).map(a => {
-      const date = a.publishedAt ? new Date(a.publishedAt).toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'}) : '';
-      const source = a.source?.name || 'News';
-      const img = a.urlToImage
-        ? `<img class="news-img" src="${a.urlToImage}" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="news-img-placeholder" style="display:none"><span>📰</span></div>`
-        : `<div class="news-img-placeholder"><span>📰</span></div>`;
-      return `<a href="${a.url}" target="_blank" rel="noopener noreferrer" class="news-card">${img}<div class="news-body"><div class="news-source">${source}</div><div class="news-title">${a.title}</div>${a.description ? `<div class="news-desc">${a.description}</div>` : ''}<div class="news-meta"><span>${date}</span><span class="news-read">Read article →</span></div></div></a>`;
-    }).join('');
-    if (footer) footer.style.display = 'block';
-  } catch (err) {
-    console.warn('NewsAPI error:', err.message);
-    grid.innerHTML = `<div class="news-error"><p>Health news temporarily unavailable. <a href="https://www.webmd.com/news/default.htm" target="_blank" rel="noopener">Browse WebMD Health News →</a></p></div>`;
-  }
-})();
-</script>
 </body>
 </html>
