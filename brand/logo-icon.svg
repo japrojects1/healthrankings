@@ -1,11 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="80" height="80" role="img" aria-label="HealthRankings">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" role="img" aria-label="HealthRankings">
   <defs>
-    <linearGradient id="hr-sage-icon" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#7BA68C"/>
-      <stop offset="100%" stop-color="#5E8B72"/>
+    <linearGradient id="hr-berry-icon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#B84B8F"/>
+      <stop offset="100%" stop-color="#5D1F4C"/>
     </linearGradient>
   </defs>
-  <rect x="0" y="0" width="80" height="80" rx="20" fill="#1A1A1A"/>
-  <text x="40" y="62" text-anchor="middle" font-family="'Helvetica Neue', 'Arial Black', Arial, sans-serif" font-size="56" font-weight="900" fill="url(#hr-sage-icon)">h</text>
-  <circle cx="62" cy="22" r="5.5" fill="#F4A261"/>
+  <rect x="0" y="0" width="100" height="100" rx="32" fill="#F9E5EC"/>
+  <circle cx="35" cy="42" r="5" fill="url(#hr-berry-icon)"/>
+  <circle cx="65" cy="42" r="5" fill="url(#hr-berry-icon)"/>
+  <path d="M 25 62 Q 50 84 75 62" stroke="url(#hr-berry-icon)" stroke-width="5.5" fill="none" stroke-linecap="round"/>
+  <path d="M 82 18 L 83.5 22 L 87.5 23.5 L 83.5 25 L 82 29 L 80.5 25 L 76.5 23.5 L 80.5 22 Z" fill="#FFD166"/>
 </svg>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="HealthRankings Top Pick 2026">
+  <defs>
+    <linearGradient id="hr-pick" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#B84B8F"/>
+      <stop offset="100%" stop-color="#5D1F4C"/>
+    </linearGradient>
+  </defs>
+  <circle cx="60" cy="60" r="58" fill="none" stroke="#5D1F4C" stroke-width="2"/>
+  <circle cx="60" cy="60" r="48" fill="url(#hr-pick)"/>
+  <!-- Tiny heart at top -->
+  <path d="M 60 22 C 60 22 54 18 54 14 C 54 12 56 10 58 11 C 59 11.5 60 12.5 60 13 C 60 12.5 61 11.5 62 11 C 64 10 66 12 66 14 C 66 18 60 22 60 22 Z" fill="#FFD166"/>
+  <text x="60" y="48" text-anchor="middle" font-family="'DM Sans', 'Helvetica Neue', sans-serif" font-size="10" font-weight="700" fill="#FFD166" letter-spacing="2.5">TOP PICK</text>
+  <text x="60" y="80" text-anchor="middle" font-family="'DM Sans', 'Helvetica Neue', sans-serif" font-size="28" font-weight="700" fill="#FFF9FB" letter-spacing="-1">2026</text>
+  <rect x="36" y="88" width="48" height="3" rx="1.5" fill="#FFD166"/>
+</svg>
