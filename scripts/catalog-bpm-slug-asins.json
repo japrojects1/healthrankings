@@ -1,5 +1,5 @@
 {
-  "_comment": "Slug → US Amazon ASIN (unique per device where possible). node scripts/fetch-bpm-slug-images.js merges gallery URLs into catalog-amazon-by-slug.json",
+  "_comment": "Slug → US Amazon ASIN (unique per device where possible). node scripts/fetch-bpm-slug-images.js merges gallery URLs into catalog-images-by-slug.json",
   "healthrankings-review-1byone-upper-arm-blood-pressure-monitor": "B01E5886LW",
   "healthrankings-review-a-d-medical-ua-1030t": "B00A14JTRK",
   "healthrankings-review-a-d-medical-ua-611": "B001VNGO86",

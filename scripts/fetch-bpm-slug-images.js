@@ -2,7 +2,7 @@
 /**
  * Reads scripts/catalog-bpm-slug-asins.json (slug → ASIN), fetches each unique ASIN once
  * from Amazon (22s between requests), maps gallery image URL to every slug using that ASIN.
- * Merges successful URLs into ../catalog-amazon-by-slug.json (does not remove existing keys).
+ * Merges successful URLs into ../catalog-images-by-slug.json (does not remove existing keys).
  *
  * Usage: node scripts/fetch-bpm-slug-images.js
  *        node scripts/fetch-bpm-slug-images.js scripts/catalog-bpm-slug-asins-round2.json
@@ -17,7 +17,7 @@ const root = path.join(__dirname, '..');
 const mapPath = process.argv[2]
   ? path.resolve(process.argv[2])
   : path.join(__dirname, 'catalog-bpm-slug-asins.json');
-const outSlugPath = path.join(root, 'catalog-amazon-by-slug.json');
+const outSlugPath = path.join(root, 'catalog-images-by-slug.json');
 const DELAY_MS = 22000;
 const ua =
   'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15';
