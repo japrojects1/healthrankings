@@ -5,146 +5,666 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Medical Devices Reviewed — Best Health Devices of 2026 | HealthRankings</title>
 <meta name="description" content="Browse all medical and health devices reviewed by HealthRankings. Filter by device type and find expert-ranked Top 5 lists for every category.">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#0F172A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;0,800;1,400;1,500;1,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{color-scheme:light;}
-@media(prefers-color-scheme:dark){
-  :root{--primary:#1565C0;--primary-dark:#0D47A1;--primary-light:#E3F0FF;--accent:#0097A7;--red:#C62828;--red-light:#FFEBEE;--green:#2E7D32;--gold:#F57F17;--gray:#F8FAFC;--gray-mid:#E8EDF2;--gray-dark:#64748B;--text:#1A1A2E;--text-light:#4A5568;--white:#FFFFFF;--border:#DDE3EA;}
-  body{background:#FFFFFF!important;color:#1A1A2E!important;}
+:root {
+  --blue-50: #EFF6FF; --blue-100: #DBEAFE; --blue-200: #BFDBFE;
+  --blue-300: #93C5FD; --blue-400: #60A5FA; --blue-500: #3B82F6;
+  --blue-600: #2563EB; --blue-700: #1D4ED8; --blue-800: #1E40AF;
+  --teal-50: #F0FDFA; --teal-100: #CCFBF1; --teal-200: #99F6E4;
+  --teal-400: #2DD4BF; --teal-500: #14B8A6; --teal-600: #0D9488;
+  --slate-50: #F8FAFC; --slate-100: #F1F5F9; --slate-200: #E2E8F0;
+  --slate-300: #CBD5E1; --slate-400: #94A3B8; --slate-500: #64748B;
+  --slate-600: #475569; --slate-700: #334155; --slate-900: #0F172A;
+  --success-100: #D1FAE5; --success-600: #059669;
+  --gradient-blue: linear-gradient(135deg, #3B82F6 0%, #1E40AF 100%);
+  --gradient-teal: linear-gradient(135deg, #14B8A6 0%, #0D9488 100%);
 }
-:root{
-  --primary:#1565C0;--primary-dark:#0D47A1;--primary-light:#E3F0FF;
-  --accent:#0097A7;--accent-light:#E0F5F7;
-  --red:#C62828;--red-light:#FFEBEE;
-  --green:#2E7D32;--green-light:#E8F5E9;
-  --gold:#F57F17;--gold-light:#FFF8E1;
-  --gray:#F8FAFC;--gray-mid:#E8EDF2;--gray-dark:#64748B;
-  --text:#1A1A2E;--text-light:#4A5568;
-  --white:#FFFFFF;--border:#DDE3EA;
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', 'Helvetica Neue', system-ui, sans-serif;
+  background: var(--slate-50);
+  color: var(--slate-900);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
 }
-*{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--white);font-size:16px;line-height:1.7;}
-a{text-decoration:none;color:inherit;}
 
-/* NAV */
-nav{background:var(--white);height:64px;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;border-bottom:2px solid var(--primary-light);box-shadow:0 1px 8px rgba(21,101,192,0.08);}
-.logo{font-family:'Playfair Display',serif;color:var(--primary);font-size:1.4rem;font-weight:700;}
-.logo span{color:var(--accent);}
-.nav-links{display:flex;gap:0;}
-.nav-links a{color:var(--text-light);font-size:0.875rem;font-weight:500;padding:0 1.1rem;height:64px;display:flex;align-items:center;border-bottom:2px solid transparent;transition:all 0.2s;}
-.nav-links a:hover,.nav-links a.active{color:var(--primary);border-bottom-color:var(--primary);}
-.nav-cta{background:var(--primary)!important;color:#fff!important;padding:8px 18px!important;height:auto!important;border-radius:8px!important;border-bottom:none!important;font-size:0.82rem!important;}
-.nav-cta:hover{background:var(--primary-dark)!important;}
+a { color: inherit; text-decoration: none; }
+.display { font-family: 'DM Sans', sans-serif; }
 
-/* PAGE HERO */
-.page-hero{background:linear-gradient(135deg,var(--primary-light) 0%,#EBF5FF 60%,var(--white) 100%);padding:3.5rem 2rem 3rem;border-bottom:1px solid var(--border);}
-.hero-inner{max-width:1100px;margin:0 auto;}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--primary-light);color:var(--primary);font-size:0.72rem;font-weight:600;padding:4px 14px;border-radius:20px;margin-bottom:1rem;text-transform:uppercase;letter-spacing:0.5px;border:1px solid rgba(21,101,192,0.2);}
-.page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,2.8rem);color:var(--text);font-weight:700;margin-bottom:0.5rem;}
-.page-hero h1 em{color:var(--primary);font-style:normal;}
-.page-hero p{font-size:1rem;color:var(--text-light);max-width:580px;}
-
-/* FILTER BAR */
-.filter-wrap{background:var(--white);border-bottom:1px solid var(--border);padding:1.25rem 2rem;position:sticky;top:64px;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.04);}
-.filter-inner{max-width:1100px;margin:0 auto;}
-.filter-label{font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--gray-dark);margin-bottom:0.75rem;}
-.filter-pills{display:flex;flex-wrap:wrap;gap:0.5rem;}
-.filter-pill{padding:0.45rem 1.1rem;border-radius:20px;border:1.5px solid var(--border);background:#fff;color:var(--text-light);font-size:0.82rem;font-weight:500;cursor:pointer;transition:all 0.15s;font-family:'DM Sans',sans-serif;}
-.filter-pill:hover{border-color:var(--primary);color:var(--primary);}
-.filter-pill.active{background:var(--primary);color:#fff;border-color:var(--primary);}
-
-/* SEARCH */
-.search-wrap{max-width:1100px;margin:1rem auto 0;position:relative;}
-.device-search{width:100%;padding:0.75rem 1rem 0.75rem 2.5rem;border:1.5px solid var(--border);border-radius:10px;font-size:0.9rem;font-family:'DM Sans',sans-serif;outline:none;transition:border-color 0.2s;background:#fff;color:var(--text);}
-.device-search:focus{border-color:var(--primary);}
-.search-ico{position:absolute;left:0.8rem;top:50%;transform:translateY(-50%);color:var(--gray-dark);font-size:0.9rem;pointer-events:none;}
-
-/* MAIN */
-.main{max-width:1100px;margin:0 auto;padding:2.5rem 2rem 5rem;}
-.results-info{font-size:0.82rem;color:var(--text-light);margin-bottom:1.5rem;}
-.results-info strong{color:var(--primary);}
-
-/* DEVICE TYPE SECTION */
-.device-section{margin-bottom:3.5rem;}
-.device-section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;padding-bottom:0.875rem;border-bottom:2px solid var(--primary-light);}
-.device-section-title{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--text);}
-.device-count{font-size:0.78rem;color:var(--gray-dark);background:var(--gray);padding:3px 10px;border-radius:20px;}
-
-/* TOP 5 HIGHLIGHT BOX */
-.top5-box{background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);border-radius:14px;padding:1.5rem 1.75rem;margin-bottom:1.25rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;position:relative;overflow:hidden;}
-.top5-box::after{content:'';position:absolute;right:-30px;top:-30px;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,0.07);}
-.top5-box-left{}
-.top5-box-badge{display:inline-block;background:rgba(255,255,255,0.18);color:#fff;font-size:0.68rem;font-weight:600;padding:3px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.5rem;}
-.top5-box-title{font-family:'Playfair Display',serif;font-size:1.2rem;color:#fff;font-weight:700;margin-bottom:0.25rem;line-height:1.3;}
-.top5-box-sub{font-size:0.8rem;color:rgba(255,255,255,0.7);}
-.top5-box-btn{background:#fff;color:var(--primary);padding:0.625rem 1.5rem;border-radius:8px;font-size:0.85rem;font-weight:600;white-space:nowrap;flex-shrink:0;transition:all 0.2s;position:relative;z-index:1;}
-.top5-box-btn:hover{background:var(--primary-light);transform:translateY(-1px);}
-
-/* PRODUCT CARDS GRID */
-.products-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
-.product-card{background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:1.1rem;transition:all 0.2s;cursor:pointer;text-decoration:none;color:var(--text);display:flex;flex-direction:column;gap:0.5rem;}
-.product-card:hover{border-color:var(--primary);box-shadow:0 4px 16px rgba(21,101,192,0.12);transform:translateY(-2px);}
-.pc-thumb-wrap{flex-shrink:0;width:100%;aspect-ratio:1;max-height:132px;border-radius:10px;background:var(--gray);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;overflow:hidden;}
-.pc-thumb{width:100%;height:100%;object-fit:contain;padding:0.4rem;}
-.pc-thumb-missing{background:linear-gradient(145deg,var(--gray-mid) 0%,var(--gray) 100%);}
-.pc-thumb-missing::after{content:'';width:40px;height:40px;border-radius:10px;border:2px dashed rgba(100,116,139,0.35);}
-.pc-rank{font-size:0.65rem;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;color:var(--accent);}
-.pc-name{font-size:0.88rem;font-weight:600;color:var(--text);line-height:1.3;flex:1;}
-.pc-bottom{display:flex;align-items:center;justify-content:space-between;margin-top:auto;}
-.pc-score{display:inline-flex;align-items:center;gap:4px;background:var(--green-light);color:var(--green);font-size:0.75rem;font-weight:700;padding:3px 10px;border-radius:20px;}
-.pc-arrow{font-size:0.75rem;color:var(--primary);font-weight:500;}
-.see-all-row{text-align:center;margin-top:1rem;}
-.see-all-link{display:inline-flex;align-items:center;gap:6px;color:var(--primary);font-size:0.88rem;font-weight:600;padding:0.6rem 1.5rem;border-radius:8px;border:1.5px solid var(--primary);transition:all 0.2s;}
-.see-all-link:hover{background:var(--primary);color:#fff;}
-
-/* EMPTY STATE */
-.empty{text-align:center;padding:4rem 2rem;color:var(--text-light);}
-.empty h3{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--text);margin-bottom:0.5rem;}
-
-/* FOOTER */
-footer{background:#0D3880;color:rgba(255,255,255,0.5);padding:2.5rem 2rem;text-align:center;font-size:0.8rem;}
-footer .logo{display:block;margin-bottom:0.625rem;font-size:1.2rem;color:#fff;font-family:'Playfair Display',serif;}
-.disc{margin-top:0.625rem;font-size:0.73rem;color:rgba(255,255,255,0.28);max-width:560px;margin-left:auto;margin-right:auto;}
-
-@media(max-width:768px){
-  nav .nav-links{display:none;}
-  .top5-box{flex-direction:column;align-items:flex-start;}
-  .products-grid{grid-template-columns:repeat(2,1fr);}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: 100;
+  mix-blend-mode: multiply;
 }
-@media(max-width:480px){
-  .products-grid{grid-template-columns:1fr;}
+
+/* ===== HEADER ===== */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(248, 250, 252, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--slate-200);
+}
+
+.header-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo { display: flex; align-items: center; gap: 12px; }
+
+.logo-tile {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background: var(--blue-50);
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-sparkle {
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  color: var(--teal-500);
+}
+
+.logo-text {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 20px;
+  letter-spacing: -0.035em;
+  line-height: 1;
+}
+
+.logo-text .one { font-weight: 500; color: var(--slate-900); }
+.logo-text .two {
+  font-weight: 700;
+  background: var(--gradient-blue);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.nav { display: flex; align-items: center; gap: 32px; }
+.nav a {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--slate-900);
+  transition: color 180ms;
+}
+.nav a:hover, .nav a.active { color: var(--blue-600); }
+
+/* ===== PAGE HERO ===== */
+.page-hero {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 40px 32px 48px;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--blue-50);
+  padding: 8px 16px;
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--blue-700);
+  margin-bottom: 24px;
+}
+
+.hero-pulse {
+  width: 7px;
+  height: 7px;
+  background: var(--blue-600);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.4); }
+}
+
+.page-hero h1 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(40px, 5vw, 64px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  color: var(--slate-900);
+  margin-bottom: 16px;
+  max-width: 800px;
+}
+
+.page-hero h1 em {
+  font-style: italic;
+  font-weight: 500;
+  background: var(--gradient-blue);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  position: relative;
+  display: inline-block;
+}
+
+.page-hero h1 em::after {
+  content: '';
+  position: absolute;
+  bottom: 8%;
+  left: 0;
+  width: 100%;
+  height: 12px;
+  background: var(--teal-500);
+  opacity: 0.35;
+  z-index: -1;
+  border-radius: 2px;
+  transform: rotate(-0.5deg);
+}
+
+.hero-desc {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--slate-600);
+  max-width: 640px;
+  margin-bottom: 28px;
+}
+
+/* ===== SEARCH BAR ===== */
+.search-bar {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px 20px;
+}
+
+.search-input-wrap {
+  position: relative;
+  max-width: 560px;
+}
+
+.search-ico {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--slate-400);
+  pointer-events: none;
+}
+
+.device-search {
+  width: 100%;
+  padding: 14px 20px 14px 48px;
+  border: 1.5px solid var(--slate-200);
+  border-radius: 14px;
+  font-size: 15px;
+  font-family: 'Inter', sans-serif;
+  outline: none;
+  transition: all 200ms;
+  background: white;
+  color: var(--slate-900);
+}
+
+.device-search:focus {
+  border-color: var(--blue-500);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.device-search::placeholder { color: var(--slate-400); }
+
+/* ===== FILTER BAR ===== */
+.filter-bar {
+  position: sticky;
+  top: 68px;
+  z-index: 30;
+  background: rgba(248, 250, 252, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--slate-200);
+  padding: 16px 32px;
+}
+
+.filter-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.filter-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--slate-400);
+  margin-bottom: 12px;
+}
+
+.filter-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filter-pill {
+  padding: 8px 18px;
+  border-radius: 9999px;
+  border: 1.5px solid var(--slate-200);
+  background: white;
+  color: var(--slate-600);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 180ms;
+}
+
+.filter-pill:hover {
+  border-color: var(--blue-400);
+  color: var(--blue-700);
+}
+
+.filter-pill.active {
+  background: var(--gradient-blue);
+  color: white;
+  border-color: transparent;
+}
+
+/* ===== MAIN CONTENT ===== */
+.main {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 32px 32px 80px;
+}
+
+.results-info {
+  font-size: 13px;
+  color: var(--slate-500);
+  margin-bottom: 32px;
+  font-weight: 500;
+}
+
+.results-info strong {
+  color: var(--blue-700);
+  font-weight: 700;
+}
+
+/* ===== DEVICE SECTIONS ===== */
+.device-section { margin-bottom: 48px; }
+
+.device-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--blue-100);
+}
+
+.device-section-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--slate-900);
+}
+
+.device-count {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--slate-500);
+  background: var(--slate-100);
+  padding: 4px 14px;
+  border-radius: 9999px;
+}
+
+/* ===== TOP 5 BOX ===== */
+.top5-box {
+  background: var(--gradient-blue);
+  border-radius: 20px;
+  padding: 28px 32px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  transition: all 250ms;
+}
+
+.top5-box:hover { transform: translateY(-2px); box-shadow: 0 20px 50px -20px rgba(37, 99, 235, 0.4); }
+
+.top5-box::after {
+  content: '';
+  position: absolute;
+  right: -30px;
+  top: -30px;
+  width: 180px;
+  height: 180px;
+  background-image: radial-gradient(circle, rgba(20, 184, 166, 0.12) 2px, transparent 2px);
+  background-size: 18px 18px;
+  pointer-events: none;
+}
+
+.top5-badge {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--teal-400);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 9999px;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+.top5-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 20px;
+  color: white;
+  font-weight: 700;
+  margin-bottom: 4px;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+}
+
+.top5-sub {
+  font-size: 13px;
+  color: rgba(248, 250, 252, 0.7);
+}
+
+.top5-btn {
+  background: white;
+  color: var(--blue-700);
+  padding: 12px 24px;
+  border-radius: 9999px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 200ms;
+  position: relative;
+  z-index: 1;
+}
+
+.top5-box:hover .top5-btn { background: var(--blue-50); transform: translateY(-1px); }
+
+/* ===== PRODUCT CARDS ===== */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.product-card {
+  background: white;
+  border: 1.5px solid var(--slate-200);
+  border-radius: 16px;
+  padding: 16px;
+  transition: all 250ms;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--slate-900);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.product-card:hover {
+  border-color: var(--blue-300);
+  box-shadow: 0 12px 32px -12px rgba(37, 99, 235, 0.18);
+  transform: translateY(-3px);
+}
+
+.pc-thumb-wrap {
+  flex-shrink: 0;
+  width: 100%;
+  aspect-ratio: 1;
+  max-height: 140px;
+  border-radius: 12px;
+  background: var(--slate-50);
+  border: 1px solid var(--slate-200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.pc-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 8px;
+}
+
+.pc-thumb-missing {
+  background: linear-gradient(145deg, var(--slate-100) 0%, var(--slate-50) 100%);
+}
+
+.pc-thumb-missing::after {
+  content: '';
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  border: 2px dashed var(--slate-300);
+}
+
+.pc-rank {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--blue-600);
+}
+
+.pc-name {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--slate-900);
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+  flex: 1;
+}
+
+.pc-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+.pc-score {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--blue-50);
+  color: var(--blue-700);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 9999px;
+}
+
+.pc-arrow {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  color: var(--blue-600);
+  font-weight: 600;
+}
+
+/* ===== SEE ALL LINK ===== */
+.see-all-row { text-align: center; margin-top: 16px; }
+
+.see-all-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--blue-700);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 10px 24px;
+  border-radius: 9999px;
+  border: 1.5px solid var(--blue-200);
+  background: white;
+  transition: all 200ms;
+}
+
+.see-all-link:hover {
+  background: var(--gradient-blue);
+  color: white;
+  border-color: transparent;
+}
+
+/* ===== EMPTY STATE ===== */
+.empty { text-align: center; padding: 80px 32px; color: var(--slate-500); }
+.empty h3 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--slate-900);
+  margin-bottom: 8px;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  background: var(--slate-900);
+  color: var(--slate-200);
+  padding: 60px 32px 32px;
+  margin-top: 60px;
+}
+
+.footer-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.footer-disclosure {
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 3px solid var(--teal-500);
+  border-radius: 8px;
+  font-size: 13px;
+  color: rgba(203, 213, 225, 0.7);
+  line-height: 1.7;
+  margin-bottom: 48px;
+  max-width: 820px;
+}
+
+.footer-disclosure strong { color: var(--slate-50); font-weight: 700; }
+
+.footer-bottom {
+  padding-top: 24px;
+  border-top: 1px solid rgba(203, 213, 225, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 12px;
+  color: rgba(203, 213, 225, 0.4);
+}
+
+.footer-bottom-links { display: flex; gap: 24px; }
+.footer-bottom a { transition: color 180ms; }
+.footer-bottom a:hover { color: var(--blue-300); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .products-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .header-inner { padding: 0 20px; height: 60px; }
+  .nav { display: none; }
+  .page-hero, .search-bar, .filter-bar, .main { padding-left: 20px; padding-right: 20px; }
+  .products-grid { grid-template-columns: repeat(2, 1fr); }
+  .top5-box { flex-direction: column; align-items: flex-start; }
+  .top5-btn { width: 100%; text-align: center; }
+}
+
+@media (max-width: 480px) {
+  .products-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
 <body>
 
-<nav>
-  <a href="/" class="logo">Health<span>Rankings</span></a>
-  <div class="nav-links">
-    <a href="/">Home</a>
-    <a href="/healthrankings-conditions.html">Conditions</a>
-    <a href="/healthrankings-devices.html" class="active">Devices</a>
-    <a href="/healthrankings-drugs.html">Drugs A–Z</a>
-    <a href="/healthrankings-news.html">Health News</a>
-    <a href="/" class="nav-cta">← Back Home</a>
+<!-- ============ HEADER ============ -->
+<header class="header">
+  <div class="header-inner">
+    <a href="/" class="logo">
+      <div class="logo-tile">
+        <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
+          <circle cx="11" cy="12" r="2" fill="#2563EB"/>
+          <circle cx="21" cy="12" r="2" fill="#2563EB"/>
+          <path d="M 8 19 Q 16 26 24 19" stroke="#2563EB" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        </svg>
+        <div class="logo-sparkle">
+          <svg width="11" height="11" viewBox="0 0 12 12" fill="currentColor">
+            <path d="M 6 0 L 7 4.5 L 12 6 L 7 7.5 L 6 12 L 5 7.5 L 0 6 L 5 4.5 Z"/>
+          </svg>
+        </div>
+      </div>
+      <div class="logo-text">
+        <span class="one">health</span><span class="two">rankings</span>
+      </div>
+    </a>
+    <nav class="nav">
+      <a href="/healthrankings-conditions.html">Conditions</a>
+      <a href="/healthrankings-devices.html" class="active">Devices</a>
+      <a href="#">Drugs A–Z</a>
+      <a href="#">Health News</a>
+      <a href="#">About</a>
+    </nav>
   </div>
-</nav>
+</header>
 
-<div class="page-hero">
-  <div class="hero-inner">
-    <div class="hero-badge">Expert Reviewed 2026</div>
-    <h1>Health Devices <em>Reviewed</em></h1>
-    <p>Filter by device type to find expert-ranked reviews. Every category includes a full Top 5 ranking with scores, pros & cons, and buy links.</p>
+<!-- ============ PAGE HERO ============ -->
+<section class="page-hero">
+  <div class="hero-eyebrow">
+    <div class="hero-pulse"></div>
+    Expert Reviewed · 2026
   </div>
-  <div class="filter-inner" style="max-width:1100px;margin:1.5rem auto 0;">
-    <div class="search-wrap" style="margin:0;">
-      <span class="search-ico">🔍</span>
-      <input type="text" id="deviceSearch" class="device-search" placeholder="Search devices (e.g. blood pressure, TENS, pulse oximeter)…" autocomplete="off">
+  <h1>Health devices, <em>reviewed.</em></h1>
+  <p class="hero-desc">Filter by device type to find expert-ranked reviews. Every category includes a full Top 5 ranking with scores, pros & cons, and buy links.</p>
+</section>
+
+<!-- ============ SEARCH ============ -->
+<div class="search-bar">
+  <div class="search-input-wrap">
+    <div class="search-ico">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
     </div>
+    <input type="text" id="deviceSearch" class="device-search" placeholder="Search devices (e.g. blood pressure, TENS, pulse oximeter)…" autocomplete="off">
   </div>
 </div>
 
-<div class="filter-wrap">
+<!-- ============ FILTER BAR ============ -->
+<div class="filter-bar">
   <div class="filter-inner">
     <div class="filter-label">Filter by device type</div>
     <div class="filter-pills" id="filterPills">
@@ -161,19 +681,31 @@ footer .logo{display:block;margin-bottom:0.625rem;font-size:1.2rem;color:#fff;fo
   </div>
 </div>
 
+<!-- ============ MAIN CONTENT ============ -->
 <div class="main">
   <div class="results-info" id="resultsInfo">Showing all <strong>40+</strong> device categories</div>
   <div id="deviceSections"></div>
 </div>
 
-<footer>
-  <div class="logo">Health<span style="color:#0097A7">Rankings</span></div>
-  <p>Expert-reviewed health device rankings — unbiased, research-backed, updated 2026.</p>
-  <p class="disc">HealthRankings.com is reader-supported. We may earn a commission from affiliate links. Content is for informational purposes only.</p>
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-disclosure">
+      <strong>How we fund our work.</strong> HealthRankings earns a small commission when you buy through the links on this page — but our rankings can't be influenced by advertisers. We buy every product we test at retail, and our medical reviewers have no financial relationship with any brand we cover.
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 HealthRankings. Made with care in Miami.</div>
+      <div class="footer-bottom-links">
+        <a href="/healthrankings-privacy-policy.html">Privacy</a>
+        <a href="/healthrankings-terms-of-service.html">Terms</a>
+        <a href="#">Editorial Policy</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+  </div>
 </footer>
 
 <script>
-// ── ALL DEVICE TYPES WITH THEIR PRODUCTS AND TOP 5 LINKS ─────────────────
 const DEVICE_TYPES = [
   {
     cat: 'monitoring',
@@ -467,55 +999,40 @@ const DEVICE_TYPES = [
 ];
 
 const PRODUCT_IMAGES = {
-  // Blood Pressure Monitors
   'Oxiline Pressure XS Pro': 'https://m.media-amazon.com/images/I/71egB8XUykL._AC_SL1500_.jpg',
   'Omron Platinum BP5450': 'https://m.media-amazon.com/images/I/71tRxilq8eL._AC_SL1500_.jpg',
   'Withings BPM Connect': 'https://m.media-amazon.com/images/I/814Y-B+zqjL._AC_SL1500_.jpg',
   'Omron Gold BP5195': 'https://m.media-amazon.com/images/I/715GwuBjP0L._AC_SL1500_.jpg',
-  // Body Composition Monitors
   'Oxiline Scale MD PRO': 'https://oxiline.shop/app/uploads/2024/11/scale-md-floating-collection.png',
   'Tanita RD-953': 'https://m.media-amazon.com/images/I/51mV6W-oSdL._AC_SL1500_.jpg',
   'Withings Body Scan': 'https://image-cache.withings.com/site/media/wi_products/body-scan-black.png',
   'Withings Body Comp': 'https://image-cache.withings.com/site/media/wi_products/body-comp-black.png',
-  // Pulse Oximeters
   'Wellue O2Ring Gen 2': 'https://m.media-amazon.com/images/I/61aqztiEzeL._AC_SL1500_.jpg',
   'Oxiline Pulse X Pro': 'https://oxiline.shop/app/uploads/2024/11/pulse-xs-web.png',
-  // Thermometers
   'Braun No Touch + Forehead Thermometer': 'https://m.media-amazon.com/images/I/61KiudGGlhL._AC_SL1500_.jpg',
   'Kinsa QuickCare Smart Thermometer': 'https://m.media-amazon.com/images/I/41SfJw2fWAL._AC_SL1500_.jpg',
   'Oxiline Thermo X Pro': 'https://oxiline.shop/app/uploads/2024/09/therma-floating-web-no-shadow.png',
   'iHealth No-Touch Forehead Thermometer': 'https://m.media-amazon.com/images/I/61QUEYrQgCL._AC_SL1500_.jpg',
-  // Glucometers & CGM
   'Contour Next One': 'https://m.media-amazon.com/images/I/61GJ-QB9R9L._AC_SL1500_.jpg',
   'Accu-Chek Guide Me': 'https://m.media-amazon.com/images/I/71UjnlRr2bL._AC_SL1500_.jpg',
-  // TENS Units
   'iReliev ET-7070 TENS + EMS': 'https://cdn.shopify.com/s/files/1/0901/0829/7504/files/61pd-pFCNkL._AC_SX679.jpg',
   'Compex Sport Elite 3.0': 'https://m.media-amazon.com/images/I/714B214bb6L._AC_SL1500_.jpg',
   'Oxiline TENS X Pro': 'https://oxiline.shop/app/uploads/2024/09/tensx-pro-with-pads2-copy.png',
   'Beurer EM59 Wireless TENS': 'https://m.media-amazon.com/images/I/71-pwEDgT8L._AC_SL1500_.jpg',
-  // Massage Devices
   'Theragun PRO Gen 6': 'https://m.media-amazon.com/images/I/71TcycbAqDL._AC_SL1500_.jpg',
   'Hypervolt 2 Pro': 'https://m.media-amazon.com/images/I/613PE8izIRL._AC_SL1500_.jpg',
   'Renpho R3 Percussion Massager': 'https://m.media-amazon.com/images/I/71-BpwWHsHL._AC_SL1500_.jpg',
-  // Back Supports
   'Mueller Lumbar Support Back Brace': 'https://m.media-amazon.com/images/I/81HSF3LNecL._AC_SL1500_.jpg',
   'Sparthos Lumbar Support Belt': 'https://m.media-amazon.com/images/I/410r55hn3ZL._AC_SL1500_.jpg',
-  // Arthritis Gloves
   'IMAK Compression Arthritis Gloves': 'https://m.media-amazon.com/images/I/71Ek2an3kJL._AC_SL1500_.jpg',
-  // Breathing Trainers
   'Airofit PRO Breathing Trainer': 'https://m.media-amazon.com/images/I/61VjduGJmAL._AC_SL1500_.jpg',
-  // Dental
   'Philips Sonicare DiamondClean Smart 9750': 'https://m.media-amazon.com/images/I/71itGT991BL._AC_SL1500_.jpg',
   'Oral-B Pro 3000': 'https://m.media-amazon.com/images/I/51NakJVrtCL._AC_SL1500_.jpg',
   'Waterpik Aquarius WP-660': 'https://m.media-amazon.com/images/I/714Q49TDXlL._AC_SL1500_.jpg',
-  // Fitness
   'Garmin Index S2': 'https://m.media-amazon.com/images/I/71Te2UijceL._AC_SL1500_.jpg',
   'Oxiline Scale X Pro': 'https://oxiline.shop/app/uploads/2024/09/scale-x1floating.png',
-  // Fertility
   'Clearblue Advanced Digital': 'https://m.media-amazon.com/images/I/41RYLNMWKXL._AC_SL1500_.jpg',
-  // GPS & Alert Systems
   'Apple Watch Series 10': 'https://m.media-amazon.com/images/I/6105jZyXyPL._AC_SL1500_.jpg',
-  // Supplements
   'Optimum Nutrition Micronized Creatine': 'https://m.media-amazon.com/images/I/71SGNJz5y8L._AC_SL1500_.jpg',
   'BulkSupplements Creatine Monohydrate': 'https://m.media-amazon.com/images/I/61Tc7SOflkL._AC_SL1500_.jpg',
 };
@@ -528,7 +1045,6 @@ function escAttr(s) {
   return String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;');
 }
 
-// ── RENDER ────────────────────────────────────────────────────────────────
 let activeCat = 'all';
 let searchQ = '';
 
@@ -561,13 +1077,13 @@ function render() {
         <span class="device-count">${dt.reviewCatalogCount != null ? dt.reviewCatalogCount : dt.products.length} products reviewed</span>
       </div>
       
-      <a href="${dt.reviewPage}" class="top5-box" style="display:flex;text-decoration:none;">
-        <div class="top5-box-left">
-          <div class="top5-box-badge">Expert Ranked · Top 5 of 2026</div>
-          <div class="top5-box-title">We Reviewed the Best ${dt.name} of 2026</div>
-          <div class="top5-box-sub">#1 Pick: ${dt.winner} &nbsp;·&nbsp; Score: ${dt.score}/10 &nbsp;·&nbsp; ${dt.reviewCatalogCount != null ? dt.reviewCatalogCount + ' scales in full catalog' : dt.products.length + ' products tested'}</div>
+      <a href="${dt.reviewPage}" class="top5-box">
+        <div>
+          <div class="top5-badge">Expert Ranked · Top 5 of 2026</div>
+          <div class="top5-title">We Reviewed the Best ${dt.name} of 2026</div>
+          <div class="top5-sub">#1 Pick: ${dt.winner} · Score: ${dt.score}/10 · ${dt.reviewCatalogCount != null ? dt.reviewCatalogCount + ' in full catalog' : dt.products.length + ' products tested'}</div>
         </div>
-        <div class="top5-box-btn">See Full Top 5 →</div>
+        <div class="top5-btn">See Full Top 5 →</div>
       </a>
 
       <div class="products-grid">
@@ -597,7 +1113,6 @@ function render() {
   `).join('');
 }
 
-// ── FILTERS ───────────────────────────────────────────────────────────────
 document.getElementById('filterPills').addEventListener('click', e => {
   const pill = e.target.closest('.filter-pill');
   if (!pill) return;
@@ -608,7 +1123,6 @@ document.getElementById('filterPills').addEventListener('click', e => {
   window.scrollTo({top: document.querySelector('.main').offsetTop - 130, behavior: 'smooth'});
 });
 
-// ── SEARCH ────────────────────────────────────────────────────────────────
 let searchTimer;
 document.getElementById('deviceSearch').addEventListener('input', function() {
   clearTimeout(searchTimer);
@@ -618,7 +1132,6 @@ document.getElementById('deviceSearch').addEventListener('input', function() {
   }, 300);
 });
 
-// ── INIT ──────────────────────────────────────────────────────────────────
 render();
 </script>
 </body>
