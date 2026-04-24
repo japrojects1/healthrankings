@@ -3,629 +3,388 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Health News — Latest Medical Headlines | HealthRankings</title>
-<meta name="description" content="Latest health and medical news from top sources — breaking research, drug approvals, wellness updates, and condition-specific headlines. Updated in real time.">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-/* ── DARK MODE LOCK ── */
-:root{color-scheme:light;}
-@media(prefers-color-scheme:dark){
-  :root{--primary:#1565C0;--primary-dark:#0D47A1;--primary-light:#E3F0FF;--accent:#0097A7;--red:#C62828;--red-light:#FFEBEE;--green:#2E7D32;--gold:#F57F17;--gray:#F8FAFC;--gray-mid:#E8EDF2;--gray-dark:#64748B;--text:#1A1A2E;--text-light:#4A5568;--white:#FFFFFF;--border:#DDE3EA;}
-  body{background:#FFFFFF!important;color:#1A1A2E!important;}
-}
-
-/* ── VARIABLES ── */
-:root{
-  --primary:#1565C0;--primary-dark:#0D47A1;--primary-light:#E3F0FF;
-  --accent:#0097A7;--accent-light:#E0F5F7;
-  --red:#C62828;--red-light:#FFEBEE;--red-mid:#EF5350;
-  --green:#2E7D32;--green-light:#E8F5E9;
-  --gold:#F57F17;--gold-light:#FFF8E1;
-  --gray:#F8FAFC;--gray-mid:#E8EDF2;--gray-dark:#64748B;
-  --text:#1A1A2E;--text-light:#4A5568;
-  --white:#FFFFFF;--border:#DDE3EA;
-}
-
-*{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--gray);font-size:16px;line-height:1.7;}
-a{text-decoration:none;color:inherit;}
-
-/* ── NAV ── */
-nav{background:var(--white);height:64px;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;border-bottom:2px solid var(--primary-light);box-shadow:0 1px 8px rgba(21,101,192,0.08);}
-.logo{font-family:'Playfair Display',serif;color:var(--primary);font-size:1.4rem;font-weight:700;}
-.logo span{color:var(--accent);}
-.nav-links{display:flex;gap:0;}
-.nav-links a{color:var(--text-light);font-size:0.875rem;font-weight:500;padding:0 1.1rem;height:64px;display:flex;align-items:center;border-bottom:2px solid transparent;transition:all 0.2s;}
-.nav-links a:hover,.nav-links a.active{color:var(--primary);border-bottom-color:var(--primary);}
-.nav-cta{background:var(--primary)!important;color:#fff!important;padding:8px 18px!important;height:auto!important;border-radius:8px!important;border-bottom:none!important;font-size:0.82rem!important;}
-.nav-cta:hover{background:var(--primary-dark)!important;}
-
-/* ── PAGE HERO ── */
-.page-hero{background:linear-gradient(135deg,var(--primary-light) 0%,#EBF5FF 60%,var(--white) 100%);padding:3.5rem 2rem 3rem;border-bottom:1px solid var(--border);}
-.hero-inner{max-width:1100px;margin:0 auto;}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--primary-light);color:var(--primary);font-size:0.72rem;font-weight:600;padding:4px 14px;border-radius:20px;margin-bottom:1rem;text-transform:uppercase;letter-spacing:0.5px;border:1px solid rgba(21,101,192,0.2);}
-.live-dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s infinite;}
-@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
-.page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,2.8rem);color:var(--text);font-weight:700;margin-bottom:0.5rem;line-height:1.2;}
-.page-hero h1 em{color:var(--primary);font-style:normal;}
-.page-hero p{font-size:1rem;color:var(--text-light);max-width:580px;}
-
-/* ── SEARCH + FILTERS BAR ── */
-.controls-bar{background:var(--white);border-bottom:1px solid var(--border);padding:1.25rem 2rem;position:sticky;top:64px;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.04);}
-.controls-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;}
-.news-search-wrap{position:relative;flex:1;min-width:220px;}
-.news-search-wrap input{width:100%;padding:0.7rem 1rem 0.7rem 2.6rem;border:1.5px solid var(--border);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:0.9rem;color:var(--text);outline:none;background:#fff;transition:border-color 0.2s;}
-.news-search-wrap input:focus{border-color:var(--primary);}
-.news-search-wrap input::placeholder{color:var(--gray-dark);}
-.search-ico{position:absolute;left:0.8rem;top:50%;transform:translateY(-50%);color:var(--gray-dark);font-size:0.95rem;pointer-events:none;}
-.category-pills{display:flex;gap:0.4rem;flex-wrap:wrap;}
-.pill{padding:0.4rem 1rem;border-radius:20px;border:1.5px solid var(--border);background:#fff;color:var(--text-light);font-size:0.8rem;font-weight:500;cursor:pointer;transition:all 0.15s;font-family:'DM Sans',sans-serif;white-space:nowrap;}
-.pill:hover{border-color:var(--primary);color:var(--primary);}
-.pill.active{background:var(--primary);color:#fff;border-color:var(--primary);}
-.sort-select{padding:0.5rem 0.75rem;border:1.5px solid var(--border);border-radius:8px;font-size:0.82rem;font-family:'DM Sans',sans-serif;color:var(--text);outline:none;background:#fff;cursor:pointer;}
-.sort-select:focus{border-color:var(--primary);}
-.refresh-btn{padding:0.5rem 1rem;border:1.5px solid var(--border);border-radius:8px;font-size:0.82rem;font-family:'DM Sans',sans-serif;color:var(--text-light);background:#fff;cursor:pointer;display:flex;align-items:center;gap:5px;transition:all 0.15s;white-space:nowrap;}
-.refresh-btn:hover{border-color:var(--primary);color:var(--primary);}
-.refresh-btn.spinning .refresh-ico{animation:spin 0.7s linear infinite;}
-@keyframes spin{to{transform:rotate(360deg);}}
-
-/* ── MAIN LAYOUT ── */
-.main{max-width:1100px;margin:0 auto;padding:2rem 2rem 5rem;display:grid;grid-template-columns:1fr 320px;gap:2rem;align-items:start;}
-
-/* ── NEWS GRID ── */
-.news-grid{display:flex;flex-direction:column;gap:0;}
-
-/* ── FEATURED CARD (first article) ── */
-.news-card-featured{background:var(--white);border:1px solid var(--border);border-radius:16px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;margin-bottom:1.5rem;transition:all 0.2s;text-decoration:none;color:var(--text);}
-.news-card-featured:hover{box-shadow:0 8px 28px rgba(21,101,192,0.12);transform:translateY(-2px);border-color:var(--primary);}
-.nf-img{width:100%;height:100%;min-height:240px;object-fit:cover;background:var(--primary-light);}
-.nf-img-ph{width:100%;min-height:240px;background:linear-gradient(135deg,var(--primary-light),var(--gray-mid));display:flex;align-items:center;justify-content:center;font-size:3rem;opacity:0.5;}
-.nf-body{padding:2rem;}
-.nf-source{font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;color:var(--accent);margin-bottom:0.5rem;}
-.nf-badge{display:inline-block;background:var(--primary);color:#fff;font-size:0.65rem;font-weight:600;padding:2px 10px;border-radius:20px;margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.5px;}
-.nf-title{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;color:var(--text);line-height:1.35;margin-bottom:0.75rem;}
-.nf-desc{font-size:0.875rem;color:var(--text-light);line-height:1.6;margin-bottom:1rem;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
-.nf-meta{font-size:0.75rem;color:var(--gray-dark);display:flex;align-items:center;gap:1rem;}
-.nf-read{color:var(--primary);font-weight:500;font-size:0.8rem;margin-top:0.875rem;display:inline-flex;align-items:center;gap:4px;}
-
-/* ── STANDARD CARDS ── */
-.cards-list{display:flex;flex-direction:column;gap:1rem;}
-.news-card{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;display:grid;grid-template-columns:120px 1fr;transition:all 0.2s;text-decoration:none;color:var(--text);}
-.news-card:hover{box-shadow:0 4px 20px rgba(21,101,192,0.1);transform:translateY(-1px);border-color:var(--primary);}
-.nc-img{width:120px;height:90px;object-fit:cover;background:var(--primary-light);}
-.nc-img-ph{width:120px;height:90px;background:linear-gradient(135deg,var(--primary-light),var(--gray-mid));display:flex;align-items:center;justify-content:center;font-size:1.5rem;opacity:0.5;flex-shrink:0;}
-.nc-body{padding:0.875rem 1rem;}
-.nc-source{font-size:0.67rem;font-weight:600;text-transform:uppercase;letter-spacing:0.4px;color:var(--accent);margin-bottom:0.25rem;}
-.nc-title{font-size:0.9rem;font-weight:600;color:var(--text);line-height:1.35;margin-bottom:0.3rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
-.nc-desc{font-size:0.75rem;color:var(--text-light);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:0.4rem;}
-.nc-meta{font-size:0.68rem;color:var(--gray-dark);display:flex;align-items:center;gap:0.75rem;}
-.nc-read{color:var(--primary);font-weight:500;}
-
-/* ── LOAD MORE ── */
-.load-more-wrap{text-align:center;margin-top:1.5rem;}
-.load-more-btn{background:var(--white);border:1.5px solid var(--primary);color:var(--primary);padding:0.75rem 2.5rem;border-radius:10px;font-size:0.875rem;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s;}
-.load-more-btn:hover{background:var(--primary);color:#fff;}
-.load-more-btn:disabled{opacity:0.5;cursor:default;}
-
-/* ── SIDEBAR ── */
-.sidebar{display:flex;flex-direction:column;gap:1.5rem;position:sticky;top:140px;}
-.sidebar-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:1.25rem;}
-.sidebar-title{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--text);margin-bottom:1rem;padding-bottom:0.625rem;border-bottom:2px solid var(--primary-light);}
-
-/* Trending topics */
-.topic-list{display:flex;flex-direction:column;gap:0.4rem;}
-.topic-item{display:flex;align-items:center;justify-content:space-between;padding:0.5rem 0.75rem;border-radius:8px;cursor:pointer;transition:background 0.15s;font-size:0.85rem;color:var(--text);border:1px solid transparent;}
-.topic-item:hover{background:var(--primary-light);border-color:rgba(21,101,192,0.2);}
-.topic-item.active{background:var(--primary-light);border-color:rgba(21,101,192,0.3);color:var(--primary);font-weight:500;}
-.topic-count{font-size:0.68rem;color:var(--gray-dark);background:var(--gray-mid);padding:1px 7px;border-radius:20px;}
-
-/* Sources */
-.source-list{display:flex;flex-direction:column;gap:0.375rem;}
-.source-item{display:flex;align-items:center;gap:0.625rem;padding:0.4rem 0;border-bottom:1px solid var(--border);font-size:0.82rem;color:var(--text-light);cursor:pointer;transition:color 0.15s;}
-.source-item:last-child{border-bottom:none;}
-.source-item:hover{color:var(--primary);}
-.source-dot{width:8px;height:8px;border-radius:50%;background:var(--primary);flex-shrink:0;}
-
-/* Stats bar */
-.stats-bar{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;}
-.stat-box{background:var(--gray);border-radius:10px;padding:0.875rem;text-align:center;}
-.stat-box-num{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--primary);}
-.stat-box-label{font-size:0.68rem;color:var(--gray-dark);margin-top:2px;}
-
-/* ── STATES ── */
-.loading-state{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:4rem 2rem;gap:1rem;color:var(--text-light);}
-.spinner{width:36px;height:36px;border:3px solid var(--border);border-top-color:var(--primary);border-radius:50%;animation:spin 0.7s linear infinite;}
-.empty-state{text-align:center;padding:3rem 1rem;color:var(--text-light);}
-.empty-state h3{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--text);margin-bottom:0.5rem;}
-.results-label{font-size:0.82rem;color:var(--text-light);margin-bottom:1rem;padding-bottom:0.75rem;border-bottom:1px solid var(--border);}
-.results-label strong{color:var(--primary);}
-
-/* ── FOOTER ── */
-footer{background:#0D3880;color:rgba(255,255,255,0.5);padding:2.5rem 2rem;text-align:center;font-size:0.8rem;}
-footer .logo{display:block;margin-bottom:0.625rem;font-size:1.2rem;color:#fff;font-family:'Playfair Display',serif;}
-footer p{max-width:560px;margin:0 auto;line-height:1.6;}
-.disc{margin-top:0.625rem;font-size:0.73rem;color:rgba(255,255,255,0.28);}
-
-/* ── RESPONSIVE ── */
-@media(max-width:900px){
-  .main{grid-template-columns:1fr;}
-  .sidebar{position:static;}
-  .news-card-featured{grid-template-columns:1fr;}
-  .nf-img,.nf-img-ph{min-height:200px;}
-  nav .nav-links{display:none;}
-}
-@media(max-width:540px){
-  .news-card{grid-template-columns:90px 1fr;}
-  .nc-img,.nc-img-ph{width:90px;height:80px;}
-  .controls-inner{flex-direction:column;align-items:stretch;}
-}
-</style>
-<link rel="icon" type="image/svg+xml" href="/brand/favicon.svg">
+<title>Health News — Latest Medical Headlines 2026-04-24 | HealthRankings</title>
+<meta name="description" content="Today's top health news from Yahoo Entertainment, NBC News, Gothamist, PsyPost, The Boston Globe and more. Updated Friday, April 24, 2026. Breaking medical research, drug approvals, and wellness updates.">
 <link rel="canonical" href="https://healthrankings.onrender.com/healthrankings-news.html">
+<link rel="icon" type="image/svg+xml" href="/brand/favicon.svg">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Health News — Latest Medical Headlines | HealthRankings">
-<meta property="og:description" content="Latest health and medical news from top sources — breaking research, drug approvals, wellness updates, and condition-specific headlines. Updated in real time.">
+<meta property="og:description" content="Today's top health news. Updated Friday, April 24, 2026.">
 <meta property="og:url" content="https://healthrankings.onrender.com/healthrankings-news.html">
 <meta property="og:site_name" content="HealthRankings">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Health News — Latest Medical Headlines | HealthRankings">
-<meta name="twitter:description" content="Latest health and medical news from top sources — breaking research, drug approvals, wellness updates, and condition-specific headlines. Updated in real time.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;0,800;1,400;1,500;1,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--blue-50:#EFF6FF;--blue-100:#DBEAFE;--blue-200:#BFDBFE;--blue-300:#93C5FD;--blue-400:#60A5FA;--blue-500:#3B82F6;--blue-600:#2563EB;--blue-700:#1D4ED8;--blue-800:#1E40AF;--teal-50:#F0FDFA;--teal-100:#CCFBF1;--teal-200:#99F6E4;--teal-400:#2DD4BF;--teal-500:#14B8A6;--teal-600:#0D9488;--slate-50:#F8FAFC;--slate-100:#F1F5F9;--slate-200:#E2E8F0;--slate-300:#CBD5E1;--slate-400:#94A3B8;--slate-500:#64748B;--slate-600:#475569;--slate-700:#334155;--slate-900:#0F172A;--gradient-blue:linear-gradient(135deg,#3B82F6 0%,#1E40AF 100%);--gradient-teal:linear-gradient(135deg,#14B8A6 0%,#0D9488 100%);--gradient-hero:linear-gradient(180deg,#EFF6FF 0%,#FFFFFF 100%)}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:'Inter','Helvetica Neue',system-ui,sans-serif;background:var(--slate-50);color:var(--slate-900);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}
+
+.header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--slate-200)}.header-inner{max-width:1280px;margin:0 auto;padding:0 32px;height:76px;display:flex;align-items:center;justify-content:space-between}.logo{display:flex;align-items:center;gap:14px;line-height:1}.logo-tile{position:relative;width:44px;height:44px;background:var(--blue-50);border-radius:14px;display:flex;align-items:center;justify-content:center}.logo-sparkle{position:absolute;top:-4px;right:-4px;color:var(--teal-500)}.logo-text{font-family:'DM Sans',sans-serif;font-size:22px;letter-spacing:-0.035em;line-height:1}.logo-text .one{font-weight:500;color:var(--slate-900)}.logo-text .two{font-weight:700;background:var(--gradient-teal);-webkit-background-clip:text;background-clip:text;color:transparent}.nav{display:flex;align-items:center;gap:36px}.nav a{font-family:'DM Sans',sans-serif;font-size:15px;font-weight:500;color:var(--slate-900);letter-spacing:-0.01em;transition:color 200ms}.nav a:hover{color:var(--blue-600)}.nav a.active{color:var(--blue-600)}.header-actions{display:flex;align-items:center;gap:12px}.search-btn{width:40px;height:40px;border:1px solid var(--slate-200);border-radius:10px;background:white;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--slate-500);transition:all 200ms}.search-btn:hover{border-color:var(--blue-300);color:var(--blue-600)}.cta-btn{font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;padding:10px 22px;border-radius:10px;border:none;background:var(--gradient-blue);color:white;cursor:pointer;transition:transform 120ms,box-shadow 200ms}.cta-btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(37,99,235,0.3)}
+
+.page-hero{background:var(--gradient-hero);padding:48px 32px 40px;text-align:center}.page-hero h1{font-family:'DM Sans',sans-serif;font-size:clamp(28px,4vw,42px);font-weight:800;letter-spacing:-0.04em;line-height:1.1;color:var(--slate-900);margin-bottom:12px}.page-hero p{font-size:16px;color:var(--slate-500);max-width:520px;margin:0 auto}.page-hero .update-badge{display:inline-flex;align-items:center;gap:8px;background:white;border:1px solid var(--slate-200);border-radius:9999px;padding:6px 16px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;color:var(--slate-600);margin-bottom:16px}.page-hero .live-dot{width:8px;height:8px;border-radius:50%;background:#22C55E;animation:pulse-dot 2s infinite}
+@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:0.4}}
+
+.news-layout{max-width:1280px;margin:0 auto;padding:32px 32px 64px;display:grid;grid-template-columns:1fr 340px;gap:40px}
+
+.featured-card{display:grid;grid-template-columns:1fr 1fr;background:white;border:1px solid var(--slate-200);border-radius:16px;overflow:hidden;margin-bottom:28px;transition:all 280ms cubic-bezier(0.4,0,0.2,1)}.featured-card:hover{border-color:var(--blue-300);box-shadow:0 12px 32px -8px rgba(37,99,235,0.1)}.featured-img{background:var(--slate-100);min-height:280px;overflow:hidden}.featured-img img{width:100%;height:100%;object-fit:cover}.featured-img.no-img{background:linear-gradient(135deg,var(--blue-50),var(--teal-50))}.featured-body{padding:28px 32px;display:flex;flex-direction:column;justify-content:center;gap:10px}.featured-body h2{font-family:'DM Sans',sans-serif;font-size:22px;font-weight:700;letter-spacing:-0.03em;line-height:1.3;color:var(--slate-900)}.featured-body p{font-size:14px;color:var(--slate-600);line-height:1.6;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+
+.news-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}.news-card{background:white;border:1px solid var(--slate-200);border-radius:14px;overflow:hidden;transition:all 280ms cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column}.news-card:hover{border-color:var(--blue-300);box-shadow:0 8px 24px -6px rgba(37,99,235,0.08);transform:translateY(-2px)}.news-card-img{height:160px;background:var(--slate-100);overflow:hidden}.news-card-img img{width:100%;height:100%;object-fit:cover}.news-card-img.no-img{background:linear-gradient(135deg,var(--blue-50),var(--teal-50))}.news-card-body{padding:18px 20px;flex:1;display:flex;flex-direction:column;gap:6px}.news-card-body h3{font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;letter-spacing:-0.02em;line-height:1.35;color:var(--slate-900);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}.news-card-body p{font-size:13px;color:var(--slate-600);line-height:1.55;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;flex:1}
+
+.news-source{font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--blue-600)}.news-time{font-size:12px;color:var(--slate-400);margin-top:auto}
+
+.sidebar{display:flex;flex-direction:column;gap:20px}.sidebar-card{background:white;border:1px solid var(--slate-200);border-radius:14px;padding:24px}.sidebar-card h4{font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;color:var(--slate-900);margin-bottom:14px}.stat-row{display:flex;gap:12px;margin-bottom:16px}.stat-box{flex:1;background:var(--slate-50);border-radius:10px;padding:14px;text-align:center}.stat-num{font-family:'DM Sans',sans-serif;font-size:24px;font-weight:800;color:var(--blue-600)}.stat-label{font-size:11px;color:var(--slate-500);text-transform:uppercase;letter-spacing:0.06em;margin-top:2px}
+.source-list{display:flex;flex-direction:column;gap:8px}.source-item{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--slate-600);padding:6px 0}.source-dot{width:8px;height:8px;border-radius:50%;background:var(--blue-500);flex-shrink:0}
+.topic-chip{display:inline-block;padding:6px 14px;background:var(--slate-50);border:1px solid var(--slate-200);border-radius:8px;font-size:13px;font-weight:500;color:var(--slate-700);margin:0 6px 8px 0;transition:all 200ms}.topic-chip:hover{border-color:var(--blue-300);color:var(--blue-600);background:var(--blue-50)}
+.disclaimer-box{background:var(--blue-50);border:1px solid var(--blue-200);border-radius:12px;padding:16px;font-size:12px;color:var(--slate-600);line-height:1.6}.disclaimer-box strong{color:var(--slate-900);display:block;margin-bottom:4px}
+
+.footer{background:var(--slate-900);color:var(--slate-400);font-size:14px}.footer-inner{max-width:1280px;margin:0 auto;padding:48px 32px 32px}.footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:20px;display:flex;align-items:center;justify-content:space-between;font-size:13px}
+
+@media(max-width:1024px){.news-layout{grid-template-columns:1fr}.sidebar{display:grid;grid-template-columns:1fr 1fr;gap:16px}}
+@media(max-width:768px){.featured-card{grid-template-columns:1fr}.featured-img{min-height:200px}.news-grid{grid-template-columns:1fr}.news-layout{padding:24px 20px 48px}.page-hero{padding:36px 20px 28px}.sidebar{grid-template-columns:1fr}}
+@media(max-width:640px){.header-inner{padding:0 20px;height:64px}.nav{display:none}}
+</style>
 </head>
 <body>
+<header class="header"><div class="header-inner"><a href="/" class="logo"><div class="logo-tile"><svg width="28" height="28" viewBox="0 0 32 32" fill="none"><circle cx="11" cy="12" r="2" fill="#2563EB"/><circle cx="21" cy="12" r="2" fill="#2563EB"/><path d="M 8 19 Q 16 26 24 19" stroke="#2563EB" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg><div class="logo-sparkle"><svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><path d="M 6 0 L 7 4.5 L 12 6 L 7 7.5 L 6 12 L 5 7.5 L 0 6 L 5 4.5 Z"/></svg></div></div><div class="logo-text"><span class="one">health</span><span class="two">rankings</span></div></a><nav class="nav"><a href="/healthrankings-conditions.html">Conditions</a><a href="/healthrankings-devices.html">Devices</a><a href="/healthrankings-articles.html">Articles</a><a href="/healthrankings-drugs.html">Drugs A–Z</a><a href="/healthrankings-news.html" class="active">Health News</a><a href="/healthrankings-about.html">About</a></nav><div class="header-actions"><button class="search-btn" aria-label="Search"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></button><button class="cta-btn">Get started</button></div></div></header>
 
-<!-- NAV -->
-<nav>
-  <a href="/" class="logo">Health<span>Rankings</span></a>
-  <div class="nav-links">
-    <a href="/">Home</a>
-    <a href="/healthrankings-conditions.html">Conditions</a>
-    <a href="/healthrankings-devices.html">Devices</a>
-      <a href="/healthrankings-articles.html">Articles</a>
-    <a href="/healthrankings-drugs.html">Drugs A–Z</a>
-    <a href="/healthrankings-news.html" class="active">Health News</a>
-    <a href="/" class="nav-cta">← Back Home</a>
-  </div>
-</nav>
+<section class="page-hero">
+  <div class="update-badge"><span class="live-dot"></span> Updated Friday, April 24, 2026</div>
+  <h1>Health News</h1>
+  <p>Latest health and medical headlines from top sources worldwide. Updated daily.</p>
+</section>
 
-<!-- HERO -->
-<div class="page-hero">
-  <div class="hero-inner">
-    <div class="hero-badge"><span class="live-dot"></span> Live Updates</div>
-    <h1><em>Health News</em> &amp; Medical Headlines</h1>
-    <p>Breaking health research, FDA approvals, wellness updates, and condition-specific news — sourced from leading medical and health publications worldwide.</p>
-  </div>
-</div>
-
-<!-- SEARCH + FILTERS -->
-<div class="controls-bar">
-  <div class="controls-inner">
-    <div class="news-search-wrap">
-      <span class="search-ico">🔍</span>
-      <input type="text" id="newsSearch" placeholder="Search health news (e.g. diabetes, cancer, heart disease)…" autocomplete="off" />
-    </div>
-    <div class="category-pills" id="categoryPills">
-      <button class="pill active" data-q="health" data-label="All Health">All Health</button>
-      <button class="pill" data-q="cancer research" data-label="Cancer">Cancer</button>
-      <button class="pill" data-q="diabetes treatment" data-label="Diabetes">Diabetes</button>
-      <button class="pill" data-q="heart disease cardiology" data-label="Cardiology">Cardiology</button>
-      <button class="pill" data-q="mental health psychiatry" data-label="Mental Health">Mental Health</button>
-      <button class="pill" data-q="FDA drug approval" data-label="FDA / Drugs">FDA / Drugs</button>
-      <button class="pill" data-q="nutrition diet wellness" data-label="Nutrition">Nutrition</button>
-      <button class="pill" data-q="medical research study" data-label="Research">Research</button>
-    </div>
-    <select class="sort-select" id="sortSelect">
-      <option value="publishedAt">Newest first</option>
-      <option value="relevancy">Most relevant</option>
-      <option value="popularity">Most popular</option>
-    </select>
-    <button class="refresh-btn" id="refreshBtn">
-      <span class="refresh-ico">↻</span> Refresh
-    </button>
-  </div>
-</div>
-
-<!-- MAIN -->
-<div class="main">
-
-  <!-- NEWS FEED -->
+<div class="news-layout">
   <div>
-    <div id="resultsLabel" class="results-label" style="display:none"></div>
-    <div class="news-grid" id="newsGrid">
-      <div class="loading-state">
-        <div class="spinner"></div>
-        <p>Loading latest health news…</p>
+    
+    <a href="https://creators.yahoo.com/lifestyle/story/finland-replaced-artificial-playground-surfaces-with-natural-elements-like-mud-and-soil--and-the-results-surprised-even-researchers-184318556.html" target="_blank" rel="noopener" class="featured-card">
+      <div class="featured-img"><img src="https://s.yimg.com/ny/api/res/1.2/kQ4HuZHb49BKNo6lDW8wsQ--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD02NzU7Y2Y9d2VicA--/https://d29szjachogqwa.cloudfront.net/images/user-uploaded/kids_play_in_the_forest__9209.jpg" alt="Finland replaced artificial playground surfaces with natural elements like mud and soil — and the results surprised even researchers" loading="lazy" onerror="this.parentElement.classList.add('no-img');this.remove()"></div>
+      <div class="featured-body">
+        <span class="news-source">Yahoo Entertainment</span>
+        <h2>Finland replaced artificial playground surfaces with natural elements like mud and soil — and the results surprised even researchers</h2>
+        <p>The goal was to increase children's exposure to environmental microbes through everyday play.</p>
+        <span class="news-time">Yesterday</span>
       </div>
-    </div>
-    <div class="load-more-wrap" id="loadMoreWrap" style="display:none">
-      <button class="load-more-btn" id="loadMoreBtn">Load More Articles</button>
+    </a>
+    <div class="news-grid">
+      
+    <a href="https://www.nbcnews.com/health/health-news/study-covid-vaccine-effectiveness-halted-publication-cdc-rcna341623" target="_blank" rel="noopener" class="news-card">
+      <div class="news-card-img"><img src="https://media-cldnry.s-nbcnews.com/image/upload/t_nbcnews-fp-1200-630,f_auto,q_auto:best/rockcms/2026-04/260423-covid-vaccine-mb-1542-90d9bb.jpg" alt="US health officials nix publication of a study on Covid vaccine effectiveness" loading="lazy" onerror="this.parentElement.classList.add('no-img');this.remove()"></div>
+      <div class="news-card-body">
+        <span class="news-source">NBC News</span>
+        <h3>US health officials nix publication of a study on Covid vaccine effectiveness</h3>
+        <p>U.S. health officials stopped the publication of a study on whether the Covid-19 vaccine was keeping adults from becoming sick enough to have to go to the hospi</p>
+        <span class="news-time">Yesterday</span>
+      </div>
+    </a>
+
+    <a href="https://gothamist.com/news/nj-warns-of-possible-measles-exposures-at-newark-airport" target="_blank" rel="noopener" class="news-card">
+      <div class="news-card-img"><img src="https://api-prod.gothamist.com/images/356599/fill-1200x650|format-webp|webpquality-85/" alt="NJ warns of possible measles exposures at Newark Airport" loading="lazy" onerror="this.parentElement.classList.add('no-img');this.remove()"></div>
+      <div class="news-card-body">
+        <span class="news-source">Gothamist</span>
+        <h3>NJ warns of possible measles exposures at Newark Airport</h3>
+        <p>A Hudson County resident was diagnosed with measles after returning from an international trip, the state health department said.</p>
+        <span class="news-time">Yesterday</span>
+      </div>
+    </a>
+
+    <a href="https://www.psypost.org/even-light-drinking-combined-with-aging-is-linked-to-reduced-brain-blood-flow-and-thinner-tissue/" target="_blank" rel="noopener" class="news-card">
+      <div class="news-card-img"><img src="https://www.psypost.org/wp-content/uploads/2025/11/brain-scan.jpg" alt="Even light drinking combined with aging is linked to reduced brain blood flow and thinner tissue" loading="lazy" onerror="this.parentElement.classList.add('no-img');this.remove()"></div>
+      <div class="news-card-body">
+        <span class="news-source">PsyPost</span>
+        <h3>Even light drinking combined with aging is linked to reduced brain blood flow and thinner tissue</h3>
+        <p>A new study suggests that even low-level drinking over a lifetime may negatively affect brain health. Researchers found that cumulative light drinking, combined</p>
+        <span class="news-time">Yesterday</span>
+      </div>
+    </a>
+
+    <a href="https://www.bostonglobe.com/2026/04/23/metro/long-covid-teens-children-boston/" target="_blank" rel="noopener" class="news-card">
+      <div class="news-card-img"><img src="https://bostonglobe-prod.cdn.arcpublishing.com/resizer/v2/6H3IZPADFY4HKRVABIMG7GXF2M.jpg?auth=22f9ce5ae5d997d4ea25f535a86add6a9cc68f5abdc292710b184589d7a593a7&amp;width=1440" alt="Long COVID potentially affects nearly 6 million children in the US. This South Shore teen is one of them." loading="lazy" onerror="this.parentElement.classList.add('no-img');this.remove()"></div>
+      <div class="news-card-body">
+        <span class="news-source">The Boston Globe</span>
+        <h3>Long COVID potentially affects nearly 6 million children in the US. This South Shore teen is one of them.</h3>
+        <p>In children, long COVID symptoms vary by age, possibly because of how the immune system develops.</p>
+        <span class="news-time">Yesterday</span>
+      </div>
+    </a>
+
+    <a href="https://www.syracuse.com/news/2026/04/rectal-cancer-deaths-rising-among-younger-adults-upstate-study-finds.html" target="_blank" rel="noopener" class="news-card">
+      <div class="news-card-img"><img src="https://www.syracuse.com/resizer/v2/PCLQKPBE6RA2FFIYMS3NPOUUAI.jpg?auth=6b7bc1926d2eccf6c36371df863246ad8a3e295bf0337378b94fec6508db2131&amp;width=1280&amp;smart=true&amp;quality=90" alt="Rectal cancer deaths rising among younger adults, Upstate study finds" loading="lazy" onerror="this.parentElement.classList.add('no-img');this.remove()"></div>
+      <div class="news-card-body">
+        <span class="news-source">syracuse.com</span>
+        <h3>Rectal cancer deaths rising among younger adults, Upstate study finds</h3>
+        <p>The study was conducted at SUNY Upstate Medical University in Syracuse.</p>
+        <span class="news-time">Yesterday</span>
+      </div>
+    </a>
+
+    <a href="https://www.sciencealert.com/scientists-identify-the-most-dangerous-time-in-life-to-gain-weight" target="_blank" rel="noopener" class="news-card">
+      <div class="news-card-img"><img src="https://www.sciencealert.com/images/2026/04/WeightScales.jpg" alt="Scientists Identify The Most Dangerous Time in Life to Gain Weight" loading="lazy" onerror="this.parentElement.classList.add('no-img');this.remove()"></div>
+      <div class="news-card-body">
+        <span class="news-source">ScienceAlert</span>
+        <h3>Scientists Identify The Most Dangerous Time in Life to Gain Weight</h3>
+        <p>A new study suggests it's not just gaining weight that affects our health over a lifetime, but also when we put on the pounds, with weight gain during early adu</p>
+        <span class="news-time">Yesterday</span>
+      </div>
+    </a>
+
+    <a href="https://www.abc15.com/news/local-news/hawaii-family-found-a-valley-fever-lifeline-in-phoenix" target="_blank" rel="noopener" class="news-card">
+      <div class="news-card-img"><img src="https://ewscripps.brightspotcdn.com/dims4/default/e8db6b6/2147483647/strip/true/crop/1280x672+0+24/resize/1200x630!/quality/90/?url=https%3A%2F%2Fcf.cdn.uplynk.com%2Fause1%2Fslices%2Fb8c%2F5c3d34b8b29a45469a86c02775b7a2cf%2Fb8cc82090ecd4384aa55e3d16e12b3dd%2Fposter_7db15e344ae94f9ea0942cd7711ef45d.jpg" alt="Hawaii family found a Valley Fever lifeline in Phoenix" loading="lazy" onerror="this.parentElement.classList.add('no-img');this.remove()"></div>
+      <div class="news-card-body">
+        <span class="news-source">ABC15 Arizona</span>
+        <h3>Hawaii family found a Valley Fever lifeline in Phoenix</h3>
+        <p>Kaha Kelau came to Arizona to become a diesel mechanic. He left with a fungal infection that would trigger a stroke. Nearly 3,000 miles away, his mother found t</p>
+        <span class="news-time">Yesterday</span>
+      </div>
+    </a>
+
+    <a href="https://www.sciencedaily.com/releases/2026/04/260423022006.htm" target="_blank" rel="noopener" class="news-card">
+      <div class="news-card-img"><img src="https://www.sciencedaily.com/images/1920/smiling-senior-men-playing-chess.webp" alt="These 80-year-olds have the memory of 50-year-olds. Scientists now know why" loading="lazy" onerror="this.parentElement.classList.add('no-img');this.remove()"></div>
+      <div class="news-card-body">
+        <span class="news-source">Science Daily</span>
+        <h3>These 80-year-olds have the memory of 50-year-olds. Scientists now know why</h3>
+        <p>A rare group of adults over 80, known as SuperAgers, are rewriting what we thought was possible for the aging brain. With memory abilities comparable to people </p>
+        <span class="news-time">Yesterday</span>
+      </div>
+    </a>
+
+    <a href="https://slate.com/technology/2026/04/ai-chatbot-grief-death-tech.html" target="_blank" rel="noopener" class="news-card">
+      <div class="news-card-img"><img src="https://compote.slate.com/images/4f5291ed-2187-49ce-8482-af3866600d79.jpeg?crop=1560%2C1040%2Cx0%2Cy0&amp;width=1560" alt="The Tech Industry Has a Plan to Reanimate the Dead. I Should Know: They Want to Bring Back My Brother." loading="lazy" onerror="this.parentElement.classList.add('no-img');this.remove()"></div>
+      <div class="news-card-body">
+        <span class="news-source">Slate Magazine</span>
+        <h3>The Tech Industry Has a Plan to Reanimate the Dead. I Should Know: They Want to Bring Back My Brother.</h3>
+        <p>A new industry has emerged that promises to resurrect the dead—but it completely misunderstands what it means to lose them in the first place.</p>
+        <span class="news-time">Yesterday</span>
+      </div>
+    </a>
+
+    <a href="https://dogtime.com/news/215252-golden-retriever-baby-food-not-as-planned-video-funny" target="_blank" rel="noopener" class="news-card">
+      <div class="news-card-img"><img src="https://s.yimg.com/os/en/dog_time_927/a9dfe12cc874e2142d4f46c71ad3b1f3" alt="Golden Retriever Wants the Baby’s Food, but It Doesn’t Go as Planned" loading="lazy" onerror="this.parentElement.classList.add('no-img');this.remove()"></div>
+      <div class="news-card-body">
+        <span class="news-source">DogTime</span>
+        <h3>Golden Retriever Wants the Baby’s Food, but It Doesn’t Go as Planned</h3>
+        <p>A golden retriever’s quiet attempt to score an easy snack has the internet laughing after a video captured the exact moment his plan unraveled, right in...</p>
+        <span class="news-time">Yesterday</span>
+      </div>
+    </a>
+
+    <a href="https://www.inc.com/bill-murphy-jr/want-to-protect-your-brain-from-alzheimers-a-16-year-study-suggests-a-simple-thing-to-do-right-now/91333096" target="_blank" rel="noopener" class="news-card">
+      <div class="news-card-img"><img src="https://img-cdn.inc.com/image/upload/f_webp,q_auto,c_fit/images/panoramic/shutterstock_128473019_1940x900_32909.jpg" alt="Want to Protect Your Brain From Alzheimer's? A 16-Year Study Suggests a Simple Thing to Do Right Now" loading="lazy" onerror="this.parentElement.classList.add('no-img');this.remove()"></div>
+      <div class="news-card-body">
+        <span class="news-source">Inc.</span>
+        <h3>Want to Protect Your Brain From Alzheimer's? A 16-Year Study Suggests a Simple Thing to Do Right Now</h3>
+        <p>Maintaining adequate vitamin D levels in midlife may help reduce the risk of Alzheimer’s-related brain changes later in life.</p>
+        <span class="news-time">Yesterday</span>
+      </div>
+    </a>
+
+    <a href="https://www.sciencealert.com/personalized-vaccine-for-deadliest-major-cancer-keeps-patients-alive-6-years-later" target="_blank" rel="noopener" class="news-card">
+      <div class="news-card-img"><img src="https://www.sciencealert.com/images/2026/04/CancerCellsInGreenAndPurple.jpg" alt="Personalized Vaccine For 'Deadliest Major Cancer' Keeps Patients Alive 6 Years Later" loading="lazy" onerror="this.parentElement.classList.add('no-img');this.remove()"></div>
+      <div class="news-card-body">
+        <span class="news-source">ScienceAlert</span>
+        <h3>Personalized Vaccine For 'Deadliest Major Cancer' Keeps Patients Alive 6 Years Later</h3>
+        <p>At a major cancer research conference in the United States, scientists have shared the latest on an experimental vaccine for an extremely deadly cancer.</p>
+        <span class="news-time">Yesterday</span>
+      </div>
+    </a>
+
+    <a href="https://greekreporter.com/2026/04/23/prehistoric-surgery-challenge-human-history/" target="_blank" rel="noopener" class="news-card">
+      <div class="news-card-img"><img src="https://greekreporter.com/wp-content/uploads/2026/04/surgically-amputated-site-of-the-left-tibia-and-fibula-credit-tim-ryan-maloney-et-al-ccby4.jpg" alt="Evidence of Prehistoric Surgery 30,000 Years Ago Challenges Human History" loading="lazy" onerror="this.parentElement.classList.add('no-img');this.remove()"></div>
+      <div class="news-card-body">
+        <span class="news-source">Greekreporter.com</span>
+        <h3>Evidence of Prehistoric Surgery 30,000 Years Ago Challenges Human History</h3>
+        <p>A study reveals evidence of prehistoric surgery in Borneo, where a young adult survived a leg amputation about 31,000 years ago.</p>
+        <span class="news-time">Yesterday</span>
+      </div>
+    </a>
+
+    <a href="https://www.nature.com/articles/s41586-026-10380-3" target="_blank" rel="noopener" class="news-card">
+      <div class="news-card-img"><img src="https://media.springernature.com/m685/springer-static/image/art%3A10.1038%2Fs41586-026-10380-3/MediaObjects/41586_2026_10380_Fig1_HTML.png" alt="Punctuated decline of human cooperation" loading="lazy" onerror="this.parentElement.classList.add('no-img');this.remove()"></div>
+      <div class="news-card-body">
+        <span class="news-source">Nature.com</span>
+        <h3>Punctuated decline of human cooperation</h3>
+        <p>Cooperation in group lending declines over time due to shifting behavioural motivations, briefly rebounds after loan restarts, then declines faster again, revea</p>
+        <span class="news-time">Yesterday</span>
+      </div>
+    </a>
+
+    <a href="https://www.psypost.org/the-gap-between-seeing-and-seeking-adult-content-predicts-mental-health-risks/" target="_blank" rel="noopener" class="news-card">
+      <div class="news-card-img"><img src="https://www.psypost.org/wp-content/uploads/2025/01/man-looking-at-xxx-screen-on-computer.jpg" alt="The age you start regularly watching adult content predicts your future mental health" loading="lazy" onerror="this.parentElement.classList.add('no-img');this.remove()"></div>
+      <div class="news-card-body">
+        <span class="news-source">PsyPost</span>
+        <h3>The age you start regularly watching adult content predicts your future mental health</h3>
+        <p>Researchers have identified three distinct patterns of adult media consumption, revealing that individuals who begin a regular viewing habit at a young age face</p>
+        <span class="news-time">Yesterday</span>
+      </div>
+    </a>
+
+    <a href="https://www.nature.com/articles/s41586-026-10426-6" target="_blank" rel="noopener" class="news-card">
+      <div class="news-card-img"><img src="https://media.springernature.com/m685/springer-static/image/art%3A10.1038%2Fs41586-026-10426-6/MediaObjects/41586_2026_10426_Fig1_HTML.png" alt="Astrocytes connect specific brain regions through plastic networks" loading="lazy" onerror="this.parentElement.classList.add('no-img');this.remove()"></div>
+      <div class="news-card-body">
+        <span class="news-source">Nature.com</span>
+        <h3>Astrocytes connect specific brain regions through plastic networks</h3>
+        <p>Communication between distant brain regions is mediated by plastic networks of gap&amp;nbsp;junction-coupled astrocytes.</p>
+        <span class="news-time">Yesterday</span>
+      </div>
+    </a>
+
+    <a href="https://www.queerty.com/theres-a-new-party-crasher-in-town-hes-drug-resistant-and-lives-in-your-gut-20260422/" target="_blank" rel="noopener" class="news-card">
+      <div class="news-card-img"><img src="https://queerty-wp.b-cdn.net/2026/04/shutterstock-2505668123-1-scaled.jpg?width=1200&amp;height=630&amp;aspect_ratio=1.9:1&amp;format=jpeg" alt="There’s a new sex party crasher in town… &amp; he’s drug-resistant and lives in your gut" loading="lazy" onerror="this.parentElement.classList.add('no-img');this.remove()"></div>
+      <div class="news-card-body">
+        <span class="news-source">Queerty.com</span>
+        <h3>There’s a new sex party crasher in town… &amp; he’s drug-resistant and lives in your gut</h3>
+        <p>One gay doctor is calling for more &quot;d*ck washing stations&quot; at parties.</p>
+        <span class="news-time">2 days ago</span>
+      </div>
+    </a>
+
+    <a href="https://www.nature.com/articles/d41586-026-00908-y" target="_blank" rel="noopener" class="news-card">
+      <div class="news-card-img"><img src="https://media.nature.com/lw1200/magazine-assets/d41586-026-00908-y/d41586-026-00908-y_52303258.jpg" alt="A bat coronavirus can enter human cells through a previously unknown gateway" loading="lazy" onerror="this.parentElement.classList.add('no-img');this.remove()"></div>
+      <div class="news-card-body">
+        <span class="news-source">Nature.com</span>
+        <h3>A bat coronavirus can enter human cells through a previously unknown gateway</h3>
+        <p>The identification of a receptor that is recognized by a subset of alphacoronaviruses provides insights into ‘spillover’ risk and pandemic potential.</p>
+        <span class="news-time">2 days ago</span>
+      </div>
+    </a>
+
+    <a href="https://www.nature.com/articles/s41586-026-10414-w" target="_blank" rel="noopener" class="news-card">
+      <div class="news-card-img"><img src="https://media.springernature.com/m685/springer-static/image/art%3A10.1038%2Fs41586-026-10414-w/MediaObjects/41586_2026_10414_Fig1_HTML.png" alt="Focal white matter lesions drive grey matter inflammation and synapse loss" loading="lazy" onerror="this.parentElement.classList.add('no-img');this.remove()"></div>
+      <div class="news-card-body">
+        <span class="news-source">Nature.com</span>
+        <h3>Focal white matter lesions drive grey matter inflammation and synapse loss</h3>
+        <p>A transient grey matter microgliosis is required for remyelination, the failure of which results in a chronic neuroinflammatory state seen in neurodegenerative </p>
+        <span class="news-time">2 days ago</span>
+      </div>
+    </a>
+
+    <a href="https://www.nature.com/articles/s41586-026-10548-x" target="_blank" rel="noopener" class="news-card">
+      <div class="news-card-img"></div>
+      <div class="news-card-body">
+        <span class="news-source">Nature.com</span>
+        <h3>Ubiquitination of glycogen and metabolites in cells and tissues</h3>
+        <p>Nature - Ubiquitination of glycogen and metabolites in cells and tissues</p>
+        <span class="news-time">2 days ago</span>
+      </div>
+    </a>
+
+    <a href="https://medicalxpress.com/news/2026-04-hepa-air-purifiers-boost-brain.html" target="_blank" rel="noopener" class="news-card">
+      <div class="news-card-img"><img src="https://scx2.b-cdn.net/gfx/news/hires/2026/cleaner-air-cognition.jpg" alt="HEPA air purifiers may boost brain power in adults over 40" loading="lazy" onerror="this.parentElement.classList.add('no-img');this.remove()"></div>
+      <div class="news-card-body">
+        <span class="news-source">Medical Xpress</span>
+        <h3>HEPA air purifiers may boost brain power in adults over 40</h3>
+        <p>Using an in-home HEPA purifier for one month spurs a small but significant improvement in brain function in adults age 40 and older. That's the result of a new </p>
+        <span class="news-time">2 days ago</span>
+      </div>
+    </a>
+
+    <a href="https://www.deccanherald.com/india/karnataka/bengaluru/more-young-people-in-bengaluru-diagnosed-with-oral-cancer-say-doctors-3977452" target="_blank" rel="noopener" class="news-card">
+      <div class="news-card-img"><img src="https://media.assettype.com/deccanherald%2F2024-09-20%2Fevjydtja%2FiStock-1414969494.jpg?rect=0%2C24%2C1253%2C658&amp;w=1200&amp;ar=40%3A21&amp;auto=format%2Ccompress&amp;ogImage=true&amp;mode=crop" alt="Oral cancer Bengaluru: Rise in young cases alarms doctors" loading="lazy" onerror="this.parentElement.classList.add('no-img');this.remove()"></div>
+      <div class="news-card-body">
+        <span class="news-source">Deccan Herald</span>
+        <h3>Oral cancer Bengaluru: Rise in young cases alarms doctors</h3>
+        <p>More young people diagnosed with oral cancer, say doctors</p>
+        <span class="news-time">2 days ago</span>
+      </div>
+    </a>
+
+    <a href="https://www.eatingwell.com/things-women-over-60-should-do-for-gut-health-11956435" target="_blank" rel="noopener" class="news-card">
+      <div class="news-card-img"><img src="https://www.eatingwell.com/thmb/ZcDhNK-r7vNe90PXVmM4ibDZNFY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/2-Key-Things-Women-over-60-Should-Do-for-Better-Gut-Health-192fa8ec12f24ffeb3f0776cdffdf13d.jpg" alt="2 Key Things Women over 60 Should Do for Better Gut Health" loading="lazy" onerror="this.parentElement.classList.add('no-img');this.remove()"></div>
+      <div class="news-card-body">
+        <span class="news-source">Eatingwell.com</span>
+        <h3>2 Key Things Women over 60 Should Do for Better Gut Health</h3>
+        <p>We asked a gastroenterologist: What are some things that women over 60 can do to benefit their gut health? Here’s what she had to say.</p>
+        <span class="news-time">2 days ago</span>
+      </div>
+    </a>
+
+    <a href="https://www.who.int/news/item/22-04-2026-who-certifies-the-bahamas-for-eliminating-mother-to-child-transmission-of-hiv" target="_blank" rel="noopener" class="news-card">
+      <div class="news-card-img"><img src="https://cdn.who.int/media/images/default-source/topics/womens-childrens-and-adolescent-health/newborn-health/mother-and-baby.tmb-1200v.jpg?sfvrsn=5e98ec48_3" alt="WHO certifies the Bahamas for eliminating mother-to-child transmission of HIV" loading="lazy" onerror="this.parentElement.classList.add('no-img');this.remove()"></div>
+      <div class="news-card-body">
+        <span class="news-source">World Health Organization</span>
+        <h3>WHO certifies the Bahamas for eliminating mother-to-child transmission of HIV</h3>
+        <p>&lt;p&gt;In a landmark achievement for Caribbean public health, the World Health Organization (WHO) congratulates The Bahamas for becoming the latest Caribbean nation</p>
+        <span class="news-time">2 days ago</span>
+      </div>
+    </a>
+
+    <a href="https://www.realsimple.com/fruit-for-brain-heart-gut-health-11950958" target="_blank" rel="noopener" class="news-card">
+      <div class="news-card-img"><img src="https://www.realsimple.com/thmb/fh9dc2KHnl9gk4rLVsA_vlvKRbk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/fruit-for-brain-health-GettyImages-523135371-ac04c066537e44fd955bd13beca6bd5d.jpg" alt="The One Fruit Dietitians Recommend for Brain, Heart, and Gut Health" loading="lazy" onerror="this.parentElement.classList.add('no-img');this.remove()"></div>
+      <div class="news-card-body">
+        <span class="news-source">Real Simple</span>
+        <h3>The One Fruit Dietitians Recommend for Brain, Heart, and Gut Health</h3>
+        <p>Reach for this nutrient-dense fruit the next time you're craving a healthy snack.</p>
+        <span class="news-time">2 days ago</span>
+      </div>
+    </a>
+
+    <a href="https://www.oregonlive.com/health/2026/04/whats-behind-phantom-ear-ringing-scientists-find-the-brain-switch.html" target="_blank" rel="noopener" class="news-card">
+      <div class="news-card-img"><img src="https://www.oregonlive.com/resizer/v2/KNWAIHWJUBCNPC7IC3RKXCCKFQ.jpg?auth=a31dcb5eda6fda0d9de60f4de06868e66ec2fbf3e60ad2a34f21cdb95ccdd03f&amp;width=1280&amp;smart=true&amp;quality=90" alt="What’s behind phantom ear ringing? Scientists find the brain switch" loading="lazy" onerror="this.parentElement.classList.add('no-img');this.remove()"></div>
+      <div class="news-card-body">
+        <span class="news-source">OregonLive</span>
+        <h3>What’s behind phantom ear ringing? Scientists find the brain switch</h3>
+        <p>The findings point to a potential treatment for tinnitus, a sometimes debilitating condition affecting roughly one in 10 adults in the U.S.</p>
+        <span class="news-time">2 days ago</span>
+      </div>
+    </a>
+
+    <a href="https://medicalxpress.com/news/2026-04-brain-explanation-upends-knew.html" target="_blank" rel="noopener" class="news-card">
+      <div class="news-card-img"><img src="https://scx2.b-cdn.net/gfx/news/hires/2018/dream.jpg" alt="How does imagination really work in the brain? New explanation upends what we knew" loading="lazy" onerror="this.parentElement.classList.add('no-img');this.remove()"></div>
+      <div class="news-card-body">
+        <span class="news-source">Medical Xpress</span>
+        <h3>How does imagination really work in the brain? New explanation upends what we knew</h3>
+        <p>Your brain is currently expending about a fifth of your body's energy, and almost none of that is being used for what you're doing right now. Reading these word</p>
+        <span class="news-time">2 days ago</span>
+      </div>
+    </a>
     </div>
   </div>
 
-  <!-- SIDEBAR -->
   <aside class="sidebar">
-
-    <!-- LIVE STATS -->
     <div class="sidebar-card">
-      <div class="sidebar-title">Today's Coverage</div>
-      <div class="stats-bar">
-        <div class="stat-box">
-          <div class="stat-box-num" id="statArticles">—</div>
-          <div class="stat-box-label">Articles found</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-box-num" id="statSources">—</div>
-          <div class="stat-box-label">Unique sources</div>
-        </div>
+      <h4>Today's Coverage</h4>
+      <div class="stat-row">
+        <div class="stat-box"><div class="stat-num">28</div><div class="stat-label">Articles</div></div>
+        <div class="stat-box"><div class="stat-num">21</div><div class="stat-label">Sources</div></div>
       </div>
     </div>
 
-    <!-- TRENDING TOPICS -->
     <div class="sidebar-card">
-      <div class="sidebar-title">Trending Health Topics</div>
-      <div class="topic-list" id="topicList">
-        <div class="topic-item" onclick="searchTopic('GLP-1 semaglutide weight loss')">GLP-1 / Weight Loss</div>
-        <div class="topic-item" onclick="searchTopic('Alzheimer disease treatment')">Alzheimer's Disease</div>
-        <div class="topic-item" onclick="searchTopic('cancer immunotherapy')">Cancer Immunotherapy</div>
-        <div class="topic-item" onclick="searchTopic('heart failure treatment')">Heart Failure</div>
-        <div class="topic-item" onclick="searchTopic('FDA drug approval 2026')">FDA Approvals</div>
-        <div class="topic-item" onclick="searchTopic('diabetes CGM insulin')">Diabetes Tech</div>
-        <div class="topic-item" onclick="searchTopic('mental health depression anxiety')">Mental Health</div>
-        <div class="topic-item" onclick="searchTopic('longevity aging research')">Longevity Research</div>
-        <div class="topic-item" onclick="searchTopic('microbiome gut health')">Gut Health</div>
-        <div class="topic-item" onclick="searchTopic('sleep apnea insomnia')">Sleep Disorders</div>
+      <h4>Trending Topics</h4>
+      <div>
+        <span class="topic-chip">Weight Loss</span>
+        <span class="topic-chip">Cancer Research</span>
+        <span class="topic-chip">Heart Disease</span>
+        <span class="topic-chip">Diabetes</span>
+        <span class="topic-chip">Mental Health</span>
+        <span class="topic-chip">FDA Approvals</span>
+        <span class="topic-chip">Nutrition</span>
+        <span class="topic-chip">Sleep</span>
+        <span class="topic-chip">Alzheimer's</span>
+        <span class="topic-chip">Longevity</span>
       </div>
     </div>
 
-    <!-- TOP SOURCES -->
     <div class="sidebar-card">
-      <div class="sidebar-title">Top Health Sources</div>
+      <h4>Top Sources</h4>
       <div class="source-list">
-        <div class="source-item" onclick="searchSource('medical-news-today')"><div class="source-dot"></div>Medical News Today</div>
-        <div class="source-item" onclick="searchSource('healthline')"><div class="source-dot"></div>Healthline</div>
-        <div class="source-item" onclick="searchSource('the-verge')"><div class="source-dot"></div>The Verge (Health)</div>
-        <div class="source-item" onclick="searchSource('reuters')"><div class="source-dot" style="background:var(--accent)"></div>Reuters Health</div>
-        <div class="source-item" onclick="searchSource('bbc-news')"><div class="source-dot" style="background:var(--red)"></div>BBC Health</div>
-        <div class="source-item" onclick="searchSource('cnn')"><div class="source-dot" style="background:var(--gold)"></div>CNN Health</div>
-        <div class="source-item" onclick="searchTopic('Harvard Medical School health')"><div class="source-dot" style="background:var(--green)"></div>Harvard Health</div>
-        <div class="source-item" onclick="searchTopic('Mayo Clinic health news')"><div class="source-dot" style="background:var(--primary)"></div>Mayo Clinic News</div>
+        <div class="source-item"><div class="source-dot"></div>Yahoo Entertainment</div>
+<div class="source-item"><div class="source-dot"></div>NBC News</div>
+<div class="source-item"><div class="source-dot"></div>Gothamist</div>
+<div class="source-item"><div class="source-dot"></div>PsyPost</div>
+<div class="source-item"><div class="source-dot"></div>The Boston Globe</div>
+<div class="source-item"><div class="source-dot"></div>syracuse.com</div>
+<div class="source-item"><div class="source-dot"></div>ScienceAlert</div>
+<div class="source-item"><div class="source-dot"></div>ABC15 Arizona</div>
       </div>
     </div>
 
-    <!-- DISCLAIMER -->
-    <div class="sidebar-card" style="background:var(--primary-light);border-color:rgba(21,101,192,0.2);">
-      <div style="font-size:0.78rem;color:var(--primary-dark);line-height:1.55;">
-        <strong style="display:block;margin-bottom:4px;">Medical Disclaimer</strong>
-        News articles are for informational purposes only. Always consult a qualified healthcare provider before making medical decisions.
-      </div>
+    <div class="disclaimer-box">
+      <strong>Medical Disclaimer</strong>
+      News articles are for informational purposes only. Always consult a qualified healthcare provider before making medical decisions.
     </div>
-
   </aside>
 </div>
 
-<footer>
-  <div class="logo">Health<span style="color:#0097A7">Rankings</span></div>
-  <p>Health news powered by NewsAPI · Sourced from leading health publications worldwide.</p>
-  <p class="disc">HealthRankings.com is reader-supported. News content is for informational purposes only and does not constitute medical advice.</p>
-</footer>
-
-<script>
-// ── CONFIG ────────────────────────────────────────────────────────────────
-const APIKEY  = 'e04bd0358a39467ca36049d387ef1759';
-const IS_LOCAL = location.protocol === 'file:';
-const IS_LOCALHOST = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
-
-// When hosted on your VPS, use the proxy (port 3456)
-// When on localhost with proxy running, also use proxy  
-// Direct API call only works on localhost without proxy (for testing)
-const PROXY_URL = `${location.protocol}//${location.hostname}:3456`;
-const BASE = 'https://newsapi.org/v2';
-const USE_PROXY = !IS_LOCAL && !IS_LOCALHOST; // on real server, use proxy
-
-// ── STATE ─────────────────────────────────────────────────────────────────
-let currentQ     = 'health';
-let currentSort  = 'publishedAt';
-let currentPage  = 1;
-let allArticles  = [];
-let totalResults = 0;
-let isLoading    = false;
-let searchTimer  = null;
-const PAGE_SIZE  = 20;
-
-// ── FETCH ─────────────────────────────────────────────────────────────────
-async function fetchNews(q, sortBy, page) {
-  let res;
-  if (USE_PROXY) {
-    // On real server — route through VPS proxy (no CORS restriction)
-    let proxyPath;
-    if (q === 'health' || q.startsWith('health ')) {
-      proxyPath = `/news?category=health&page=${page}`;
-    } else {
-      proxyPath = `/news?q=${encodeURIComponent(q)}&sort=${sortBy}&page=${page}`;
-    }
-    res = await fetch(`${PROXY_URL}${proxyPath}`);
-  } else {
-    // On localhost — try direct API (works with proxy running locally too)
-    if (q === 'health' || q.startsWith('health ')) {
-      const params = new URLSearchParams({category:'health',country:'us',pageSize:PAGE_SIZE,page,apiKey:APIKEY});
-      res = await fetch(`${BASE}/top-headlines?${params}`);
-    } else {
-      const params = new URLSearchParams({q,sortBy,pageSize:PAGE_SIZE,page,language:'en',apiKey:APIKEY});
-      res = await fetch(`${BASE}/everything?${params}`);
-    }
-  }
-  const data = await res.json();
-  if (data.status !== 'ok') throw new Error(data.message || 'API error');
-  return data;
-}
-
-async function loadNews(reset = true) {
-  if (isLoading) return;
-  isLoading = true;
-  setRefreshSpinning(true);
-
-  if (reset) {
-    currentPage  = 1;
-    allArticles  = [];
-    document.getElementById('newsGrid').innerHTML =
-      '<div class="loading-state"><div class="spinner"></div><p>Loading health news…</p></div>';
-    document.getElementById('loadMoreWrap').style.display = 'none';
-  } else {
-    document.getElementById('loadMoreBtn').disabled = true;
-    document.getElementById('loadMoreBtn').textContent = 'Loading…';
-  }
-
-  try {
-    const data = await fetchNews(currentQ, currentSort, currentPage);
-    totalResults = data.totalResults || 0;
-
-    const fresh = (data.articles || [])
-      .filter(a => a.title && a.title !== '[Removed]' && a.url);
-
-    allArticles = reset ? fresh : [...allArticles, ...fresh];
-
-    updateStats(allArticles);
-    renderArticles(reset);
-    updateLoadMore();
-
-    const lbl = document.getElementById('resultsLabel');
-    lbl.style.display = 'block';
-    lbl.innerHTML = `Showing <strong>${allArticles.length}</strong> of <strong>${totalResults.toLocaleString()}</strong> articles for "<strong>${currentQ}</strong>"`;
-
-  } catch (err) {
-    console.error(err);
-    const isLocal = location.protocol === 'file:';
-    const isLocalhost = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
-    document.getElementById('newsGrid').innerHTML = isLocal ? `
-      <div class="empty-state" style="padding:3rem 2rem;background:var(--primary-light);border-radius:16px;border:1px solid rgba(21,101,192,0.2);">
-        <div style="font-size:2.5rem;margin-bottom:1rem;">🌐</div>
-        <h3 style="color:var(--primary);font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:0.75rem;">Live News Requires a Web Server</h3>
-        <p style="font-size:0.9rem;color:var(--text-light);max-width:480px;margin:0 auto 1rem;line-height:1.6;">NewsAPI does not allow calls from local files (<code style="background:var(--gray-mid);padding:1px 6px;border-radius:4px;">file://</code>). This page will load live health news automatically once deployed to your Hostinger VPS.</p>
-        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:1rem 1.25rem;margin-top:1rem;text-align:left;max-width:420px;margin-left:auto;margin-right:auto;">
-          <p style="font-size:0.78rem;font-weight:600;color:var(--text);margin-bottom:0.5rem;">To test locally right now:</p>
-          <code style="font-size:0.75rem;color:var(--accent);background:var(--gray);padding:0.5rem 0.75rem;border-radius:6px;display:block;">npx serve . &nbsp;&nbsp;→&nbsp;&nbsp; localhost:3000</code>
-        </div>
-      </div>` : `
-      <div class="empty-state">
-        <h3>News temporarily unavailable</h3>
-        <p style="font-size:0.85rem;margin-top:0.5rem;">${err.message}</p>
-      </div>`;
-  } finally {
-    isLoading = false;
-    setRefreshSpinning(false);
-    document.getElementById('loadMoreBtn').disabled   = false;
-    document.getElementById('loadMoreBtn').textContent = 'Load More Articles';
-  }
-}
-
-// ── RENDER ────────────────────────────────────────────────────────────────
-function renderArticles(reset) {
-  const grid = document.getElementById('newsGrid');
-  const articles = allArticles;
-
-  if (!articles.length) {
-    grid.innerHTML = `<div class="empty-state">
-      <h3>No articles found</h3>
-      <p>Try a different search term or category.</p>
-    </div>`;
-    return;
-  }
-
-  const [first, ...rest] = articles;
-
-  const featuredHTML = reset ? buildFeatured(first) : '';
-  const cardsHTML = (reset ? rest : articles.slice(1))
-    .map(buildCard).join('');
-
-  if (reset) {
-    grid.innerHTML = `
-      ${featuredHTML}
-      <div class="cards-list" id="cardsList">${cardsHTML}</div>`;
-  } else {
-    // Append to existing cards list
-    document.getElementById('cardsList').insertAdjacentHTML('beforeend', cardsHTML);
-  }
-}
-
-function buildFeatured(a) {
-  const date   = fmtDate(a.publishedAt);
-  const source = a.source?.name || 'Health News';
-  const imgTag = a.urlToImage
-    ? `<img class="nf-img" src="${a.urlToImage}" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="nf-img-ph" style="display:none">🏥</div>`
-    : `<div class="nf-img-ph">🏥</div>`;
-
-  return `
-    <a href="${esc(a.url)}" target="_blank" rel="noopener" class="news-card-featured">
-      <div>${imgTag}</div>
-      <div class="nf-body">
-        <div class="nf-source">${esc(source)}</div>
-        <div class="nf-badge">Top Story</div>
-        <div class="nf-title">${esc(a.title)}</div>
-        ${a.description ? `<div class="nf-desc">${esc(a.description)}</div>` : ''}
-        <div class="nf-meta">
-          <span>${date}</span>
-          ${a.author ? `<span>By ${esc(a.author.split(',')[0])}</span>` : ''}
-        </div>
-        <div class="nf-read">Read full article →</div>
-      </div>
-    </a>`;
-}
-
-function buildCard(a) {
-  const date   = fmtDate(a.publishedAt);
-  const source = a.source?.name || 'Health News';
-  const imgTag = a.urlToImage
-    ? `<img class="nc-img" src="${a.urlToImage}" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="nc-img-ph" style="display:none">🏥</div>`
-    : `<div class="nc-img-ph">🏥</div>`;
-
-  return `
-    <a href="${esc(a.url)}" target="_blank" rel="noopener" class="news-card">
-      <div>${imgTag}</div>
-      <div class="nc-body">
-        <div class="nc-source">${esc(source)}</div>
-        <div class="nc-title">${esc(a.title)}</div>
-        ${a.description ? `<div class="nc-desc">${esc(a.description)}</div>` : ''}
-        <div class="nc-meta">
-          <span>${date}</span>
-          <span class="nc-read">Read →</span>
-        </div>
-      </div>
-    </a>`;
-}
-
-// ── LOAD MORE ─────────────────────────────────────────────────────────────
-function updateLoadMore() {
-  const wrap = document.getElementById('loadMoreWrap');
-  const canLoadMore = allArticles.length < Math.min(totalResults, 100); // NewsAPI caps at 100
-  wrap.style.display = canLoadMore ? 'block' : 'none';
-}
-
-document.getElementById('loadMoreBtn').addEventListener('click', () => {
-  currentPage++;
-  loadNews(false);
-});
-
-// ── STATS ─────────────────────────────────────────────────────────────────
-function updateStats(articles) {
-  document.getElementById('statArticles').textContent = totalResults > 999
-    ? (totalResults/1000).toFixed(1) + 'K' : totalResults.toLocaleString();
-  const sources = new Set(articles.map(a => a.source?.name).filter(Boolean));
-  document.getElementById('statSources').textContent = sources.size;
-}
-
-// ── SEARCH ────────────────────────────────────────────────────────────────
-document.getElementById('newsSearch').addEventListener('input', function() {
-  clearTimeout(searchTimer);
-  const q = this.value.trim();
-  if (!q) return;
-  searchTimer = setTimeout(() => {
-    deactivatePills();
-    currentQ = q;
-    loadNews();
-  }, 600);
-});
-
-document.getElementById('newsSearch').addEventListener('keydown', function(e) {
-  if (e.key === 'Enter' && this.value.trim()) {
-    clearTimeout(searchTimer);
-    deactivatePills();
-    currentQ = this.value.trim();
-    loadNews();
-  }
-});
-
-// ── CATEGORY PILLS ────────────────────────────────────────────────────────
-document.getElementById('categoryPills').addEventListener('click', function(e) {
-  const pill = e.target.closest('.pill');
-  if (!pill) return;
-  deactivatePills();
-  pill.classList.add('active');
-  currentQ = pill.dataset.q;
-  document.getElementById('newsSearch').value = '';
-  loadNews();
-});
-
-function deactivatePills() {
-  document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
-}
-
-// ── SORT ──────────────────────────────────────────────────────────────────
-document.getElementById('sortSelect').addEventListener('change', function() {
-  currentSort = this.value;
-  loadNews();
-});
-
-// ── REFRESH ───────────────────────────────────────────────────────────────
-document.getElementById('refreshBtn').addEventListener('click', () => loadNews());
-
-function setRefreshSpinning(on) {
-  document.getElementById('refreshBtn').classList.toggle('spinning', on);
-}
-
-// ── SIDEBAR INTERACTIONS ──────────────────────────────────────────────────
-function searchTopic(q) {
-  document.querySelectorAll('.topic-item').forEach(t => t.classList.remove('active'));
-  event.currentTarget.classList.add('active');
-  deactivatePills();
-  currentQ = q;
-  document.getElementById('newsSearch').value = q;
-  loadNews();
-  window.scrollTo({top: 0, behavior:'smooth'});
-}
-
-function searchSource(sourceId) {
-  // Use source-specific search
-  deactivatePills();
-  currentQ = 'health';
-  document.getElementById('newsSearch').value = '';
-  // Fetch by source
-  (async () => {
-    isLoading = true;
-    setRefreshSpinning(true);
-    document.getElementById('newsGrid').innerHTML =
-      '<div class="loading-state"><div class="spinner"></div><p>Loading from source…</p></div>';
-    try {
-      const params = new URLSearchParams({sources: sourceId, pageSize: PAGE_SIZE, apiKey: APIKEY});
-      const res  = await fetch(`${BASE}/top-headlines?${params}`);
-      const data = await res.json();
-      if (data.status !== 'ok') throw new Error(data.message);
-      allArticles  = (data.articles||[]).filter(a => a.title && a.title !== '[Removed]');
-      totalResults = data.totalResults || allArticles.length;
-      updateStats(allArticles);
-      renderArticles(true);
-      updateLoadMore();
-      const lbl = document.getElementById('resultsLabel');
-      lbl.style.display = 'block';
-      lbl.innerHTML = `Showing <strong>${allArticles.length}</strong> articles from <strong>${sourceId}</strong>`;
-    } catch(e) {
-      document.getElementById('newsGrid').innerHTML = `<div class="empty-state"><h3>Could not load source</h3><p>${e.message}</p></div>`;
-    } finally {
-      isLoading = false; setRefreshSpinning(false);
-    }
-  })();
-  window.scrollTo({top: 0, behavior:'smooth'});
-}
-
-// ── HELPERS ───────────────────────────────────────────────────────────────
-function fmtDate(iso) {
-  if (!iso) return '';
-  const d = new Date(iso);
-  const now = new Date();
-  const diff = Math.floor((now - d) / 60000);
-  if (diff < 60)  return `${diff}m ago`;
-  if (diff < 1440) return `${Math.floor(diff/60)}h ago`;
-  return d.toLocaleDateString('en-US', {month:'short', day:'numeric'});
-}
-
-function esc(s) {
-  if (!s) return '';
-  return String(s)
-    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
-    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
-
-// ── INIT ──────────────────────────────────────────────────────────────────
-loadNews();
-</script>
-
-</body>
-</html>
+<footer class="footer"><div class="footer-inner"><div class="footer-bottom"><div>© 2026 HealthRankings. Made with care in Miami.</div><div style="display:flex;gap:24px"><a href="/healthrankings-about.html">Privacy</a><a href="/healthrankings-about.html">Terms</a><a href="/healthrankings-contact.html">Contact</a></div></div></div></footer>
+</body></html>
