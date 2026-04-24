@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-condition-tag="brain">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1722,6 +1722,83 @@ body::before {
   .causes-list { grid-template-columns: 1fr; }
 }
 
+
+/* ===== CONDITION SNAPSHOT ===== */
+.condition-snapshot {
+  max-width: 860px;
+  margin: 0 auto 8px;
+  padding: 0 24px;
+}
+.snapshot-card {
+  background: linear-gradient(135deg, var(--blue-50) 0%, #f0f7ff 100%);
+  border: 1px solid var(--blue-200);
+  border-left: 4px solid var(--blue-500);
+  border-radius: 16px;
+  padding: 28px 32px;
+}
+.snapshot-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 12px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.7);
+}
+.snapshot-tag-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.snapshot-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--slate-900);
+  margin-bottom: 8px;
+}
+.snapshot-desc {
+  font-size: 0.925rem;
+  color: var(--slate-600);
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+.snapshot-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.snapshot-stat {
+  background: white;
+  border-radius: 12px;
+  padding: 16px 12px;
+  text-align: center;
+  border: 1px solid var(--blue-100);
+}
+.snapshot-stat-value {
+  display: block;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--blue-600);
+  margin-bottom: 4px;
+}
+.snapshot-stat-label {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--slate-500);
+  line-height: 1.4;
+}
+@media (max-width: 640px) {
+  .snapshot-stats { grid-template-columns: 1fr; }
+  .snapshot-card { padding: 20px; }
+  .snapshot-stat { padding: 12px; }
+  .snapshot-stat-value { font-size: 1.2rem; }
+}
 </style>
 </head>
 <body>
@@ -1794,6 +1871,32 @@ body::before {
     <div class="intro-meta-fact">
       <span class="intro-meta-fact-label">Last updated</span>
       <span class="intro-meta-fact-value">April 2026</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONDITION SNAPSHOT ============ -->
+<section class="condition-snapshot" data-tag="brain">
+  <div class="snapshot-card">
+    <div class="snapshot-tag" style="color:#7C3AED">
+      <span class="snapshot-tag-dot" style="background:#7C3AED"></span>
+      Brain & Nervous System
+    </div>
+    <h2 class="snapshot-title">What is Cognitive Decline & Brain Health?</h2>
+    <p class="snapshot-desc">Cognitive decline is the gradual loss of memory, thinking, and reasoning abilities. While some decline is normal with aging, accelerated decline may signal Alzheimer’s disease or other dementias. Early detection is key to slowing progression.</p>
+    <div class="snapshot-stats">
+      <div class="snapshot-stat">
+        <span class="snapshot-stat-value">6.7M</span>
+        <span class="snapshot-stat-label">Americans living with Alzheimer’s disease</span>
+      </div>
+      <div class="snapshot-stat">
+        <span class="snapshot-stat-value">1 in 9</span>
+        <span class="snapshot-stat-label">Adults age 65+ have Alzheimer’s dementia</span>
+      </div>
+      <div class="snapshot-stat">
+        <span class="snapshot-stat-value">$355B</span>
+        <span class="snapshot-stat-label">Annual cost of dementia care in the U.S.</span>
+      </div>
     </div>
   </div>
 </section>
