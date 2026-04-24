@@ -7,12 +7,6 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://healthrankings.onrender.com/404.html</loc>
-    <lastmod>2026-04-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://healthrankings.onrender.com/healthrankings-about.html</loc>
     <lastmod>2026-04-24</lastmod>
     <changefreq>monthly</changefreq>
@@ -818,6 +812,12 @@
   </url>
   <url>
     <loc>https://healthrankings.onrender.com/healthrankings-pregnancy-tests.html</loc>
+    <lastmod>2026-04-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://healthrankings.onrender.com/healthrankings-privacy-policy.html</loc>
     <lastmod>2026-04-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -2066,6 +2066,12 @@
   </url>
   <url>
     <loc>https://healthrankings.onrender.com/healthrankings-stroke-prevention-blood-pressure.html</loc>
+    <lastmod>2026-04-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://healthrankings.onrender.com/healthrankings-terms-of-service.html</loc>
     <lastmod>2026-04-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

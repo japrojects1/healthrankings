@@ -6,7 +6,7 @@ const dir = path.resolve(__dirname, '..');
 const today = new Date().toISOString().split('T')[0];
 
 const files = fs.readdirSync(dir)
-  .filter(f => f.endsWith('.html') && f !== 'index.html' && f !== 'healthrankings-homepage.html' && f !== 'healthrankings-preview.html')
+  .filter(f => f.endsWith('.html') && !['index.html', 'healthrankings-homepage.html', 'healthrankings-preview.html', '404.html', 'homepage.html'].includes(f))
   .sort();
 
 const priorityMap = (f) => {

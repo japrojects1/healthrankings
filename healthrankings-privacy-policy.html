@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy | HealthRankings</title>
+<meta name="description" content="HealthRankings privacy policy — how we collect, use, and protect your personal information. We respect your privacy and never sell your data.">
+<link rel="icon" type="image/svg+xml" href="/brand/favicon.svg">
+<link rel="canonical" href="https://healthrankings.onrender.com/healthrankings-privacy-policy.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Privacy Policy | HealthRankings">
+<meta property="og:description" content="How HealthRankings collects, uses, and protects your personal information.">
+<meta property="og:url" content="https://healthrankings.onrender.com/healthrankings-privacy-policy.html">
+<meta property="og:site_name" content="HealthRankings">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Privacy Policy | HealthRankings">
+<meta name="twitter:description" content="How HealthRankings collects, uses, and protects your personal information.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blue-50:#EFF6FF;--blue-600:#2563EB;--blue-700:#1D4ED8;--blue-800:#1E40AF;
+  --teal-50:#F0FDFA;--teal-500:#14B8A6;--teal-600:#0D9488;
+  --slate-50:#F8FAFC;--slate-100:#F1F5F9;--slate-200:#E2E8F0;--slate-300:#CBD5E1;
+  --slate-400:#94A3B8;--slate-500:#64748B;--slate-600:#475569;--slate-700:#334155;--slate-900:#0F172A;
+  --gradient-teal:linear-gradient(135deg,#14B8A6 0%,#0D9488 100%);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter','Helvetica Neue',system-ui,sans-serif;background:var(--slate-50);color:var(--slate-900);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+
+.header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--slate-200)}
+.header-inner{max-width:1280px;margin:0 auto;padding:0 32px;height:76px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:14px;line-height:1}
+.logo-tile{position:relative;width:44px;height:44px;background:var(--blue-50);border-radius:14px;display:flex;align-items:center;justify-content:center}
+.logo-sparkle{position:absolute;top:-4px;right:-4px;color:var(--teal-500)}
+.logo-text{font-family:'DM Sans',sans-serif;font-size:22px;letter-spacing:-0.035em;line-height:1}
+.logo-text .one{font-weight:500;color:var(--slate-900)}
+.logo-text .two{font-weight:700;background:var(--gradient-teal);-webkit-background-clip:text;background-clip:text;color:transparent}
+.nav{display:flex;align-items:center;gap:36px}
+.nav a{font-family:'DM Sans',sans-serif;font-size:15px;font-weight:500;color:var(--slate-900);letter-spacing:-0.01em;transition:color 180ms}
+.nav a:hover{color:var(--blue-600)}
+
+.page-hero{padding:80px 32px 48px;text-align:center}
+.page-hero h1{font-family:'DM Sans',sans-serif;font-size:clamp(32px,4vw,48px);font-weight:800;letter-spacing:-0.03em;line-height:1.15;margin-bottom:12px}
+.page-hero p{color:var(--slate-500);font-size:17px;max-width:600px;margin:0 auto}
+.page-hero .updated{display:inline-block;margin-top:16px;font-size:13px;color:var(--slate-400);font-weight:500}
+
+.legal{max-width:760px;margin:0 auto;padding:0 32px 80px}
+.legal h2{font-family:'DM Sans',sans-serif;font-size:22px;font-weight:700;margin:40px 0 12px;color:var(--slate-900)}
+.legal h3{font-family:'DM Sans',sans-serif;font-size:17px;font-weight:600;margin:28px 0 8px;color:var(--slate-700)}
+.legal p{margin-bottom:16px;color:var(--slate-600);line-height:1.75}
+.legal ul{margin:0 0 16px 24px;color:var(--slate-600)}
+.legal ul li{margin-bottom:6px}
+.legal a{color:var(--blue-600);text-decoration:underline}
+.legal strong{color:var(--slate-900)}
+
+.footer{border-top:1px solid var(--slate-200);padding:32px;text-align:center}
+.footer-inner{max-width:1280px;margin:0 auto}
+.footer-bottom{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;font-size:13px;color:var(--slate-400)}
+.footer-bottom a{color:var(--slate-500);transition:color .15s}
+.footer-bottom a:hover{color:var(--blue-600)}
+
+.hamburger-btn{display:none;width:44px;height:44px;border-radius:50%;background:transparent;border:none;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:0;z-index:60}
+.hamburger-btn span{display:block;width:22px;height:2.5px;background:var(--slate-900);border-radius:2px;transition:all .3s ease}
+.mobile-drawer{position:fixed;top:0;right:-100%;width:min(320px,85vw);height:100vh;background:#fff;z-index:100;box-shadow:-4px 0 24px rgba(0,0,0,.12);transition:right .35s ease;display:flex;flex-direction:column;overflow-y:auto}
+.mobile-drawer.open{right:0}
+.mobile-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:90;opacity:0;pointer-events:none;transition:opacity .3s}
+.mobile-overlay.open{opacity:1;pointer-events:auto}
+.mobile-drawer-header{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid #E2E8F0}
+.mobile-drawer-close{width:40px;height:40px;border-radius:50%;background:#F1F5F9;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:20px;color:#334155}
+.mobile-drawer-nav{padding:16px 0}
+.mobile-drawer-nav a{display:flex;align-items:center;padding:14px 24px;font-family:'DM Sans',sans-serif;font-size:16px;font-weight:500;color:#0F172A;text-decoration:none;transition:background .15s}
+.mobile-drawer-nav a:hover{background:#EFF6FF;color:#2563EB}
+.mobile-drawer-footer{margin-top:auto;padding:20px 24px;border-top:1px solid #E2E8F0}
+.mobile-drawer-footer a{display:block;padding:8px 0;font-size:14px;color:#64748B;text-decoration:none}
+@media(max-width:768px){.hamburger-btn{display:flex}.nav{display:none}.header-inner{padding:0 20px;height:64px}.page-hero{padding:48px 20px 32px}.legal{padding:0 20px 60px}}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="/" class="logo">
+      <div class="logo-tile"><svg width="28" height="28" viewBox="0 0 32 32" fill="none"><circle cx="11" cy="12" r="2" fill="#2563EB"/><circle cx="21" cy="12" r="2" fill="#2563EB"/><path d="M 8 19 Q 16 26 24 19" stroke="#2563EB" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg><div class="logo-sparkle"><svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><path d="M 6 0 L 7 4.5 L 12 6 L 7 7.5 L 6 12 L 5 7.5 L 0 6 L 5 4.5 Z"/></svg></div></div>
+      <div class="logo-text"><span class="one">health</span><span class="two">rankings</span></div>
+    </a>
+    <nav class="nav">
+      <a href="/healthrankings-conditions.html">Conditions</a>
+      <a href="/healthrankings-devices.html">Devices</a>
+      <a href="/healthrankings-articles.html">Articles</a>
+      <a href="/healthrankings-drugs.html">Drugs A&#8211;Z</a>
+      <a href="/healthrankings-news.html">Health News</a>
+      <a href="/healthrankings-about.html">About</a>
+    </nav>
+    <div class="header-actions">
+      <button class="hamburger-btn" onclick="document.getElementById('mobileDrawer').classList.add('open');document.getElementById('mobileOverlay').classList.add('open');document.body.style.overflow='hidden'" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-overlay" id="mobileOverlay" onclick="document.getElementById('mobileDrawer').classList.remove('open');this.classList.remove('open');document.body.style.overflow=''"></div>
+<div class="mobile-drawer" id="mobileDrawer">
+  <div class="mobile-drawer-header">
+    <div style="font-family:'DM Sans',sans-serif;font-size:18px;font-weight:700"><span style="color:#0F172A">health</span><span style="background:linear-gradient(135deg,#14B8A6,#0D9488);-webkit-background-clip:text;background-clip:text;color:transparent">rankings</span></div>
+    <button class="mobile-drawer-close" onclick="this.closest('.mobile-drawer').classList.remove('open');document.getElementById('mobileOverlay').classList.remove('open');document.body.style.overflow=''">&times;</button>
+  </div>
+  <nav class="mobile-drawer-nav">
+    <a href="/">Home</a><a href="/healthrankings-conditions.html">Conditions</a><a href="/healthrankings-devices.html">Devices</a><a href="/healthrankings-articles.html">Articles</a><a href="/healthrankings-drugs.html">Drugs A&#8211;Z</a><a href="/healthrankings-news.html">Health News</a><a href="/healthrankings-about.html">About</a><a href="/healthrankings-contact.html">Contact</a>
+  </nav>
+  <div class="mobile-drawer-footer">
+    <a href="/healthrankings-hypertension-top5.html">Top 5 BP Monitors</a>
+    <a href="/healthrankings-weight-management-body-composition-top5.html">Top 5 Smart Scales</a>
+  </div>
+</div>
+
+<section class="page-hero">
+  <h1>Privacy Policy</h1>
+  <p>How HealthRankings collects, uses, and protects your information.</p>
+  <span class="updated">Last updated: April 2026</span>
+</section>
+
+<div class="legal">
+
+<h2>1. Information We Collect</h2>
+<p>HealthRankings collects minimal personal data. We may collect:</p>
+<ul>
+  <li><strong>Contact information</strong> — name and email address when you submit the contact form or subscribe to our newsletter.</li>
+  <li><strong>Usage data</strong> — anonymized analytics such as pages visited, time on site, browser type, and device type. We do not use cookies for advertising or cross-site tracking.</li>
+  <li><strong>Voluntary submissions</strong> — any information you choose to share through forms or email correspondence.</li>
+</ul>
+
+<h2>2. How We Use Your Information</h2>
+<p>We use collected information exclusively to:</p>
+<ul>
+  <li>Respond to your inquiries and support requests.</li>
+  <li>Send newsletter communications you have opted into (you can unsubscribe at any time).</li>
+  <li>Improve our website content and user experience through aggregated, anonymized analytics.</li>
+  <li>Maintain the security and integrity of our platform.</li>
+</ul>
+<p>We <strong>never sell, rent, or trade your personal information</strong> to third parties for marketing purposes.</p>
+
+<h2>3. Affiliate Links and Third-Party Commerce</h2>
+<p>Some product review pages contain affiliate links to retailers such as Amazon. When you click these links and make a purchase, HealthRankings may earn a small commission at no additional cost to you. These affiliate partnerships never influence our product rankings, scores, or editorial content.</p>
+<p>When you click an affiliate link, the retailer's own privacy policy governs how they collect and use your data. We encourage you to review their policies before making a purchase.</p>
+
+<h2>4. Cookies and Tracking</h2>
+<p>HealthRankings is a static website that uses minimal cookies:</p>
+<ul>
+  <li><strong>Essential cookies</strong> — required for basic site functionality such as remembering your preferences.</li>
+  <li><strong>Analytics</strong> — we may use privacy-respecting analytics to understand aggregate traffic patterns. We do not use Google Analytics, Facebook Pixel, or any advertising trackers.</li>
+</ul>
+<p>We do not serve targeted advertisements or use tracking pixels.</p>
+
+<h2>5. Data Security</h2>
+<p>We implement industry-standard security measures to protect your information. Our website is served over HTTPS, and any data submitted through forms is transmitted securely. We retain personal information only as long as necessary to fulfill the purposes described in this policy.</p>
+
+<h2>6. Your Rights</h2>
+<p>You have the right to:</p>
+<ul>
+  <li><strong>Access</strong> — request a copy of any personal data we hold about you.</li>
+  <li><strong>Correction</strong> — ask us to correct inaccurate information.</li>
+  <li><strong>Deletion</strong> — request that we delete your personal data.</li>
+  <li><strong>Opt out</strong> — unsubscribe from newsletter communications at any time using the link in any email.</li>
+</ul>
+<p>To exercise any of these rights, contact us at <a href="mailto:media@healthrankings.co">media@healthrankings.co</a>.</p>
+
+<h2>7. Children's Privacy</h2>
+<p>HealthRankings is not directed to children under 13. We do not knowingly collect personal information from children. If you believe a child has provided us with personal data, please contact us and we will promptly delete it.</p>
+
+<h2>8. Changes to This Policy</h2>
+<p>We may update this privacy policy periodically. Material changes will be posted on this page with an updated "Last updated" date. We encourage you to review this page regularly.</p>
+
+<h2>9. Contact Us</h2>
+<p>For privacy-related questions or requests, contact us at:</p>
+<ul>
+  <li>Email: <a href="mailto:media@healthrankings.co">media@healthrankings.co</a></li>
+  <li>Or use our <a href="/healthrankings-contact.html">contact form</a>.</li>
+</ul>
+<p>HealthRankings is based in Miami, Florida.</p>
+
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-bottom">
+      <span>&copy; 2026 HealthRankings. Made with care in Miami.</span>
+      <a href="/healthrankings-privacy-policy.html">Privacy</a>
+      <a href="/healthrankings-terms-of-service.html">Terms</a>
+      <a href="/healthrankings-about.html">About</a>
+      <a href="/healthrankings-contact.html">Contact</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
