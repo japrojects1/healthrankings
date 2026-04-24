@@ -414,6 +414,158 @@ a { color: inherit; text-decoration: none; }
 }
 .loved-logo:hover { opacity: 1; }
 
+/* ===== FEATURED ARTICLES ===== */
+.featured-articles {
+  padding: 72px 32px 64px;
+}
+.featured-articles-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.featured-articles-header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.featured-articles-header h2 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(32px, 4.5vw, 48px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  color: var(--slate-900);
+  margin-bottom: 10px;
+}
+.featured-articles-header h2 em {
+  font-style: normal;
+  background: var(--gradient-teal);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.featured-articles-header p {
+  font-size: 17px;
+  color: var(--slate-600);
+  max-width: 540px;
+  line-height: 1.6;
+}
+.articles-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr;
+  gap: 20px;
+}
+.article-card {
+  background: white;
+  border: 1px solid var(--slate-200);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+}
+.article-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--blue-300);
+  box-shadow: 0 24px 48px -16px rgba(37, 99, 235, 0.14);
+}
+.article-card-image {
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.article-card:nth-child(1) .article-card-image {
+  height: 260px;
+  background: linear-gradient(135deg, #1E40AF 0%, #3B82F6 50%, #14B8A6 100%);
+}
+.article-card:nth-child(2) .article-card-image {
+  background: linear-gradient(135deg, #F0FDFA 0%, #99F6E4 100%);
+}
+.article-card:nth-child(3) .article-card-image {
+  background: linear-gradient(135deg, #EFF6FF 0%, #BFDBFE 100%);
+}
+.article-card-image svg { opacity: 0.25; }
+.article-card:nth-child(1) .article-card-image svg { color: white; opacity: 0.2; }
+.article-card-tag {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  padding: 5px 14px;
+  border-radius: 9999px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.tag-wellness {
+  background: rgba(255,255,255,0.92);
+  color: var(--teal-600);
+}
+.tag-condition {
+  background: rgba(255,255,255,0.92);
+  color: var(--blue-700);
+}
+.tag-tips {
+  background: rgba(255,255,255,0.92);
+  color: var(--slate-700);
+}
+.article-card:nth-child(1) .tag-wellness {
+  background: rgba(20,184,166,0.2);
+  color: var(--teal-100);
+  backdrop-filter: blur(6px);
+}
+.article-card-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.article-card-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.25;
+  color: var(--slate-900);
+  margin-bottom: 10px;
+}
+.article-card:nth-child(1) .article-card-title {
+  font-size: 24px;
+}
+.article-card-excerpt {
+  font-size: 14px;
+  color: var(--slate-600);
+  line-height: 1.6;
+  margin-bottom: 20px;
+  flex: 1;
+}
+.article-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 16px;
+  border-top: 1px solid var(--slate-200);
+  font-size: 12px;
+  color: var(--slate-400);
+}
+.article-card-read {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--blue-600);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: gap 200ms;
+}
+.article-card:hover .article-card-read { gap: 8px; }
+
 /* ===== SECTIONS ===== */
 .section {
   padding: 60px 32px;
@@ -1173,6 +1325,9 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 1100px) {
   .hero-inner, .top-pick-inner, .methodology-grid { grid-template-columns: 1fr; gap: 48px; }
   .hero-visual { display: none; }
+  .articles-grid { grid-template-columns: 1fr 1fr; }
+  .article-card:nth-child(1) { grid-column: 1 / -1; }
+  .article-card:nth-child(1) .article-card-image { height: 220px; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .methodology { padding: 60px 32px; }
 }
@@ -1182,6 +1337,9 @@ a { color: inherit; text-decoration: none; }
   .hero { padding: 48px 20px 72px; }
   .hero h1 { font-size: 40px; }
   .section { padding: 40px 20px; }
+  .featured-articles { padding: 48px 20px 40px; }
+  .articles-grid { grid-template-columns: 1fr; }
+  .article-card:nth-child(1) .article-card-image { height: 180px; }
   .top-pick { padding: 36px 20px; margin: 32px 16px; }
   .methodology { padding: 32px 20px; margin: 0 16px; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
@@ -1323,6 +1481,70 @@ a { color: inherit; text-decoration: none; }
       <span class="loved-logo">Forbes Health</span>
       <span class="loved-logo">Healthline</span>
       <span class="loved-logo">Men's Health</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURED ARTICLES ============ -->
+<section class="featured-articles">
+  <div class="featured-articles-inner">
+    <div class="featured-articles-header">
+      <div>
+        <div class="section-eyebrow">FEATURED ARTICLES</div>
+        <h2>Read what <em>matters.</em></h2>
+        <p>Health guides, wellness tips, and honest insights — written by our team, reviewed by medical professionals, and built around the conditions that affect your daily life.</p>
+      </div>
+      <a href="#" class="view-all">
+        All articles
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <div class="articles-grid">
+      <a href="#" class="article-card">
+        <div class="article-card-image">
+          <span class="article-card-tag tag-wellness">Wellness</span>
+          <svg width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 0C1.46 6.7 1.33 10.28 4 13l8 8 8-8c2.67-2.72 2.54-6.3.42-8.42z"/></svg>
+        </div>
+        <div class="article-card-body">
+          <h3 class="article-card-title">The daily habits that actually lower blood pressure — according to the research</h3>
+          <p class="article-card-excerpt">We reviewed 30+ clinical studies to find the lifestyle changes with the strongest evidence. Some are obvious, others will surprise you.</p>
+          <div class="article-card-footer">
+            <span>Cardiovascular &middot; 8 min read</span>
+            <span class="article-card-read">Read article <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+          </div>
+        </div>
+      </a>
+
+      <a href="#" class="article-card">
+        <div class="article-card-image">
+          <span class="article-card-tag tag-condition">Condition Guide</span>
+          <svg width="70" height="70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <div class="article-card-body">
+          <h3 class="article-card-title">Type 2 diabetes: what your doctor doesn't have time to explain</h3>
+          <p class="article-card-excerpt">A complete, plain-language guide to understanding insulin resistance, A1C targets, and how to build a daily routine that keeps numbers stable.</p>
+          <div class="article-card-footer">
+            <span>Diabetes &middot; 14 min read</span>
+            <span class="article-card-read">Read article <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+          </div>
+        </div>
+      </a>
+
+      <a href="#" class="article-card">
+        <div class="article-card-image">
+          <span class="article-card-tag tag-tips">Lifestyle Tips</span>
+          <svg width="70" height="70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </div>
+        <div class="article-card-body">
+          <h3 class="article-card-title">Sleep apnea and weight: the cycle nobody talks about</h3>
+          <p class="article-card-excerpt">How sleep disruption drives weight gain, and how weight gain worsens sleep apnea. Plus practical strategies to break the loop.</p>
+          <div class="article-card-footer">
+            <span>Sleep &middot; 6 min read</span>
+            <span class="article-card-read">Read article <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+          </div>
+        </div>
+      </a>
     </div>
   </div>
 </section>
