@@ -1643,6 +1643,23 @@ body::before {
   .bottom-cta-form input, .bottom-cta-form button { width: 100%; border-radius: 10px; }
 }
 
+
+/* ===== MOBILE NAV ===== */
+.hamburger-btn{display:none;width:44px;height:44px;border-radius:50%;background:transparent;border:none;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:0;z-index:60}
+.hamburger-btn span{display:block;width:22px;height:2.5px;background:var(--slate-900,#0F172A);border-radius:2px;transition:all .3s ease}
+.mobile-drawer{position:fixed;top:0;right:-100%;width:min(320px,85vw);height:100vh;background:#fff;z-index:100;box-shadow:-4px 0 24px rgba(0,0,0,.12);transition:right .35s ease;display:flex;flex-direction:column;overflow-y:auto}
+.mobile-drawer.open{right:0}
+.mobile-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:90;opacity:0;pointer-events:none;transition:opacity .3s}
+.mobile-overlay.open{opacity:1;pointer-events:auto}
+.mobile-drawer-header{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid #E2E8F0}
+.mobile-drawer-close{width:40px;height:40px;border-radius:50%;background:#F1F5F9;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:20px;color:#334155}
+.mobile-drawer-close:hover{background:#E2E8F0}
+.mobile-drawer-nav{padding:16px 0}
+.mobile-drawer-nav a{display:flex;align-items:center;padding:14px 24px;font-family:'DM Sans',sans-serif;font-size:16px;font-weight:500;color:#0F172A;text-decoration:none;transition:background .15s}
+.mobile-drawer-nav a:hover,.mobile-drawer-nav a.active{background:#EFF6FF;color:#2563EB}
+.mobile-drawer-footer{margin-top:auto;padding:20px 24px;border-top:1px solid #E2E8F0}
+.mobile-drawer-footer a{display:block;padding:8px 0;font-size:14px;color:#64748B;text-decoration:none}
+@media(max-width:768px){.hamburger-btn{display:flex}.cta-btn{display:none}}
 </style>
 </head>
 <body>
@@ -1671,13 +1688,36 @@ body::before {
       <a href="/healthrankings-conditions.html">Conditions</a>
       <a href="/healthrankings-devices.html">Devices</a>
       <a href="/healthrankings-articles.html">Articles</a>
-      <a href="#">Drugs A–Z</a>
-      <a href="#">Health News</a>
-      <a href="#">About</a>
+      <a href="/healthrankings-drugs.html">Drugs A–Z</a>
+      <a href="/healthrankings-news.html">Health News</a>
+      <a href="/healthrankings-about.html">About</a>
     </nav>
     <button class="cta-btn">Get started</button>
   </div>
 </header>
+<div class="mobile-overlay" id="mobileOverlay" onclick="document.getElementById('mobileDrawer').classList.remove('open');this.classList.remove('open');document.body.style.overflow=''"></div>
+<div class="mobile-drawer" id="mobileDrawer">
+<div class="mobile-drawer-header">
+<div style="font-family:'DM Sans',sans-serif;font-size:18px;font-weight:700"><span style="color:#0F172A">health</span><span style="background:linear-gradient(135deg,#14B8A6,#0D9488);-webkit-background-clip:text;background-clip:text;color:transparent">rankings</span></div>
+<button class="mobile-drawer-close" onclick="this.closest('.mobile-drawer').classList.remove('open');document.getElementById('mobileOverlay').classList.remove('open');document.body.style.overflow=''">&times;</button>
+</div>
+<nav class="mobile-drawer-nav">
+<a href="/">Home</a>
+<a href="/healthrankings-conditions.html">Conditions</a>
+<a href="/healthrankings-devices.html">Devices</a>
+<a href="/healthrankings-articles.html">Articles</a>
+<a href="/healthrankings-drugs.html">Drugs A–Z</a>
+<a href="/healthrankings-news.html">Health News</a>
+<a href="/healthrankings-about.html">About</a>
+<a href="/healthrankings-contact.html">Contact</a>
+</nav>
+<div class="mobile-drawer-footer">
+<a href="/healthrankings-hypertension-top5.html">Top 5 BP Monitors</a>
+<a href="/healthrankings-weight-management-body-composition-top5.html">Top 5 Smart Scales</a>
+<a href="/healthrankings-all-blood-pressure-monitors.html">All BP Monitors</a>
+<a href="/healthrankings-all-body-composition-monitors.html">All Smart Scales</a>
+</div>
+</div>
 
 <!-- ============ BREADCRUMB ============ -->
 <nav class="breadcrumb" aria-label="Breadcrumb">
@@ -1798,7 +1838,7 @@ body::before {
             <span class="from">Starts at</span>
             $45/pair
           </div>
-          <a href="#" class="winner-cta">
+          <a href="/healthrankings-review-powerstep-pinnacle-orthotic-insoles.html" class="winner-cta">
             See Details
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
           </a>
@@ -1892,7 +1932,7 @@ body::before {
           <span class="price-amount">$45/pair</span>
           <span class="price-unit">at Amazon</span>
         </div>
-        <a href="#" class="product-cta">
+        <a href="/healthrankings-review-powerstep-pinnacle-orthotic-insoles.html" class="product-cta">
           See on Amazon
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
         </a>
@@ -1974,11 +2014,11 @@ body::before {
           <span class="price-amount">$15/pair</span>
           <span class="price-unit">at Amazon</span>
         </div>
-        <a href="#" class="product-cta">
+        <a href="/healthrankings-devices.html" class="product-cta">
           See on Amazon
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
         </a>
-        <a href="#" class="product-cta-secondary">Read full review</a>
+        
       </div>
     </div>
   </article>
@@ -2056,11 +2096,11 @@ body::before {
           <span class="price-amount">$79</span>
           <span class="price-unit">at Amazon</span>
         </div>
-        <a href="#" class="product-cta">
+        <a href="/healthrankings-devices.html" class="product-cta">
           See on Amazon
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
         </a>
-        <a href="#" class="product-cta-secondary">Read full review</a>
+        
       </div>
     </div>
   </article>
@@ -2138,11 +2178,11 @@ body::before {
           <span class="price-amount">$35</span>
           <span class="price-unit">at Amazon</span>
         </div>
-        <a href="#" class="product-cta">
+        <a href="/healthrankings-devices.html" class="product-cta">
           See on Amazon
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
         </a>
-        <a href="#" class="product-cta-secondary">Read full review</a>
+        
       </div>
     </div>
   </article>
@@ -2220,11 +2260,11 @@ body::before {
           <span class="price-amount">$55/pair</span>
           <span class="price-unit">at Amazon</span>
         </div>
-        <a href="#" class="product-cta">
+        <a href="/healthrankings-devices.html" class="product-cta">
           See on Amazon
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
         </a>
-        <a href="#" class="product-cta-secondary">Read full review</a>
+        
       </div>
     </div>
   </article>
@@ -2383,7 +2423,7 @@ body::before {
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-disclosure">
-      <strong>How we fund our work.</strong> HealthRankings earns a small commission when you buy through the links on this page — but our rankings can't be influenced by advertisers. We buy every product we test at retail, and our medical reviewers have no financial relationship with any brand we cover. <a href="#" style="color: var(--teal-500); text-decoration: underline;">Read our full methodology →</a>
+      <strong>How we fund our work.</strong> HealthRankings earns a small commission when you buy through the links on this page — but our rankings can't be influenced by advertisers. We buy every product we test at retail, and our medical reviewers have no financial relationship with any brand we cover. <a href="/healthrankings-about.html" style="color: var(--teal-500); text-decoration: underline;">Read our full methodology →</a>
     </div>
 
     <div class="footer-bottom">
@@ -2391,8 +2431,8 @@ body::before {
       <div class="footer-bottom-links">
         <a href="/healthrankings-privacy-policy.html">Privacy</a>
         <a href="/healthrankings-terms-of-service.html">Terms</a>
-        <a href="#">Editorial Policy</a>
-        <a href="#">Contact</a>
+        <a href="/healthrankings-about.html">Editorial Policy</a>
+        <a href="/healthrankings-contact.html">Contact</a>
       </div>
     </div>
   </div>

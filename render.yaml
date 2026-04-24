@@ -4,7 +4,14 @@ services:
     runtime: static
     buildCommand: cp healthrankings-homepage.html index.html
     staticPublishPath: .
+    routes:
+      - type: redirect
+        source: /index.html
+        destination: /
     headers:
+      - path: /*
+        name: Cache-Control
+        value: public, max-age=3600
       - path: /*
         name: X-Content-Type-Options
         value: nosniff

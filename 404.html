@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page not found | HealthRankings</title>
+<meta name="description" content="The page you're looking for doesn't exist. Browse our health device reviews, condition guides, and articles.">
+<link rel="icon" type="image/svg+xml" href="/brand/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blue-50: #EFF6FF; --blue-600: #2563EB; --blue-700: #1D4ED8;
+  --teal-500: #14B8A6; --teal-600: #0D9488;
+  --slate-50: #F8FAFC; --slate-200: #E2E8F0; --slate-400: #94A3B8;
+  --slate-500: #64748B; --slate-600: #475569; --slate-900: #0F172A;
+  --gradient-teal: linear-gradient(135deg, #14B8A6 0%, #0D9488 100%);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--slate-50);
+  color: var(--slate-900);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+a { color: inherit; text-decoration: none; }
+
+.header {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(255,255,255,.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--slate-200);
+}
+.header-inner {
+  max-width: 1280px; margin: 0 auto; padding: 0 32px; height: 76px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.logo { display: flex; align-items: center; gap: 14px; line-height: 1; }
+.logo-tile {
+  position: relative; width: 44px; height: 44px;
+  background: var(--blue-50); border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+}
+.logo-sparkle { position: absolute; top: -4px; right: -4px; color: var(--teal-500); }
+.logo-text { font-family: 'DM Sans', sans-serif; font-size: 22px; letter-spacing: -0.035em; line-height: 1; }
+.logo-text .one { font-weight: 500; color: var(--slate-900); }
+.logo-text .two { font-weight: 700; background: var(--gradient-teal); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+.error-page {
+  flex: 1;
+  display: flex; align-items: center; justify-content: center;
+  padding: 60px 24px; text-align: center;
+}
+.error-inner { max-width: 540px; }
+.error-code {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 120px; font-weight: 700; line-height: 1;
+  background: linear-gradient(135deg, var(--blue-600), var(--teal-500));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  margin-bottom: 16px;
+}
+.error-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 28px; font-weight: 700; margin-bottom: 12px;
+}
+.error-desc { font-size: 16px; color: var(--slate-500); line-height: 1.6; margin-bottom: 32px; }
+.error-links { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+.error-links a {
+  padding: 12px 24px; border-radius: 12px;
+  font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 14px;
+  transition: all 200ms;
+}
+.error-links .primary {
+  background: var(--blue-600); color: #fff;
+  box-shadow: 0 4px 14px rgba(37,99,235,.15);
+}
+.error-links .primary:hover { background: var(--blue-700); transform: translateY(-1px); }
+.error-links .secondary {
+  background: #fff; color: var(--slate-900);
+  border: 1px solid var(--slate-200);
+}
+.error-links .secondary:hover { background: var(--blue-50); border-color: var(--blue-600); color: var(--blue-600); }
+
+.quick-links {
+  margin-top: 48px; padding-top: 32px;
+  border-top: 1px solid var(--slate-200);
+}
+.quick-links h3 { font-size: 14px; font-weight: 600; color: var(--slate-400); text-transform: uppercase; letter-spacing: .04em; margin-bottom: 16px; }
+.quick-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; text-align: left; }
+.quick-grid a {
+  padding: 10px 16px; border-radius: 10px; font-size: 14px; font-weight: 500;
+  color: var(--slate-600); transition: all .15s;
+}
+.quick-grid a:hover { background: var(--blue-50); color: var(--blue-600); }
+
+.footer-mini {
+  text-align: center; padding: 24px; font-size: 13px; color: var(--slate-400);
+  border-top: 1px solid var(--slate-200);
+}
+
+@media (max-width: 768px) {
+  .header-inner { padding: 0 20px; height: 64px; }
+  .error-code { font-size: 80px; }
+  .error-title { font-size: 22px; }
+  .quick-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="/" class="logo">
+      <div class="logo-tile">
+        <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+          <circle cx="11" cy="12" r="2" fill="#2563EB"/>
+          <circle cx="21" cy="12" r="2" fill="#2563EB"/>
+          <path d="M 8 19 Q 16 26 24 19" stroke="#2563EB" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        </svg>
+        <div class="logo-sparkle">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+            <path d="M 6 0 L 7 4.5 L 12 6 L 7 7.5 L 6 12 L 5 7.5 L 0 6 L 5 4.5 Z"/>
+          </svg>
+        </div>
+      </div>
+      <div class="logo-text">
+        <span class="one">health</span><span class="two">rankings</span>
+      </div>
+    </a>
+  </div>
+</header>
+
+<main class="error-page">
+  <div class="error-inner">
+    <div class="error-code">404</div>
+    <h1 class="error-title">Page not found</h1>
+    <p class="error-desc">The page you're looking for doesn't exist or may have moved. Try one of the links below to get back on track.</p>
+    <div class="error-links">
+      <a href="/" class="primary">Go to homepage</a>
+      <a href="/healthrankings-devices.html" class="secondary">Browse devices</a>
+      <a href="/healthrankings-conditions.html" class="secondary">Conditions</a>
+    </div>
+    <div class="quick-links">
+      <h3>Popular pages</h3>
+      <div class="quick-grid">
+        <a href="/healthrankings-hypertension-top5.html">Top 5 Blood Pressure Monitors</a>
+        <a href="/healthrankings-weight-management-body-composition-top5.html">Top 5 Smart Scales</a>
+        <a href="/healthrankings-all-blood-pressure-monitors.html">All BP Monitors</a>
+        <a href="/healthrankings-articles.html">Health Articles</a>
+        <a href="/healthrankings-hypertension.html">Hypertension Guide</a>
+        <a href="/healthrankings-news.html">Health News</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div class="footer-mini">&copy; 2026 HealthRankings. Made with care in Miami.</div>
+
+</body>
+</html>
