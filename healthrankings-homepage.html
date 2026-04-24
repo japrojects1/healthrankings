@@ -545,11 +545,11 @@ a { color: inherit; text-decoration: none; }
 .top-pick {
   background: var(--gradient-blue);
   color: white;
-  padding: 100px 32px;
+  padding: 48px 32px;
   position: relative;
   overflow: hidden;
-  border-radius: 32px;
-  margin: 60px 32px;
+  border-radius: 24px;
+  margin: 48px 32px;
 }
 .top-pick::before {
   content: '';
@@ -573,36 +573,36 @@ a { color: inherit; text-decoration: none; }
   pointer-events: none;
 }
 .top-pick-inner {
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1.2fr 1fr;
-  gap: 80px;
+  gap: 48px;
   align-items: center;
   position: relative;
 }
 .top-pick-eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   background: rgba(255, 255, 255, 0.12);
-  padding: 8px 16px;
+  padding: 6px 14px;
   border-radius: 9999px;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
   color: var(--teal-300);
-  letter-spacing: 1.5px;
-  margin-bottom: 24px;
+  letter-spacing: 1.2px;
+  margin-bottom: 16px;
   backdrop-filter: blur(10px);
 }
 .top-pick h2 {
   font-family: 'DM Sans', sans-serif;
-  font-size: clamp(40px, 5.5vw, 64px);
+  font-size: clamp(26px, 3.5vw, 36px);
   font-weight: 700;
-  line-height: 1.02;
-  letter-spacing: -0.04em;
+  line-height: 1.1;
+  letter-spacing: -0.035em;
   color: white;
-  margin-bottom: 24px;
+  margin-bottom: 14px;
 }
 .top-pick h2 em {
   font-style: normal;
@@ -610,50 +610,50 @@ a { color: inherit; text-decoration: none; }
   color: var(--teal-300);
 }
 .top-pick-desc {
-  font-size: 18px;
+  font-size: 15px;
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.85);
-  margin-bottom: 36px;
-  max-width: 480px;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 24px;
+  max-width: 440px;
 }
 .top-pick-stats {
   display: flex;
-  gap: 40px;
-  margin-bottom: 40px;
+  gap: 28px;
+  margin-bottom: 24px;
   flex-wrap: wrap;
 }
 .top-pick-stat-num {
   font-family: 'DM Sans', sans-serif;
-  font-size: 44px;
+  font-size: 28px;
   font-weight: 700;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.03em;
   line-height: 1;
   color: var(--teal-300);
   display: block;
 }
 .top-pick-stat-num .unit {
-  font-size: 24px;
+  font-size: 16px;
   color: rgba(255, 255, 255, 0.5);
 }
 .top-pick-stat-label {
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  color: rgba(255, 255, 255, 0.6);
-  margin-top: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.55);
+  margin-top: 6px;
   display: block;
 }
 .top-pick-cta {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  padding: 16px 28px;
+  gap: 8px;
+  padding: 12px 22px;
   background: white;
   color: var(--blue-700);
-  border-radius: 12px;
+  border-radius: 10px;
   font-family: 'DM Sans', sans-serif;
   font-weight: 700;
-  font-size: 15px;
+  font-size: 14px;
   letter-spacing: -0.01em;
   transition: all 250ms;
 }
@@ -666,27 +666,27 @@ a { color: inherit; text-decoration: none; }
 .winner-card {
   background: white;
   color: var(--slate-900);
-  border-radius: 24px;
-  padding: 32px;
+  border-radius: 20px;
+  padding: 24px;
   position: relative;
   transform: rotate(2deg);
   animation: floatSmall 8s ease-in-out infinite;
 }
 .winner-badge {
   position: absolute;
-  top: -30px;
-  right: -30px;
-  width: 100px;
-  height: 100px;
+  top: -20px;
+  right: -20px;
+  width: 76px;
+  height: 76px;
   background: var(--gradient-blue);
-  border: 4px solid white;
+  border: 3px solid white;
   border-radius: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   transform: rotate(12deg);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 .winner-badge-sparkle {
   position: absolute;
@@ -697,14 +697,14 @@ a { color: inherit; text-decoration: none; }
 }
 .winner-badge span:first-of-type {
   font-family: 'DM Sans', sans-serif;
-  font-size: 10px;
+  font-size: 8px;
   font-weight: 700;
-  letter-spacing: 2.5px;
+  letter-spacing: 2px;
   color: var(--teal-300);
 }
 .winner-badge span:last-of-type {
   font-family: 'DM Sans', sans-serif;
-  font-size: 22px;
+  font-size: 17px;
   font-weight: 700;
   color: white;
   letter-spacing: -0.03em;
@@ -724,11 +724,11 @@ a { color: inherit; text-decoration: none; }
 }
 .winner-product {
   font-family: 'DM Sans', sans-serif;
-  font-size: 26px;
+  font-size: 20px;
   font-weight: 700;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.03em;
   line-height: 1.1;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 .winner-brand {
   font-size: 13px;
@@ -738,24 +738,24 @@ a { color: inherit; text-decoration: none; }
 .winner-score-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  padding: 16px 0;
+  gap: 10px;
+  padding: 12px 0;
   border-top: 1px solid var(--slate-200);
   border-bottom: 1px solid var(--slate-200);
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 .winner-score-label {
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 600;
-  letter-spacing: 1.2px;
+  letter-spacing: 1px;
   color: var(--slate-500);
-  margin-bottom: 4px;
+  margin-bottom: 2px;
   display: block;
 }
 .winner-score-value {
   font-family: 'DM Sans', sans-serif;
   font-weight: 700;
-  font-size: 20px;
+  font-size: 17px;
   letter-spacing: -0.02em;
   color: var(--blue-700);
 }
@@ -772,7 +772,7 @@ a { color: inherit; text-decoration: none; }
 }
 .winner-price {
   font-family: 'DM Sans', sans-serif;
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 700;
   letter-spacing: -0.025em;
 }
@@ -1178,13 +1178,13 @@ a { color: inherit; text-decoration: none; }
   .hero { padding: 48px 20px 72px; }
   .hero h1 { font-size: 40px; }
   .section { padding: 64px 20px; }
-  .top-pick { padding: 60px 28px; margin: 40px 16px; }
+  .top-pick { padding: 36px 20px; margin: 32px 16px; }
   .methodology { padding: 48px 24px; margin: 0 16px; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
   .cta-form { flex-direction: column; border-radius: 16px; padding: 8px; }
   .cta-form input, .cta-form button { width: 100%; border-radius: 10px; }
   .winner-card { transform: rotate(0); }
-  .winner-badge { width: 80px; height: 80px; top: -20px; right: -10px; }
+  .winner-badge { width: 64px; height: 64px; top: -14px; right: -8px; }
 }
 </style>
 </head>
