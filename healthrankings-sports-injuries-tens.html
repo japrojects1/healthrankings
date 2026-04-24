@@ -1733,71 +1733,83 @@ body::before {
   background: linear-gradient(135deg, var(--blue-50) 0%, #f0f7ff 100%);
   border: 1px solid var(--blue-200);
   border-left: 4px solid var(--blue-500);
-  border-radius: 16px;
-  padding: 28px 32px;
+  border-radius: 14px;
+  padding: 18px 24px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 20px;
+  align-items: center;
 }
+.snapshot-left { min-width: 0; }
 .snapshot-tag {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  font-size: 11px;
+  gap: 5px;
+  font-size: 10px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  margin-bottom: 12px;
-  padding: 4px 10px;
-  border-radius: 6px;
+  margin-bottom: 6px;
+  padding: 2px 8px;
+  border-radius: 4px;
   background: rgba(255,255,255,0.7);
 }
 .snapshot-tag-dot {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
 }
 .snapshot-title {
   font-family: 'DM Sans', sans-serif;
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 700;
   color: var(--slate-900);
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 .snapshot-desc {
-  font-size: 0.925rem;
-  color: var(--slate-600);
-  line-height: 1.7;
-  margin-bottom: 24px;
+  font-size: 0.82rem;
+  color: var(--slate-500);
+  line-height: 1.55;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .snapshot-stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
 }
 .snapshot-stat {
   background: white;
-  border-radius: 12px;
-  padding: 16px 12px;
+  border-radius: 10px;
+  padding: 10px 14px;
   text-align: center;
   border: 1px solid var(--blue-100);
+  min-width: 90px;
 }
 .snapshot-stat-value {
   display: block;
   font-family: 'DM Sans', sans-serif;
-  font-size: 1.4rem;
+  font-size: 1.1rem;
   font-weight: 800;
   color: var(--blue-600);
-  margin-bottom: 4px;
+  margin-bottom: 2px;
+  white-space: nowrap;
 }
 .snapshot-stat-label {
   display: block;
-  font-size: 0.75rem;
+  font-size: 0.68rem;
   color: var(--slate-500);
-  line-height: 1.4;
+  line-height: 1.3;
 }
-@media (max-width: 640px) {
-  .snapshot-stats { grid-template-columns: 1fr; }
-  .snapshot-card { padding: 20px; }
-  .snapshot-stat { padding: 12px; }
-  .snapshot-stat-value { font-size: 1.2rem; }
+@media (max-width: 768px) {
+  .snapshot-card { grid-template-columns: 1fr; gap: 12px; padding: 16px; }
+  .snapshot-stats { justify-content: flex-start; }
+  .snapshot-stat { min-width: 75px; padding: 8px 10px; }
+  .snapshot-stat-value { font-size: 0.95rem; }
+  .snapshot-desc { -webkit-line-clamp: 3; }
 }
 </style>
 </head>
@@ -1878,12 +1890,14 @@ body::before {
 <!-- ============ CONDITION SNAPSHOT ============ -->
 <section class="condition-snapshot" data-tag="bone-joint">
   <div class="snapshot-card">
-    <div class="snapshot-tag" style="color:#059669">
+    <div class="snapshot-left">
+<div class="snapshot-tag" style="color:#059669">
       <span class="snapshot-tag-dot" style="background:#059669"></span>
       Bone, Joint & Muscle
     </div>
     <h2 class="snapshot-title">What is Sports Injuries?</h2>
     <p class="snapshot-desc">Sports injuries include sprains, strains, fractures, and overuse injuries sustained during physical activity. TENS therapy and proper support devices accelerate recovery, reduce pain, and help athletes return to activity faster.</p>
+    </div>
     <div class="snapshot-stats">
       <div class="snapshot-stat">
         <span class="snapshot-stat-value">8.6M</span>
