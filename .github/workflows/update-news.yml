@@ -17,16 +17,16 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Generate news page
+      - name: Generate news pages
         env:
           NEWSAPI_KEY: ${{ secrets.NEWSAPI_KEY }}
-        run: node scripts/generate-news.js
+        run: node scripts/generate-news-pages.js
 
       - name: Commit and push if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add healthrankings-news.html
+          git add healthrankings-news.html news/ data/ sitemap.xml
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
