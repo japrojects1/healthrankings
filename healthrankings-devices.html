@@ -6,6 +6,16 @@
 <title>Medical Devices Reviewed — Best Health Devices of 2026 | HealthRankings</title>
 <meta name="description" content="Browse all medical and health devices reviewed by HealthRankings. Filter by device type and find expert-ranked Top 5 lists for every category.">
 <meta name="theme-color" content="#0F172A">
+<link rel="icon" type="image/svg+xml" href="/brand/favicon.svg">
+<link rel="canonical" href="https://healthrankings.onrender.com/healthrankings-devices.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Medical Devices Reviewed — Best Health Devices of 2026 | HealthRankings">
+<meta property="og:description" content="Browse all medical and health devices reviewed by HealthRankings. Filter by device type and find expert-ranked Top 5 lists for every category.">
+<meta property="og:url" content="https://healthrankings.onrender.com/healthrankings-devices.html">
+<meta property="og:site_name" content="HealthRankings">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Medical Devices Reviewed — Best Health Devices of 2026 | HealthRankings">
+<meta name="twitter:description" content="Browse all medical and health devices reviewed by HealthRankings. Filter by device type and find expert-ranked Top 5 lists for every category.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;0,800;1,400;1,500;1,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -684,6 +694,7 @@ body::before {
 
 <!-- ============ MAIN CONTENT ============ -->
 <div class="main">
+  <h2 style="font-family:'DM Sans',sans-serif;font-size:24px;font-weight:700;letter-spacing:-0.03em;color:#334155;margin-bottom:8px;">Best health devices of 2026 — expert tested & ranked</h2>
   <div class="results-info" id="resultsInfo">Showing all <strong>40+</strong> device categories</div>
   <div id="deviceSections"></div>
 </div>
@@ -1074,7 +1085,7 @@ function render() {
   container.innerHTML = filtered.map(dt => `
     <div class="device-section" data-cat="${dt.cat}">
       <div class="device-section-header">
-        <div class="device-section-title">${dt.name}</div>
+        <h3 class="device-section-title">${dt.name}</h3>
         <span class="device-count">${dt.reviewCatalogCount != null ? dt.reviewCatalogCount : dt.products.length} products reviewed</span>
       </div>
       
