@@ -1,17 +1,49 @@
 services:
   - type: web
-    name: healthrankings
-    runtime: static
-    buildCommand: cp healthrankings-homepage.html index.html
-    staticPublishPath: .
-    routes:
-      - type: redirect
-        source: /index.html
-        destination: /
-    headers:
-      - path: /*
-        name: Cache-Control
-        value: public, max-age=3600
-      - path: /*
-        name: X-Content-Type-Options
-        value: nosniff
+    name: healthrankings-web
+    runtime: node
+    plan: starter
+    buildCommand: npm install && npm run copy:static && npm run build:web
+    startCommand: npm run start:web
+    envVars:
+      - key: NODE_ENV
+        value: production
+      # Set this after the CMS is deployed (example: https://healthrankings-cms.onrender.com)
+      - key: STRAPI_URL
+        sync: false
+    domains:
+      - healthrankings.co
+
+  - type: web
+    name: healthrankings-cms
+    runtime: node
+    plan: starter
+    buildCommand: npm install && npm --workspace apps/cms run build
+    startCommand: npm --workspace apps/cms run start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: HOST
+        value: 0.0.0.0
+      - key: PORT
+        value: 1337
+      - key: APP_KEYS
+        generateValue: true
+      - key: API_TOKEN_SALT
+        generateValue: true
+      - key: ADMIN_JWT_SECRET
+        generateValue: true
+      - key: JWT_SECRET
+        generateValue: true
+      - key: DATABASE_CLIENT
+        value: postgres
+      - key: DATABASE_URL
+        fromDatabase:
+          name: healthrankings-db
+          property: connectionString
+    domains:
+      - cms.healthrankings.co
+
+databases:
+  - name: healthrankings-db
+    plan: starter

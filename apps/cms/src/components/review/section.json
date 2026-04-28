@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_review_sections",
+  "info": {
+    "displayName": "Review section",
+    "description": "One section of a device review."
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "body": {
+      "type": "richtext",
+      "required": true
+    }
+  }
+}
+

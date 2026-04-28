@@ -1,0 +1,3 @@
+Contact: https://healthrankings.co/healthrankings-contact.html
+Preferred-Languages: en
+Canonical: https://healthrankings.co/.well-known/security.txt

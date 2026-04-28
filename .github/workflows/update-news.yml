@@ -1,5 +1,12 @@
 name: Update Health News
 
+permissions:
+  contents: write
+
+concurrency:
+  group: update-news
+  cancel-in-progress: false
+
 on:
   schedule:
     - cron: '0 */6 * * *'  # Every 6 hours
@@ -10,26 +17,41 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: '20'
+          node-version: '22'
+
+      - name: Verify NEWSAPI_KEY
+        env:
+          NEWSAPI_KEY: ${{ secrets.NEWSAPI_KEY }}
+        run: |
+          if [ -z "${NEWSAPI_KEY}" ]; then
+            echo "::error::Repository secret NEWSAPI_KEY is missing. Add it under Settings → Secrets and variables → Actions (get a key from https://newsapi.org/)."
+            exit 1
+          fi
+          echo "NEWSAPI_KEY is set (length ${#NEWSAPI_KEY})"
 
       - name: Generate news pages
         env:
           NEWSAPI_KEY: ${{ secrets.NEWSAPI_KEY }}
         run: node scripts/generate-news-pages.js
 
+      # Exit 128 on `git push` usually means auth or branch protection. Use an explicit
+      # token URL so push does not rely on persisted checkout credentials alone.
       - name: Commit and push if changed
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
           git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add healthrankings-news.html news/ data/ sitemap.xml
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add healthrankings-news.html news/ data/ sitemap.xml news-feed.xml
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
             git commit -m "Auto-update health news — $(date -u '+%Y-%m-%d %H:%M UTC')"
-            git push
+            git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
           fi

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" width="220" height="220" role="img" aria-label="HealthRankings">
+  <defs>
+    <linearGradient id="hr-berry-stacked" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#B84B8F"/>
+      <stop offset="100%" stop-color="#5D1F4C"/>
+    </linearGradient>
+  </defs>
+  <rect x="60" y="10" width="100" height="100" rx="32" fill="#F9E5EC"/>
+  <circle cx="85" cy="50" r="5" fill="url(#hr-berry-stacked)"/>
+  <circle cx="115" cy="50" r="5" fill="url(#hr-berry-stacked)"/>
+  <path d="M 75 70 Q 100 92 125 70" stroke="url(#hr-berry-stacked)" stroke-width="5.5" fill="none" stroke-linecap="round"/>
+  <path d="M 142 28 L 143.5 32 L 147.5 33.5 L 143.5 35 L 142 39 L 140.5 35 L 136.5 33.5 L 140.5 32 Z" fill="#FFD166"/>
+  <text x="110" y="152" text-anchor="middle" font-family="'DM Sans', 'Helvetica Neue', sans-serif" font-size="24" font-weight="500" fill="#2A1A25" letter-spacing="-1">health</text>
+  <text x="110" y="180" text-anchor="middle" font-family="'DM Sans', 'Helvetica Neue', sans-serif" font-size="24" font-weight="700" fill="url(#hr-berry-stacked)" letter-spacing="-1">rankings</text>
+</svg>

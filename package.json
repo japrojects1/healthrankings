@@ -1,0 +1,21 @@
+{
+  "name": "healthrankings",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev:web": "npm --workspace apps/web run dev",
+    "dev:cms": "npm --workspace apps/cms run develop",
+    "build:web": "npm --workspace apps/web run build",
+    "start:web": "npm --workspace apps/web run start",
+    "build:cms": "npm --workspace apps/cms run build",
+    "start:cms": "npm --workspace apps/cms run start",
+    "lint:web": "npm --workspace apps/web run lint",
+    "generate:sitemap": "node scripts/generate-sitemap.js",
+    "generate:news": "node scripts/generate-news-pages.js",
+    "copy:static": "node scripts/copy-static-to-next.js",
+    "seed:devices": "node scripts/seed-devices-from-html.js"
+  }
+}
+

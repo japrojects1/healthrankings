@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const DOMAIN = 'https://healthrankings.onrender.com';
+const DOMAIN = 'https://healthrankings.co';
 const dir = path.resolve(__dirname, '..');
 
 const files = fs.readdirSync(dir)

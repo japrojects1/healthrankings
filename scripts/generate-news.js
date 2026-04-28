@@ -106,12 +106,12 @@ async function main() {
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Health News — Latest Medical Headlines ${isoDate} | HealthRankings</title>
 <meta name="description" content="Today's top health news from ${sources.slice(0,5).join(', ')} and more. Updated ${dateStr}. Breaking medical research, drug approvals, and wellness updates.">
-<link rel="canonical" href="https://healthrankings.onrender.com/healthrankings-news.html">
+<link rel="canonical" href="https://healthrankings.co/healthrankings-news.html">
 <link rel="icon" type="image/svg+xml" href="/brand/favicon.svg">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Health News — Latest Medical Headlines | HealthRankings">
 <meta property="og:description" content="Today's top health news. Updated ${dateStr}.">
-<meta property="og:url" content="https://healthrankings.onrender.com/healthrankings-news.html">
+<meta property="og:url" content="https://healthrankings.co/healthrankings-news.html">
 <meta property="og:site_name" content="HealthRankings">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">

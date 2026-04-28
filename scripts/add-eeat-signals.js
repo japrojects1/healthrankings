@@ -17,7 +17,7 @@ const DISCLAIMER_CSS = `
 
 const DISCLAIMER_HTML = `<div class="medical-disclaimer"><div class="medical-disclaimer-inner"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg><span><strong>Medical disclaimer:</strong> This content is for informational purposes only and is not a substitute for professional medical advice, diagnosis, or treatment. Always consult your physician or qualified health provider. <a href="/healthrankings-terms-of-service.html">Read full disclaimer</a></span></div></div>`;
 
-const OG_IMAGE_TAG = '<meta property="og:image" content="https://healthrankings.onrender.com/brand/og-default.png">';
+const OG_IMAGE_TAG = '<meta property="og:image" content="https://healthrankings.co/brand/og-default.png">';
 
 let disclaimerCount = 0;
 let ogImageCount = 0;

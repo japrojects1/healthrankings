@@ -1,6 +1,7 @@
 const https = require('https');
 const fs = require('fs');
 const path = require('path');
+const { spawnSync } = require('child_process');
 
 const API_KEY = process.env.NEWSAPI_KEY;
 if (!API_KEY) { console.error('NEWSAPI_KEY env var required'); process.exit(1); }
@@ -12,13 +13,25 @@ const MAX_ARTICLES = 300;
 const now = new Date();
 const dateStr = now.toLocaleDateString('en-US', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
 const isoDate = now.toISOString().split('T')[0];
+const feedBuiltIso = now.toISOString();
 
 function httpGet(url) {
   return new Promise((resolve, reject) => {
     https.get(url, { headers:{'User-Agent':'HealthRankings/1.0'} }, res => {
-      let d=''; res.on('data',c=>d+=c);
-      res.on('end',()=>{ try{resolve(JSON.parse(d))}catch(e){reject(e)} });
-    }).on('error',reject);
+      let d = '';
+      res.on('data', (c) => { d += c; });
+      res.on('end', () => {
+        if (res.statusCode && res.statusCode >= 400) {
+          reject(new Error(`HTTP ${res.statusCode}: ${d.slice(0, 500)}`));
+          return;
+        }
+        try {
+          resolve(JSON.parse(d));
+        } catch (e) {
+          reject(new Error(`Invalid JSON (${d.slice(0, 200)})`));
+        }
+      });
+    }).on('error', reject);
   });
 }
 
@@ -104,19 +117,19 @@ function articlePage(article, relatedArticles) {
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${title} | Health News | HealthRankings</title>
 <meta name="description" content="${desc}">
-<link rel="canonical" href="https://healthrankings.onrender.com/news/${slug}.html">
+<link rel="canonical" href="https://healthrankings.co/news/${slug}.html">
 <link rel="icon" type="image/svg+xml" href="/brand/favicon.svg">
 <meta property="og:type" content="article">
 <meta property="og:title" content="${title}">
 <meta property="og:description" content="${desc}">
-<meta property="og:url" content="https://healthrankings.onrender.com/news/${slug}.html">
+<meta property="og:url" content="https://healthrankings.co/news/${slug}.html">
 <meta property="og:site_name" content="HealthRankings">
 ${img ? `<meta property="og:image" content="${esc(img)}">` : ''}
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${title}">
 <meta name="twitter:description" content="${desc}">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"NewsArticle","headline":"${title}","description":"${desc}","datePublished":"${article.publishedAt}","author":{"@type":"Organization","name":"${source}"},"publisher":{"@type":"Organization","name":"HealthRankings"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://healthrankings.onrender.com/news/${slug}.html"}}
+{"@context":"https://schema.org","@type":"NewsArticle","headline":"${title}","description":"${desc}","datePublished":"${article.publishedAt}","author":{"@type":"Organization","name":"${source}"},"publisher":{"@type":"Organization","name":"HealthRankings"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://healthrankings.co/news/${slug}.html"}}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -169,7 +182,7 @@ ${img ? `<meta property="og:image" content="${esc(img)}">` : ''}
 }
 
 // ─── LISTING PAGE TEMPLATE ───
-function listingPage(articles, sources) {
+function listingPage(articles, sources, builtIso) {
   const grouped = {};
   for (const a of articles) {
     const lbl = dateLabel(a.publishedAt);
@@ -211,16 +224,18 @@ function listingPage(articles, sources) {
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- feed-generated-at: ${esc(builtIso)} -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Health News \u2014 Latest Medical Headlines | HealthRankings</title>
 <meta name="description" content="Today's top health news from ${sources.slice(0,5).join(', ')} and more. ${articles.length} articles from ${sources.length} sources. Updated ${dateStr}.">
-<link rel="canonical" href="https://healthrankings.onrender.com/healthrankings-news.html">
+<link rel="canonical" href="https://healthrankings.co/healthrankings-news.html">
+<link rel="alternate" type="application/rss+xml" title="HealthRankings Health News" href="/news-feed.xml">
 <link rel="icon" type="image/svg+xml" href="/brand/favicon.svg">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Health News \u2014 Latest Medical Headlines | HealthRankings">
 <meta property="og:description" content="${articles.length} health articles from ${sources.length} sources. Updated ${dateStr}.">
-<meta property="og:url" content="https://healthrankings.onrender.com/healthrankings-news.html">
+<meta property="og:url" content="https://healthrankings.co/healthrankings-news.html">
 <meta property="og:site_name" content="HealthRankings">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -273,8 +288,17 @@ function listingPage(articles, sources) {
 // ─── MAIN ───
 async function main() {
   console.log('Fetching health news...');
-  const data = await httpGet(`https://newsapi.org/v2/top-headlines?category=health&country=us&pageSize=30&apiKey=${API_KEY}`);
-  if (data.status !== 'ok') { console.error('API error:', data.message); process.exit(1); }
+  let data;
+  try {
+    data = await httpGet(`https://newsapi.org/v2/top-headlines?category=health&country=us&pageSize=30&apiKey=${API_KEY}`);
+  } catch (e) {
+    console.error('NewsAPI request failed:', e instanceof Error ? e.message : e);
+    process.exit(1);
+  }
+  if (data.status !== 'ok') {
+    console.error('NewsAPI error:', data.code || '', data.message || JSON.stringify(data).slice(0, 500));
+    process.exit(1);
+  }
 
   const freshArticles = (data.articles||[])
     .filter(a => a.title && a.title !== '[Removed]' && a.url && a.description)
@@ -312,8 +336,20 @@ async function main() {
     usedSlugs.add(a.slug);
   }
 
-  // Save archive
+  // Save archive + small meta file (helps CI confirm a successful run and forces a git change when headlines repeat)
   fs.writeFileSync(ARCHIVE_FILE, JSON.stringify(archive, null, 0));
+  fs.writeFileSync(
+    path.join(ROOT, 'data', 'news-feed-meta.json'),
+    JSON.stringify(
+      {
+        lastBuilt: feedBuiltIso,
+        articleCount: archive.length,
+        newFromLastFetch: newCount,
+      },
+      null,
+      2
+    ) + '\n'
+  );
   console.log(`Archive: ${archive.length} total articles (${newCount} new)`);
 
   // Generate individual article pages
@@ -328,23 +364,17 @@ async function main() {
 
   // Generate main listing page
   const allSources = [...new Set(archive.map(a => a.source?.name).filter(Boolean))];
-  fs.writeFileSync(path.join(ROOT, 'healthrankings-news.html'), listingPage(archive, allSources));
+  fs.writeFileSync(path.join(ROOT, 'healthrankings-news.html'), listingPage(archive, allSources, feedBuiltIso));
   console.log('Generated main news listing page');
 
-  // Update sitemap with news pages
-  const sitemapPath = path.join(ROOT, 'sitemap.xml');
-  if (fs.existsSync(sitemapPath)) {
-    let sitemap = fs.readFileSync(sitemapPath, 'utf8');
-    // Remove old news entries
-    sitemap = sitemap.replace(/<url>\s*<loc>[^<]*\/news\/[^<]*<\/loc>[\s\S]*?<\/url>\s*/g, '');
-    // Add new ones before closing tag
-    let newsEntries = '';
-    for (const a of archive) {
-      newsEntries += `  <url>\n    <loc>https://healthrankings.onrender.com/news/${a.slug}.html</loc>\n    <lastmod>${isoDate}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.5</priority>\n  </url>\n`;
-    }
-    sitemap = sitemap.replace('</urlset>', newsEntries + '</urlset>');
-    fs.writeFileSync(sitemapPath, sitemap);
-    console.log(`Updated sitemap with ${archive.length} news URLs`);
+  const smPath = path.join(__dirname, 'generate-sitemap.js');
+  const sm = spawnSync(process.execPath, [smPath], { cwd: ROOT, stdio: 'inherit' });
+  if (sm.error) {
+    console.error(sm.error);
+    process.exit(1);
+  }
+  if (sm.status !== 0) {
+    process.exit(sm.status === null ? 1 : sm.status);
   }
 
   console.log('Done!');

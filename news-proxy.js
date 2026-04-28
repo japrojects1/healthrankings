@@ -5,8 +5,13 @@
 const https = require('https');
 const http  = require('http');
 
-const APIKEY = 'e04bd0358a39467ca36049d387ef1759';
+const APIKEY = process.env.NEWSAPI_KEY;
 const PORT   = 3456;
+
+if (!APIKEY) {
+  console.error('Set NEWSAPI_KEY in the environment before starting news-proxy.js');
+  process.exit(1);
+}
 
 http.createServer((req, res) => {
   // CORS — allow your domain

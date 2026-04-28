@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
-const BASE = 'https://healthrankings.onrender.com';
+const BASE = 'https://healthrankings.co';
 
 const files = fs.readdirSync(ROOT).filter(f => f.endsWith('.html'));
 

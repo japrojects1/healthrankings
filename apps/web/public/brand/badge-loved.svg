@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="Loved by HealthRankings readers">
+  <defs>
+    <linearGradient id="hr-loved" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#B84B8F"/>
+      <stop offset="100%" stop-color="#5D1F4C"/>
+    </linearGradient>
+  </defs>
+  <!-- Heart -->
+  <path d="M 60 110 C 60 110 8 72 8 38 C 8 20 22 9 38 14 C 49 18 58 28 60 34 C 62 28 71 18 82 14 C 98 9 112 20 112 38 C 112 72 60 110 60 110 Z" fill="url(#hr-loved)"/>
+  <text x="60" y="40" text-anchor="middle" font-family="'DM Sans', 'Helvetica Neue', sans-serif" font-size="9" font-weight="700" fill="#FFD166" letter-spacing="2.5">LOVED BY</text>
+  <text x="60" y="62" text-anchor="middle" font-family="'DM Sans', 'Helvetica Neue', sans-serif" font-size="22" font-weight="700" fill="#FFF9FB" letter-spacing="-1">47K+</text>
+  <text x="60" y="80" text-anchor="middle" font-family="'DM Sans', 'Helvetica Neue', sans-serif" font-size="9" font-weight="700" fill="#F9E5EC" letter-spacing="2.5">READERS</text>
+  <!-- Sparkle -->
+  <path d="M 100 32 L 102 38 L 108 40 L 102 42 L 100 48 L 98 42 L 92 40 L 98 38 Z" fill="#FFD166"/>
+</svg>
