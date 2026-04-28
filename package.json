@@ -16,6 +16,9 @@
     "generate:news": "node scripts/generate-news-pages.js",
     "copy:static": "node scripts/copy-static-to-next.js",
     "seed:devices": "node scripts/seed-devices-from-html.js"
+  },
+  "overrides": {
+    "@swc/core": "1.13.20"
   }
 }
 
