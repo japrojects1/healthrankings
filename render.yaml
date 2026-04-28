@@ -8,6 +8,8 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
+      - key: NODE_VERSION
+        value: "22"
       # Set this after the CMS is deployed (example: https://healthrankings-cms.onrender.com)
       - key: STRAPI_URL
         sync: false
@@ -22,6 +24,8 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
+      - key: NODE_VERSION
+        value: "22"
       - key: HOST
         value: 0.0.0.0
       - key: PORT
@@ -36,6 +40,10 @@ services:
         generateValue: true
       - key: DATABASE_CLIENT
         value: postgres
+      - key: DATABASE_SSL
+        value: "true"
+      - key: DATABASE_SSL_REJECT_UNAUTHORIZED
+        value: "false"
       - key: DATABASE_URL
         fromDatabase:
           name: healthrankings-db
