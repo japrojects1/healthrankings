@@ -8,7 +8,6 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
-      # Set this after the CMS is deployed (example: https://healthrankings-cms.onrender.com)
       - key: STRAPI_URL
         sync: false
     # Attach `healthrankings.co` after the service is created (it is currently in use).
@@ -45,5 +44,4 @@ services:
 databases:
   - name: healthrankings-db
     # Render no longer supports legacy `starter` Postgres for *new* databases.
-    # Use a current Postgres instance type (legacy types like starter/standard/pro are not allowed for new DBs).
     plan: basic-1gb
