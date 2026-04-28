@@ -3,11 +3,11 @@ services:
     name: healthrankings-web
     runtime: node
     plan: starter
-    buildCommand: npm install && npm run copy:static && npm run build:web
+    buildCommand: npm ci --include=dev && npm run copy:static && npm run build:web
     startCommand: npm run start:web
     envVars:
-      - key: NODE_ENV
-        value: production
+      - key: NPM_CONFIG_PRODUCTION
+        value: "false"
       - key: NODE_VERSION
         value: "22"
       - key: STRAPI_URL
@@ -18,11 +18,11 @@ services:
     name: healthrankings-cms
     runtime: node
     plan: starter
-    buildCommand: npm install && npm --workspace apps/cms run build
+    buildCommand: npm ci --include=dev && npm --workspace apps/cms run build
     startCommand: npm --workspace apps/cms run start
     envVars:
-      - key: NODE_ENV
-        value: production
+      - key: NPM_CONFIG_PRODUCTION
+        value: "false"
       - key: NODE_VERSION
         value: "22"
       - key: HOST
