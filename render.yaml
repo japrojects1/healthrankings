@@ -20,10 +20,14 @@ services:
     name: healthrankings-cms
     runtime: node
     plan: starter
-    buildCommand: npm ci --include=dev && npm --workspace apps/cms run build
+    buildCommand: npm ci --include=dev && npm --workspace apps/cms rebuild @swc/core || true && npm --workspace apps/cms run build
     startCommand: npm --workspace apps/cms run start
     envVars:
       - key: NPM_CONFIG_PRODUCTION
+        value: "false"
+      - key: NPM_CONFIG_OPTIONAL
+        value: "true"
+      - key: NPM_CONFIG_IGNORE_SCRIPTS
         value: "false"
       - key: NODE_VERSION
         value: "22"
