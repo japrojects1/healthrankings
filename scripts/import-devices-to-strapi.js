@@ -3,9 +3,7 @@
  * Import devices from data/devices-seed.json into Strapi (REST API).
  *
  * Prereqs in Strapi admin:
- * 1) Settings → API Tokens → Create token (e.g. "Import", type: Full access, or Custom with Device create).
- * 2) Settings → Users & Permissions → Roles → Authenticated (or the role tied to your token scope)
- *    is NOT used for API tokens — token uses its own permissions. Use "Full access" for one-off imports.
+ * Settings → API Tokens → Create token (e.g. name "import", type: Full access is simplest for a one-off import).
  *
  * Usage:
  *   STRAPI_URL=https://healthrankings-cms.onrender.com \
