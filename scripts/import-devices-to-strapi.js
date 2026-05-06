@@ -10,6 +10,9 @@
  *   STRAPI_IMPORT_TOKEN=your_token_here \
  *   node scripts/import-devices-to-strapi.js
  *
+ * Optional env:
+ *   STRAPI_DEVICE_PLURAL   REST segment (default: devices). Must match Content-Type Builder → API ID (Plural).
+ *
  * Options:
  *   --dry-run          Log actions only (no POST)
  *   --limit=N          Import at most N devices (after --start)
@@ -34,6 +37,12 @@ function parseArgs(argv) {
     else if (a.startsWith("--category=")) out.category = a.slice("--category=".length).trim() || DEFAULT_CATEGORY;
   }
   return out;
+}
+
+function buildApiUrl(base, pathWithQuery) {
+  const b = String(base || "").replace(/\/$/, "");
+  const p = pathWithQuery.startsWith("/") ? pathWithQuery : `/${pathWithQuery}`;
+  return `${b}${p}`;
 }
 
 function decodeHtmlEntities(str) {
@@ -103,8 +112,7 @@ function normalizeSeedRow(row, category) {
   };
 }
 
-async function strapiFetch(base, token, relUrl, options = {}) {
-  const url = new URL(relUrl.replace(/^\//, ""), base.endsWith("/") ? base : `${base}/`);
+async function strapiFetch(url, token, options = {}) {
   const headers = {
     Accept: "application/json",
     "Content-Type": "application/json",
@@ -122,26 +130,35 @@ async function strapiFetch(base, token, relUrl, options = {}) {
   return { res, json };
 }
 
-async function deviceExists(base, token, slug) {
-  const q = `filters[slug][$eq]=${encodeURIComponent(slug)}`;
-  const { res, json } = await strapiFetch(base, token, `/api/devices?${q}`);
-  if (!res.ok) return { ok: false, error: json };
-  const list = Array.isArray(json?.data) ? json.data : [];
-  return { ok: true, exists: list.length > 0 };
+function isDuplicateSlugError(json) {
+  const msg = JSON.stringify(json || {}).toLowerCase();
+  if (msg.includes("unique") && msg.includes("slug")) return true;
+  if (msg.includes("must be unique") && msg.includes("slug")) return true;
+  const errs = json?.error?.details?.errors;
+  if (Array.isArray(errs)) {
+    return errs.some((e) => String(e?.path || []).includes("slug") && String(e?.message || "").toLowerCase().includes("unique"));
+  }
+  return false;
 }
 
-async function createDevice(base, token, data) {
-  const { res, json } = await strapiFetch(base, token, "/api/devices", {
+async function createDevice(baseUrl, token, plural, data) {
+  const url = buildApiUrl(baseUrl, `/api/${plural}`);
+  return strapiFetch(url, token, {
     method: "POST",
     body: JSON.stringify({ data }),
   });
-  return { ok: res.ok, status: res.status, json };
+}
+
+async function probeContentApi(baseUrl, token, plural) {
+  const url = buildApiUrl(baseUrl, `/api/${plural}?pagination[pageSize]=1`);
+  return strapiFetch(url, token, { method: "GET" });
 }
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   const base = (process.env.STRAPI_URL || "").replace(/\/$/, "");
   const token = process.env.STRAPI_IMPORT_TOKEN || "";
+  const plural = (process.env.STRAPI_DEVICE_PLURAL || "devices").replace(/^\/+|\/+$/g, "");
 
   if (!args.dryRun && (!base || !token)) {
     console.error("Set STRAPI_URL and STRAPI_IMPORT_TOKEN (or use --dry-run).");
@@ -157,6 +174,31 @@ async function main() {
   if (!Array.isArray(raw)) {
     console.error("Seed JSON must be an array.");
     process.exit(1);
+  }
+
+  if (!args.dryRun) {
+    const probe = await probeContentApi(base, token, plural);
+    if (probe.res.status === 404) {
+      console.error(`
+Content API returned 404 for: ${buildApiUrl(base, `/api/${plural}`)}
+
+That usually means the REST route for this collection is not registered on the server.
+Fix: deploy the CMS with api::device routes/controllers/services (see apps/cms/src/api/device/), then redeploy.
+
+If your plural API ID is not "${plural}", set STRAPI_DEVICE_PLURAL to match Content-Type Builder (e.g. device-reviews).
+`);
+      process.exit(1);
+    }
+    if (probe.res.status === 401 || probe.res.status === 403) {
+      console.error(
+        `Content API returned ${probe.res.status} for GET /api/${plural}. Check API token permissions (Full access) or Users & Permissions for the Public role.`
+      );
+      process.exit(1);
+    }
+    if (!probe.res.ok) {
+      console.error(`Unexpected response ${probe.res.status} probing /api/${plural}:`, JSON.stringify(probe.json).slice(0, 800));
+      process.exit(1);
+    }
   }
 
   const slice = raw.slice(args.start, args.limit != null ? args.start + args.limit : undefined);
@@ -177,25 +219,16 @@ async function main() {
       continue;
     }
 
-    const check = await deviceExists(base, token, data.slug);
-    if (!check.ok) {
-      console.error("Lookup failed for", data.slug, check.error);
-      failed += 1;
-      continue;
-    }
-    if (check.exists) {
-      console.log("Skip existing:", data.slug);
-      skipped += 1;
-      continue;
-    }
-
-    const { ok, status, json } = await createDevice(base, token, data);
-    if (!ok) {
-      console.error("POST failed", data.slug, status, JSON.stringify(json).slice(0, 500));
-      failed += 1;
-    } else {
+    const { res, json } = await createDevice(base, token, plural, data);
+    if (res.ok) {
       created += 1;
       if (created % 25 === 0) console.log("… imported", created);
+    } else if (res.status === 400 && isDuplicateSlugError(json)) {
+      console.log("Skip existing (unique slug):", data.slug);
+      skipped += 1;
+    } else {
+      console.error("POST failed", data.slug, res.status, JSON.stringify(json).slice(0, 500));
+      failed += 1;
     }
 
     await new Promise((r) => setTimeout(r, 75));
