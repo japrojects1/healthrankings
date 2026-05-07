@@ -56,23 +56,13 @@ function decodeHtmlEntities(str) {
     .replace(/&nbsp;/g, " ");
 }
 
-/** Strapi Rich Text (blocks) — one or more paragraphs */
-function plainTextToBlocks(text) {
-  const t = decodeHtmlEntities(String(text || "").trim());
-  if (!t) {
-    return [
-      {
-        type: "paragraph",
-        children: [{ type: "text", text: "." }],
-      },
-    ];
-  }
-  const parts = t.split(/\n\n+/).map((p) => p.trim()).filter(Boolean);
-  const chunks = parts.length ? parts : [t];
-  return chunks.map((chunk) => ({
-    type: "paragraph",
-    children: [{ type: "text", text: chunk }],
-  }));
+/**
+ * `review.section` uses Strapi "richtext" stored as a plain string via REST (not Blocks JSON).
+ * See ValidationError: body must be a `string` type.
+ */
+function sectionBodyToString(text) {
+  const t = decodeHtmlEntities(String(text ?? "").trim());
+  return t.length ? t : ".";
 }
 
 function buildReviewSections(sections, categoryLabel) {
@@ -80,13 +70,13 @@ function buildReviewSections(sections, categoryLabel) {
     return [
       {
         heading: categoryLabel || "Overview",
-        body: plainTextToBlocks("Imported from legacy HTML. Add sections in Strapi as needed."),
+        body: sectionBodyToString("Imported from legacy HTML. Add sections in Strapi as needed."),
       },
     ];
   }
   return sections.map((s) => ({
     heading: decodeHtmlEntities(String(s.heading || "Section").trim()) || "Section",
-    body: plainTextToBlocks(s.body),
+    body: sectionBodyToString(s.body),
   }));
 }
 
