@@ -157,11 +157,18 @@ async function probeContentApi(baseUrl, token, plural) {
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   const base = (process.env.STRAPI_URL || "").replace(/\/$/, "");
-  const token = process.env.STRAPI_IMPORT_TOKEN || "";
+  const token = (process.env.STRAPI_IMPORT_TOKEN || "").trim();
   const plural = (process.env.STRAPI_DEVICE_PLURAL || "devices").replace(/^\/+|\/+$/g, "");
 
   if (!args.dryRun && (!base || !token)) {
     console.error("Set STRAPI_URL and STRAPI_IMPORT_TOKEN (or use --dry-run).");
+    process.exit(1);
+  }
+
+  if (!args.dryRun && (token === "..." || token.length < 20)) {
+    console.error(
+      "STRAPI_IMPORT_TOKEN looks invalid (placeholder or too short). In Strapi: Settings → API Tokens → create a token and paste the full secret."
+    );
     process.exit(1);
   }
 
@@ -191,7 +198,10 @@ If your plural API ID is not "${plural}", set STRAPI_DEVICE_PLURAL to match Cont
     }
     if (probe.res.status === 401 || probe.res.status === 403) {
       console.error(
-        `Content API returned ${probe.res.status} for GET /api/${plural}. Check API token permissions (Full access) or Users & Permissions for the Public role.`
+        `Content API returned ${probe.res.status} for GET /api/${plural}.
+- Use the real token value from Strapi (Settings → API Tokens). Do not leave "..." as a placeholder.
+- Token type should be Full access for import (or Custom with find + create on Device).
+- Copy/paste can add spaces; the script trims them.`
       );
       process.exit(1);
     }
