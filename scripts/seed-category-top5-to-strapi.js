@@ -6,10 +6,13 @@
  * Prereqs:
  *   Settings → API Tokens → Full access (or create + Category Top 5 + Device find/delete).
  *
- * Usage:
+ * Usage (use your real CMS URL — not a placeholder):
  *   STRAPI_URL=https://healthrankings-cms.onrender.com \
- *   STRAPI_IMPORT_TOKEN=your_token \
- *   node scripts/seed-category-top5-to-strapi.js
+ *   STRAPI_IMPORT_TOKEN=<paste from Strapi → Settings → API Tokens> \
+ *   npm run seed:category-top5
+ *
+ * Local Strapi:
+ *   STRAPI_URL=http://127.0.0.1:1337 STRAPI_IMPORT_TOKEN=... npm run seed:category-top5
  *
  * Options:
  *   --dry-run     Log only
@@ -57,6 +60,58 @@ function parseArgs(argv) {
     else if (a.startsWith("--category=")) out.category = a.slice("--category=".length).trim() || null;
   }
   return out;
+}
+
+function printStrapiUrlHelp() {
+  console.error(`
+Set a real Strapi base URL and an API token, for example:
+
+  STRAPI_URL=http://127.0.0.1:1337 \\
+  STRAPI_IMPORT_TOKEN=<long token from Strapi Admin → Settings → API Tokens> \\
+  npm run seed:category-top5
+
+Production (replace with your deployed CMS host):
+
+  STRAPI_URL=https://healthrankings-cms.onrender.com \\
+  STRAPI_IMPORT_TOKEN=... \\
+  npm run seed:category-top5
+`);
+}
+
+/** Normalize STRAPI_URL and reject obvious documentation placeholders. */
+function assertUsableStrapiBase(raw) {
+  const trimmed = String(raw || "").trim().replace(/\/$/, "");
+  if (!trimmed) {
+    console.error("STRAPI_URL is missing or empty.");
+    printStrapiUrlHelp();
+    process.exit(1);
+  }
+
+  const withProtocol = /^https?:\/\//i.test(trimmed) ? trimmed : `http://${trimmed}`;
+  let host = "";
+  try {
+    host = new URL(withProtocol).hostname.toLowerCase();
+  } catch {
+    console.error(`STRAPI_URL is not a valid URL: ${raw}`);
+    printStrapiUrlHelp();
+    process.exit(1);
+  }
+
+  const placeholderHosts = new Set([
+    "your-cms-host",
+    "your-strapi-url",
+    "example.com",
+    "localhost.invalid",
+  ]);
+  if (placeholderHosts.has(host)) {
+    console.error(
+      `STRAPI_URL uses a placeholder host "${host}" — that is not a real server. Replace it with your Strapi URL (see below).`
+    );
+    printStrapiUrlHelp();
+    process.exit(1);
+  }
+
+  return trimmed.replace(/\/$/, "");
 }
 
 function buildApiUrl(base, pathWithQuery) {
@@ -166,11 +221,13 @@ function connectDevice(dev) {
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
-  const base = (process.env.STRAPI_URL || "").replace(/\/$/, "");
   const token = (process.env.STRAPI_IMPORT_TOKEN || "").trim();
+  const needsNetwork = !args.dryRun || Boolean(process.env.STRAPI_URL?.trim() && token);
+  const base = needsNetwork ? assertUsableStrapiBase(process.env.STRAPI_URL) : "";
 
   if (!args.dryRun && (!base || !token)) {
     console.error("Set STRAPI_URL and STRAPI_IMPORT_TOKEN (or use --dry-run).");
+    printStrapiUrlHelp();
     process.exit(1);
   }
 
@@ -187,7 +244,19 @@ async function main() {
     if (args.dryRun && (!base || !token)) {
       console.log("Dry run: set STRAPI_URL + STRAPI_IMPORT_TOKEN to preview picks from live Strapi.");
     } else {
-      devices = await fetchAllDevices(base, token);
+      try {
+        devices = await fetchAllDevices(base, token);
+      } catch (e) {
+        const cause = e && typeof e === "object" && "cause" in e ? e.cause : null;
+        if (cause && typeof cause === "object" && cause.code === "ENOTFOUND") {
+          console.error(
+            `Could not resolve Strapi host (ENOTFOUND). Check STRAPI_URL — current value: ${process.env.STRAPI_URL || "(empty)"}`
+          );
+          printStrapiUrlHelp();
+          process.exit(1);
+        }
+        throw e;
+      }
       console.log(`${args.dryRun ? "Would use" : "Fetched"} ${devices.length} devices from Strapi.`);
     }
   }
@@ -264,6 +333,14 @@ async function main() {
 }
 
 main().catch((e) => {
+  const cause = e && typeof e === "object" && "cause" in e ? e.cause : null;
+  if (cause && typeof cause === "object" && cause.code === "ENOTFOUND") {
+    console.error(
+      `Could not resolve Strapi host. STRAPI_URL was: ${process.env.STRAPI_URL || "(empty)"}`
+    );
+    printStrapiUrlHelp();
+    process.exit(1);
+  }
   console.error(e);
   process.exit(1);
 });
