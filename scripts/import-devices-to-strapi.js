@@ -155,10 +155,25 @@ async function main() {
     process.exit(1);
   }
 
-  if (!args.dryRun && (token === "..." || token.length < 20)) {
-    console.error(
-      "STRAPI_IMPORT_TOKEN looks invalid (placeholder or too short). In Strapi: Settings → API Tokens → create a token and paste the full secret."
-    );
+  const tokenLower = token.toLowerCase();
+  const placeholderTokens = new Set([
+    "...",
+    "your_token",
+    "your_token_here",
+    "paste_your_token_here",
+    "paste_the_full_token_here",
+    "changeme",
+    "replace_me",
+  ]);
+  if (!args.dryRun && (placeholderTokens.has(tokenLower) || token.length < 32)) {
+    console.error(`STRAPI_IMPORT_TOKEN is missing or still a documentation placeholder.
+
+Do this in Strapi:
+  Settings → API Tokens → Create new API Token → copy the long secret once
+
+Then run (paste the real secret, not the words "your_token"):
+  STRAPI_URL=https://healthrankings-cms.onrender.com STRAPI_IMPORT_TOKEN='<paste here>' node scripts/import-devices-to-strapi.js --limit=5
+`);
     process.exit(1);
   }
 
