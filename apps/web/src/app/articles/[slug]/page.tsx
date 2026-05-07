@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import { unstable_noStore as noStore } from "next/cache";
 import { fetchArticleBySlug } from "@/lib/articles-strapi";
 
 export const dynamic = "force-dynamic";
@@ -9,6 +10,7 @@ export const dynamic = "force-dynamic";
 type Props = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  noStore();
   const { slug } = await params;
   const article = await fetchArticleBySlug(slug);
   if (!article) return { title: "Article" };
@@ -19,6 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function ArticlePage({ params }: Props) {
+  noStore();
   const { slug } = await params;
   const article = await fetchArticleBySlug(slug);
   if (!article) return notFound();

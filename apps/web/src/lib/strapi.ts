@@ -27,8 +27,9 @@ type StrapiMedia = {
 };
 
 function strapiUrl(path: string) {
-  const base = process.env.STRAPI_URL || 'http://localhost:1337';
-  return new URL(path, base).toString();
+  const base = (process.env.STRAPI_URL || 'http://localhost:1337').replace(/\/$/, '');
+  const p = path.startsWith('/') ? path : `/${path}`;
+  return `${base}${p}`;
 }
 
 function normalizeMedia(m: any): StrapiMedia | null {

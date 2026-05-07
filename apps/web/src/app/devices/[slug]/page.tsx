@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { unstable_noStore as noStore } from "next/cache";
 import { fetchDeviceBySlug } from "@/lib/strapi";
 
 export const dynamic = "force-dynamic";
@@ -10,6 +11,7 @@ export default async function DevicePage({
 }: {
   params: Promise<{ slug: string }>;
 }) {
+  noStore();
   const { slug } = await params;
   const device = await fetchDeviceBySlug(slug);
   if (!device) return notFound();
