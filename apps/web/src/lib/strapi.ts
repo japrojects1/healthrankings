@@ -74,7 +74,7 @@ export async function fetchDeviceBySlug(slug: string): Promise<Device | null> {
   );
 
   const res = await fetch(url, {
-    next: { revalidate: 60 },
+    cache: 'no-store',
     headers: { Accept: 'application/json' },
   });
   if (!res.ok) return null;

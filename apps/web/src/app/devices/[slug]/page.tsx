@@ -3,6 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { fetchDeviceBySlug } from "@/lib/strapi";
 
+export const dynamic = "force-dynamic";
+
 export default async function DevicePage({
   params,
 }: {

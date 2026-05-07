@@ -2,28 +2,26 @@ import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
 /**
- * Legacy static URLs live in /public as *.html. Strapi-backed pages live under
- * /articles/[slug] and /devices/[slug]. Redirect so edits in the CMS show when
- * visitors use old links or the existing homepage cards.
+ * Legacy static URLs in /public. Strapi content is served from /articles/[slug]
+ * and /devices/[slug]. Use explicit `:slug.html` matchers so single-segment paths
+ * (no extra slashes) are matched — `:path*` patterns often miss these.
  */
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
   const article = /^\/healthrankings-article-(.+)\.html$/i.exec(pathname);
   if (article) {
-    const slug = article[1];
-    return NextResponse.redirect(new URL(`/articles/${slug}`, request.url), 308);
+    return NextResponse.redirect(new URL(`/articles/${article[1]}`, request.url), 308);
   }
 
   const device = /^\/healthrankings-review-(.+)\.html$/i.exec(pathname);
   if (device) {
-    const slug = device[1];
-    return NextResponse.redirect(new URL(`/devices/${slug}`, request.url), 308);
+    return NextResponse.redirect(new URL(`/devices/${device[1]}`, request.url), 308);
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/healthrankings-article-:path*", "/healthrankings-review-:path*"],
+  matcher: ["/healthrankings-article-:slug.html", "/healthrankings-review-:slug.html"],
 };
