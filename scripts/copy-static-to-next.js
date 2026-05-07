@@ -24,13 +24,26 @@ function copyDir(srcDir, destDir) {
   }
 }
 
+function removeStaleStrapiBackedHtml() {
+  if (!fs.existsSync(DEST)) return;
+  for (const f of fs.readdirSync(DEST)) {
+    if (/^healthrankings-article-.*\.html$/i.test(f) || /^healthrankings-review-.*\.html$/i.test(f)) {
+      fs.unlinkSync(path.join(DEST, f));
+    }
+  }
+}
+
 function main() {
   ensureDir(DEST);
+  removeStaleStrapiBackedHtml();
 
-  // Root HTML pages
+  // Root HTML pages (except article/review bodies — those are served from Strapi via
+  // /articles/[slug] and /devices/[slug]; copying them here shadows Next middleware.)
   const rootFiles = fs.readdirSync(ROOT);
   for (const f of rootFiles) {
     if (!f.endsWith(".html")) continue;
+    if (/^healthrankings-article-/i.test(f)) continue;
+    if (/^healthrankings-review-/i.test(f)) continue;
     copyFile(path.join(ROOT, f), path.join(DEST, f));
   }
 

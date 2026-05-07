@@ -1,4 +1,6 @@
 services:
+  # Custom domain healthrankings.co must point HERE (Node Web Service), not a Static Site.
+  # Verify after deploy: https://healthrankings.co/api/cms-health → JSON runtime "next-node".
   - type: web
     name: healthrankings-web
     runtime: node
