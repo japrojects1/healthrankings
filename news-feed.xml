@@ -5,8 +5,40 @@
   <link href="https://healthrankings.co/healthrankings-news.html" rel="alternate" type="text/html"/>
   <link href="https://healthrankings.co/news-feed.xml" rel="self"/>
   <id>https://healthrankings.co/news-feed.xml#feed</id>
-  <updated>2026-05-06T19:43:33.515Z</updated>
+  <updated>2026-05-07T02:39:58.164Z</updated>
   <generator>HealthRankings generate-sitemap.js</generator>
+  <entry>
+    <title>FDA halts publication of studies on covid, shingles vaccines</title>
+    <link href="https://healthrankings.co/news/fda-halts-publication-of-studies-on-covid-shingles-vaccines-the-washington-post.html" rel="alternate" type="text/html"/>
+    <id>https://healthrankings.co/news/fda-halts-publication-of-studies-on-covid-shingles-vaccines-the-washington-post.html</id>
+    <published>2026-05-06T02:17:20.000Z</published>
+    <updated>2026-05-06T02:17:20.000Z</updated>
+    <summary type="text">News of the studies being pulled comes weeks after the CDC decided it wouldn’t publish a report showing last winter’s covid vaccine cut the likelihood of hospitalizations.</summary>
+  </entry>
+  <entry>
+    <title>Choice of Tea or Coffee Could Affect Risk of Osteoporosis in Older Women</title>
+    <link href="https://healthrankings.co/news/choice-of-tea-or-coffee-could-affect-risk-of-osteoporosis-in-older-women-science.html" rel="alternate" type="text/html"/>
+    <id>https://healthrankings.co/news/choice-of-tea-or-coffee-could-affect-risk-of-osteoporosis-in-older-women-science.html</id>
+    <published>2026-05-05T23:10:16.000Z</published>
+    <updated>2026-05-05T23:10:16.000Z</updated>
+    <summary type="text">Few older ladies would turn down a nice cuppa.</summary>
+  </entry>
+  <entry>
+    <title>Cruise ship with hantavirus may have seen a rare occurrence: humans infecting humans</title>
+    <link href="https://healthrankings.co/news/cruise-ship-with-hantavirus-may-have-seen-a-rare-occurrence-humans-infecting-hum.html" rel="alternate" type="text/html"/>
+    <id>https://healthrankings.co/news/cruise-ship-with-hantavirus-may-have-seen-a-rare-occurrence-humans-infecting-hum.html</id>
+    <published>2026-05-05T21:08:37.000Z</published>
+    <updated>2026-05-05T21:08:37.000Z</updated>
+    <summary type="text">Hantavirus is typically spread through contact with rodent feces, urine or saliva. But cases on the MV Hondius cruise ship point to an unusual means of transmission.</summary>
+  </entry>
+  <entry>
+    <title>An Existing Drug Could Be Repurposed to Help Treat Panic Attacks</title>
+    <link href="https://healthrankings.co/news/an-existing-drug-could-be-repurposed-to-help-treat-panic-attacks-sciencealert.html" rel="alternate" type="text/html"/>
+    <id>https://healthrankings.co/news/an-existing-drug-could-be-repurposed-to-help-treat-panic-attacks-sciencealert.html</id>
+    <published>2026-05-05T18:05:08.000Z</published>
+    <updated>2026-05-05T18:05:08.000Z</updated>
+    <summary type="text">When a panic attack hits, it can be a scary, overwhelming, debilitating experience – but an effective new treatment could be on the way, in the form of an antibiotic.</summary>
+  </entry>
   <entry>
     <title>Ozempic Is Killing Off Weight Loss Surgeries. That’s a Problem</title>
     <link href="https://healthrankings.co/news/ozempic-is-killing-off-weight-loss-surgeries-that-s-a-problem-gizmodo.html" rel="alternate" type="text/html"/>
@@ -40,6 +72,22 @@
     <published>2026-05-05T14:02:17.000Z</published>
     <updated>2026-05-05T14:02:17.000Z</updated>
     <summary type="text">Tuberculosis cases have been increasing in California in recent years. The ancient bacterial disease can remain dormant for years.</summary>
+  </entry>
+  <entry>
+    <title>The Science on Creatine Dosage Is Shifting. Here’s How Many Grams You Should Take.</title>
+    <link href="https://healthrankings.co/news/the-science-on-creatine-dosage-is-shifting-here-s-how-many-grams-you-should-take.html" rel="alternate" type="text/html"/>
+    <id>https://healthrankings.co/news/the-science-on-creatine-dosage-is-shifting-here-s-how-many-grams-you-should-take.html</id>
+    <published>2026-05-05T11:00:00.000Z</published>
+    <updated>2026-05-05T11:00:00.000Z</updated>
+    <summary type="text">Some wellness influencers recommend five times the usual. We talked to researchers for the real scoop.</summary>
+  </entry>
+  <entry>
+    <title>I Have Terrible Allergies. These Products Are Helping Me Survive This Spring</title>
+    <link href="https://healthrankings.co/news/i-have-terrible-allergies-these-products-are-helping-me-survive-this-spring-cnet.html" rel="alternate" type="text/html"/>
+    <id>https://healthrankings.co/news/i-have-terrible-allergies-these-products-are-helping-me-survive-this-spring-cnet.html</id>
+    <published>2026-05-05T10:37:00.000Z</published>
+    <updated>2026-05-05T10:37:00.000Z</updated>
+    <summary type="text">My seasonal allergies have been exponentially easier to manage with these devices and products.</summary>
   </entry>
   <entry>
     <title>Hantavirus cluster linked to cruise ship travel, Multi-country</title>
@@ -360,53 +408,5 @@
     <published>2026-05-03T23:08:22.000Z</published>
     <updated>2026-05-03T23:08:22.000Z</updated>
     <summary type="text">Scientists have identified a compound that promotes weight loss without the bone damage seen in restrictive diets.</summary>
-  </entry>
-  <entry>
-    <title>Millions are losing weight on Ozempic and Wegovy — here&apos;s what an orthopedic surgeon wants every patient to know</title>
-    <link href="https://healthrankings.co/news/millions-are-losing-weight-on-ozempic-and-wegovy-here-s-what-an-orthopedic-surge.html" rel="alternate" type="text/html"/>
-    <id>https://healthrankings.co/news/millions-are-losing-weight-on-ozempic-and-wegovy-here-s-what-an-orthopedic-surge.html</id>
-    <published>2026-05-03T22:33:39.000Z</published>
-    <updated>2026-05-03T22:33:39.000Z</updated>
-    <summary type="text">Losing weight on Ozempic? An orthopedic surgeon explains what GLP-1 drugs really do to your bones, joints, and muscles and how to stay safe.</summary>
-  </entry>
-  <entry>
-    <title>Syphilis spikes in California as health chiefs warn sexually active to urgently get tested</title>
-    <link href="https://healthrankings.co/news/syphilis-spikes-in-california-as-health-chiefs-warn-sexually-active-to-urgently-.html" rel="alternate" type="text/html"/>
-    <id>https://healthrankings.co/news/syphilis-spikes-in-california-as-health-chiefs-warn-sexually-active-to-urgently-.html</id>
-    <published>2026-05-03T22:04:00.000Z</published>
-    <updated>2026-05-03T22:04:00.000Z</updated>
-    <summary type="text">Across the country, syphilis cases have risen sharply over the past decade.</summary>
-  </entry>
-  <entry>
-    <title>Routine hernia repair turns into deadly constipation due to medical malpractice: Lawsuit</title>
-    <link href="https://healthrankings.co/news/routine-hernia-repair-turns-into-deadly-constipation-due-to-medical-malpractice-.html" rel="alternate" type="text/html"/>
-    <id>https://healthrankings.co/news/routine-hernia-repair-turns-into-deadly-constipation-due-to-medical-malpractice-.html</id>
-    <published>2026-05-03T21:25:00.000Z</published>
-    <updated>2026-05-03T21:25:00.000Z</updated>
-    <summary type="text">An Iowa surgeon and two registered nurses are being sued by the family of a woman who say she died after a routine hernia repair turned into a deadly bout of constipation due to medical malpractice.</summary>
-  </entry>
-  <entry>
-    <title>Three dead in suspected virus outbreak on Atlantic cruise ship</title>
-    <link href="https://healthrankings.co/news/three-dead-in-suspected-virus-outbreak-on-atlantic-cruise-ship-bbc.html" rel="alternate" type="text/html"/>
-    <id>https://healthrankings.co/news/three-dead-in-suspected-virus-outbreak-on-atlantic-cruise-ship-bbc.html</id>
-    <published>2026-05-03T19:39:31.000Z</published>
-    <updated>2026-05-03T19:39:31.000Z</updated>
-    <summary type="text">The World Health Organization said one case of hantavirus infection has been confirmed, with five more suspected cases under investigation.</summary>
-  </entry>
-  <entry>
-    <title>Immune cells leave ‘memory’ of obesity after weight loss</title>
-    <link href="https://healthrankings.co/news/immune-cells-leave-memory-of-obesity-after-weight-loss-yahoo.html" rel="alternate" type="text/html"/>
-    <id>https://healthrankings.co/news/immune-cells-leave-memory-of-obesity-after-weight-loss-yahoo.html</id>
-    <published>2026-05-03T18:50:38.000Z</published>
-    <updated>2026-05-03T18:50:38.000Z</updated>
-    <summary type="text">The author of the study said the body&apos;s &quot;memory&quot; could still leave people who have lost weight at risk of health issues associated with obesity.</summary>
-  </entry>
-  <entry>
-    <title>Spread of disease from animals to humans is being driven by wildlife trade, investigation shows</title>
-    <link href="https://healthrankings.co/news/spread-of-disease-from-animals-to-humans-is-being-driven-by-wildlife-trade-inves.html" rel="alternate" type="text/html"/>
-    <id>https://healthrankings.co/news/spread-of-disease-from-animals-to-humans-is-being-driven-by-wildlife-trade-inves.html</id>
-    <published>2026-05-03T18:30:00.000Z</published>
-    <updated>2026-05-03T18:30:00.000Z</updated>
-    <summary type="text">&quot;As long as we continue trading species, we will expose ourselves to this problem.&quot;</summary>
   </entry>
 </feed>
