@@ -16,7 +16,9 @@
     "generate:news": "node scripts/generate-news-pages.js",
     "copy:static": "node scripts/copy-static-to-next.js",
     "seed:devices": "node scripts/seed-devices-from-html.js",
-    "import:devices": "node scripts/import-devices-to-strapi.js"
+    "import:devices": "node scripts/import-devices-to-strapi.js",
+    "seed:articles": "node scripts/seed-articles-from-html.js",
+    "import:articles": "node scripts/import-articles-to-strapi.js"
   },
   "overrides": {
     "@swc/core": "1.13.20"

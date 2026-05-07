@@ -1,7 +1,7 @@
 import type { Core } from '@strapi/strapi';
 
 async function enablePublicPermissions(strapi: Core.Strapi) {
-  // Enable public read access for Device content type so the Next.js site can fetch it.
+  // Enable public read access for collection types the Next.js site fetches without auth.
   const publicRole = await strapi
     .query('plugin::users-permissions.role')
     .findOne({ where: { type: 'public' } });
@@ -15,6 +15,8 @@ async function enablePublicPermissions(strapi: Core.Strapi) {
   const wanted = new Set([
     'api::device.device.find',
     'api::device.device.findOne',
+    'api::article.article.find',
+    'api::article.article.findOne',
   ]);
 
   const byAction = new Map(permissions.map((p: any) => [p.action, p]));
