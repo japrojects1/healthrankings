@@ -17,6 +17,8 @@ async function enablePublicPermissions(strapi: Core.Strapi) {
     'api::device.device.findOne',
     'api::article.article.find',
     'api::article.article.findOne',
+    'api::category-top-five.category-top-five.find',
+    'api::category-top-five.category-top-five.findOne',
   ]);
 
   const byAction = new Map(permissions.map((p: any) => [p.action, p]));

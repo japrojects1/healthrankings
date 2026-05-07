@@ -1,0 +1,55 @@
+{
+  "kind": "collectionType",
+  "collectionName": "category_top_fives",
+  "info": {
+    "singularName": "category-top-five",
+    "pluralName": "category-top-fives",
+    "displayName": "Category Top 5",
+    "description": "Ordered top 5 device reviews per category (e.g. BP monitors, smart scales)."
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "slug": {
+      "type": "uid",
+      "required": true,
+      "unique": true
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "blood-pressure-monitors",
+        "body-composition-scales",
+        "pulse-oximeters",
+        "breathing-trainers",
+        "tens-units",
+        "thermometers",
+        "water-flossers",
+        "home-test-kits",
+        "gps-alert-systems",
+        "massage-devices",
+        "supplements",
+        "fertility-reproductive",
+        "other"
+      ],
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "subtitle": {
+      "type": "text"
+    },
+    "entries": {
+      "type": "component",
+      "repeatable": true,
+      "component": "review.top5-entry",
+      "required": true,
+      "min": 1,
+      "max": 5
+    }
+  }
+}

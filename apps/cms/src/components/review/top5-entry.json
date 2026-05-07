@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_review_top5_entries",
+  "info": {
+    "displayName": "Top 5 entry",
+    "description": "One ranked device in a category Top 5 list."
+  },
+  "options": {},
+  "attributes": {
+    "rank": {
+      "type": "integer",
+      "required": true,
+      "min": 1,
+      "max": 5
+    },
+    "device": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::device.device",
+      "required": true
+    }
+  }
+}

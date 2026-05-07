@@ -19,6 +19,21 @@ export type Device = {
   gallery?: StrapiMedia[] | null;
 };
 
+/** One row in a category “Top 5” list (Strapi `Category Top 5`). */
+export type Top5Entry = {
+  rank: number;
+  device: Device | null;
+};
+
+export type CategoryTopFive = {
+  documentId?: string;
+  slug: string;
+  category: string;
+  title: string;
+  subtitle?: string | null;
+  entries: Top5Entry[];
+};
+
 type StrapiMedia = {
   url: string;
   alternativeText?: string | null;
@@ -83,5 +98,85 @@ export async function fetchDeviceBySlug(slug: string): Promise<Device | null> {
   const first = (json?.data || [])[0];
   if (!first) return null;
   return normalizeDevice(first);
+}
+
+const CATEGORY_TOP5_POPULATE =
+  'populate[entries][populate][device][populate][heroImage]=true';
+
+function unwrapStrapiRelation(m: any): any {
+  if (!m) return null;
+  if (m.data != null) {
+    const d = m.data;
+    return Array.isArray(d) ? d[0] : d;
+  }
+  return m;
+}
+
+function normalizeTop5Entry(raw: any): Top5Entry {
+  const e = raw?.attributes ?? raw;
+  const devRow = unwrapStrapiRelation(e?.device);
+  return {
+    rank: Number(e?.rank),
+    device: devRow ? normalizeDevice(devRow) : null,
+  };
+}
+
+function normalizeCategoryTopFiveRow(row: any): CategoryTopFive {
+  const attrs = row.attributes ?? row;
+  const rawEntries = attrs.entries;
+  const list = Array.isArray(rawEntries) ? rawEntries.map(normalizeTop5Entry) : [];
+  list.sort((a, b) => a.rank - b.rank);
+  return {
+    documentId: row.documentId ?? attrs.documentId,
+    slug: String(attrs.slug ?? ''),
+    category: String(attrs.category ?? ''),
+    title: String(attrs.title ?? ''),
+    subtitle: attrs.subtitle ?? null,
+    entries: list,
+  };
+}
+
+export async function fetchCategoryTopFives(): Promise<CategoryTopFive[]> {
+  const url = strapiUrl(`/api/category-top-fives?${CATEGORY_TOP5_POPULATE}&sort=category:asc`);
+  const res = await fetch(url, {
+    cache: 'no-store',
+    headers: { Accept: 'application/json' },
+  });
+  if (!res.ok) return [];
+  const json = await res.json();
+  const rows = json?.data || [];
+  return rows.map(normalizeCategoryTopFiveRow);
+}
+
+export async function fetchCategoryTopFiveByCategory(
+  category: string
+): Promise<CategoryTopFive | null> {
+  const url = strapiUrl(
+    `/api/category-top-fives?filters[category][$eq]=${encodeURIComponent(category)}&${CATEGORY_TOP5_POPULATE}&pagination[pageSize]=1`
+  );
+  const res = await fetch(url, {
+    cache: 'no-store',
+    headers: { Accept: 'application/json' },
+  });
+  if (!res.ok) return null;
+  const json = await res.json();
+  const first = (json?.data || [])[0];
+  if (!first) return null;
+  return normalizeCategoryTopFiveRow(first);
+}
+
+export async function fetchCategoryTopFiveBySlug(slug: string): Promise<CategoryTopFive | null> {
+  const url = strapiUrl(
+    `/api/category-top-fives?filters[slug][$eq]=${encodeURIComponent(slug)}&${CATEGORY_TOP5_POPULATE}&pagination[pageSize]=1`
+  );
+  const res = await fetch(url, {
+    cache: 'no-store',
+    headers: { Accept: 'application/json' },
+  });
+  if (!res.ok) return null;
+  const json = await res.json();
+  const first = (json?.data || [])[0];
+  if (!first) return null;
+  return normalizeCategoryTopFiveRow(first);
 }
 
