@@ -74,8 +74,7 @@ export async function fetchDeviceBySlug(slug: string): Promise<Device | null> {
   );
 
   const res = await fetch(url, {
-    // ISR friendly; can be tuned later
-    next: { revalidate: 300 },
+    next: { revalidate: 60 },
     headers: { Accept: 'application/json' },
   });
   if (!res.ok) return null;

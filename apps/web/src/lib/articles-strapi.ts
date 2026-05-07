@@ -57,7 +57,7 @@ export async function fetchArticleBySlug(slug: string): Promise<Article | null> 
     `/api/articles?filters[slug][$eq]=${encodeURIComponent(slug)}&populate[heroImage]=true`
   );
   const res = await fetch(url, {
-    next: { revalidate: 300 },
+    next: { revalidate: 60 },
     headers: { Accept: 'application/json' },
   });
   if (!res.ok) return null;
