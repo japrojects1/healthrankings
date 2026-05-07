@@ -4,10 +4,19 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { unstable_noStore as noStore } from "next/cache";
 import { fetchArticleBySlug } from "@/lib/articles-strapi";
+import { ArticleHeader } from "@/components/article/ArticleHeader";
+import { ArticleFooter } from "@/components/article/ArticleFooter";
 
 export const dynamic = "force-dynamic";
 
 type Props = { params: Promise<{ slug: string }> };
+
+function formatArticleDate(iso?: string | null): string | null {
+  if (!iso) return null;
+  const d = /^\d{4}-\d{2}-\d{2}$/.test(iso) ? new Date(`${iso}T12:00:00`) : new Date(iso);
+  if (Number.isNaN(d.getTime())) return null;
+  return d.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   noStore();
@@ -26,47 +35,74 @@ export default async function ArticlePage({ params }: Props) {
   const article = await fetchArticleBySlug(slug);
   if (!article) return notFound();
 
-  return (
-    <main style={{ maxWidth: 760, margin: "0 auto", padding: "32px 20px 48px" }}>
-      <nav style={{ fontSize: 14, marginBottom: 20 }}>
-        <Link href="/">Home</Link>
-        <span style={{ opacity: 0.6 }}> / </span>
-        <Link href="/healthrankings-articles.html">Articles</Link>
-        <span style={{ opacity: 0.6 }}> / </span>
-        <span>{article.title}</span>
-      </nav>
+  const heroFromCms = article.heroImage?.url;
+  const heroFallback = `/images/article-${slug}.png`;
+  const heroSrc = heroFromCms || heroFallback;
+  const dateLabel = formatArticleDate(article.publishedDate);
 
-      {article.tag ? (
-        <p style={{ fontSize: 13, fontWeight: 600, color: "#2563eb", marginBottom: 8 }}>{article.tag}</p>
-      ) : null}
-      <h1 style={{ fontSize: "clamp(1.5rem, 4vw, 2rem)", lineHeight: 1.2, margin: "0 0 12px" }}>{article.title}</h1>
-      {article.subtitle ? (
-        <p style={{ fontSize: 18, color: "#475569", lineHeight: 1.5, marginBottom: 16 }}>{article.subtitle}</p>
-      ) : null}
-      <div style={{ fontSize: 14, color: "#64748b", marginBottom: 24, display: "flex", flexWrap: "wrap", gap: "8px 16px" }}>
-        {article.authorLine ? <span>{article.authorLine}</span> : null}
-        {article.publishedDate ? <span>{article.publishedDate}</span> : null}
-        {article.topic ? <span>{article.topic}</span> : null}
-        {article.readTime ? <span>{article.readTime}</span> : null}
+  return (
+    <div className="hr-article-page">
+      <ArticleHeader />
+
+      <div className="breadcrumb-bar">
+        <Link href="/">Home</Link>
+        <span className="breadcrumb-sep">/</span>
+        <Link href="/healthrankings-articles.html">Articles</Link>
+        <span className="breadcrumb-sep">/</span>
+        <span>{article.title}</span>
       </div>
 
-      {article.heroImage?.url ? (
-        <div style={{ marginBottom: 28, borderRadius: 12, overflow: "hidden", border: "1px solid rgba(0,0,0,0.08)" }}>
+      <section className="article-hero">
+        <div className="article-hero-inner">
+          {article.tag ? <span className="article-tag">{article.tag}</span> : null}
+          <h1>{article.title}</h1>
+          {article.subtitle ? <p className="subtitle">{article.subtitle}</p> : null}
+          <div className="article-meta">
+            {article.authorLine ? <span className="author">{article.authorLine}</span> : null}
+            {article.authorLine && (dateLabel || article.topic || article.readTime) ? (
+              <span className="sep" />
+            ) : null}
+            {dateLabel ? <span>{dateLabel}</span> : null}
+            {dateLabel && (article.topic || article.readTime) ? <span className="sep" /> : null}
+            {article.topic ? <span>{article.topic}</span> : null}
+            {article.topic && article.readTime ? <span className="sep" /> : null}
+            {article.readTime ? <span>{article.readTime}</span> : null}
+          </div>
+        </div>
+        <div className="article-hero-image">
           <Image
-            src={article.heroImage.url}
-            alt={article.heroImage.alternativeText || article.title}
+            src={heroSrc}
+            alt={article.heroImage?.alternativeText || article.title}
             width={1200}
             height={630}
-            style={{ width: "100%", height: "auto", display: "block" }}
+            sizes="(max-width: 900px) 100vw, 860px"
+            priority
+            unoptimized={heroSrc.startsWith("http") && !heroSrc.includes("healthrankings")}
           />
         </div>
-      ) : null}
+      </section>
 
-      <div
-        className="article-cms-body"
-        style={{ fontSize: 17, lineHeight: 1.75, color: "#334155" }}
-        dangerouslySetInnerHTML={{ __html: article.body }}
-      />
-    </main>
+      <div className="article-layout">
+        <article className="article-content" dangerouslySetInnerHTML={{ __html: article.body }} />
+      </div>
+
+      <div className="medical-disclaimer">
+        <div className="medical-disclaimer-inner">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden>
+            <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
+            <path d="M12 9v4" />
+            <path d="M12 17h.01" />
+          </svg>
+          <span>
+            <strong>Medical disclaimer:</strong> This content is for informational purposes only and is not a
+            substitute for professional medical advice, diagnosis, or treatment. Always consult your physician or
+            qualified health provider.{" "}
+            <Link href="/healthrankings-terms-of-service.html">Read full disclaimer</Link>
+          </span>
+        </div>
+      </div>
+
+      <ArticleFooter />
+    </div>
   );
 }
