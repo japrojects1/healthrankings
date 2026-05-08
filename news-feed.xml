@@ -5,8 +5,16 @@
   <link href="https://healthrankings.co/healthrankings-news.html" rel="alternate" type="text/html"/>
   <link href="https://healthrankings.co/news-feed.xml" rel="self"/>
   <id>https://healthrankings.co/news-feed.xml#feed</id>
-  <updated>2026-05-08T13:27:47.816Z</updated>
+  <updated>2026-05-08T19:13:39.387Z</updated>
   <generator>HealthRankings generate-sitemap.js</generator>
+  <entry>
+    <title>Health officials track dozens who left hantavirus-stricken ship after 1st fatality</title>
+    <link href="https://healthrankings.co/news/health-officials-track-dozens-who-left-hantavirus-stricken-ship-after-1st-fatali.html" rel="alternate" type="text/html"/>
+    <id>https://healthrankings.co/news/health-officials-track-dozens-who-left-hantavirus-stricken-ship-after-1st-fatali.html</id>
+    <published>2026-05-07T20:35:50.000Z</published>
+    <updated>2026-05-07T20:35:50.000Z</updated>
+    <summary type="text">Oceanwide Expeditions has revealed that 30 passengers disembarked from its cruise ship hit by a hantavirus outbreak on April 24, on the remote island of St. Helena, nearly two weeks after the first passenger died.</summary>
+  </entry>
   <entry>
     <title>Why sitting all day is so bad for you — and what to do about it</title>
     <link href="https://healthrankings.co/news/why-sitting-all-day-is-so-bad-for-you-and-what-to-do-about-it-the-washington-pos.html" rel="alternate" type="text/html"/>
@@ -400,13 +408,5 @@
     <summary type="text">Consumption of eggs is associated with a lower risk of being diagnosed with Alzheimer&amp;#39;s Disease for those 65 years and older, according to researchers at Loma Linda University Health
 
 &amp;nbsp;</summary>
-  </entry>
-  <entry>
-    <title>Age distinguishes selection from causation in cancer genomes</title>
-    <link href="https://healthrankings.co/news/age-distinguishes-selection-from-causation-in-cancer-genomes-nature.html" rel="alternate" type="text/html"/>
-    <id>https://healthrankings.co/news/age-distinguishes-selection-from-causation-in-cancer-genomes-nature.html</id>
-    <published>2026-05-05T16:47:26.000Z</published>
-    <updated>2026-05-05T16:47:26.000Z</updated>
-    <summary type="text">Mutations may be enriched in tumor samples because they promote carcinogenesis or because they promote clonal expansions in healthy tissue. This study mathematically disentangles these two possibilities by analyzing tumor and normal tissue sequencing datasets.</summary>
   </entry>
 </feed>
