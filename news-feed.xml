@@ -5,8 +5,16 @@
   <link href="https://healthrankings.co/healthrankings-news.html" rel="alternate" type="text/html"/>
   <link href="https://healthrankings.co/news-feed.xml" rel="self"/>
   <id>https://healthrankings.co/news-feed.xml#feed</id>
-  <updated>2026-05-09T02:38:43.407Z</updated>
+  <updated>2026-05-09T07:53:24.848Z</updated>
   <generator>HealthRankings generate-sitemap.js</generator>
+  <entry>
+    <title>2 Hantavirus Cruise Passengers Are Texas Residents (Live Updates)</title>
+    <link href="https://healthrankings.co/news/2-hantavirus-cruise-passengers-are-texas-residents-live-updates-forbes.html" rel="alternate" type="text/html"/>
+    <id>https://healthrankings.co/news/2-hantavirus-cruise-passengers-are-texas-residents-live-updates-forbes.html</id>
+    <published>2026-05-08T04:27:00.000Z</published>
+    <updated>2026-05-08T04:27:00.000Z</updated>
+    <summary type="text">The MV Hondius is en route to the Canary Islands, where it will be allowed to dock for the first time since a hantavirus outbreak was confirmed on board.</summary>
+  </entry>
   <entry>
     <title>Health officials track dozens who left hantavirus-stricken ship after 1st fatality</title>
     <link href="https://healthrankings.co/news/health-officials-track-dozens-who-left-hantavirus-stricken-ship-after-1st-fatali.html" rel="alternate" type="text/html"/>
@@ -398,13 +406,5 @@
     <published>2026-05-05T17:45:57.000Z</published>
     <updated>2026-05-05T17:45:57.000Z</updated>
     <summary type="text">The number of bariatric surgeries performed annually in the U.S. has taken a sharp drop lately, new research shows, coinciding with the rise of GLP-1 therapy.</summary>
-  </entry>
-  <entry>
-    <title>5 things mosquito experts do every summer to avoid getting bitten</title>
-    <link href="https://healthrankings.co/news/5-things-mosquito-experts-do-every-summer-to-avoid-getting-bitten-the-washington.html" rel="alternate" type="text/html"/>
-    <id>https://healthrankings.co/news/5-things-mosquito-experts-do-every-summer-to-avoid-getting-bitten-the-washington.html</id>
-    <published>2026-05-05T17:00:00.000Z</published>
-    <updated>2026-05-05T17:00:00.000Z</updated>
-    <summary type="text">Looking for pest prevention strategies that work? Researchers share how they prevent mosquito bites and keep the bugs at bay on their properties.</summary>
   </entry>
 </feed>
