@@ -5,7 +5,7 @@
   <link href="https://healthrankings.co/healthrankings-news.html" rel="alternate" type="text/html"/>
   <link href="https://healthrankings.co/news-feed.xml" rel="self"/>
   <id>https://healthrankings.co/news-feed.xml#feed</id>
-  <updated>2026-05-08T19:13:39.387Z</updated>
+  <updated>2026-05-09T02:38:43.407Z</updated>
   <generator>HealthRankings generate-sitemap.js</generator>
   <entry>
     <title>Health officials track dozens who left hantavirus-stricken ship after 1st fatality</title>
@@ -30,6 +30,14 @@
     <published>2026-05-07T10:43:20.000Z</published>
     <updated>2026-05-07T10:43:20.000Z</updated>
     <summary type="text">Three people – a Dutch couple and a German national – have died in the outbreak on the MV Hondius. There are eight confirmed or suspected cases in total.</summary>
+  </entry>
+  <entry>
+    <title>An army of ticks is sending more Marylanders to the ER</title>
+    <link href="https://healthrankings.co/news/an-army-of-ticks-is-sending-more-marylanders-to-the-er-thebanner-com.html" rel="alternate" type="text/html"/>
+    <id>https://healthrankings.co/news/an-army-of-ticks-is-sending-more-marylanders-to-the-er-thebanner-com.html</id>
+    <published>2026-05-07T09:30:00.000Z</published>
+    <updated>2026-05-07T09:30:00.000Z</updated>
+    <summary type="text">Across the country, emergency department visits for tick bites are up more than 25% from last year, according to federal data. Maryland and other northeastern states are looking like ground zero.</summary>
   </entry>
   <entry>
     <title>Scientists find a way to stop dangerous belly fat as we age</title>
@@ -398,15 +406,5 @@
     <published>2026-05-05T17:00:00.000Z</published>
     <updated>2026-05-05T17:00:00.000Z</updated>
     <summary type="text">Looking for pest prevention strategies that work? Researchers share how they prevent mosquito bites and keep the bugs at bay on their properties.</summary>
-  </entry>
-  <entry>
-    <title>Study: Egg consumption is associated with a lower risk of Alzheimer’s Disease</title>
-    <link href="https://healthrankings.co/news/study-egg-consumption-is-associated-with-a-lower-risk-of-alzheimer-s-disease-eur.html" rel="alternate" type="text/html"/>
-    <id>https://healthrankings.co/news/study-egg-consumption-is-associated-with-a-lower-risk-of-alzheimer-s-disease-eur.html</id>
-    <published>2026-05-05T16:52:30.000Z</published>
-    <updated>2026-05-05T16:52:30.000Z</updated>
-    <summary type="text">Consumption of eggs is associated with a lower risk of being diagnosed with Alzheimer&amp;#39;s Disease for those 65 years and older, according to researchers at Loma Linda University Health
-
-&amp;nbsp;</summary>
   </entry>
 </feed>
