@@ -1,0 +1,1088 @@
+/* CMS device review pages — aligned with legacy healthrankings-review-*.html; white canvas */
+.hr-device-page {
+  --blue-50: #eff6ff;
+  --blue-100: #dbeafe;
+  --blue-200: #bfdbfe;
+  --blue-300: #93c5fd;
+  --blue-400: #60a5fa;
+  --blue-500: #3b82f6;
+  --blue-600: #2563eb;
+  --blue-700: #1d4ed8;
+  --blue-800: #1e40af;
+  --teal-400: #2dd4bf;
+  --teal-500: #14b8a6;
+  --teal-600: #0d9488;
+  --slate-50: #f8fafc;
+  --slate-100: #f1f5f9;
+  --slate-200: #e2e8f0;
+  --slate-300: #cbd5e1;
+  --slate-400: #94a3b8;
+  --slate-500: #64748b;
+  --slate-600: #475569;
+  --slate-700: #334155;
+  --slate-900: #0f172a;
+  --amber-400: #f59e0b;
+  --gradient-blue: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+  --gradient-teal: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+
+  color-scheme: light;
+  font-family: var(--font-inter), "Inter", system-ui, sans-serif;
+  background: #ffffff;
+  color: var(--slate-900);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+.hr-device-page * {
+  box-sizing: border-box;
+}
+
+.hr-device-page a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ----- Header (compact review style) ----- */
+.hr-device-page .header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--slate-200);
+}
+
+.hr-device-page .header-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hr-device-page .logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  line-height: 1;
+}
+
+.hr-device-page .logo-tile {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background: var(--blue-50);
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hr-device-page .logo-sparkle {
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  color: var(--teal-500);
+}
+
+.hr-device-page .logo-text {
+  font-family: var(--font-dm-sans), "DM Sans", sans-serif;
+  font-size: 20px;
+  letter-spacing: -0.035em;
+  line-height: 1;
+}
+
+.hr-device-page .logo-text .one {
+  font-weight: 500;
+  color: var(--slate-900);
+}
+
+.hr-device-page .logo-text .two {
+  font-weight: 700;
+  background: var(--gradient-blue);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hr-device-page .nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.hr-device-page .nav a {
+  font-family: var(--font-dm-sans), "DM Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--slate-900);
+  transition: color 180ms;
+}
+
+.hr-device-page .nav a:hover {
+  color: var(--blue-600);
+}
+
+.hr-device-page .nav a.active {
+  color: var(--blue-600);
+}
+
+.hr-device-page .header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hr-device-page .cta-btn {
+  padding: 10px 18px;
+  background: var(--gradient-blue);
+  color: var(--slate-50);
+  border-radius: 9999px;
+  font-family: var(--font-dm-sans), "DM Sans", sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  border: none;
+  cursor: pointer;
+  transition: transform 200ms;
+}
+
+.hr-device-page .cta-btn:hover {
+  transform: translateY(-1px);
+}
+
+.hr-device-page .hamburger-btn {
+  display: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 0;
+  z-index: 60;
+}
+
+.hr-device-page .hamburger-btn span {
+  display: block;
+  width: 22px;
+  height: 2.5px;
+  background: var(--slate-900);
+  border-radius: 2px;
+}
+
+.hr-device-page .mobile-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 90;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.hr-device-page .mobile-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.hr-device-page .mobile-drawer {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: min(320px, 85vw);
+  height: 100vh;
+  background: #fff;
+  z-index: 100;
+  box-shadow: -4px 0 24px rgba(0, 0, 0, 0.12);
+  transition: right 0.35s ease;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.hr-device-page .mobile-drawer.open {
+  right: 0;
+}
+
+.hr-device-page .mobile-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.hr-device-page .mobile-drawer-close {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #f1f5f9;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  color: #334155;
+}
+
+.hr-device-page .mobile-drawer-nav {
+  padding: 16px 0;
+}
+
+.hr-device-page .mobile-drawer-nav a {
+  display: flex;
+  align-items: center;
+  padding: 14px 24px;
+  font-family: var(--font-dm-sans), "DM Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #0f172a;
+}
+
+.hr-device-page .mobile-drawer-nav a:hover,
+.hr-device-page .mobile-drawer-nav a.active {
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.hr-device-page .mobile-drawer-footer {
+  margin-top: auto;
+  padding: 20px 24px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.hr-device-page .mobile-drawer-footer a {
+  display: block;
+  padding: 8px 0;
+  font-size: 14px;
+  color: #64748b;
+}
+
+/* ----- Breadcrumb ----- */
+.hr-device-page .breadcrumb {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 24px 32px 0;
+  display: flex;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--slate-600);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.hr-device-page .breadcrumb a {
+  color: var(--slate-600);
+  transition: color 180ms;
+}
+
+.hr-device-page .breadcrumb a:hover {
+  color: var(--blue-700);
+}
+
+.hr-device-page .breadcrumb-sep {
+  color: var(--slate-200);
+}
+
+.hr-device-page .breadcrumb-current {
+  color: var(--slate-900);
+  font-weight: 500;
+}
+
+/* ----- Intro + hero image ----- */
+.hr-device-page .device-intro-grid {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 32px 32px 24px;
+  display: grid;
+  grid-template-columns: minmax(200px, 280px) 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.hr-device-page .device-intro-visual {
+  position: sticky;
+  top: 88px;
+}
+
+.hr-device-page .device-intro-visual img,
+.hr-device-page .device-intro-visual .device-img-placeholder {
+  width: 100%;
+  border-radius: 24px;
+  border: 1px solid var(--slate-200);
+  background: #fff;
+}
+
+.hr-device-page .device-intro-visual .device-img-placeholder {
+  aspect-ratio: 1;
+  background: linear-gradient(145deg, var(--slate-100), var(--slate-50));
+}
+
+.hr-device-page .page-intro {
+  max-width: 900px;
+  padding: 0;
+}
+
+.hr-device-page .intro-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--blue-50);
+  padding: 8px 16px;
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--blue-700);
+  margin-bottom: 24px;
+}
+
+.hr-device-page .intro-pulse {
+  width: 7px;
+  height: 7px;
+  background: var(--blue-600);
+  border-radius: 50%;
+  animation: hr-device-pulse 2s ease-in-out infinite;
+}
+
+@keyframes hr-device-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.4);
+  }
+}
+
+.hr-device-page .page-intro h1 {
+  font-family: var(--font-dm-sans), "DM Sans", sans-serif;
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  color: var(--slate-900);
+  margin-bottom: 16px;
+}
+
+.hr-device-page .intro-lede {
+  font-size: 19px;
+  line-height: 1.55;
+  color: var(--slate-600);
+  max-width: 720px;
+  margin-bottom: 28px;
+}
+
+.hr-device-page .intro-meta {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  padding: 20px 0;
+  border-top: 1px solid var(--slate-200);
+  border-bottom: 1px solid var(--slate-200);
+}
+
+.hr-device-page .intro-author {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.hr-device-page .intro-author-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--gradient-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--slate-50);
+  font-family: var(--font-dm-sans), "DM Sans", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.hr-device-page .intro-author-info strong {
+  font-family: var(--font-dm-sans), "DM Sans", sans-serif;
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--slate-900);
+}
+
+.hr-device-page .intro-author-info span {
+  font-size: 12px;
+  color: var(--slate-600);
+}
+
+.hr-device-page .intro-meta-divider {
+  width: 1px;
+  height: 32px;
+  background: var(--slate-200);
+}
+
+.hr-device-page .intro-meta-fact {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.hr-device-page .intro-meta-fact-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--slate-400);
+}
+
+.hr-device-page .intro-meta-fact-value {
+  font-family: var(--font-dm-sans), "DM Sans", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--slate-900);
+}
+
+.hr-device-page .intro-meta-fact-value .out-ten {
+  color: var(--slate-400);
+  font-weight: 400;
+}
+
+/* ----- Top 5 callout ----- */
+.hr-device-page .top5-callout {
+  max-width: 900px;
+  margin: -8px auto 8px;
+  padding: 0 32px;
+  position: relative;
+  z-index: 1;
+}
+
+.hr-device-page .top5-callout-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  border: 1px solid #bfdbfe;
+  border-radius: 12px;
+  padding: 14px 20px;
+  transition: all 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px -2px rgba(37, 99, 235, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+}
+
+.hr-device-page .top5-callout-inner:hover {
+  border-color: #93c5fd;
+  box-shadow: 0 4px 16px -4px rgba(37, 99, 235, 0.12);
+}
+
+.hr-device-page .top5-callout-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hr-device-page .top5-callout-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #2563eb;
+  color: white;
+  font-family: var(--font-dm-sans), "DM Sans", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+.hr-device-page .top5-callout-text {
+  font-family: var(--font-dm-sans), "DM Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1e40af;
+}
+
+.hr-device-page .top5-callout-arrow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-dm-sans), "DM Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: #2563eb;
+  white-space: nowrap;
+}
+
+/* ----- Jump nav ----- */
+.hr-device-page .jump-nav {
+  position: sticky;
+  top: 68px;
+  z-index: 30;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--slate-200);
+  padding: 14px 32px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.hr-device-page .jump-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.hr-device-page .jump-nav-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--slate-400);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.hr-device-page .jump-nav a {
+  font-family: var(--font-dm-sans), "DM Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--slate-900);
+  padding: 6px 14px;
+  background: var(--blue-50);
+  border-radius: 9999px;
+  white-space: nowrap;
+  transition: all 180ms;
+  flex-shrink: 0;
+}
+
+.hr-device-page .jump-nav a:hover {
+  background: var(--gradient-blue);
+  color: var(--slate-50);
+}
+
+.hr-device-page .jump-nav a.primary {
+  background: var(--gradient-blue);
+  color: var(--slate-50);
+}
+
+/* ----- Review body ----- */
+.hr-device-page .review-back-links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 12px 32px 0;
+}
+
+.hr-device-page .review-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: 1.5px solid var(--blue-600);
+  border-radius: 9999px;
+  font-family: var(--font-dm-sans), "DM Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--blue-700);
+  transition: all 200ms;
+}
+
+.hr-device-page .review-back-link:hover {
+  background: var(--gradient-blue);
+  color: white;
+  border-color: transparent;
+}
+
+.hr-device-page .review-content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 32px 80px;
+}
+
+.hr-device-page .review-verdict {
+  background: var(--gradient-blue);
+  border-radius: 24px;
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 48px;
+}
+
+.hr-device-page .review-verdict::before {
+  content: "";
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 240px;
+  height: 240px;
+  background: radial-gradient(circle, rgba(20, 184, 166, 0.15) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.hr-device-page .verdict-score-circle {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.hr-device-page .verdict-score-num {
+  font-family: var(--font-dm-sans), "DM Sans", sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: white;
+  line-height: 1;
+}
+
+.hr-device-page .verdict-score-of {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 2px;
+}
+
+.hr-device-page .verdict-text {
+  position: relative;
+  z-index: 1;
+}
+
+.hr-device-page .verdict-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 6px;
+}
+
+.hr-device-page .verdict-title {
+  font-family: var(--font-dm-sans), "DM Sans", sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: white;
+  margin-bottom: 8px;
+  line-height: 1.25;
+}
+
+.hr-device-page .verdict-summary {
+  font-size: 15px;
+  color: rgba(248, 250, 252, 0.88);
+  line-height: 1.6;
+  max-width: 520px;
+}
+
+.hr-device-page .review-section {
+  margin-bottom: 56px;
+}
+
+.hr-device-page .review-section-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--teal-600);
+  margin-bottom: 8px;
+}
+
+.hr-device-page .review-section h2 {
+  font-family: var(--font-dm-sans), "DM Sans", sans-serif;
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: var(--slate-900);
+  margin-bottom: 20px;
+}
+
+.hr-device-page .review-section .review-section-body {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--slate-600);
+}
+
+.hr-device-page .review-section .review-section-body p {
+  margin-bottom: 16px;
+}
+
+.hr-device-page .review-section .review-section-body p:last-child {
+  margin-bottom: 0;
+}
+
+.hr-device-page .review-pros-cons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.hr-device-page .pc-card {
+  padding: 28px;
+  background: white;
+  border: 1px solid var(--slate-200);
+  border-radius: 20px;
+}
+
+.hr-device-page .pc-card.pc-pros {
+  border-top: 3px solid var(--blue-600);
+}
+
+.hr-device-page .pc-card.pc-cons {
+  border-top: 3px solid var(--slate-400);
+}
+
+.hr-device-page .pc-card h3 {
+  font-family: var(--font-dm-sans), "DM Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.hr-device-page .pc-pros h3 {
+  color: var(--blue-700);
+}
+
+.hr-device-page .pc-cons h3 {
+  color: var(--slate-600);
+}
+
+.hr-device-page .pc-card ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.hr-device-page .pc-card li {
+  font-size: 14px;
+  color: var(--slate-900);
+  padding-left: 24px;
+  position: relative;
+  line-height: 1.5;
+}
+
+.hr-device-page .pc-pros li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--blue-600);
+  font-weight: 700;
+}
+
+.hr-device-page .pc-cons li::before {
+  content: "−";
+  position: absolute;
+  left: 2px;
+  color: var(--slate-400);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.1;
+}
+
+.hr-device-page .device-gallery {
+  margin-bottom: 56px;
+}
+
+.hr-device-page .device-gallery h2 {
+  font-family: var(--font-dm-sans), "DM Sans", sans-serif;
+  font-size: clamp(22px, 2.5vw, 28px);
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.hr-device-page .device-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+.hr-device-page .device-gallery-grid img {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  border: 1px solid var(--slate-200);
+  background: #fff;
+}
+
+.hr-device-page .review-final {
+  text-align: center;
+  padding: 48px;
+  background: white;
+  border: 2px solid var(--slate-200);
+  border-radius: 24px;
+  margin-top: 20px;
+}
+
+.hr-device-page .final-score-big {
+  font-family: var(--font-dm-sans), "DM Sans", sans-serif;
+  font-size: 64px;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: var(--blue-700);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.hr-device-page .final-score-big .out {
+  font-size: 28px;
+  color: var(--slate-400);
+}
+
+.hr-device-page .final-label {
+  font-size: 14px;
+  color: var(--slate-600);
+  margin-bottom: 20px;
+}
+
+.hr-device-page .final-text {
+  font-size: 16px;
+  color: var(--slate-600);
+  line-height: 1.7;
+  max-width: 600px;
+  margin: 0 auto 28px;
+}
+
+.hr-device-page .final-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 32px;
+  background: var(--gradient-blue);
+  color: white;
+  border-radius: 9999px;
+  font-family: var(--font-dm-sans), "DM Sans", sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  transition: transform 200ms;
+}
+
+.hr-device-page .final-cta:hover {
+  transform: translateY(-2px);
+}
+
+/* ----- Disclaimer ----- */
+.hr-device-page .medical-disclaimer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 32px 48px;
+}
+
+.hr-device-page .medical-disclaimer-inner {
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: 12px;
+  padding: 14px 20px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  font-size: 13px;
+  color: #92400e;
+  line-height: 1.55;
+}
+
+.hr-device-page .medical-disclaimer-inner svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.hr-device-page .medical-disclaimer-inner a {
+  color: #92400e;
+  text-decoration: underline;
+}
+
+/* ----- Footer (match articles) ----- */
+.hr-device-page .footer {
+  background: var(--slate-900);
+  color: var(--slate-400);
+  font-size: 14px;
+}
+
+.hr-device-page .footer-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 56px 32px 32px;
+}
+
+.hr-device-page .footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr repeat(4, 1fr);
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.hr-device-page .footer-brand-desc {
+  margin-top: 16px;
+  line-height: 1.6;
+  max-width: 280px;
+}
+
+.hr-device-page .footer-col h4 {
+  font-family: var(--font-dm-sans), "DM Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--slate-200);
+  margin-bottom: 16px;
+}
+
+.hr-device-page .footer-col ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.hr-device-page .footer-col li {
+  margin-bottom: 10px;
+}
+
+.hr-device-page .footer-col a:hover {
+  color: var(--blue-400);
+}
+
+.hr-device-page .footer .logo-text .one {
+  color: #fff;
+}
+
+.hr-device-page .footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 13px;
+}
+
+@media (max-width: 900px) {
+  .hr-device-page .device-intro-grid {
+    grid-template-columns: 1fr;
+    padding: 24px 24px 16px;
+  }
+
+  .hr-device-page .device-intro-visual {
+    position: static;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
+  .hr-device-page .top5-callout {
+    padding: 0 24px;
+    margin-top: 8px;
+  }
+
+  .hr-device-page .top5-callout-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hr-device-page .jump-nav {
+    padding: 14px 24px;
+    top: 68px;
+  }
+
+  .hr-device-page .breadcrumb {
+    padding: 20px 24px 0;
+  }
+
+  .hr-device-page .review-back-links {
+    padding: 12px 24px 0;
+  }
+
+  .hr-device-page .review-content {
+    padding: 32px 24px 60px;
+  }
+
+  .hr-device-page .review-verdict {
+    flex-direction: column;
+    text-align: center;
+    padding: 28px;
+    gap: 20px;
+  }
+
+  .hr-device-page .verdict-summary {
+    max-width: 100%;
+  }
+
+  .hr-device-page .review-pros-cons {
+    grid-template-columns: 1fr;
+  }
+
+  .hr-device-page .review-final {
+    padding: 32px 20px;
+  }
+
+  .hr-device-page .final-score-big {
+    font-size: 48px;
+  }
+
+  .hr-device-page .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+
+  .hr-device-page .medical-disclaimer {
+    padding: 0 24px 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hr-device-page .header-inner {
+    padding: 0 20px;
+    height: 60px;
+  }
+
+  .hr-device-page .nav {
+    display: none;
+  }
+
+  .hr-device-page .hamburger-btn {
+    display: flex;
+  }
+
+  .hr-device-page .cta-btn {
+    display: none;
+  }
+
+  .hr-device-page .jump-nav {
+    top: 60px;
+  }
+
+}
+
+html:has(.devices-route-fonts) {
+  color-scheme: light;
+}
+
+body:has(.devices-route-fonts) {
+  background: #ffffff;
+  color: #0f172a;
+}
