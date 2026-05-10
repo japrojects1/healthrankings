@@ -19,6 +19,9 @@ async function enablePublicPermissions(strapi: Core.Strapi) {
     'api::article.article.findOne',
     'api::category-top-five.category-top-five.find',
     'api::category-top-five.category-top-five.findOne',
+    // Secured by CATALOG_AI_SECRET in the controller; public allows the route to exist without a Strapi user JWT.
+    'api::catalog-ai.catalog-ai.generate',
+    'api::catalog-ai.catalog-ai.health',
   ]);
 
   const byAction = new Map(permissions.map((p: any) => [p.action, p]));

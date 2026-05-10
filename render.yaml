@@ -55,6 +55,23 @@ services:
         fromDatabase:
           name: healthrankings-db
           property: connectionString
+      # Catalog AI (POST /api/catalog-ai/generate): Claude (Anthropic) or OpenAI — keys on CMS only.
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: ANTHROPIC_MODEL
+        sync: false
+      # Optional: anthropic-version header override (default 2023-06-01).
+      - key: ANTHROPIC_API_VERSION
+        sync: false
+      # Force provider if both keys exist: anthropic | openai
+      - key: CATALOG_AI_LLM
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: OPENAI_MODEL
+        sync: false
+      - key: CATALOG_AI_SECRET
+        generateValue: true
     # Attach `cms.healthrankings.co` after the service is created.
 
 databases:
