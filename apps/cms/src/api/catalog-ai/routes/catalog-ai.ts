@@ -7,6 +7,9 @@
  * Other: CATALOG_AI_SECRET.
  */
 export default {
+  type: 'content-api',
+  /** Without this, Strapi mounts routes at `/api/generate` and `/api/health` instead of `/api/catalog-ai/...`. */
+  prefix: '/catalog-ai',
   routes: [
     {
       method: 'POST',
