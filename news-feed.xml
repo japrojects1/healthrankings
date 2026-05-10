@@ -5,8 +5,16 @@
   <link href="https://healthrankings.co/healthrankings-news.html" rel="alternate" type="text/html"/>
   <link href="https://healthrankings.co/news-feed.xml" rel="self"/>
   <id>https://healthrankings.co/news-feed.xml#feed</id>
-  <updated>2026-05-10T13:13:34.615Z</updated>
+  <updated>2026-05-10T18:59:32.913Z</updated>
   <generator>HealthRankings generate-sitemap.js</generator>
+  <entry>
+    <title>Hantavirus Cruise Passengers Will Be Evacuated Soon, Report Says (Latest Updates)</title>
+    <link href="https://healthrankings.co/news/hantavirus-cruise-passengers-will-be-evacuated-soon-report-says-latest-updates-f.html" rel="alternate" type="text/html"/>
+    <id>https://healthrankings.co/news/hantavirus-cruise-passengers-will-be-evacuated-soon-report-says-latest-updates-f.html</id>
+    <published>2026-05-09T14:48:00.000Z</published>
+    <updated>2026-05-09T14:48:00.000Z</updated>
+    <summary type="text">There are nine U.S. residents being monitored for the illness across six states, though none have shown any signs of illness.</summary>
+  </entry>
   <entry>
     <title>Health Officials Warn Of Potential Measles Exposure At Roslyn Heights Restaurant</title>
     <link href="https://healthrankings.co/news/health-officials-warn-of-potential-measles-exposure-at-roslyn-heights-restaurant.html" rel="alternate" type="text/html"/>
@@ -14,6 +22,14 @@
     <published>2026-05-09T02:14:06.000Z</published>
     <updated>2026-05-09T02:14:06.000Z</updated>
     <summary type="text">A laboratory verified a measles case in a New York City resident, who potentially exposed the highly contagious disease to patrons who visited the 388 Italian Restaurant in Roslyn Heights on May 3.</summary>
+  </entry>
+  <entry>
+    <title>Arizona man who survived hantavirus 24 years ago, but lost mom and sister, says recent outbreak is &quot;hard&quot; to process</title>
+    <link href="https://healthrankings.co/news/arizona-man-who-survived-hantavirus-24-years-ago-but-lost-mom-and-sister-says-re.html" rel="alternate" type="text/html"/>
+    <id>https://healthrankings.co/news/arizona-man-who-survived-hantavirus-24-years-ago-but-lost-mom-and-sister-says-re.html</id>
+    <published>2026-05-09T01:48:00.000Z</published>
+    <updated>2026-05-09T01:48:00.000Z</updated>
+    <summary type="text">In 2002, Zermeño found out he contracted hantavirus after cleaning the family house following the death of his mother and sister. He had been exposed to rodent droppings and became infected.</summary>
   </entry>
   <entry>
     <title>Why health officials say the hantavirus cruise outbreak is not the next pandemic</title>
@@ -390,21 +406,5 @@
     <published>2026-05-06T15:40:06.000Z</published>
     <updated>2026-05-06T15:40:06.000Z</updated>
     <summary type="text">Baylor College of Medicine researchers have found that the human brain is capable of sophisticated language processing while in an unconscious state from general anesthesia. The findings, published in Nature, challenge what we know about the role of conscious…</summary>
-  </entry>
-  <entry>
-    <title>Male sex hormone loss aids brain tumour growth</title>
-    <link href="https://healthrankings.co/news/male-sex-hormone-loss-aids-brain-tumour-growth-nature.html" rel="alternate" type="text/html"/>
-    <id>https://healthrankings.co/news/male-sex-hormone-loss-aids-brain-tumour-growth-nature.html</id>
-    <published>2026-05-06T15:34:06.000Z</published>
-    <updated>2026-05-06T15:34:06.000Z</updated>
-    <summary type="text">Depletion of sex hormones that enable male development induces neuroinflammation that disrupts hormonal signalling and immune responses against brain tumours.</summary>
-  </entry>
-  <entry>
-    <title>A new kind of CRISPR could treat viral infection and cancer by shredding sick cells&apos; DNA</title>
-    <link href="https://healthrankings.co/news/a-new-kind-of-crispr-could-treat-viral-infection-and-cancer-by-shredding-sick-ce.html" rel="alternate" type="text/html"/>
-    <id>https://healthrankings.co/news/a-new-kind-of-crispr-could-treat-viral-infection-and-cancer-by-shredding-sick-ce.html</id>
-    <published>2026-05-06T15:01:42.000Z</published>
-    <updated>2026-05-06T15:01:42.000Z</updated>
-    <summary type="text">A new kind of CRISPR that destroys cells rather than gene editing them has shown potential for killing sick cells while leaving healthy cells untouched. The technology has largely been tested in cells in a dish, but if it can be applied to organisms, it could…</summary>
   </entry>
 </feed>
