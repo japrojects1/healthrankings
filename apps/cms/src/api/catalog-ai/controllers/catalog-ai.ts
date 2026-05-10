@@ -1,21 +1,11 @@
 import type { Core } from '@strapi/strapi';
+import { assertCatalogAiAccess } from '../../../catalog-ai/auth-guard';
 import { resolveCatalogAiLlm } from '../../../catalog-ai/llm-config';
 import { runCatalogAiGenerate } from '../../../catalog-ai/handler';
 
-function requireCatalogSecret(ctx: any): boolean {
-  const secret = process.env.CATALOG_AI_SECRET?.trim();
-  const hdr = String(ctx.request.headers['x-catalog-ai-secret'] ?? '').trim();
-  if (!secret || hdr !== secret) {
-    ctx.status = 401;
-    ctx.body = { ok: false, error: 'Missing or invalid X-Catalog-Ai-Secret header.' };
-    return false;
-  }
-  return true;
-}
-
 export default ({ strapi }: { strapi: Core.Strapi }) => ({
   async generate(ctx: any) {
-    if (!requireCatalogSecret(ctx)) return;
+    if (!assertCatalogAiAccess(strapi, ctx)) return;
     const body = ctx.request.body;
     const result = await runCatalogAiGenerate(strapi, body);
     const ok = result.ok !== false;
@@ -24,7 +14,7 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
   },
 
   async health(ctx: any) {
-    if (!requireCatalogSecret(ctx)) return;
+    if (!assertCatalogAiAccess(strapi, ctx)) return;
     const llm = resolveCatalogAiLlm();
     ctx.body = {
       ok: true,
