@@ -112,8 +112,8 @@ export default async function CategoryTopFivePage({ params }: Props) {
                   key={`${entry.rank}-${dev.slug}`}
                   href={`/devices/${encodeURIComponent(dev.slug)}`}
                   className={`top5-row${winner ? " is-winner" : ""}`}
+                  aria-label={`Rank ${entry.rank}: ${dev.name}`}
                 >
-                  <span className="top5-rank">{entry.rank}</span>
                   <div
                     className={
                       thumb ? "top5-thumb-wrap" : "top5-thumb-wrap top5-thumb-placeholder"
@@ -122,10 +122,10 @@ export default async function CategoryTopFivePage({ params }: Props) {
                     {thumb ? (
                       <Image
                         src={thumb}
-                        alt={dev.heroImage?.alternativeText || dev.name}
-                        width={144}
-                        height={144}
-                        sizes="72px"
+                        alt=""
+                        width={160}
+                        height={160}
+                        sizes="80px"
                         unoptimized={imgUnoptimized}
                       />
                     ) : null}
@@ -133,7 +133,7 @@ export default async function CategoryTopFivePage({ params }: Props) {
                   <div className="top5-row-body">
                     <div className="top5-device-name">{dev.name}</div>
                     <div className="top5-device-meta">
-                      {winner ? "#1 pick · " : ""}
+                      {winner ? "#1 pick · " : `#${entry.rank} · `}
                       Full review &amp; score
                     </div>
                   </div>

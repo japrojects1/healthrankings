@@ -117,37 +117,30 @@ export default async function DevicePage({ params }: Props) {
         <span className="breadcrumb-current">{device.name}</span>
       </nav>
 
-      <div className="device-intro-stack">
+      <div className="device-intro-grid">
+        <div className="device-intro-visual">
+          {heroSrc ? (
+            <Image
+              src={heroSrc}
+              alt={device.heroImage?.alternativeText || device.name}
+              width={560}
+              height={560}
+              sizes="(max-width: 900px) 90vw, 280px"
+              priority
+              unoptimized={imgUnoptimized}
+            />
+          ) : (
+            <div className="device-img-placeholder" aria-hidden />
+          )}
+        </div>
+
         <div className="page-intro">
           <div className="intro-eyebrow">
             <span className="intro-pulse" aria-hidden />
             Expert Review
           </div>
-          <div className="device-title-cluster">
-            <div
-              className={
-                heroSrc
-                  ? "device-title-thumb-wrap"
-                  : "device-title-thumb-wrap device-title-thumb-placeholder"
-              }
-            >
-              {heroSrc ? (
-                <Image
-                  src={heroSrc}
-                  alt={device.heroImage?.alternativeText || device.name}
-                  width={224}
-                  height={224}
-                  sizes="112px"
-                  priority
-                  unoptimized={imgUnoptimized}
-                />
-              ) : null}
-            </div>
-            <div className="device-title-text">
-              <h1>{device.name}</h1>
-              <p className="intro-lede">{introLede}</p>
-            </div>
-          </div>
+          <h1>{device.name}</h1>
+          <p className="intro-lede">{introLede}</p>
           <div className="intro-meta">
             <div className="intro-author">
               <div className="intro-author-avatar">HR</div>

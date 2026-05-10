@@ -55,29 +55,9 @@
   background: linear-gradient(135deg, #ffffff 0%, var(--blue-50) 100%);
 }
 
-.hr-device-page.hr-top5-page .top5-rank {
-  width: 40px;
-  height: 40px;
-  flex-shrink: 0;
-  border-radius: 12px;
-  background: var(--blue-50);
-  color: var(--blue-700);
-  font-family: var(--font-dm-sans), "DM Sans", sans-serif;
-  font-weight: 700;
-  font-size: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.hr-device-page.hr-top5-page .top5-row.is-winner .top5-rank {
-  background: var(--gradient-blue);
-  color: #fff;
-}
-
 .hr-device-page.hr-top5-page .top5-thumb-wrap {
-  width: 72px;
-  height: 72px;
+  width: 80px;
+  height: 80px;
   flex-shrink: 0;
   border-radius: 12px;
   border: 1px solid var(--slate-200);

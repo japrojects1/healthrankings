@@ -49,17 +49,33 @@ function strapiUrl(path: string) {
 
 function normalizeMedia(m: any): StrapiMedia | null {
   if (!m) return null;
-  // Strapi v5 can return either the raw object or { data: { ... } }
-  const item = m.data ?? m;
-  const attrs = item.attributes ?? item;
-  const url = attrs?.url;
-  if (!url) return null;
-  const abs = url.startsWith('http') ? url : strapiUrl(url);
+  // Strapi v5: media may be flat, wrapped in { data }, or only expose URL under formats.*
+  let node: any = m;
+  if (m.data !== undefined) {
+    const d = m.data;
+    if (d == null) return null;
+    node = Array.isArray(d) ? d[0] : d;
+    if (!node) return null;
+  }
+  const attrs = node.attributes ?? node;
+  let url: string | undefined =
+    typeof attrs.url === "string" ? attrs.url : undefined;
+  if (!url && attrs.formats && typeof attrs.formats === "object") {
+    for (const k of ["large", "medium", "small", "thumbnail"] as const) {
+      const u = attrs.formats[k]?.url;
+      if (typeof u === "string" && u) {
+        url = u;
+        break;
+      }
+    }
+  }
+  if (!url || typeof url !== "string") return null;
+  const abs = url.startsWith("http") ? url : strapiUrl(url);
   return {
     url: abs,
-    alternativeText: attrs?.alternativeText ?? null,
-    width: attrs?.width ?? null,
-    height: attrs?.height ?? null,
+    alternativeText: attrs.alternativeText ?? null,
+    width: attrs.width ?? null,
+    height: attrs.height ?? null,
   };
 }
 
@@ -71,8 +87,11 @@ function normalizeDevice(row: any): Device {
   else if (Array.isArray(g?.data)) galleryList = g.data;
 
   const galleryNormalized: StrapiMedia[] | null = galleryList
-    ? (galleryList.map((x: any) => normalizeMedia(x)).filter((m): m is StrapiMedia => m != null))
+    ? galleryList.map((x: any) => normalizeMedia(x)).filter((m): m is StrapiMedia => m != null)
     : null;
+
+  const heroFromField = normalizeMedia(attrs.heroImage);
+  const heroImage = heroFromField ?? galleryNormalized?.[0] ?? null;
 
   return {
     id: row.id ?? attrs.id,
@@ -86,14 +105,15 @@ function normalizeDevice(row: any): Device {
     cons: Array.isArray(attrs.cons) ? attrs.cons : null,
     verdictShort: attrs.verdictShort ?? null,
     reviewSections: Array.isArray(attrs.reviewSections) ? attrs.reviewSections : null,
-    heroImage: normalizeMedia(attrs.heroImage),
+    heroImage,
     gallery: galleryNormalized?.length ? galleryNormalized : null,
   };
 }
 
 export async function fetchDeviceBySlug(slug: string): Promise<Device | null> {
+  // populate=* ensures media + components resolve reliably on Strapi 5 (same-origin CMS URLs).
   const url = strapiUrl(
-    `/api/devices?filters[slug][$eq]=${encodeURIComponent(slug)}&populate[heroImage]=true&populate[gallery]=true&populate[reviewSections]=true`
+    `/api/devices?filters[slug][$eq]=${encodeURIComponent(slug)}&populate=*`
   );
 
   const res = await fetch(url, {
@@ -108,7 +128,7 @@ export async function fetchDeviceBySlug(slug: string): Promise<Device | null> {
 }
 
 const CATEGORY_TOP5_POPULATE =
-  'populate[entries][populate][device][populate][heroImage]=true';
+  "populate[entries][populate][device][populate][heroImage]=true&populate[entries][populate][device][populate][gallery]=true";
 
 function unwrapStrapiRelation(m: any): any {
   if (!m) return null;
