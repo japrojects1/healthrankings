@@ -20,7 +20,9 @@
     "seed:articles": "node scripts/seed-articles-from-html.js",
     "import:articles": "node scripts/import-articles-to-strapi.js",
     "seed:category-top5": "node scripts/seed-category-top5-to-strapi.js",
-    "fix:device-categories": "node scripts/fix-device-categories-in-strapi.js"
+    "fix:device-categories": "node scripts/fix-device-categories-in-strapi.js",
+    "catalog-ai:health": "node scripts/catalog-ai-check.js health",
+    "catalog-ai:dry-run": "node scripts/catalog-ai-check.js dry-run"
   },
   "overrides": {
     "@swc/core": "1.13.20"
