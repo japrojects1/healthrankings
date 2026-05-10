@@ -5,7 +5,7 @@
     "singularName": "device",
     "pluralName": "devices",
     "displayName": "Device",
-    "description": "A reviewed device with structured review fields."
+    "description": "A reviewed device with structured review fields. Upload the primary product photo in Hero image — it appears next to the device name on the review page and on Category Top 5 rankings when this device is listed."
   },
   "options": {
     "draftAndPublish": true

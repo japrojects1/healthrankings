@@ -65,6 +65,15 @@ function normalizeMedia(m: any): StrapiMedia | null {
 
 function normalizeDevice(row: any): Device {
   const attrs = row.attributes ?? row;
+  let galleryList: any[] | null = null;
+  const g = attrs.gallery;
+  if (Array.isArray(g)) galleryList = g;
+  else if (Array.isArray(g?.data)) galleryList = g.data;
+
+  const galleryNormalized: StrapiMedia[] | null = galleryList
+    ? (galleryList.map((x: any) => normalizeMedia(x)).filter((m): m is StrapiMedia => m != null))
+    : null;
+
   return {
     id: row.id ?? attrs.id,
     slug: attrs.slug,
@@ -78,9 +87,7 @@ function normalizeDevice(row: any): Device {
     verdictShort: attrs.verdictShort ?? null,
     reviewSections: Array.isArray(attrs.reviewSections) ? attrs.reviewSections : null,
     heroImage: normalizeMedia(attrs.heroImage),
-    gallery: Array.isArray(attrs.gallery?.data ?? attrs.gallery)
-      ? (attrs.gallery.data ?? attrs.gallery).map((x: any) => normalizeMedia(x)).filter(Boolean)
-      : null,
+    gallery: galleryNormalized?.length ? galleryNormalized : null,
   };
 }
 
@@ -123,14 +130,17 @@ function normalizeTop5Entry(raw: any): Top5Entry {
 
 function normalizeCategoryTopFiveRow(row: any): CategoryTopFive {
   const attrs = row.attributes ?? row;
-  const rawEntries = attrs.entries;
+  let rawEntries = attrs.entries;
+  if (rawEntries?.data != null && Array.isArray(rawEntries.data)) {
+    rawEntries = rawEntries.data;
+  }
   const list = Array.isArray(rawEntries) ? rawEntries.map(normalizeTop5Entry) : [];
   list.sort((a, b) => a.rank - b.rank);
   return {
     documentId: row.documentId ?? attrs.documentId,
-    slug: String(attrs.slug ?? ''),
-    category: String(attrs.category ?? ''),
-    title: String(attrs.title ?? ''),
+    slug: String(attrs.slug ?? ""),
+    category: String(attrs.category ?? ""),
+    title: String(attrs.title ?? ""),
     subtitle: attrs.subtitle ?? null,
     entries: list,
   };
