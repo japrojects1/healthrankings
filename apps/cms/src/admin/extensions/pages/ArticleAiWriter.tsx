@@ -89,7 +89,7 @@ export default function ArticleAiWriter() {
               Article AI writer
             </Typography>
             <Typography variant="omega" textColor="neutral600">
-              Describe what the piece should cover; the model drafts title, SEO fields, and a full Markdown body.
+              Describe what the piece should cover; the model drafts title, SEO fields, and a full HTML body (same rendering as imported articles).
               Preview first, then turn off preview to save a Strapi draft (or publish in one step).
             </Typography>
           </Flex>
