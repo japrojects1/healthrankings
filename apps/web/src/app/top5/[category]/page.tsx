@@ -8,7 +8,7 @@ import { ArticleFooter } from "@/components/article/ArticleFooter";
 import {
   getCategoryCatalog,
   humanizeCategoryEnum,
-  isRegisteredTop5Category,
+  isSafeCategorySlugForRoute,
 } from "@/lib/device-category-links";
 import { fetchCategoryTopFiveByCategory } from "@/lib/strapi";
 
@@ -24,7 +24,7 @@ function ratingToScore10(rating: number | null | undefined): number | null {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   noStore();
   const { category } = await params;
-  if (!isRegisteredTop5Category(category)) {
+  if (!isSafeCategorySlugForRoute(category)) {
     return { title: "Top 5 | HealthRankings" };
   }
   const doc = await fetchCategoryTopFiveByCategory(category);
@@ -42,7 +42,7 @@ export default async function CategoryTopFivePage({ params }: Props) {
   noStore();
   const { category } = await params;
 
-  if (!isRegisteredTop5Category(category)) {
+  if (!isSafeCategorySlugForRoute(category)) {
     notFound();
   }
 

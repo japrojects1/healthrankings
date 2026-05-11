@@ -1,9 +1,9 @@
 import type { Core } from '@strapi/strapi';
 import {
   CATEGORY_TOP5_TITLE,
-  DEVICE_CATEGORY_ENUM,
   MAX_DEVICES_PER_REQUEST,
-  type DeviceCategoryEnum,
+  MIN_CATEGORY_HINT_LENGTH,
+  isValidDeviceCategorySlug,
 } from './constants';
 import { slugifyName } from './slugify';
 import { anthropicMessagesJson } from './anthropic-client';
@@ -17,6 +17,7 @@ import {
   toStringArray,
 } from './normalize';
 import { refreshPublishedCategoryTopFive } from './top5';
+import { discoverProductNames } from './discover';
 
 type DeviceInput = { name?: string; slug?: string };
 
@@ -26,11 +27,11 @@ export type CatalogAiGenerateBody = {
   dryRun?: boolean;
   refreshTop5?: boolean;
   replaceExistingDevices?: boolean;
+  /** When true, AI proposes product names (up to 25); manual device list is ignored. Requires categoryHint. */
+  discoverModels?: boolean;
+  /** Longer description of the category / scope — required when discoverModels is true. */
+  categoryHint?: string;
 };
-
-function isDeviceCategory(s: string): s is DeviceCategoryEnum {
-  return (DEVICE_CATEGORY_ENUM as readonly string[]).includes(s);
-}
 
 type RowResult =
   | { name: string; slug: string; status: 'created'; documentId: string }
@@ -45,62 +46,27 @@ type AiReviewPayload = {
   reviewSections?: unknown;
 };
 
-export async function runCatalogAiGenerate(
-  strapi: Core.Strapi,
-  rawBody: CatalogAiGenerateBody | unknown
-): Promise<Record<string, unknown>> {
-  const body = (rawBody && typeof rawBody === 'object' ? rawBody : {}) as CatalogAiGenerateBody;
-  const categoryRaw = String(body.category || '').trim();
-  if (!isDeviceCategory(categoryRaw)) {
-    return {
-      ok: false,
-      error: `Invalid category. Use one of: ${DEVICE_CATEGORY_ENUM.join(', ')}`,
-    };
-  }
-  const category = categoryRaw;
-
+function plannedDevicesFromBody(body: CatalogAiGenerateBody): Array<{ name: string; slug: string }> {
   const devicesRaw = Array.isArray(body.devices) ? body.devices : [];
-  const planned = devicesRaw
+  return devicesRaw
     .map((d) => {
       const name = String(d?.name ?? '').trim();
       const slug = String(d?.slug ?? '').trim();
       return { name, slug };
     })
     .filter((d) => d.name.length > 0);
+}
 
-  if (planned.length === 0) {
-    return { ok: false, error: 'Provide at least one device with a non-empty name.' };
-  }
-
-  const sliced = planned.slice(0, MAX_DEVICES_PER_REQUEST);
-  const truncated = planned.length > MAX_DEVICES_PER_REQUEST;
-
-  const dryRun = Boolean(body.dryRun);
-  const refreshTop5 = Boolean(body.refreshTop5);
-  const replaceExistingDevices = Boolean(body.replaceExistingDevices);
-
-  if (dryRun) {
-    return {
-      ok: true,
-      dryRun: true,
-      category,
-      truncated,
-      maxPerRequest: MAX_DEVICES_PER_REQUEST,
-      wouldProcess: sliced.map((d) => ({
-        name: d.name,
-        slug: d.slug || slugifyName(d.name),
-      })),
-      refreshTop5,
-      replaceExistingDevices,
-    };
-  }
-
-  const llm = resolveCatalogAiLlm();
-  if ('error' in llm) {
-    return { ok: false, error: llm.error };
-  }
-
+async function createReviewRows(
+  strapi: Core.Strapi,
+  llm: Exclude<ReturnType<typeof resolveCatalogAiLlm>, { error: string }>,
+  category: string,
+  categoryHint: string | undefined,
+  sliced: Array<{ name: string; slug: string }>,
+  replaceExistingDevices: boolean
+): Promise<RowResult[]> {
   const results: RowResult[] = [];
+  const hint = String(categoryHint || '').trim() || undefined;
 
   for (const item of sliced) {
     const slug = item.slug || slugifyName(item.name);
@@ -146,7 +112,7 @@ export async function runCatalogAiGenerate(
     }
 
     const sys = buildDeviceReviewSystemPrompt();
-    const user = buildDeviceReviewUserPrompt(category, item.name);
+    const user = buildDeviceReviewUserPrompt(category, item.name, hint);
     const aiRes =
       llm.provider === 'anthropic'
         ? await anthropicMessagesJson<AiReviewPayload>({
@@ -199,6 +165,129 @@ export async function runCatalogAiGenerate(
     }
   }
 
+  return results;
+}
+
+export async function runCatalogAiGenerate(
+  strapi: Core.Strapi,
+  rawBody: CatalogAiGenerateBody | unknown
+): Promise<Record<string, unknown>> {
+  const body = (rawBody && typeof rawBody === 'object' ? rawBody : {}) as CatalogAiGenerateBody;
+  const categoryRaw = String(body.category || '').trim();
+  if (!isValidDeviceCategorySlug(categoryRaw)) {
+    return {
+      ok: false,
+      error: `Invalid category slug. Use lowercase kebab-case (letters/digits/hyphens), 2–96 chars, e.g. continuous-glucose-monitors.`,
+    };
+  }
+  const category = categoryRaw;
+
+  const discoverModels = Boolean(body.discoverModels);
+  const categoryHintRaw = String(body.categoryHint || '').trim();
+
+  if (discoverModels && categoryHintRaw.length < MIN_CATEGORY_HINT_LENGTH) {
+    return {
+      ok: false,
+      error: `discoverModels requires categoryHint (at least ${MIN_CATEGORY_HINT_LENGTH} characters) describing the category and product scope.`,
+    };
+  }
+
+  let planned = plannedDevicesFromBody(body);
+
+  if (!discoverModels && planned.length === 0) {
+    return {
+      ok: false,
+      error: 'Provide at least one device name, or enable discoverModels with a categoryHint.',
+    };
+  }
+
+  const dryRun = Boolean(body.dryRun);
+  const refreshTop5 = Boolean(body.refreshTop5);
+  const replaceExistingDevices = Boolean(body.replaceExistingDevices);
+
+  /** Discovery preview / dry path */
+  if (dryRun && discoverModels) {
+    const llm = resolveCatalogAiLlm();
+    if ('error' in llm) {
+      return { ok: false, error: llm.error };
+    }
+    const discovered = await discoverProductNames({
+      llm,
+      categorySlug: category,
+      categoryHint: categoryHintRaw,
+      maxCount: MAX_DEVICES_PER_REQUEST,
+    });
+    if (discovered.ok === false) {
+      return { ok: false, error: discovered.error };
+    }
+    const sliced = discovered.names.slice(0, MAX_DEVICES_PER_REQUEST);
+    return {
+      ok: true,
+      dryRun: true,
+      discoverModels: true,
+      category,
+      categoryHint: categoryHintRaw,
+      maxPerRequest: MAX_DEVICES_PER_REQUEST,
+      discoveredCount: sliced.length,
+      wouldProcess: sliced.map((name) => ({
+        name,
+        slug: slugifyName(name),
+      })),
+      refreshTop5,
+      replaceExistingDevices,
+    };
+  }
+
+  /** Manual list dry path */
+  if (dryRun && !discoverModels) {
+    const sliced = planned.slice(0, MAX_DEVICES_PER_REQUEST);
+    const truncated = planned.length > MAX_DEVICES_PER_REQUEST;
+    return {
+      ok: true,
+      dryRun: true,
+      discoverModels: false,
+      category,
+      truncated,
+      maxPerRequest: MAX_DEVICES_PER_REQUEST,
+      wouldProcess: sliced.map((d) => ({
+        name: d.name,
+        slug: d.slug || slugifyName(d.name),
+      })),
+      refreshTop5,
+      replaceExistingDevices,
+    };
+  }
+
+  const llm = resolveCatalogAiLlm();
+  if ('error' in llm) {
+    return { ok: false, error: llm.error };
+  }
+
+  if (discoverModels) {
+    const discovered = await discoverProductNames({
+      llm,
+      categorySlug: category,
+      categoryHint: categoryHintRaw,
+      maxCount: MAX_DEVICES_PER_REQUEST,
+    });
+    if (discovered.ok === false) {
+      return { ok: false, error: discovered.error };
+    }
+    planned = discovered.names.map((name) => ({ name, slug: '' }));
+  }
+
+  const sliced = planned.slice(0, MAX_DEVICES_PER_REQUEST);
+  const truncated = planned.length > MAX_DEVICES_PER_REQUEST;
+
+  const results = await createReviewRows(
+    strapi,
+    llm,
+    category,
+    categoryHintRaw || undefined,
+    sliced,
+    replaceExistingDevices
+  );
+
   let top5: Record<string, unknown> | undefined;
   if (refreshTop5) {
     top5 = await refreshPublishedCategoryTopFive(strapi, category);
@@ -207,12 +296,14 @@ export async function runCatalogAiGenerate(
   return {
     ok: true,
     dryRun: false,
+    discoverModels,
     category,
     llmProvider: llm.provider,
     model: llm.model,
     truncated,
     maxPerRequest: MAX_DEVICES_PER_REQUEST,
-    titleHint: CATEGORY_TOP5_TITLE[category],
+    titleHint: CATEGORY_TOP5_TITLE[category] ?? `Top 5 — ${category}`,
+    discoveredCount: discoverModels ? sliced.length : undefined,
     results,
     top5,
   };

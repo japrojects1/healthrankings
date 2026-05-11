@@ -18,23 +18,9 @@
       "unique": true
     },
     "category": {
-      "type": "enumeration",
-      "enum": [
-        "blood-pressure-monitors",
-        "body-composition-scales",
-        "pulse-oximeters",
-        "breathing-trainers",
-        "tens-units",
-        "thermometers",
-        "water-flossers",
-        "home-test-kits",
-        "gps-alert-systems",
-        "massage-devices",
-        "supplements",
-        "fertility-reproductive",
-        "other"
-      ],
-      "required": true
+      "type": "string",
+      "required": true,
+      "maxLength": 96
     },
     "title": {
       "type": "string",

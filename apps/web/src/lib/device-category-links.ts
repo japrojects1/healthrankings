@@ -110,13 +110,18 @@ const top5: Record<string, Top5Callout> = {
   },
 };
 
-/** Representative legacy Top 5 URL → Strapi device category enum (same keys as `top5`). */
+/** Representative legacy Top 5 URL → Strapi device category slug (same keys as `top5`). */
 export function legacyTop5PathToCategory(pathname: string): string | null {
   const path = pathname.split("?")[0];
   for (const [category, callout] of Object.entries(top5)) {
     if (callout.href === path) return category;
   }
   return null;
+}
+
+/** Lowercase kebab-case segment safe for `/top5/[category]` (no path traversal). */
+export function isSafeCategorySlugForRoute(category: string): boolean {
+  return /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(category) && category.length >= 2 && category.length <= 96;
 }
 
 export function isRegisteredTop5Category(category: string): boolean {
