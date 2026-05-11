@@ -17,7 +17,8 @@ import {
   toStringArray,
 } from './normalize';
 import { refreshPublishedCategoryTopFive } from './top5';
-import { discoverProductNames } from './discover';
+import { discoverNewModelsAvoidingExisting } from './discover';
+import { loadDeviceCatalogContext } from './catalog-context';
 
 type DeviceInput = { name?: string; slug?: string };
 
@@ -205,17 +206,29 @@ export async function runCatalogAiGenerate(
   const refreshTop5 = Boolean(body.refreshTop5);
   const replaceExistingDevices = Boolean(body.replaceExistingDevices);
 
+  let discoverMeta:
+    | {
+        existingInCategoryCount: number;
+        categoryCatalogListTruncated: boolean;
+        discoveryPassesUsed: number;
+      }
+    | undefined;
+
   /** Discovery preview / dry path */
   if (dryRun && discoverModels) {
     const llm = resolveCatalogAiLlm();
     if ('error' in llm) {
       return { ok: false, error: llm.error };
     }
-    const discovered = await discoverProductNames({
+    const catalogCtx = await loadDeviceCatalogContext(strapi, category);
+    const discovered = await discoverNewModelsAvoidingExisting({
       llm,
       categorySlug: category,
       categoryHint: categoryHintRaw,
       maxCount: MAX_DEVICES_PER_REQUEST,
+      existingInCategory: catalogCtx.existingInCategory,
+      globalSlugSet: catalogCtx.globalSlugSet,
+      categoryListTruncated: catalogCtx.categoryListTruncated,
     });
     if (discovered.ok === false) {
       return { ok: false, error: discovered.error };
@@ -227,6 +240,10 @@ export async function runCatalogAiGenerate(
       discoverModels: true,
       category,
       categoryHint: categoryHintRaw,
+      existingInCategoryCount: catalogCtx.existingInCategory.length,
+      categoryCatalogListTruncated: catalogCtx.categoryListTruncated,
+      globalSlugCount: catalogCtx.globalSlugSet.size,
+      discoveryPassesUsed: discovered.passesUsed,
       maxPerRequest: MAX_DEVICES_PER_REQUEST,
       discoveredCount: sliced.length,
       wouldProcess: sliced.map((name) => ({
@@ -264,16 +281,25 @@ export async function runCatalogAiGenerate(
   }
 
   if (discoverModels) {
-    const discovered = await discoverProductNames({
+    const catalogCtx = await loadDeviceCatalogContext(strapi, category);
+    const discovered = await discoverNewModelsAvoidingExisting({
       llm,
       categorySlug: category,
       categoryHint: categoryHintRaw,
       maxCount: MAX_DEVICES_PER_REQUEST,
+      existingInCategory: catalogCtx.existingInCategory,
+      globalSlugSet: catalogCtx.globalSlugSet,
+      categoryListTruncated: catalogCtx.categoryListTruncated,
     });
     if (discovered.ok === false) {
       return { ok: false, error: discovered.error };
     }
     planned = discovered.names.map((name) => ({ name, slug: '' }));
+    discoverMeta = {
+      existingInCategoryCount: catalogCtx.existingInCategory.length,
+      categoryCatalogListTruncated: catalogCtx.categoryListTruncated,
+      discoveryPassesUsed: discovered.passesUsed,
+    };
   }
 
   const sliced = planned.slice(0, MAX_DEVICES_PER_REQUEST);
@@ -304,6 +330,7 @@ export async function runCatalogAiGenerate(
     maxPerRequest: MAX_DEVICES_PER_REQUEST,
     titleHint: CATEGORY_TOP5_TITLE[category] ?? `Top 5 — ${category}`,
     discoveredCount: discoverModels ? sliced.length : undefined,
+    ...(discoverMeta ?? {}),
     results,
     top5,
   };

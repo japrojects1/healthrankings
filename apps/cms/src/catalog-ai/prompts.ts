@@ -1,3 +1,5 @@
+import { MAX_EXISTING_DEVICES_IN_DISCOVER_PROMPT } from './constants';
+
 export function humanizeCategory(cat: string): string {
   const slug = String(cat || '').trim();
   return slug
@@ -52,13 +54,15 @@ export function buildDiscoverModelsSystemPrompt(): string {
   return [
     'You help HealthRankings catalog consumer health and wellness products.',
     'Your task is to propose DISTINCT real products that are commonly sold to US consumers in the category described.',
+    'You will be given products already in our catalog for that category — do NOT suggest those, close duplicates, or the same model with trivial wording changes.',
+    'Every suggestion must produce a NEW catalog slug (lowercase, hyphenated brand/model identity) vs anything already listed.',
     'Rules:',
     '- Output ONLY valid JSON (no markdown fences). Shape: { "models": [ { "name": string }, ... ] }',
     `- Prefer widely recognized models or product lines when possible; avoid vague entries like "Generic CGM".`,
     '- Each name must be a specific product or branded model line suitable as a catalog title.',
     '- Do NOT invent fake SKUs, fictitious brands, or products you are unsure exist. When in doubt, omit.',
-    '- No duplicates; vary manufacturers where appropriate.',
-    '- Return at most the requested count; fewer is fine if the category is niche.',
+    '- No duplicates in your array; vary manufacturers where appropriate.',
+    `- Return at most the requested count of NEW products (may be fewer if the category is exhausted).`,
     '- Do not include markdown, commentary, or fields other than "models" objects with "name".',
   ].join('\n');
 }
@@ -66,11 +70,54 @@ export function buildDiscoverModelsSystemPrompt(): string {
 export function buildDiscoverModelsUserPrompt(
   categorySlug: string,
   categoryHint: string,
-  maxCount: number
+  needCount: number,
+  ctx: {
+    existingInCategory: Array<{ name: string; slug: string }>;
+    alreadyQueuedNames: string[];
+    categoryListTruncated: boolean;
+  }
 ): string {
   const slug = String(categorySlug || '').trim();
   const hint = String(categoryHint || '').trim();
   const label = humanizeCategory(slug);
+
+  const cap = MAX_EXISTING_DEVICES_IN_DISCOVER_PROMPT;
+  const rows = ctx.existingInCategory;
+  const shown = rows.slice(0, cap);
+  const omitted = Math.max(0, rows.length - shown.length);
+
+  let catalogBlock: string;
+  if (rows.length === 0) {
+    catalogBlock =
+      'Our catalog currently has no devices in this category — suggest a diverse set of representative real products.';
+  } else {
+    const lines = shown
+      .filter((r) => r.name || r.slug)
+      .map((r) => {
+        const n = r.name || r.slug;
+        return r.slug ? `- ${n} (slug: ${r.slug})` : `- ${n}`;
+      });
+    catalogBlock = [
+      `Already in our catalog for category "${slug}" (${rows.length} devices${ctx.categoryListTruncated ? '+; list may continue beyond what we store for this prompt' : ''}):`,
+      ...lines,
+      omitted > 0 ? `…plus ${omitted} more not shown — avoid any of those too.` : '',
+      ctx.categoryListTruncated
+        ? 'Note: the full in-category list was truncated server-side; prefer clearly distinct new models.'
+        : '',
+    ]
+      .filter(Boolean)
+      .join('\n');
+  }
+
+  const batchBlock =
+    ctx.alreadyQueuedNames.length > 0
+      ? [
+          '',
+          'Also exclude duplicates of these names we already accepted in this same batch:',
+          ...ctx.alreadyQueuedNames.map((n) => `- ${n}`),
+        ].join('\n')
+      : '';
+
   return [
     `Category slug (stable ID): ${slug}`,
     `Human label: ${label}`,
@@ -78,6 +125,9 @@ export function buildDiscoverModelsUserPrompt(
     'Editor description — use this to decide which products belong:',
     hint,
     '',
-    `List up to ${maxCount} products for this category only.`,
+    catalogBlock,
+    batchBlock,
+    '',
+    `Now suggest up to ${needCount} NEW products that are not excluded above.`,
   ].join('\n');
 }

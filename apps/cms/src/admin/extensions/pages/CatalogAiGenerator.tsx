@@ -132,9 +132,9 @@ export default function CatalogAiGenerator() {
               Device catalog AI
             </Typography>
             <Typography variant="omega" textColor="neutral600">
-              Use a preset category slug or define a new kebab-case slug. Optionally let the AI propose up to 25
-              product names from your description, then generate a draft review for each (max 25 per run). Manual dry
-              runs skip all AI; discovery dry runs show the suggested list only.
+              Use a preset category slug or define a new kebab-case slug. With AI discovery, the server loads
+              devices already in that category (plus all catalog slugs), tells the model to avoid them, filters
+              suggestions, and may run up to a few discovery passes to approach 25 new models before drafting reviews.
             </Typography>
           </Flex>
 
@@ -198,8 +198,9 @@ export default function CatalogAiGenerator() {
               <Flex direction="column" gap={1}>
                 <Typography variant="omega">Discover models with AI (up to 25)</Typography>
                 <Typography variant="omega" textColor="neutral600">
-                  One AI pass proposes product names for this category; then each gets its own review draft.
-                  Ignores the manual device list below. Turn off dry run to create rows (many LLM calls).
+                  One AI pass proposes product names for this category; the CMS excludes ones you already have (by
+                  slug) and may retry up to a few times to fill the batch. Then each new model gets its own review
+                  draft. Ignores the manual device list below. Turn off dry run to create rows (many LLM calls).
                 </Typography>
               </Flex>
             </Flex>

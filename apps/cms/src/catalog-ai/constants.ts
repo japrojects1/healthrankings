@@ -45,3 +45,9 @@ export const CATEGORY_TOP5_TITLE: Record<string, string> = {
 };
 
 export const MAX_DEVICES_PER_REQUEST = 25;
+
+/** Discovery retries when the model suggests products we already have (slug collision). */
+export const MAX_DISCOVERY_PASSES = 4;
+
+/** Max existing rows listed verbatim in the discovery prompt (rest summarized). */
+export const MAX_EXISTING_DEVICES_IN_DISCOVER_PROMPT = 80;
