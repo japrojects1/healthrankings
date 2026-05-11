@@ -2,7 +2,7 @@ import type { Core } from '@strapi/strapi';
 import jwt from 'jsonwebtoken';
 
 /**
- * Catalog-ai routes use `config.auth: false` so the admin panel can call them with the admin JWT.
+ * Catalog-ai and article-ai routes use `config.auth: false` so the admin panel can call them with the admin JWT.
  * Authorization is enforced here: either a valid admin Bearer token or X-Catalog-Ai-Secret.
  */
 export function isCatalogSecretOk(ctx: { request?: { headers?: Record<string, unknown> } }): boolean {
@@ -31,7 +31,8 @@ export function assertCatalogAiAccess(strapi: Core.Strapi, ctx: any): boolean {
   ctx.status = 401;
   ctx.body = {
     ok: false,
-    error: 'Missing or invalid credentials. Sign in to the admin panel, or send X-Catalog-Ai-Secret.',
+    error:
+      'Missing or invalid credentials. Sign in to the admin panel, or send X-Catalog-Ai-Secret (same secret works for Device catalog AI and Article AI).',
   };
   return false;
 }
