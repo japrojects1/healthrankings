@@ -5,7 +5,7 @@
   <link href="https://healthrankings.co/healthrankings-news.html" rel="alternate" type="text/html"/>
   <link href="https://healthrankings.co/news-feed.xml" rel="self"/>
   <id>https://healthrankings.co/news-feed.xml#feed</id>
-  <updated>2026-05-11T02:53:34.776Z</updated>
+  <updated>2026-05-11T09:35:26.554Z</updated>
   <generator>HealthRankings generate-sitemap.js</generator>
   <entry>
     <title>Norovirus outbreak reported on Princess cruise ship that departed Fort Lauderdale</title>
@@ -118,6 +118,14 @@
     <published>2026-05-08T17:37:01.000Z</published>
     <updated>2026-05-08T17:37:01.000Z</updated>
     <summary type="text">A study from researchers at Loma Linda University in California suggests a specific nutrient-rich food — fairly frequently — could be linked to lower risk of Alzheimer’s disease among older adults.</summary>
+  </entry>
+  <entry>
+    <title>I’m an ICU Doctor Who Treated a Critically Ill Hantavirus Patient. Here’s What Everyone Should Know.</title>
+    <link href="https://healthrankings.co/news/i-m-an-icu-doctor-who-treated-a-critically-ill-hantavirus-patient-here-s-what-ev.html" rel="alternate" type="text/html"/>
+    <id>https://healthrankings.co/news/i-m-an-icu-doctor-who-treated-a-critically-ill-hantavirus-patient-here-s-what-ev.html</id>
+    <published>2026-05-08T16:00:00.000Z</published>
+    <updated>2026-05-08T16:00:00.000Z</updated>
+    <summary type="text">An ICU physician who treated a hantavirus patient explains how the virus spreads, why it can become deadly so quickly, and when to seek emergency medical care.</summary>
   </entry>
   <entry>
     <title>New Suspected Hantavirus Case Reported In Spain (Live Updates)</title>
@@ -398,13 +406,5 @@
     <published>2026-05-06T21:00:00.000Z</published>
     <updated>2026-05-06T21:00:00.000Z</updated>
     <summary type="text">Moderna’s mRNA flu vaccine gave more protection against illness than the standard flu shot in a phase 3 clinical trial, according to published results.</summary>
-  </entry>
-  <entry>
-    <title>Beaver that bit ‘several people’ in New Jersey tests positive for rabies</title>
-    <link href="https://healthrankings.co/news/beaver-that-bit-several-people-in-new-jersey-tests-positive-for-rabies-global-ne.html" rel="alternate" type="text/html"/>
-    <id>https://healthrankings.co/news/beaver-that-bit-several-people-in-new-jersey-tests-positive-for-rabies-global-ne.html</id>
-    <published>2026-05-06T19:49:08.000Z</published>
-    <updated>2026-05-06T19:49:08.000Z</updated>
-    <summary type="text">&apos;On Sunday, May 3rd, it was reported that a beaver at Lake Henry had contact with several people and has since tested positive for rabies,&apos; the Mahwah Health Department said.</summary>
   </entry>
 </feed>
