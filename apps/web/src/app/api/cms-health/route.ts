@@ -29,7 +29,7 @@ export async function GET(request: Request) {
     const path =
       kind === "device"
         ? `/api/devices?filters[slug][$eq]=${encodeURIComponent(slug)}&populate[heroImage]=true`
-        : `/api/articles?filters[slug][$eq]=${encodeURIComponent(slug)}&populate[heroImage]=true`;
+        : `/api/articles?filters[slug][$eq]=${encodeURIComponent(slug)}&populate=*&status=published`;
     const url = new URL(path, base.endsWith("/") ? base : `${base}/`).toString();
     try {
       const res = await fetch(url, {

@@ -21,15 +21,29 @@ function strapiBase(path: string) {
 
 function normalizeMedia(m: unknown): Article['heroImage'] {
   if (!m || typeof m !== 'object') return null;
-  const row = m as Record<string, unknown>;
-  const item = (row.data ?? row) as Record<string, unknown>;
-  const attrs = (item.attributes ?? item) as Record<string, unknown>;
-  const url = attrs?.url;
+  let node: Record<string, unknown> = m as Record<string, unknown>;
+  const wrapped = node.data;
+  if (wrapped !== undefined) {
+    if (wrapped == null) return null;
+    node = (Array.isArray(wrapped) ? wrapped[0] : wrapped) as Record<string, unknown>;
+    if (!node || typeof node !== 'object') return null;
+  }
+  const attrs = (node.attributes ?? node) as Record<string, unknown>;
+  let url: string | undefined = typeof attrs.url === 'string' ? attrs.url : undefined;
+  if (!url && attrs.formats && typeof attrs.formats === 'object') {
+    for (const k of ['large', 'medium', 'small', 'thumbnail'] as const) {
+      const u = (attrs.formats as Record<string, Record<string, unknown>>)[k]?.url;
+      if (typeof u === 'string' && u) {
+        url = u;
+        break;
+      }
+    }
+  }
   if (!url || typeof url !== 'string') return null;
   const abs = url.startsWith('http') ? url : strapiBase(url);
   return {
     url: abs,
-    alternativeText: (attrs?.alternativeText as string) ?? null,
+    alternativeText: (attrs.alternativeText as string) ?? null,
   };
 }
 
@@ -53,8 +67,10 @@ function normalizeArticle(row: Record<string, unknown>): Article {
 }
 
 export async function fetchArticleBySlug(slug: string): Promise<Article | null> {
+  // Strapi 5: `populate=*` matches device fetches (reliable media + relations). Explicit `status=published`
+  // matches Draft & Publish REST semantics (same as default, documents intent for debugging).
   const url = strapiBase(
-    `/api/articles?filters[slug][$eq]=${encodeURIComponent(slug)}&populate[heroImage]=true`
+    `/api/articles?filters[slug][$eq]=${encodeURIComponent(slug)}&populate=*&status=published`
   );
   const res = await fetch(url, {
     cache: 'no-store',
