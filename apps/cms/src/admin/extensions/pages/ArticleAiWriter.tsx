@@ -17,6 +17,7 @@ export default function ArticleAiWriter() {
   const [tone, setTone] = useState('');
   const [previewOnly, setPreviewOnly] = useState(true);
   const [publish, setPublish] = useState(false);
+  const [generateHeroImage, setGenerateHeroImage] = useState(false);
   const [output, setOutput] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -34,6 +35,7 @@ export default function ArticleAiWriter() {
       brief: brief.trim(),
       previewOnly,
       publish: previewOnly ? false : publish,
+      generateHeroImage: previewOnly ? false : generateHeroImage,
     };
     if (tone.trim()) {
       body.tone = tone.trim();
@@ -46,6 +48,7 @@ export default function ArticleAiWriter() {
       const res = await post('/api/article-ai/generate', body);
       setOutput(JSON.stringify(res.data, null, 2));
       const saved = res.data?.previewOnly === false && res.data?.ok === true;
+      const withHero = saved && typeof res.data?.heroImageFileId === 'number';
       toggleNotification({
         type: res.data?.ok === false ? 'danger' : 'success',
         title:
@@ -55,8 +58,12 @@ export default function ArticleAiWriter() {
               ? 'Preview ready'
               : saved
                 ? publish
-                  ? 'Article published'
-                  : 'Draft article created'
+                  ? withHero
+                    ? 'Article published with hero image'
+                    : 'Article published'
+                  : withHero
+                    ? 'Draft created with hero image'
+                    : 'Draft article created'
                 : 'Done',
       });
     } catch (e: any) {
@@ -125,7 +132,10 @@ export default function ArticleAiWriter() {
                   onCheckedChange={(v) => {
                     const on = v === true;
                     setPreviewOnly(on);
-                    if (on) setPublish(false);
+                    if (on) {
+                      setPublish(false);
+                      setGenerateHeroImage(false);
+                    }
                   }}
                 />
                 <Typography variant="omega">
@@ -143,6 +153,19 @@ export default function ArticleAiWriter() {
                 />
                 <Typography variant="omega" textColor={previewOnly ? 'neutral500' : undefined}>
                   Publish immediately (otherwise saves as draft)
+                </Typography>
+              </Flex>
+            </Box>
+            <Box tag="label" htmlFor="hero-image" style={{ cursor: 'pointer' }}>
+              <Flex gap={2} alignItems="center">
+                <Checkbox
+                  id="hero-image"
+                  checked={generateHeroImage}
+                  disabled={previewOnly}
+                  onCheckedChange={(v) => setGenerateHeroImage(v === true)}
+                />
+                <Typography variant="omega" textColor={previewOnly ? 'neutral500' : undefined}>
+                  Generate hero image (OpenAI DALL·E; requires OPENAI_API_KEY on the server)
                 </Typography>
               </Flex>
             </Box>

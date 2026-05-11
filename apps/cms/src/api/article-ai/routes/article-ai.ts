@@ -1,8 +1,8 @@
 /**
  * POST /api/article-ai/generate — draft (or publish) Article from an editor brief.
  * Auth matches catalog-ai: admin Bearer JWT from the panel, or `X-Catalog-Ai-Secret` when `CATALOG_AI_SECRET` is set.
- * Body JSON: { brief: string, previewOnly?: boolean, publish?: boolean, tone?: string }
- * LLM keys: same as catalog-ai (ANTHROPIC_API_KEY / OPENAI_API_KEY, optional CATALOG_AI_LLM).
+ * Body JSON: { brief: string, previewOnly?: boolean, publish?: boolean, tone?: string, generateHeroImage?: boolean }
+ * LLM keys: same as catalog-ai (ANTHROPIC_API_KEY / OPENAI_API_KEY, optional CATALOG_AI_LLM). Hero images use OPENAI_API_KEY + OpenAI Images (optional OPENAI_IMAGE_MODEL, default dall-e-3).
  */
 export default {
   type: 'content-api',
