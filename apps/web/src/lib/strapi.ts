@@ -108,6 +108,10 @@ function blocksToPlainText(node: unknown): string {
     if (typeof n === "object") {
       const o = n as Record<string, unknown>;
       if (typeof o.text === "string") parts.push(o.text);
+      // Strapi Blocks / Prose-style: paragraph → content[]
+      if (Array.isArray(o.content)) {
+        for (const c of o.content) walk(c);
+      }
       if (o.children != null) walk(o.children);
     }
   };
@@ -118,13 +122,29 @@ function blocksToPlainText(node: unknown): string {
 function reviewBodyToDisplayString(body: unknown): string {
   if (typeof body === "string") return body;
   if (Array.isArray(body)) return blocksToPlainText(body);
+  if (body && typeof body === "object") {
+    const o = body as Record<string, unknown>;
+    // Strapi 5 Blocks root: { type: "doc", content: [...] }
+    if (o.type === "doc" && Array.isArray(o.content)) return blocksToPlainText(o.content);
+    return blocksToPlainText(body);
+  }
   return "";
 }
 
+/** Strapi may return components as an array or `{ data: [...] }`. */
+function unwrapComponentArray(raw: unknown): unknown[] {
+  if (raw == null) return [];
+  if (Array.isArray(raw)) return raw;
+  if (typeof raw === "object" && Array.isArray((raw as { data?: unknown }).data)) {
+    return (raw as { data: unknown[] }).data;
+  }
+  return [];
+}
+
 function normalizeReviewSectionsAttr(raw: unknown): ReviewSection[] | null {
-  if (!Array.isArray(raw)) return null;
+  const list = unwrapComponentArray(raw);
   const out: ReviewSection[] = [];
-  for (const row of raw) {
+  for (const row of list) {
     const a = (row as any)?.attributes ?? row;
     const heading = String(a?.heading ?? "").trim();
     const body = reviewBodyToDisplayString(a?.body);
@@ -134,9 +154,9 @@ function normalizeReviewSectionsAttr(raw: unknown): ReviewSection[] | null {
 }
 
 function normalizePerformancePillarsAttr(raw: unknown): PerformancePillar[] | null {
-  if (!Array.isArray(raw)) return null;
+  const list = unwrapComponentArray(raw);
   const out: PerformancePillar[] = [];
-  for (const row of raw) {
+  for (const row of list) {
     const a = (row as any)?.attributes ?? row;
     const pillarLabel = String(a?.pillarLabel ?? "").trim();
     let score = Number(a?.scoreOutOf100);
@@ -191,6 +211,16 @@ function normalizeDevice(row: any): Device {
   };
 }
 
+/** Strapi 5: list media + repeatable components explicitly (populate=* alone can omit components). */
+const DEVICE_DEEP_POPULATE =
+  "populate[heroImage]=true&populate[gallery]=true&populate[reviewSections]=true&populate[performancePillars]=true";
+
+function appendDevicePopulate(urlWithQuery: string): string {
+  return urlWithQuery.includes("?")
+    ? `${urlWithQuery}&${DEVICE_DEEP_POPULATE}`
+    : `${urlWithQuery}?${DEVICE_DEEP_POPULATE}`;
+}
+
 /** Published devices in a category; sorted by rating (high first), then name. */
 export async function fetchPublishedDevicesByCategory(
   category: string,
@@ -198,12 +228,11 @@ export async function fetchPublishedDevicesByCategory(
 ): Promise<Device[]> {
   const u = new URL(strapiUrl("/api/devices"));
   u.searchParams.set("filters[category][$eq]", category);
-  u.searchParams.set("populate", "*");
   u.searchParams.set("status", "published");
   u.searchParams.set("pagination[pageSize]", String(Math.min(100, Math.max(1, limit))));
   u.searchParams.set("sort[0]", "rating:desc");
   u.searchParams.set("sort[1]", "name:asc");
-  const res = await fetch(u.toString(), {
+  const res = await fetch(appendDevicePopulate(u.toString()), {
     cache: "no-store",
     headers: { Accept: "application/json" },
   });
@@ -214,10 +243,10 @@ export async function fetchPublishedDevicesByCategory(
 }
 
 export async function fetchDeviceBySlug(slug: string): Promise<Device | null> {
-  // populate=* ensures media + components resolve reliably on Strapi 5 (same-origin CMS URLs).
-  const url = strapiUrl(
-    `/api/devices?filters[slug][$eq]=${encodeURIComponent(slug)}&populate=*&status=published`
+  const base = strapiUrl(
+    `/api/devices?filters[slug][$eq]=${encodeURIComponent(slug)}&status=published&pagination[pageSize]=1`
   );
+  const url = appendDevicePopulate(base);
 
   const res = await fetch(url, {
     cache: 'no-store',
@@ -237,10 +266,9 @@ export async function searchPublishedDevices(query: string, limit = 20): Promise
   const u = new URL(strapiUrl("/api/devices"));
   u.searchParams.set("filters[$or][0][name][$containsi]", term);
   u.searchParams.set("filters[$or][1][slug][$containsi]", term);
-  u.searchParams.set("populate", "*");
   u.searchParams.set("status", "published");
   u.searchParams.set("pagination[pageSize]", String(Math.min(50, Math.max(1, limit))));
-  const res = await fetch(u.toString(), {
+  const res = await fetch(appendDevicePopulate(u.toString()), {
     cache: "no-store",
     headers: { Accept: "application/json" },
   });
@@ -251,7 +279,7 @@ export async function searchPublishedDevices(query: string, limit = 20): Promise
 }
 
 const CATEGORY_TOP5_POPULATE =
-  "populate[entries][populate][device][populate][heroImage]=true&populate[entries][populate][device][populate][gallery]=true";
+  "populate[entries][populate][device][populate][heroImage]=true&populate[entries][populate][device][populate][gallery]=true&populate[entries][populate][device][populate][reviewSections]=true&populate[entries][populate][device][populate][performancePillars]=true";
 
 function unwrapStrapiRelation(m: any): any {
   if (!m) return null;
