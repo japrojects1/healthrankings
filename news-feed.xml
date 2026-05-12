@@ -5,8 +5,16 @@
   <link href="https://healthrankings.co/healthrankings-news.html" rel="alternate" type="text/html"/>
   <link href="https://healthrankings.co/news-feed.xml" rel="self"/>
   <id>https://healthrankings.co/news-feed.xml#feed</id>
-  <updated>2026-05-12T08:36:18.107Z</updated>
+  <updated>2026-05-12T14:19:16.776Z</updated>
   <generator>HealthRankings generate-sitemap.js</generator>
+  <entry>
+    <title>Three enjoyable ways to slow your brain&apos;s ageing</title>
+    <link href="https://healthrankings.co/news/three-enjoyable-ways-to-slow-your-brain-s-ageing-bbc.html" rel="alternate" type="text/html"/>
+    <id>https://healthrankings.co/news/three-enjoyable-ways-to-slow-your-brain-s-ageing-bbc.html</id>
+    <published>2026-05-11T09:00:59.000Z</published>
+    <updated>2026-05-11T09:00:59.000Z</updated>
+    <summary type="text">Our brains thrive on a challenge, but it doesn&apos;t all have to be hard work to see the health benefits. Here are three simple and fun ways to protect your brain as you age.</summary>
+  </entry>
   <entry>
     <title>&quot;1 in 10 people will sustain long-term damage to their lungs, &amp; for 1%, the infection can spread to their brain &amp; spinal cord.&quot; What you need to know fungus storms</title>
     <link href="https://healthrankings.co/news/1-in-10-people-will-sustain-long-term-damage-to-their-lungs-for-1-the-infection-.html" rel="alternate" type="text/html"/>
@@ -30,6 +38,14 @@
     <published>2026-05-10T18:29:00.000Z</published>
     <updated>2026-05-10T18:29:00.000Z</updated>
     <summary type="text">A new study may have found the culprit behind microplastic accumulation in our brains, and it’s much more common than we may realize.</summary>
+  </entry>
+  <entry>
+    <title>Treatment-resistant depression may yield to combinations of medications already in clinical use</title>
+    <link href="https://healthrankings.co/news/treatment-resistant-depression-may-yield-to-combinations-of-medications-already-.html" rel="alternate" type="text/html"/>
+    <id>https://healthrankings.co/news/treatment-resistant-depression-may-yield-to-combinations-of-medications-already-.html</id>
+    <published>2026-05-10T18:00:04.000Z</published>
+    <updated>2026-05-10T18:00:04.000Z</updated>
+    <summary type="text">Many people with major depressive disorder get no relief from current treatments. Newer combinations of existing medications might help, researchers report in JAMA Psychiatry.</summary>
   </entry>
   <entry>
     <title>6 tick-borne diseases that should be on your radar</title>
@@ -390,21 +406,5 @@
     <published>2026-05-08T13:00:03.000Z</published>
     <updated>2026-05-08T13:00:03.000Z</updated>
     <summary type="text">A new Columbia University School of Nursing AI-assisted audit reveals nearly 3,000 peer-reviewed medical papers have fake citations that do not exist in scientific databases. The results highlight an alarming trend in academic publishing as the use of AI grow…</summary>
-  </entry>
-  <entry>
-    <title>Babies are bleeding to death as parents reject a vitamin shot given at birth</title>
-    <link href="https://healthrankings.co/news/babies-are-bleeding-to-death-as-parents-reject-a-vitamin-shot-given-at-birth-cnn.html" rel="alternate" type="text/html"/>
-    <id>https://healthrankings.co/news/babies-are-bleeding-to-death-as-parents-reject-a-vitamin-shot-given-at-birth-cnn.html</id>
-    <published>2026-05-08T12:00:50.000Z</published>
-    <updated>2026-05-08T12:00:50.000Z</updated>
-    <summary type="text">Vitamin K shots, which help the blood to clot, are one of three key interventions for newborns, along with an antibiotic eye ointment and the hepatitis B vaccine.</summary>
-  </entry>
-  <entry>
-    <title>Surge in fake citations uncovered by audit of 2.5 million biomedical science papers</title>
-    <link href="https://healthrankings.co/news/surge-in-fake-citations-uncovered-by-audit-of-2-5-million-biomedical-science-pap.html" rel="alternate" type="text/html"/>
-    <id>https://healthrankings.co/news/surge-in-fake-citations-uncovered-by-audit-of-2-5-million-biomedical-science-pap.html</id>
-    <published>2026-05-08T11:31:58.000Z</published>
-    <updated>2026-05-08T11:31:58.000Z</updated>
-    <summary type="text">An analysis of 97 million citations has found that rates of fabricated citations have climbed steeply since 2023.</summary>
   </entry>
 </feed>
