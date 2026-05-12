@@ -113,7 +113,7 @@ function normalizeDevice(row: any): Device {
 export async function fetchDeviceBySlug(slug: string): Promise<Device | null> {
   // populate=* ensures media + components resolve reliably on Strapi 5 (same-origin CMS URLs).
   const url = strapiUrl(
-    `/api/devices?filters[slug][$eq]=${encodeURIComponent(slug)}&populate=*`
+    `/api/devices?filters[slug][$eq]=${encodeURIComponent(slug)}&populate=*&status=published`
   );
 
   const res = await fetch(url, {
@@ -167,7 +167,9 @@ function normalizeCategoryTopFiveRow(row: any): CategoryTopFive {
 }
 
 export async function fetchCategoryTopFives(): Promise<CategoryTopFive[]> {
-  const url = strapiUrl(`/api/category-top-fives?${CATEGORY_TOP5_POPULATE}&sort=category:asc`);
+  const url = strapiUrl(
+    `/api/category-top-fives?${CATEGORY_TOP5_POPULATE}&sort=category:asc&status=published`
+  );
   const res = await fetch(url, {
     cache: 'no-store',
     headers: { Accept: 'application/json' },
@@ -182,7 +184,7 @@ export async function fetchCategoryTopFiveByCategory(
   category: string
 ): Promise<CategoryTopFive | null> {
   const url = strapiUrl(
-    `/api/category-top-fives?filters[category][$eq]=${encodeURIComponent(category)}&${CATEGORY_TOP5_POPULATE}&pagination[pageSize]=1`
+    `/api/category-top-fives?filters[category][$eq]=${encodeURIComponent(category)}&${CATEGORY_TOP5_POPULATE}&pagination[pageSize]=1&status=published`
   );
   const res = await fetch(url, {
     cache: 'no-store',
@@ -197,7 +199,7 @@ export async function fetchCategoryTopFiveByCategory(
 
 export async function fetchCategoryTopFiveBySlug(slug: string): Promise<CategoryTopFive | null> {
   const url = strapiUrl(
-    `/api/category-top-fives?filters[slug][$eq]=${encodeURIComponent(slug)}&${CATEGORY_TOP5_POPULATE}&pagination[pageSize]=1`
+    `/api/category-top-fives?filters[slug][$eq]=${encodeURIComponent(slug)}&${CATEGORY_TOP5_POPULATE}&pagination[pageSize]=1&status=published`
   );
   const res = await fetch(url, {
     cache: 'no-store',

@@ -28,7 +28,7 @@ export async function GET(request: Request) {
   if (slug && base) {
     const path =
       kind === "device"
-        ? `/api/devices?filters[slug][$eq]=${encodeURIComponent(slug)}&populate[heroImage]=true`
+        ? `/api/devices?filters[slug][$eq]=${encodeURIComponent(slug)}&populate[heroImage]=true&status=published`
         : `/api/articles?filters[slug][$eq]=${encodeURIComponent(slug)}&populate=*&status=published`;
     const url = new URL(path, base.endsWith("/") ? base : `${base}/`).toString();
     try {

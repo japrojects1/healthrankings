@@ -1,9 +1,11 @@
 /**
- * POST /api/catalog-ai/generate — draft Device rows + optional Top 5 refresh (published devices only).
+ * POST /api/catalog-ai/generate — Device rows + optional Top 5 refresh (published devices only).
  * Headers (either): `Authorization: Bearer <admin JWT>` while logged into the admin panel,
  *   or `X-Catalog-Ai-Secret` matching env `CATALOG_AI_SECRET` (for scripts).
  * Body JSON: { category (kebab-case slug), devices?: [{ name, slug? }], dryRun?, refreshTop5?,
- *   replaceExistingDevices?, discoverModels?, categoryHint? }
+ *   replaceExistingDevices?, discoverModels?, categoryHint?, publishDevices? }
+ * publishDevices: when true (and not dryRun), creates devices as Published (visible on the public site); when false
+ *   or omitted, creates Draft until you publish in Strapi.
  * When discoverModels is true: AI lists up to 25 products from categoryHint; devices list is ignored.
  * LLM env: ANTHROPIC_API_KEY + optional ANTHROPIC_MODEL (Claude, preferred when key is set),
  *   or OPENAI_API_KEY + optional OPENAI_MODEL. Optional CATALOG_AI_LLM=anthropic|openai to force provider.

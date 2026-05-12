@@ -30,6 +30,8 @@ export default function CatalogAiGenerator() {
   const [dryRun, setDryRun] = useState(true);
   const [refreshTop5, setRefreshTop5] = useState(false);
   const [replaceExisting, setReplaceExisting] = useState(false);
+  /** When true, catalog-ai creates Strapi devices as published (visible on the public site). When false, drafts until you publish in the CMS. */
+  const [publishDevices, setPublishDevices] = useState(true);
   const [output, setOutput] = useState('');
   const [loading, setLoading] = useState(false);
   /** After “Discover devices”, user picks which names to create (no second discovery call). */
@@ -74,6 +76,7 @@ export default function CatalogAiGenerator() {
       dryRun: true,
       refreshTop5: false,
       replaceExistingDevices: false,
+      publishDevices,
       categoryHint: categoryHint.trim(),
     };
 
@@ -165,6 +168,7 @@ export default function CatalogAiGenerator() {
       dryRun: false,
       refreshTop5,
       replaceExistingDevices: replaceExisting,
+      publishDevices,
     };
     if (categoryHint.trim()) {
       body.categoryHint = categoryHint.trim();
@@ -245,6 +249,7 @@ export default function CatalogAiGenerator() {
       discoverModels: false,
       refreshTop5,
       replaceExistingDevices: replaceExisting,
+      publishDevices,
     };
     if (categoryHint.trim()) {
       body.categoryHint = categoryHint.trim();
@@ -297,8 +302,9 @@ export default function CatalogAiGenerator() {
               Use a preset category slug or define a new kebab-case slug. With AI discovery: step 1 — choose category
               and hint, click <strong>Discover devices</strong> to load suggested product names (nothing saved yet).
               Step 2 — review the list, uncheck any you do not want, then click <strong>Add selected to category</strong>
-              to create draft device rows with AI reviews (one LLM call per device). The manual list below is for
-              typing names yourself without discovery.
+              to create devices with AI reviews (one LLM call per device). Use <strong>Publish on save</strong> below so
+              new rows are published immediately on the live site; otherwise they stay drafts until you publish in
+              Content Manager. The manual list is for typing names yourself without discovery.
             </Typography>
           </Flex>
 
@@ -435,6 +441,23 @@ export default function CatalogAiGenerator() {
                 <Typography variant="omega">
                   Replace existing devices when the slug already exists (deletes the old document first)
                 </Typography>
+              </Flex>
+            </Box>
+            <Box tag="label" htmlFor="publish-devices" style={{ cursor: 'pointer' }}>
+              <Flex gap={2} alignItems="flex-start">
+                <Checkbox
+                  id="publish-devices"
+                  checked={publishDevices}
+                  onCheckedChange={(v) => setPublishDevices(v === true)}
+                />
+                <Flex direction="column" gap={1}>
+                  <Typography variant="omega">Publish on save (live on public site)</Typography>
+                  <Typography variant="omega" textColor="neutral600">
+                    When on, new devices are created as <strong>Published</strong> so <code>/devices/your-slug</code> works
+                    right away. When off, they are <strong>Draft</strong> until you use Publish in the Strapi entry
+                    editor.
+                  </Typography>
+                </Flex>
               </Flex>
             </Box>
           </Flex>

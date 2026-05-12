@@ -32,6 +32,11 @@ export type CatalogAiGenerateBody = {
   discoverModels?: boolean;
   /** Longer description of the category / scope — required when discoverModels is true. */
   categoryHint?: string;
+  /**
+   * When true (and not dryRun): create each device as **published** so it appears on the public site immediately.
+   * When false or omitted: creates **draft** devices (Strapi Draft & Publish) — you must publish in the CMS for them to go live.
+   */
+  publishDevices?: boolean;
 };
 
 type RowResult =
@@ -64,7 +69,8 @@ async function createReviewRows(
   category: string,
   categoryHint: string | undefined,
   sliced: Array<{ name: string; slug: string }>,
-  replaceExistingDevices: boolean
+  replaceExistingDevices: boolean,
+  publishDevices: boolean
 ): Promise<RowResult[]> {
   const results: RowResult[] = [];
   const hint = String(categoryHint || '').trim() || undefined;
@@ -153,6 +159,7 @@ async function createReviewRows(
           verdictShort,
           reviewSections,
         },
+        ...(publishDevices ? { status: 'published' as const } : {}),
       });
       const documentId = String((doc as any).documentId || '');
       results.push({ name: item.name, slug, status: 'created', documentId });
@@ -205,6 +212,7 @@ export async function runCatalogAiGenerate(
   const dryRun = Boolean(body.dryRun);
   const refreshTop5 = Boolean(body.refreshTop5);
   const replaceExistingDevices = Boolean(body.replaceExistingDevices);
+  const publishDevices = Boolean(body.publishDevices);
 
   let discoverMeta:
     | {
@@ -252,6 +260,7 @@ export async function runCatalogAiGenerate(
       })),
       refreshTop5,
       replaceExistingDevices,
+      publishDevices,
     };
   }
 
@@ -272,6 +281,7 @@ export async function runCatalogAiGenerate(
       })),
       refreshTop5,
       replaceExistingDevices,
+      publishDevices,
     };
   }
 
@@ -311,7 +321,8 @@ export async function runCatalogAiGenerate(
     category,
     categoryHintRaw || undefined,
     sliced,
-    replaceExistingDevices
+    replaceExistingDevices,
+    publishDevices
   );
 
   let top5: Record<string, unknown> | undefined;
@@ -324,6 +335,7 @@ export async function runCatalogAiGenerate(
     dryRun: false,
     discoverModels,
     category,
+    publishDevices,
     llmProvider: llm.provider,
     model: llm.model,
     truncated,
