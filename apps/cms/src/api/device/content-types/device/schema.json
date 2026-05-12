@@ -60,6 +60,36 @@
     "verdictShort": {
       "type": "text"
     },
+    "tagline": {
+      "type": "string",
+      "maxLength": 220
+    },
+    "reviewLead": {
+      "type": "text"
+    },
+    "reviewerAttribution": {
+      "type": "string",
+      "maxLength": 160
+    },
+    "evaluationWindow": {
+      "type": "string",
+      "maxLength": 120
+    },
+    "assessmentTag": {
+      "type": "string",
+      "maxLength": 80
+    },
+    "recommendWhen": {
+      "type": "text"
+    },
+    "passWhen": {
+      "type": "text"
+    },
+    "performancePillars": {
+      "type": "component",
+      "repeatable": true,
+      "component": "review.performance-pillar"
+    },
     "reviewSections": {
       "type": "component",
       "repeatable": true,

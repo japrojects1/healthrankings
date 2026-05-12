@@ -30,23 +30,47 @@ export function normalizeReviewSections(
     heading: String(s?.heading ?? '').trim() || '',
     body: sectionBodyToString(s?.body),
   }));
-  while (mapped.length < 4) {
+  while (mapped.length < 6) {
     mapped.push({
       heading: '',
       body: sectionBodyToString(
-        'Details can be expanded after editorial review — this draft was generated automatically.'
+        'Editors can expand this subsection with hands-on notes, measurements, and sourcing.'
       ),
     });
   }
-  const four = mapped.slice(0, 4);
+  const six = mapped.slice(0, 6);
   const defaultHeadings = [
-    `Overview — ${productName}`,
-    'Accuracy & usability',
-    'Features & everyday use',
-    'Value & who it suits',
+    `What you are buying — ${productName}`,
+    'How we evaluated it',
+    'Setup, handling & daily use',
+    'Accuracy, specs & what to trust',
+    'Price, warranty & support',
+    'Bottom line for shoppers',
   ];
-  return four.map((s, i) => ({
+  return six.map((s, i) => ({
     heading: s.heading || defaultHeadings[i] || `Section ${i + 1}`,
     body: s.body,
   }));
+}
+
+export type PerformancePillarInput = {
+  pillarLabel: string;
+  scoreOutOf100: number;
+  commentary: string;
+};
+
+/** AI → Strapi component rows; max 6 pillars. */
+export function normalizePerformancePillars(value: unknown): PerformancePillarInput[] {
+  const raw = Array.isArray(value) ? value : [];
+  const out: PerformancePillarInput[] = [];
+  for (const p of raw.slice(0, 6)) {
+    const pillarLabel = String((p as any)?.pillarLabel ?? (p as any)?.label ?? '').trim();
+    let score = Number((p as any)?.scoreOutOf100 ?? (p as any)?.score100);
+    if (!Number.isFinite(score)) score = 0;
+    score = Math.round(Math.min(100, Math.max(0, score)));
+    const commentary = sectionBodyToString((p as any)?.commentary ?? (p as any)?.notes);
+    if (!pillarLabel) continue;
+    out.push({ pillarLabel, scoreOutOf100: score, commentary });
+  }
+  return out;
 }

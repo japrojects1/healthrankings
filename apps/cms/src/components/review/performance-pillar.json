@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_review_performance_pillars",
+  "info": {
+    "displayName": "Performance pillar",
+    "description": "One scored dimension of the review (e.g. ease of use, build quality). Score is 0–100 for display only, not a medical grade."
+  },
+  "options": {},
+  "attributes": {
+    "pillarLabel": {
+      "type": "string",
+      "required": true,
+      "maxLength": 80
+    },
+    "scoreOutOf100": {
+      "type": "integer",
+      "required": true,
+      "min": 0,
+      "max": 100
+    },
+    "commentary": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

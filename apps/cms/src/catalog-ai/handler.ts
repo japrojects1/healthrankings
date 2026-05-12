@@ -12,6 +12,7 @@ import { openAiChatJson } from './openai-client';
 import { buildDeviceReviewSystemPrompt, buildDeviceReviewUserPrompt } from './prompts';
 import {
   clampRating,
+  normalizePerformancePillars,
   normalizeReviewSections,
   sectionBodyToString,
   toStringArray,
@@ -44,11 +45,25 @@ type RowResult =
   | { name: string; slug: string; status: 'skipped'; reason: string }
   | { name: string; slug: string; status: 'error'; message: string };
 
+function optStr(s: unknown, max: number): string | undefined {
+  const t = String(s ?? '').trim();
+  if (!t) return undefined;
+  return t.slice(0, max);
+}
+
 type AiReviewPayload = {
+  tagline?: string;
+  reviewLead?: string;
+  reviewerAttribution?: string;
+  evaluationWindow?: string;
+  assessmentTag?: string;
   verdictShort?: string;
   rating?: number;
   pros?: unknown;
   cons?: unknown;
+  performancePillars?: unknown;
+  recommendWhen?: string;
+  passWhen?: string;
   reviewSections?: unknown;
 };
 
@@ -142,23 +157,41 @@ async function createReviewRows(
 
     const ai = aiRes.data || {};
     const rating = clampRating(ai.rating);
-    const pros = toStringArray(ai.pros, 12);
+    const pros = toStringArray(ai.pros, 14);
     const cons = toStringArray(ai.cons, 12);
     const verdictShort = sectionBodyToString(ai.verdictShort);
     const reviewSections = normalizeReviewSections(ai.reviewSections, item.name);
+    const performancePillars = normalizePerformancePillars(ai.performancePillars);
+
+    const data: Record<string, unknown> = {
+      slug,
+      name: item.name,
+      category,
+      rating,
+      pros,
+      cons,
+      verdictShort,
+      reviewSections,
+    };
+    const tagline = optStr(ai.tagline, 220);
+    if (tagline) data.tagline = tagline;
+    const reviewLead = optStr(ai.reviewLead, 12000);
+    if (reviewLead) data.reviewLead = reviewLead;
+    const reviewerAttribution = optStr(ai.reviewerAttribution, 160);
+    if (reviewerAttribution) data.reviewerAttribution = reviewerAttribution;
+    const evaluationWindow = optStr(ai.evaluationWindow, 120);
+    if (evaluationWindow) data.evaluationWindow = evaluationWindow;
+    const assessmentTag = optStr(ai.assessmentTag, 80);
+    if (assessmentTag) data.assessmentTag = assessmentTag;
+    const recommendWhen = optStr(ai.recommendWhen, 4000);
+    if (recommendWhen) data.recommendWhen = recommendWhen;
+    const passWhen = optStr(ai.passWhen, 4000);
+    if (passWhen) data.passWhen = passWhen;
+    if (performancePillars.length) data.performancePillars = performancePillars;
 
     try {
       const doc = await strapi.documents('api::device.device').create({
-        data: {
-          slug,
-          name: item.name,
-          category,
-          rating,
-          pros,
-          cons,
-          verdictShort,
-          reviewSections,
-        },
+        data,
         ...(publishDevices ? { status: 'published' as const } : {}),
       });
       const documentId = String((doc as any).documentId || '');

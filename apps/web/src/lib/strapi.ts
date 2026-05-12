@@ -3,6 +3,12 @@ export type ReviewSection = {
   body: string;
 };
 
+export type PerformancePillar = {
+  pillarLabel: string;
+  scoreOutOf100: number;
+  commentary: string;
+};
+
 export type Device = {
   id: number;
   slug: string;
@@ -14,6 +20,14 @@ export type Device = {
   pros?: string[] | null;
   cons?: string[] | null;
   verdictShort?: string | null;
+  tagline?: string | null;
+  reviewLead?: string | null;
+  reviewerAttribution?: string | null;
+  evaluationWindow?: string | null;
+  assessmentTag?: string | null;
+  recommendWhen?: string | null;
+  passWhen?: string | null;
+  performancePillars?: PerformancePillar[] | null;
   reviewSections?: ReviewSection[] | null;
   heroImage?: StrapiMedia | null;
   gallery?: StrapiMedia[] | null;
@@ -79,6 +93,62 @@ function normalizeMedia(m: any): StrapiMedia | null {
   };
 }
 
+function blocksToPlainText(node: unknown): string {
+  const parts: string[] = [];
+  const walk = (n: unknown): void => {
+    if (n == null) return;
+    if (typeof n === "string") {
+      parts.push(n);
+      return;
+    }
+    if (Array.isArray(n)) {
+      for (const x of n) walk(x);
+      return;
+    }
+    if (typeof n === "object") {
+      const o = n as Record<string, unknown>;
+      if (typeof o.text === "string") parts.push(o.text);
+      if (o.children != null) walk(o.children);
+    }
+  };
+  walk(node);
+  return parts.join("\n").replace(/\n{3,}/g, "\n\n").trim();
+}
+
+function reviewBodyToDisplayString(body: unknown): string {
+  if (typeof body === "string") return body;
+  if (Array.isArray(body)) return blocksToPlainText(body);
+  return "";
+}
+
+function normalizeReviewSectionsAttr(raw: unknown): ReviewSection[] | null {
+  if (!Array.isArray(raw)) return null;
+  const out: ReviewSection[] = [];
+  for (const row of raw) {
+    const a = (row as any)?.attributes ?? row;
+    const heading = String(a?.heading ?? "").trim();
+    const body = reviewBodyToDisplayString(a?.body);
+    if (heading && body) out.push({ heading, body });
+  }
+  return out.length ? out : null;
+}
+
+function normalizePerformancePillarsAttr(raw: unknown): PerformancePillar[] | null {
+  if (!Array.isArray(raw)) return null;
+  const out: PerformancePillar[] = [];
+  for (const row of raw) {
+    const a = (row as any)?.attributes ?? row;
+    const pillarLabel = String(a?.pillarLabel ?? "").trim();
+    let score = Number(a?.scoreOutOf100);
+    if (!Number.isFinite(score)) score = 0;
+    score = Math.round(Math.min(100, Math.max(0, score)));
+    const commentary = String(a?.commentary ?? "").trim();
+    if (!pillarLabel || !commentary) continue;
+    out.push({ pillarLabel, scoreOutOf100: score, commentary });
+  }
+  return out.length ? out : null;
+}
+
 function normalizeDevice(row: any): Device {
   const attrs = row.attributes ?? row;
   let galleryList: any[] | null = null;
@@ -93,6 +163,9 @@ function normalizeDevice(row: any): Device {
   const heroFromField = normalizeMedia(attrs.heroImage);
   const heroImage = heroFromField ?? galleryNormalized?.[0] ?? null;
 
+  const reviewSections = normalizeReviewSectionsAttr(attrs.reviewSections);
+  const performancePillars = normalizePerformancePillarsAttr(attrs.performancePillars);
+
   return {
     id: row.id ?? attrs.id,
     slug: attrs.slug,
@@ -104,7 +177,15 @@ function normalizeDevice(row: any): Device {
     pros: Array.isArray(attrs.pros) ? attrs.pros : null,
     cons: Array.isArray(attrs.cons) ? attrs.cons : null,
     verdictShort: attrs.verdictShort ?? null,
-    reviewSections: Array.isArray(attrs.reviewSections) ? attrs.reviewSections : null,
+    tagline: attrs.tagline ?? null,
+    reviewLead: attrs.reviewLead ?? null,
+    reviewerAttribution: attrs.reviewerAttribution ?? null,
+    evaluationWindow: attrs.evaluationWindow ?? null,
+    assessmentTag: attrs.assessmentTag ?? null,
+    recommendWhen: attrs.recommendWhen ?? null,
+    passWhen: attrs.passWhen ?? null,
+    performancePillars,
+    reviewSections,
     heroImage,
     gallery: galleryNormalized?.length ? galleryNormalized : null,
   };
