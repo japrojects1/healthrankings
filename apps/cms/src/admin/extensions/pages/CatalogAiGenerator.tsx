@@ -18,6 +18,8 @@ import {
 
 const PRESET_CUSTOM = '__custom__';
 
+type DiscoverPreviewRow = { name: string; slug: string };
+
 export default function CatalogAiGenerator() {
   const { toggleNotification } = useNotification();
   const [categorySelect, setCategorySelect] = useState<string>(DEVICE_CATEGORY_ENUM[0]);
@@ -30,13 +32,18 @@ export default function CatalogAiGenerator() {
   const [replaceExisting, setReplaceExisting] = useState(false);
   const [output, setOutput] = useState('');
   const [loading, setLoading] = useState(false);
+  /** After “Discover devices”, user picks which names to create (no second discovery call). */
+  const [pendingDiscover, setPendingDiscover] = useState<DiscoverPreviewRow[] | null>(null);
+  const [selectedDiscoverSlugs, setSelectedDiscoverSlugs] = useState<Set<string>>(new Set());
+  /** Category slug when the current pending list was fetched — blocks add if user changed category. */
+  const [pendingDiscoverCategory, setPendingDiscoverCategory] = useState<string | null>(null);
 
   const effectiveCategory =
     categorySelect === PRESET_CUSTOM
       ? customSlug.trim().toLowerCase()
       : categorySelect.trim().toLowerCase();
 
-  const run = async () => {
+  const validateCategory = (): boolean => {
     if (!isValidDeviceCategorySlug(effectiveCategory)) {
       toggleNotification({
         type: 'warning',
@@ -44,37 +51,198 @@ export default function CatalogAiGenerator() {
         message:
           'Use lowercase kebab-case (letters, digits, hyphens only), 2–96 characters — e.g. continuous-glucose-monitors.',
       });
+      return false;
+    }
+    return true;
+  };
+
+  const discoverDevices = async () => {
+    if (!validateCategory()) return;
+    if (categoryHint.trim().length < MIN_CATEGORY_HINT_LENGTH) {
+      toggleNotification({
+        type: 'warning',
+        title: 'Describe the category',
+        message: `AI discovery needs a category hint of at least ${MIN_CATEGORY_HINT_LENGTH} characters (what products to include, audience, region).`,
+      });
       return;
     }
 
+    const body: Record<string, unknown> = {
+      category: effectiveCategory,
+      devices: [],
+      discoverModels: true,
+      dryRun: true,
+      refreshTop5: false,
+      replaceExistingDevices: false,
+      categoryHint: categoryHint.trim(),
+    };
+
+    setLoading(true);
+    setOutput('');
+    try {
+      const { post } = getFetchClient();
+      const res = await post('/api/catalog-ai/generate', body);
+        setOutput(JSON.stringify(res.data, null, 2));
+        const ok = res.data?.ok !== false;
+        if (!ok) {
+          setPendingDiscover(null);
+          setSelectedDiscoverSlugs(new Set());
+          setPendingDiscoverCategory(null);
+          toggleNotification({ type: 'danger', title: 'Discovery failed', message: String(res.data?.error || 'Error') });
+          return;
+        }
+      const raw = res.data?.wouldProcess;
+      const rows: DiscoverPreviewRow[] = Array.isArray(raw)
+        ? raw
+            .map((r: unknown) => {
+              const o = r as { name?: string; slug?: string };
+              const name = String(o?.name ?? '').trim();
+              const slug = String(o?.slug ?? '').trim();
+              return name ? { name, slug: slug || name } : null;
+            })
+            .filter(Boolean) as DiscoverPreviewRow[]
+        : [];
+      setPendingDiscover(rows);
+      setSelectedDiscoverSlugs(new Set(rows.map((r) => r.slug)));
+      setPendingDiscoverCategory(effectiveCategory);
+      toggleNotification({
+        type: 'success',
+        title: 'Devices found',
+        message:
+          rows.length === 0
+            ? 'No new names returned — try a broader category hint or check existing catalog.'
+            : `Review ${rows.length} suggested name(s) below, uncheck any you do not want, then add to the category.`,
+      });
+    } catch (e: any) {
+      const msg =
+        e?.response?.data?.error?.message ||
+        e?.response?.data?.message ||
+        e?.message ||
+        'Request failed';
+      toggleNotification({ type: 'danger', title: 'Catalog AI error', message: String(msg) });
+      try {
+        setOutput(JSON.stringify(e?.response?.data ?? { error: String(msg) }, null, 2));
+      } catch {
+        setOutput(String(msg));
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const addSelectedDiscoverToCategory = async () => {
+    if (!validateCategory()) return;
+    if (pendingDiscoverCategory && pendingDiscoverCategory !== effectiveCategory) {
+      toggleNotification({
+        type: 'warning',
+        title: 'Category changed',
+        message: 'You changed the category after discovering devices. Run “Discover devices” again for this category.',
+      });
+      return;
+    }
+    if (!pendingDiscover || pendingDiscover.length === 0) {
+      toggleNotification({
+        type: 'warning',
+        title: 'Nothing to add',
+        message: 'Run “Discover devices” first, then select names to create.',
+      });
+      return;
+    }
+    const picked = pendingDiscover.filter((r) => selectedDiscoverSlugs.has(r.slug));
+    if (picked.length === 0) {
+      toggleNotification({
+        type: 'warning',
+        title: 'Select at least one device',
+        message: 'Use the checkboxes next to the names you want to add.',
+      });
+      return;
+    }
+
+    const body: Record<string, unknown> = {
+      category: effectiveCategory,
+      devices: picked.map(({ name }) => ({ name })),
+      discoverModels: false,
+      dryRun: false,
+      refreshTop5,
+      replaceExistingDevices: replaceExisting,
+    };
+    if (categoryHint.trim()) {
+      body.categoryHint = categoryHint.trim();
+    }
+
+    setLoading(true);
+    setOutput('');
+    try {
+      const { post } = getFetchClient();
+      const res = await post('/api/catalog-ai/generate', body);
+      setOutput(JSON.stringify(res.data, null, 2));
+      const ok = res.data?.ok !== false;
+      toggleNotification({
+        type: ok ? 'success' : 'danger',
+        title: ok ? 'Devices added' : 'Catalog AI returned an error',
+        message: ok
+          ? 'Draft device rows were created (one LLM review per device). See response JSON for details.'
+          : String(res.data?.error || 'Error'),
+      });
+      if (ok) {
+        setPendingDiscover(null);
+        setSelectedDiscoverSlugs(new Set());
+        setPendingDiscoverCategory(null);
+      }
+    } catch (e: any) {
+      const msg =
+        e?.response?.data?.error?.message ||
+        e?.response?.data?.message ||
+        e?.message ||
+        'Request failed';
+      toggleNotification({ type: 'danger', title: 'Catalog AI error', message: String(msg) });
+      try {
+        setOutput(JSON.stringify(e?.response?.data ?? { error: String(msg) }, null, 2));
+      } catch {
+        setOutput(String(msg));
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const toggleDiscoverSlug = (slug: string, on: boolean) => {
+    setSelectedDiscoverSlugs((prev) => {
+      const next = new Set(prev);
+      if (on) next.add(slug);
+      else next.delete(slug);
+      return next;
+    });
+  };
+
+  const selectAllDiscover = (on: boolean) => {
+    if (!pendingDiscover) return;
+    setSelectedDiscoverSlugs(on ? new Set(pendingDiscover.map((r) => r.slug)) : new Set());
+  };
+
+  const run = async () => {
+    if (!validateCategory()) return;
+
     if (discoverModels) {
-      if (categoryHint.trim().length < MIN_CATEGORY_HINT_LENGTH) {
-        toggleNotification({
-          type: 'warning',
-          title: 'Describe the category',
-          message: `AI discovery needs a category hint of at least ${MIN_CATEGORY_HINT_LENGTH} characters (what products to include, audience, region).`,
-        });
-        return;
-      }
-    } else {
-      const names = deviceLines.split('\n').map((l) => l.trim()).filter(Boolean);
-      if (names.length === 0) {
-        toggleNotification({
-          type: 'warning',
-          title: 'Add device names or enable discovery',
-          message: 'Enter one device name per line, or turn on “Discover models with AI”.',
-        });
-        return;
-      }
+      return;
     }
 
     const names = deviceLines.split('\n').map((l) => l.trim()).filter(Boolean);
-    const devices = discoverModels ? [] : names.map((name) => ({ name }));
+    if (names.length === 0) {
+      toggleNotification({
+        type: 'warning',
+        title: 'Add device names',
+        message: 'Enter one device name per line, or turn on “Discover models with AI” and use Discover devices.',
+      });
+      return;
+    }
+
+    const devices = names.map((name) => ({ name }));
 
     const body: Record<string, unknown> = {
       category: effectiveCategory,
       devices,
-      discoverModels,
+      discoverModels: false,
       refreshTop5,
       replaceExistingDevices: replaceExisting,
     };
@@ -94,13 +262,7 @@ export default function CatalogAiGenerator() {
       const ok = res.data?.ok !== false;
       toggleNotification({
         type: ok ? 'success' : 'danger',
-        title: ok
-          ? dryRun
-            ? discoverModels
-              ? 'Discovery preview complete'
-              : 'Dry run complete'
-            : 'Catalog AI finished'
-          : 'Catalog AI returned an error',
+        title: ok ? (dryRun ? 'Dry run complete' : 'Catalog AI finished') : 'Catalog AI returned an error',
       });
     } catch (e: any) {
       const msg =
@@ -132,9 +294,11 @@ export default function CatalogAiGenerator() {
               Device catalog AI
             </Typography>
             <Typography variant="omega" textColor="neutral600">
-              Use a preset category slug or define a new kebab-case slug. With AI discovery, the server loads
-              devices already in that category (plus all catalog slugs), tells the model to avoid them, filters
-              suggestions, and may run up to a few discovery passes to approach 25 new models before drafting reviews.
+              Use a preset category slug or define a new kebab-case slug. With AI discovery: step 1 — choose category
+              and hint, click <strong>Discover devices</strong> to load suggested product names (nothing saved yet).
+              Step 2 — review the list, uncheck any you do not want, then click <strong>Add selected to category</strong>
+              to create draft device rows with AI reviews (one LLM call per device). The manual list below is for
+              typing names yourself without discovery.
             </Typography>
           </Flex>
 
@@ -183,8 +347,8 @@ export default function CatalogAiGenerator() {
             />
             <Field.Hint>
               {discoverModels
-                ? `Required — at least ${MIN_CATEGORY_HINT_LENGTH} characters so the model knows which products to list.`
-                : 'Optional for manual device lists; recommended for custom categories.'}
+                ? `Required for discovery — at least ${MIN_CATEGORY_HINT_LENGTH} characters. Also used when generating reviews for devices you add.`
+                : 'Optional for manual lists; recommended for custom categories.'}
             </Field.Hint>
           </Field.Root>
 
@@ -193,14 +357,23 @@ export default function CatalogAiGenerator() {
               <Checkbox
                 id="discover"
                 checked={discoverModels}
-                onCheckedChange={(v) => setDiscoverModels(v === true)}
+                onCheckedChange={(v) => {
+                  const on = v === true;
+                  setDiscoverModels(on);
+                  if (!on) {
+                    setPendingDiscover(null);
+                    setSelectedDiscoverSlugs(new Set());
+                    setPendingDiscoverCategory(null);
+                  }
+                }}
               />
               <Flex direction="column" gap={1}>
                 <Typography variant="omega">Discover models with AI (up to 25)</Typography>
                 <Typography variant="omega" textColor="neutral600">
-                  One AI pass proposes product names for this category; the CMS excludes ones you already have (by
-                  slug) and may retry up to a few times to fill the batch. Then each new model gets its own review
-                  draft. Ignores the manual device list below. Turn off dry run to create rows (many LLM calls).
+                  The server loads devices already in this category (and all catalog slugs), asks the model for new
+                  product names, filters duplicates, and may retry a few times. Use <strong>Discover devices</strong> to
+                  preview names, then <strong>Add selected to category</strong> only for the ones you want — no second
+                  discovery pass when you add.
                 </Typography>
               </Flex>
             </Flex>
@@ -220,18 +393,22 @@ export default function CatalogAiGenerator() {
           </Field.Root>
 
           <Flex direction="column" gap={3}>
-            <Box tag="label" htmlFor="dry-run" style={{ cursor: 'pointer' }}>
+            <Box tag="label" htmlFor="dry-run" style={{ cursor: discoverModels ? 'not-allowed' : 'pointer' }}>
               <Flex gap={2} alignItems="flex-start">
                 <Checkbox
                   id="dry-run"
                   checked={dryRun}
+                  disabled={discoverModels}
                   onCheckedChange={(v) => setDryRun(v === true)}
                 />
                 <Flex direction="column" gap={1}>
-                  <Typography variant="omega">Dry run</Typography>
+                  <Typography variant="omega" textColor={discoverModels ? 'neutral500' : undefined}>
+                    Dry run
+                  </Typography>
                   <Typography variant="omega" textColor="neutral600">
-                    Manual list: validate only (no AI, no saves). With discovery: one AI call to preview suggested
-                    models only — no per-device reviews or database writes.
+                    {discoverModels
+                      ? 'Not used while “Discover models” is on — use Discover devices, then Add selected.'
+                      : 'When checked: validate the manual list only (no AI, no saves). When unchecked: create draft devices with AI reviews.'}
                   </Typography>
                 </Flex>
               </Flex>
@@ -262,11 +439,75 @@ export default function CatalogAiGenerator() {
             </Box>
           </Flex>
 
-          <Flex gap={2}>
-            <Button variant="default" onClick={run} loading={loading} disabled={loading}>
-              Run
-            </Button>
-          </Flex>
+          {discoverModels ? (
+            <Flex direction="column" gap={4}>
+              <Flex gap={2} flexWrap="wrap" alignItems="center">
+                <Button variant="default" onClick={discoverDevices} loading={loading} disabled={loading}>
+                  Discover devices
+                </Button>
+                {pendingDiscover && pendingDiscover.length > 0 ? (
+                  <Button
+                    variant="secondary"
+                    onClick={addSelectedDiscoverToCategory}
+                    loading={loading}
+                    disabled={loading || selectedDiscoverSlugs.size === 0}
+                  >
+                    {`Add selected to category (${selectedDiscoverSlugs.size})`}
+                  </Button>
+                ) : null}
+              </Flex>
+              {pendingDiscover && pendingDiscover.length > 0 ? (
+                <Field.Root name="discover-pick">
+                  <Field.Label>Suggested devices (uncheck to skip)</Field.Label>
+                  <Box paddingTop={2} paddingBottom={2}>
+                    <Box tag="label" htmlFor="discover-select-all" style={{ cursor: 'pointer' }}>
+                      <Flex gap={2} alignItems="center" paddingBottom={2}>
+                        <Checkbox
+                          id="discover-select-all"
+                          checked={
+                            selectedDiscoverSlugs.size === pendingDiscover.length && pendingDiscover.length > 0
+                          }
+                          onCheckedChange={(v) => selectAllDiscover(v === true)}
+                        />
+                        <Typography variant="omega">Select all</Typography>
+                      </Flex>
+                    </Box>
+                    <Flex direction="column" gap={2}>
+                      {pendingDiscover.map((row) => (
+                        <Box key={row.slug} tag="label" htmlFor={`discover-${row.slug}`} style={{ cursor: 'pointer' }}>
+                          <Flex gap={2} alignItems="flex-start">
+                            <Checkbox
+                              id={`discover-${row.slug}`}
+                              checked={selectedDiscoverSlugs.has(row.slug)}
+                              onCheckedChange={(v) => toggleDiscoverSlug(row.slug, v === true)}
+                            />
+                            <Flex direction="column" gap={0}>
+                              <Typography variant="omega" fontWeight="semiBold">
+                                {row.name}
+                              </Typography>
+                              <Typography variant="omega" textColor="neutral600">
+                                {`slug: ${row.slug}`}
+                              </Typography>
+                            </Flex>
+                          </Flex>
+                        </Box>
+                      ))}
+                    </Flex>
+                  </Box>
+                  <Field.Hint>
+                    These names came from the last discovery run for this category. Add selected runs AI reviews and
+                    saves drafts in Strapi.
+                  </Field.Hint>
+                </Field.Root>
+              ) : null}
+            </Flex>
+          ) : (
+            <Flex gap={2}>
+              <Button variant="default" onClick={run} loading={loading} disabled={loading}>
+                Run
+              </Button>
+            </Flex>
+          )}
 
           <Field.Root name="out">
             <Field.Label>Response JSON</Field.Label>
