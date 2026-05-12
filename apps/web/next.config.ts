@@ -61,6 +61,15 @@ const nextConfig: NextConfig = {
         },
       ],
     },
+    {
+      source: "/devices/category/:category",
+      headers: [
+        {
+          key: "Cache-Control",
+          value: "private, no-cache, no-store, max-age=0, must-revalidate",
+        },
+      ],
+    },
   ],
   images: {
     remotePatterns: cmsRemotePatterns(),

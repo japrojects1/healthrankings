@@ -119,6 +119,31 @@ export function legacyTop5PathToCategory(pathname: string): string | null {
   return null;
 }
 
+/** Legacy `/healthrankings-all-*.html` hub → Strapi `device.category` slug (filename may differ, e.g. body composition). */
+const LEGACY_ALL_DEVICES_PATH_TO_CATEGORY: Record<string, string> = (() => {
+  const m: Record<string, string> = {};
+  for (const [cat, entry] of Object.entries(catalog)) {
+    m[entry.href.toLowerCase()] = cat;
+  }
+  const extras: Record<string, string> = {
+    "/healthrankings-all-arthritis-gloves.html": "arthritis-gloves",
+    "/healthrankings-all-electric-toothbrushes.html": "electric-toothbrushes",
+    "/healthrankings-all-back-support-braces.html": "back-support-braces",
+    "/healthrankings-all-fitness-recovery.html": "fitness-recovery",
+    "/healthrankings-all-foot-leg-supports.html": "foot-leg-supports",
+    "/healthrankings-all-glucometers-cgm.html": "glucometers-cgm",
+  };
+  for (const [path, cat] of Object.entries(extras)) {
+    m[path.toLowerCase()] = cat;
+  }
+  return m;
+})();
+
+export function legacyAllDevicesPathToCategory(pathname: string): string | null {
+  const path = pathname.split("?")[0].toLowerCase();
+  return LEGACY_ALL_DEVICES_PATH_TO_CATEGORY[path] ?? null;
+}
+
 /** Lowercase kebab-case segment safe for `/top5/[category]` (no path traversal). */
 export function isSafeCategorySlugForRoute(category: string): boolean {
   return /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(category) && category.length >= 2 && category.length <= 96;

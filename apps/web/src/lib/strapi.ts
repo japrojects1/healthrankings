@@ -110,6 +110,28 @@ function normalizeDevice(row: any): Device {
   };
 }
 
+/** Published devices in a category; sorted by rating (high first), then name. */
+export async function fetchPublishedDevicesByCategory(
+  category: string,
+  limit = 100
+): Promise<Device[]> {
+  const u = new URL(strapiUrl("/api/devices"));
+  u.searchParams.set("filters[category][$eq]", category);
+  u.searchParams.set("populate", "*");
+  u.searchParams.set("status", "published");
+  u.searchParams.set("pagination[pageSize]", String(Math.min(100, Math.max(1, limit))));
+  u.searchParams.set("sort[0]", "rating:desc");
+  u.searchParams.set("sort[1]", "name:asc");
+  const res = await fetch(u.toString(), {
+    cache: "no-store",
+    headers: { Accept: "application/json" },
+  });
+  if (!res.ok) return [];
+  const json = (await res.json()) as { data?: Record<string, unknown>[] };
+  const rows = json?.data || [];
+  return rows.map((row) => normalizeDevice(row));
+}
+
 export async function fetchDeviceBySlug(slug: string): Promise<Device | null> {
   // populate=* ensures media + components resolve reliably on Strapi 5 (same-origin CMS URLs).
   const url = strapiUrl(
