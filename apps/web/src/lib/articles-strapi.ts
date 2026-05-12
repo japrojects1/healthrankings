@@ -82,3 +82,23 @@ export async function fetchArticleBySlug(slug: string): Promise<Article | null> 
   if (!first) return null;
   return normalizeArticle(first);
 }
+
+/** Case-insensitive title or slug match; Strapi Draft & Publish: published only. */
+export async function searchPublishedArticles(query: string, limit = 20): Promise<Article[]> {
+  const term = query.trim().slice(0, 120);
+  if (term.length < 2) return [];
+  const u = new URL(strapiBase("/api/articles"));
+  u.searchParams.set("filters[$or][0][title][$containsi]", term);
+  u.searchParams.set("filters[$or][1][slug][$containsi]", term);
+  u.searchParams.set("populate", "*");
+  u.searchParams.set("status", "published");
+  u.searchParams.set("pagination[pageSize]", String(Math.min(50, Math.max(1, limit))));
+  const res = await fetch(u.toString(), {
+    cache: "no-store",
+    headers: { Accept: "application/json" },
+  });
+  if (!res.ok) return [];
+  const json = (await res.json()) as { data?: Record<string, unknown>[] };
+  const rows = json?.data || [];
+  return rows.map((row) => normalizeArticle(row));
+}

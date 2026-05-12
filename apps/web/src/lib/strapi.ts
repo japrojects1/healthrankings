@@ -127,6 +127,26 @@ export async function fetchDeviceBySlug(slug: string): Promise<Device | null> {
   return normalizeDevice(first);
 }
 
+/** Case-insensitive name or slug match; published devices only. */
+export async function searchPublishedDevices(query: string, limit = 20): Promise<Device[]> {
+  const term = query.trim().slice(0, 120);
+  if (term.length < 2) return [];
+  const u = new URL(strapiUrl("/api/devices"));
+  u.searchParams.set("filters[$or][0][name][$containsi]", term);
+  u.searchParams.set("filters[$or][1][slug][$containsi]", term);
+  u.searchParams.set("populate", "*");
+  u.searchParams.set("status", "published");
+  u.searchParams.set("pagination[pageSize]", String(Math.min(50, Math.max(1, limit))));
+  const res = await fetch(u.toString(), {
+    cache: "no-store",
+    headers: { Accept: "application/json" },
+  });
+  if (!res.ok) return [];
+  const json = (await res.json()) as { data?: Record<string, unknown>[] };
+  const rows = json?.data || [];
+  return rows.map((row) => normalizeDevice(row));
+}
+
 const CATEGORY_TOP5_POPULATE =
   "populate[entries][populate][device][populate][heroImage]=true&populate[entries][populate][device][populate][gallery]=true";
 

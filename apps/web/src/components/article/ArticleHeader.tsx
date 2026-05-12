@@ -2,9 +2,11 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { SiteSearchDialog } from "@/components/site/SiteSearchDialog";
 
 export function ArticleHeader() {
   const [open, setOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
 
   return (
     <>
@@ -55,7 +57,12 @@ export function ArticleHeader() {
               <span />
               <span />
             </button>
-            <button type="button" className="search-btn" aria-label="Search">
+            <button
+              type="button"
+              className="search-btn"
+              aria-label="Search"
+              onClick={() => setSearchOpen(true)}
+            >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden>
                 <circle cx="11" cy="11" r="8" />
                 <path d="m21 21-4.3-4.3" />
@@ -133,6 +140,7 @@ export function ArticleHeader() {
           </Link>
         </div>
       </div>
+      <SiteSearchDialog open={searchOpen} onClose={() => setSearchOpen(false)} />
     </>
   );
 }

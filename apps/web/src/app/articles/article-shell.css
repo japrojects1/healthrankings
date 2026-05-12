@@ -733,3 +733,131 @@ body:has(.articles-route-fonts) {
   background: #ffffff;
   color: #0f172a;
 }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.hr-search-main {
+  padding: 32px 0 64px;
+}
+
+.hr-search-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.hr-search-h1 {
+  font-family: var(--font-dm-sans), "DM Sans", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--slate-900);
+  margin: 0 0 20px;
+  letter-spacing: -0.02em;
+}
+
+.hr-search-form {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.hr-search-field {
+  flex: 1;
+  min-width: 200px;
+  padding: 12px 14px;
+  border: 1px solid var(--slate-200);
+  border-radius: 10px;
+  font-size: 16px;
+  font-family: var(--font-dm-sans), "DM Sans", sans-serif;
+}
+
+.hr-search-field:focus {
+  outline: none;
+  border-color: var(--blue-500);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.hr-search-submit {
+  padding: 12px 22px;
+  border-radius: 10px;
+  border: none;
+  background: var(--gradient-blue);
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  font-family: var(--font-dm-sans), "DM Sans", sans-serif;
+}
+
+.hr-search-hint,
+.hr-search-summary {
+  font-size: 15px;
+  color: var(--slate-600);
+  line-height: 1.5;
+  margin: 0 0 24px;
+}
+
+.hr-search-section {
+  margin-bottom: 32px;
+}
+
+.hr-search-h2 {
+  font-family: var(--font-dm-sans), "DM Sans", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--slate-900);
+  margin: 0 0 12px;
+}
+
+.hr-search-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.hr-search-hit {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 16px;
+  border: 1px solid var(--slate-200);
+  border-radius: 12px;
+  background: #fff;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.hr-search-hit:hover {
+  border-color: var(--blue-300);
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+}
+
+.hr-search-hit-title {
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--blue-700);
+}
+
+.hr-search-hit-meta {
+  font-size: 13px;
+  color: var(--slate-500);
+}
+
+.hr-search-hit-desc {
+  font-size: 14px;
+  color: var(--slate-600);
+  line-height: 1.45;
+}
