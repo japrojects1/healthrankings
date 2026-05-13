@@ -5,8 +5,24 @@
   <link href="https://healthrankings.co/healthrankings-news.html" rel="alternate" type="text/html"/>
   <link href="https://healthrankings.co/news-feed.xml" rel="self"/>
   <id>https://healthrankings.co/news-feed.xml#feed</id>
-  <updated>2026-05-12T19:47:26.112Z</updated>
+  <updated>2026-05-13T02:51:02.113Z</updated>
   <generator>HealthRankings generate-sitemap.js</generator>
+  <entry>
+    <title>Hantavirus NC | Person in North Carolina from hantavirus cruise ship among those quarantined in Nebraska</title>
+    <link href="https://healthrankings.co/news/hantavirus-nc-person-in-north-carolina-from-hantavirus-cruise-ship-among-those-q.html" rel="alternate" type="text/html"/>
+    <id>https://healthrankings.co/news/hantavirus-nc-person-in-north-carolina-from-hantavirus-cruise-ship-among-those-q.html</id>
+    <published>2026-05-11T21:17:47.000Z</published>
+    <updated>2026-05-11T21:17:47.000Z</updated>
+    <summary type="text">A North Carolina resident is among the Americans flown to Nebraska for monitoring after being on board the cruise ship at the center of a deadly hantavirus outbreak.</summary>
+  </entry>
+  <entry>
+    <title>Why hantavirus is not like COVID, according to infectious disease experts</title>
+    <link href="https://healthrankings.co/news/why-hantavirus-is-not-like-covid-according-to-infectious-disease-experts-cbs-new.html" rel="alternate" type="text/html"/>
+    <id>https://healthrankings.co/news/why-hantavirus-is-not-like-covid-according-to-infectious-disease-experts-cbs-new.html</id>
+    <published>2026-05-11T19:13:00.000Z</published>
+    <updated>2026-05-11T19:13:00.000Z</updated>
+    <summary type="text">Infectious disease experts have sought to reassure people that the hantavirus cruise ship outbreak poses very low risks to the wider public.</summary>
+  </entry>
   <entry>
     <title>Moderna Stock Loses Steam. Hantavirus Trade Fizzles As Officials Dismiss Pandemic Risk.</title>
     <link href="https://healthrankings.co/news/moderna-stock-loses-steam-hantavirus-trade-fizzles-as-officials-dismiss-pandemic.html" rel="alternate" type="text/html"/>
@@ -390,21 +406,5 @@
     <published>2026-05-08T17:46:00.000Z</published>
     <updated>2026-05-08T17:46:00.000Z</updated>
     <summary type="text">“We were not well informed,” Cenet said.</summary>
-  </entry>
-  <entry>
-    <title>Is it true that eating more eggs could help lower Alzheimer&apos;s risk?</title>
-    <link href="https://healthrankings.co/news/is-it-true-that-eating-more-eggs-could-help-lower-alzheimer-s-risk-medical-news-.html" rel="alternate" type="text/html"/>
-    <id>https://healthrankings.co/news/is-it-true-that-eating-more-eggs-could-help-lower-alzheimer-s-risk-medical-news-.html</id>
-    <published>2026-05-08T17:42:28.000Z</published>
-    <updated>2026-05-08T17:42:28.000Z</updated>
-    <summary type="text">People who eat eggs at least five times a week appear to have a lower risk of Alzheimer&apos;s disease but experts caution that there are more factors to take into account.</summary>
-  </entry>
-  <entry>
-    <title>Alzheimer’s study finds link between breakfast staple and reduced risk of disease</title>
-    <link href="https://healthrankings.co/news/alzheimer-s-study-finds-link-between-breakfast-staple-and-reduced-risk-of-diseas.html" rel="alternate" type="text/html"/>
-    <id>https://healthrankings.co/news/alzheimer-s-study-finds-link-between-breakfast-staple-and-reduced-risk-of-diseas.html</id>
-    <published>2026-05-08T17:37:01.000Z</published>
-    <updated>2026-05-08T17:37:01.000Z</updated>
-    <summary type="text">A study from researchers at Loma Linda University in California suggests a specific nutrient-rich food — fairly frequently — could be linked to lower risk of Alzheimer’s disease among older adults.</summary>
   </entry>
 </feed>
