@@ -5,8 +5,24 @@
   <link href="https://healthrankings.co/healthrankings-news.html" rel="alternate" type="text/html"/>
   <link href="https://healthrankings.co/news-feed.xml" rel="self"/>
   <id>https://healthrankings.co/news-feed.xml#feed</id>
-  <updated>2026-05-13T08:41:35.135Z</updated>
+  <updated>2026-05-13T14:28:10.903Z</updated>
   <generator>HealthRankings generate-sitemap.js</generator>
+  <entry>
+    <title>Global Experts Establish New Name for PCOS to Reflect Multisystem Disease</title>
+    <link href="https://healthrankings.co/news/global-experts-establish-new-name-for-pcos-to-reflect-multisystem-disease-cu-ans.html" rel="alternate" type="text/html"/>
+    <id>https://healthrankings.co/news/global-experts-establish-new-name-for-pcos-to-reflect-multisystem-disease-cu-ans.html</id>
+    <published>2026-05-12T10:09:18.000Z</published>
+    <updated>2026-05-12T10:09:18.000Z</updated>
+    <summary type="text">Global Experts Establish New Name for PCOS to Reflect Multisystem Disease</summary>
+  </entry>
+  <entry>
+    <title>She&apos;s trying to outrun pancreatic cancer. Breakthrough treatments give her hope</title>
+    <link href="https://healthrankings.co/news/she-s-trying-to-outrun-pancreatic-cancer-breakthrough-treatments-give-her-hope-n.html" rel="alternate" type="text/html"/>
+    <id>https://healthrankings.co/news/she-s-trying-to-outrun-pancreatic-cancer-breakthrough-treatments-give-her-hope-n.html</id>
+    <published>2026-05-12T09:00:00.000Z</published>
+    <updated>2026-05-12T09:00:00.000Z</updated>
+    <summary type="text">Pancreatic cancer is notoriously lethal. But new treatments mean that may be changing, and people with the disease now have more reason to hope than ever before.</summary>
+  </entry>
   <entry>
     <title>They were on the trip of a lifetime. Now they’re quarantined as health officials work to contain a hantavirus outbreak</title>
     <link href="https://healthrankings.co/news/they-were-on-the-trip-of-a-lifetime-now-they-re-quarantined-as-health-officials-.html" rel="alternate" type="text/html"/>
@@ -22,6 +38,14 @@
     <published>2026-05-11T21:17:47.000Z</published>
     <updated>2026-05-11T21:17:47.000Z</updated>
     <summary type="text">A North Carolina resident is among the Americans flown to Nebraska for monitoring after being on board the cruise ship at the center of a deadly hantavirus outbreak.</summary>
+  </entry>
+  <entry>
+    <title>First Real-Time Brain-Controlled Hearing Device</title>
+    <link href="https://healthrankings.co/news/first-real-time-brain-controlled-hearing-device-neuroscience-news.html" rel="alternate" type="text/html"/>
+    <id>https://healthrankings.co/news/first-real-time-brain-controlled-hearing-device-neuroscience-news.html</id>
+    <published>2026-05-11T19:47:50.000Z</published>
+    <updated>2026-05-11T19:47:50.000Z</updated>
+    <summary type="text">Researchers demonstrate a real-time brain-controlled hearing device that selectively enhances voices based on a listener&apos;s neural activity.</summary>
   </entry>
   <entry>
     <title>Why hantavirus is not like COVID, according to infectious disease experts</title>
@@ -382,29 +406,5 @@
     <published>2026-05-09T01:01:19.000Z</published>
     <updated>2026-05-09T01:01:19.000Z</updated>
     <summary type="text">Standing by the counter at the pharmacist waiting to pick up my prescription, I couldn&apos;t help noticing the prominent display of probiotics on the counter.</summary>
-  </entry>
-  <entry>
-    <title>Why health officials say the hantavirus cruise outbreak is not the next pandemic</title>
-    <link href="https://healthrankings.co/news/why-health-officials-say-the-hantavirus-cruise-outbreak-is-not-the-next-pandemic.html" rel="alternate" type="text/html"/>
-    <id>https://healthrankings.co/news/why-health-officials-say-the-hantavirus-cruise-outbreak-is-not-the-next-pandemic.html</id>
-    <published>2026-05-09T00:30:00.000Z</published>
-    <updated>2026-05-09T00:30:00.000Z</updated>
-    <summary type="text">Experts say that because this strain of hantavirus typically requires prolonged or intimate contact, it is not as contagious as covid during the pandemic.</summary>
-  </entry>
-  <entry>
-    <title>115 people sickened in norovirus outbreak on cruise ship: CDC</title>
-    <link href="https://healthrankings.co/news/115-people-sickened-in-norovirus-outbreak-on-cruise-ship-cdc-abc7-los-angeles.html" rel="alternate" type="text/html"/>
-    <id>https://healthrankings.co/news/115-people-sickened-in-norovirus-outbreak-on-cruise-ship-cdc-abc7-los-angeles.html</id>
-    <published>2026-05-08T23:00:16.000Z</published>
-    <updated>2026-05-08T23:00:16.000Z</updated>
-    <summary type="text">According to the CDC, 102 passengers and 13 crew were reported sick.</summary>
-  </entry>
-  <entry>
-    <title>“Sounds Like 2026”: Disturbing &apos;The X-Files&apos; Moment Resurfaces as Hantavirus Spreads in US</title>
-    <link href="https://healthrankings.co/news/sounds-like-2026-disturbing-the-x-files-moment-resurfaces-as-hantavirus-spreads-.html" rel="alternate" type="text/html"/>
-    <id>https://healthrankings.co/news/sounds-like-2026-disturbing-the-x-files-moment-resurfaces-as-hantavirus-spreads-.html</id>
-    <published>2026-05-08T19:04:21.000Z</published>
-    <updated>2026-05-08T19:04:21.000Z</updated>
-    <summary type="text">Fans notice eerie real-world similarity in viral The X-Files scene amid hantavirus outbreak in the US.</summary>
   </entry>
 </feed>
