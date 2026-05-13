@@ -5,8 +5,16 @@
   <link href="https://healthrankings.co/healthrankings-news.html" rel="alternate" type="text/html"/>
   <link href="https://healthrankings.co/news-feed.xml" rel="self"/>
   <id>https://healthrankings.co/news-feed.xml#feed</id>
-  <updated>2026-05-13T02:51:02.113Z</updated>
+  <updated>2026-05-13T08:41:35.135Z</updated>
   <generator>HealthRankings generate-sitemap.js</generator>
+  <entry>
+    <title>They were on the trip of a lifetime. Now they’re quarantined as health officials work to contain a hantavirus outbreak</title>
+    <link href="https://healthrankings.co/news/they-were-on-the-trip-of-a-lifetime-now-they-re-quarantined-as-health-officials-.html" rel="alternate" type="text/html"/>
+    <id>https://healthrankings.co/news/they-were-on-the-trip-of-a-lifetime-now-they-re-quarantined-as-health-officials-.html</id>
+    <published>2026-05-12T07:07:03.000Z</published>
+    <updated>2026-05-12T07:07:03.000Z</updated>
+    <summary type="text">They boarded a cruise ship in Argentina last month for a once-in-a-lifetime expedition across the Atlantic Ocean to see unique wildlife and remote islands. Six weeks later, most of the American passengers who were aboard the MV Hondius are now in a small and …</summary>
+  </entry>
   <entry>
     <title>Hantavirus NC | Person in North Carolina from hantavirus cruise ship among those quarantined in Nebraska</title>
     <link href="https://healthrankings.co/news/hantavirus-nc-person-in-north-carolina-from-hantavirus-cruise-ship-among-those-q.html" rel="alternate" type="text/html"/>
@@ -22,6 +30,14 @@
     <published>2026-05-11T19:13:00.000Z</published>
     <updated>2026-05-11T19:13:00.000Z</updated>
     <summary type="text">Infectious disease experts have sought to reassure people that the hantavirus cruise ship outbreak poses very low risks to the wider public.</summary>
+  </entry>
+  <entry>
+    <title>A New Hantavirus Vaccine Is in the Works</title>
+    <link href="https://healthrankings.co/news/a-new-hantavirus-vaccine-is-in-the-works-wired.html" rel="alternate" type="text/html"/>
+    <id>https://healthrankings.co/news/a-new-hantavirus-vaccine-is-in-the-works-wired.html</id>
+    <published>2026-05-11T17:16:00.000Z</published>
+    <updated>2026-05-11T17:16:00.000Z</updated>
+    <summary type="text">Since 2023, Moderna and Korea University have been developing a new mRNA vaccine for hantavirus. The work has been promising so far, but a finished product isn&apos;t likely coming any time soon.</summary>
   </entry>
   <entry>
     <title>Moderna Stock Loses Steam. Hantavirus Trade Fizzles As Officials Dismiss Pandemic Risk.</title>
@@ -390,21 +406,5 @@
     <published>2026-05-08T19:04:21.000Z</published>
     <updated>2026-05-08T19:04:21.000Z</updated>
     <summary type="text">Fans notice eerie real-world similarity in viral The X-Files scene amid hantavirus outbreak in the US.</summary>
-  </entry>
-  <entry>
-    <title>Moderna (MRNA) Stock Surges 14% on Hantavirus Vaccine. Here’s What Investors Should Know</title>
-    <link href="https://healthrankings.co/news/moderna-mrna-stock-surges-14-on-hantavirus-vaccine-here-s-what-investors-should-.html" rel="alternate" type="text/html"/>
-    <id>https://healthrankings.co/news/moderna-mrna-stock-surges-14-on-hantavirus-vaccine-here-s-what-investors-should-.html</id>
-    <published>2026-05-08T18:10:27.000Z</published>
-    <updated>2026-05-08T18:10:27.000Z</updated>
-    <summary type="text">Moderna ($MRNA) shares are surging 14% at the time of writing as investors react to the hantavirus and the biotech company’s early vaccine work. The virus has been back in</summary>
-  </entry>
-  <entry>
-    <title>YouTuber went to packed wedding after leaving MV Hondius as hantavirus spread: ‘We were not well informed’</title>
-    <link href="https://healthrankings.co/news/youtuber-went-to-packed-wedding-after-leaving-mv-hondius-as-hantavirus-spread-we.html" rel="alternate" type="text/html"/>
-    <id>https://healthrankings.co/news/youtuber-went-to-packed-wedding-after-leaving-mv-hondius-as-hantavirus-spread-we.html</id>
-    <published>2026-05-08T17:46:00.000Z</published>
-    <updated>2026-05-08T17:46:00.000Z</updated>
-    <summary type="text">“We were not well informed,” Cenet said.</summary>
   </entry>
 </feed>
