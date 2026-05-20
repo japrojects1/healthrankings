@@ -5,8 +5,16 @@
   <link href="https://healthrankings.co/healthrankings-news.html" rel="alternate" type="text/html"/>
   <link href="https://healthrankings.co/news-feed.xml" rel="self"/>
   <id>https://healthrankings.co/news-feed.xml#feed</id>
-  <updated>2026-05-20T14:57:46.915Z</updated>
+  <updated>2026-05-20T20:11:33.285Z</updated>
   <generator>HealthRankings generate-sitemap.js</generator>
+  <entry>
+    <title>&apos;Ebola has tortured us&apos;: Fear as DR Congo outbreak spreads</title>
+    <link href="https://healthrankings.co/news/ebola-has-tortured-us-fear-as-dr-congo-outbreak-spreads-bbc.html" rel="alternate" type="text/html"/>
+    <id>https://healthrankings.co/news/ebola-has-tortured-us-fear-as-dr-congo-outbreak-spreads-bbc.html</id>
+    <published>2026-05-19T14:20:15.000Z</published>
+    <updated>2026-05-19T14:20:15.000Z</updated>
+    <summary type="text">Hundreds of cases are suspected in central Africa but experts fear the actual number may be much higher.</summary>
+  </entry>
   <entry>
     <title>Ebola Outbreak Death Toll Rises To 131, WHO ‘Deeply Concerned’ About Spread (Live Updates)</title>
     <link href="https://healthrankings.co/news/ebola-outbreak-death-toll-rises-to-131-who-deeply-concerned-about-spread-live-up.html" rel="alternate" type="text/html"/>
@@ -32,6 +40,14 @@
     <summary type="text">The hantavirus-stricken cruise ship MV Hondius arrived at its last stop Monday. Now, the waiting begins.</summary>
   </entry>
   <entry>
+    <title>Douglas County adult dies from hantavirus, health officials say there’s no link to cruise ship outbreak</title>
+    <link href="https://healthrankings.co/news/douglas-county-adult-dies-from-hantavirus-health-officials-say-there-s-no-link-t.html" rel="alternate" type="text/html"/>
+    <id>https://healthrankings.co/news/douglas-county-adult-dies-from-hantavirus-health-officials-say-there-s-no-link-t.html</id>
+    <published>2026-05-19T02:07:29.000Z</published>
+    <updated>2026-05-19T02:07:29.000Z</updated>
+    <summary type="text">Hantavirus infections caused by the strain found in Colorado usually happen in the spring and summer.</summary>
+  </entry>
+  <entry>
     <title>American tests positive for Ebola; U.S. to screen travelers at airports</title>
     <link href="https://healthrankings.co/news/american-tests-positive-for-ebola-u-s-to-screen-travelers-at-airports-the-washin.html" rel="alternate" type="text/html"/>
     <id>https://healthrankings.co/news/american-tests-positive-for-ebola-u-s-to-screen-travelers-at-airports-the-washin.html</id>
@@ -40,12 +56,44 @@
     <summary type="text">Health experts are growing increasingly concerned about the outbreak, given that cases could have been spreading undetected for weeks.</summary>
   </entry>
   <entry>
+    <title>Michigan health officials warn of rising Salmonella outbreaks linked to backyard poultry</title>
+    <link href="https://healthrankings.co/news/michigan-health-officials-warn-of-rising-salmonella-outbreaks-linked-to-backyard.html" rel="alternate" type="text/html"/>
+    <id>https://healthrankings.co/news/michigan-health-officials-warn-of-rising-salmonella-outbreaks-linked-to-backyard.html</id>
+    <published>2026-05-19T00:00:59.000Z</published>
+    <updated>2026-05-19T00:00:59.000Z</updated>
+    <summary type="text">Michigan health officials are reporting an increase in Salmonella infections linked to three multistate outbreaks tied to contact with backyard poultry, particularly baby chicks and ducklings.</summary>
+  </entry>
+  <entry>
+    <title>Genetic Maps Target Root Causes of Multiple Sclerosis</title>
+    <link href="https://healthrankings.co/news/genetic-maps-target-root-causes-of-multiple-sclerosis-neuroscience-news.html" rel="alternate" type="text/html"/>
+    <id>https://healthrankings.co/news/genetic-maps-target-root-causes-of-multiple-sclerosis-neuroscience-news.html</id>
+    <published>2026-05-18T21:38:06.000Z</published>
+    <updated>2026-05-18T21:38:06.000Z</updated>
+    <summary type="text">A new study compares CPZ and LPC models, creating a genetic roadmap to accelerate myelin regeneration therapies for Multiple Sclerosis.</summary>
+  </entry>
+  <entry>
     <title>Allegheny County residents warned of increased risk for ticks and Lyme disease</title>
     <link href="https://healthrankings.co/news/allegheny-county-residents-warned-of-increased-risk-for-ticks-and-lyme-disease-t.html" rel="alternate" type="text/html"/>
     <id>https://healthrankings.co/news/allegheny-county-residents-warned-of-increased-risk-for-ticks-and-lyme-disease-t.html</id>
     <published>2026-05-18T20:22:14.000Z</published>
     <updated>2026-05-18T20:22:14.000Z</updated>
     <summary type="text">As Allegheny County residents step outside to enjoy near-record heat this week, local health experts are warning about the dangers of Lyme disease after an unusually high number of tick bites reported across the country. In April, the Centers for Disease Cont…</summary>
+  </entry>
+  <entry>
+    <title>Leucovorin Autism Prescriptions Surge 2,000% via Media Hype</title>
+    <link href="https://healthrankings.co/news/leucovorin-autism-prescriptions-surge-2-000-via-media-hype-neuroscience-news.html" rel="alternate" type="text/html"/>
+    <id>https://healthrankings.co/news/leucovorin-autism-prescriptions-surge-2-000-via-media-hype-neuroscience-news.html</id>
+    <published>2026-05-18T19:56:02.000Z</published>
+    <updated>2026-05-18T19:56:02.000Z</updated>
+    <summary type="text">A new study shows a 2,000% explosion in off-label leucovorin prescriptions for autism following media coverage and White House statements.</summary>
+  </entry>
+  <entry>
+    <title>A new way to recharge aging muscle stem cells by restoring a key metabolic component</title>
+    <link href="https://healthrankings.co/news/a-new-way-to-recharge-aging-muscle-stem-cells-by-restoring-a-key-metabolic-compo.html" rel="alternate" type="text/html"/>
+    <id>https://healthrankings.co/news/a-new-way-to-recharge-aging-muscle-stem-cells-by-restoring-a-key-metabolic-compo.html</id>
+    <published>2026-05-18T19:20:06.000Z</published>
+    <updated>2026-05-18T19:20:06.000Z</updated>
+    <summary type="text">Losing muscle strength is a natural part of aging. At the core of this decline is a drop in the number of muscle stem cells (MuSCs), the specialized cells responsible for maintaining and regenerating muscle tissue throughout our lives. Loss of muscle strength…</summary>
   </entry>
   <entry>
     <title>&apos;No season anymore&apos;: Viruses are running amok in Northern California</title>
@@ -136,6 +184,14 @@
     <summary type="text">As next-generation GLP-1 contenders rise, key readouts are on the way from Pfizer, Viking Therapeutics and Eli Lilly.</summary>
   </entry>
   <entry>
+    <title>Hantavirus-hit liner reaches Rotterdam, crew being quarantined and ship disinfected</title>
+    <link href="https://healthrankings.co/news/hantavirus-hit-liner-reaches-rotterdam-crew-being-quarantined-and-ship-disinfect.html" rel="alternate" type="text/html"/>
+    <id>https://healthrankings.co/news/hantavirus-hit-liner-reaches-rotterdam-crew-being-quarantined-and-ship-disinfect.html</id>
+    <published>2026-05-18T13:13:17.000Z</published>
+    <updated>2026-05-18T13:13:17.000Z</updated>
+    <summary type="text">By Charlotte Van Campenhout ROTTERDAM, Netherlands, May 18 (Reuters) - A luxury liner at the centre of an outbreak of hantavirus docked at the Dutch port of ...</summary>
+  </entry>
+  <entry>
     <title>Chicago Is 2nd Worst City For Mosquitoes. How Bad Will This Summer Be?</title>
     <link href="https://healthrankings.co/news/chicago-is-2nd-worst-city-for-mosquitoes-how-bad-will-this-summer-be-block-club-.html" rel="alternate" type="text/html"/>
     <id>https://healthrankings.co/news/chicago-is-2nd-worst-city-for-mosquitoes-how-bad-will-this-summer-be-block-club-.html</id>
@@ -158,6 +214,14 @@
     <published>2026-05-18T13:00:00.000Z</published>
     <updated>2026-05-18T13:00:00.000Z</updated>
     <summary type="text">Are refined grains truly bad for your heart, or are they simply guilty by association? A look at the research reveals a more nuanced picture, writes Carrie Dennett.</summary>
+  </entry>
+  <entry>
+    <title>Runny nose? Itchy? Experts say seasonal allergies worsening due to increase in pollen</title>
+    <link href="https://healthrankings.co/news/runny-nose-itchy-experts-say-seasonal-allergies-worsening-due-to-increase-in-pol.html" rel="alternate" type="text/html"/>
+    <id>https://healthrankings.co/news/runny-nose-itchy-experts-say-seasonal-allergies-worsening-due-to-increase-in-pol.html</id>
+    <published>2026-05-18T12:58:49.000Z</published>
+    <updated>2026-05-18T12:58:49.000Z</updated>
+    <summary type="text">A group of Canadian researchers say pollen released by plants during reproduction has gone up across Canada in recent years and is exacerbating allergies from hay fever to hives.</summary>
   </entry>
   <entry>
     <title>These are the U.S. states monitoring for hantavirus cases linked to cruise ship at center of outbreak</title>
@@ -206,6 +270,14 @@
     <published>2026-05-18T11:00:18.000Z</published>
     <updated>2026-05-18T11:00:18.000Z</updated>
     <summary type="text">As food becomes less stimulating, GLP-1 users are gravitating toward this pricey obsession.</summary>
+  </entry>
+  <entry>
+    <title>4 Ways To Make Your Daily Walk More Effective</title>
+    <link href="https://healthrankings.co/news/4-ways-to-make-your-daily-walk-more-effective-huffpost.html" rel="alternate" type="text/html"/>
+    <id>https://healthrankings.co/news/4-ways-to-make-your-daily-walk-more-effective-huffpost.html</id>
+    <published>2026-05-18T11:00:17.000Z</published>
+    <updated>2026-05-18T11:00:17.000Z</updated>
+    <summary type="text">Plus, why you should be aiming for at least 5,000 steps a day.</summary>
   </entry>
   <entry>
     <title>Vermont rejected the federal government’s vaccine rollbacks. But doctors are still seeing their impact.</title>
@@ -334,77 +406,5 @@
     <published>2026-05-18T01:27:37.000Z</published>
     <updated>2026-05-18T01:27:37.000Z</updated>
     <summary type="text">A new study has revealed a previously hidden layer of the human genome.</summary>
-  </entry>
-  <entry>
-    <title>Fifth measles case</title>
-    <link href="https://healthrankings.co/news/fifth-measles-case-laist.html" rel="alternate" type="text/html"/>
-    <id>https://healthrankings.co/news/fifth-measles-case-laist.html</id>
-    <published>2026-05-18T00:59:29.000Z</published>
-    <updated>2026-05-18T00:59:29.000Z</updated>
-    <summary type="text">ID&apos;d in Los Angeles County this year</summary>
-  </entry>
-  <entry>
-    <title>There is a moment near death, documented in EEG recordings of dying patients, when the brain produces a coordinated burst of gamma wave activity more intense than anything measured in waking life — and no one knows what it is, what it&apos;s for, or what the</title>
-    <link href="https://healthrankings.co/news/there-is-a-moment-near-death-documented-in-eeg-recordings-of-dying-patients-when.html" rel="alternate" type="text/html"/>
-    <id>https://healthrankings.co/news/there-is-a-moment-near-death-documented-in-eeg-recordings-of-dying-patients-when.html</id>
-    <published>2026-05-18T00:40:17.000Z</published>
-    <updated>2026-05-18T00:40:17.000Z</updated>
-    <summary type="text">In the final minutes of life, the dying brain has been observed producing a synchronized surge of high-frequency electrical activity that exceeds anything recorded in healthy, waking humans — and the scientific literature still cannot say what it means.</summary>
-  </entry>
-  <entry>
-    <title>Humans Age Faster at 2 Sharp Peaks, Research Shows</title>
-    <link href="https://healthrankings.co/news/humans-age-faster-at-2-sharp-peaks-research-shows-sciencealert.html" rel="alternate" type="text/html"/>
-    <id>https://healthrankings.co/news/humans-age-faster-at-2-sharp-peaks-research-shows-sciencealert.html</id>
-    <published>2026-05-17T23:35:42.000Z</published>
-    <updated>2026-05-17T23:35:42.000Z</updated>
-    <summary type="text">Getting older might seem like a slow, gradual process – but research suggests that this is not always the case.</summary>
-  </entry>
-  <entry>
-    <title>Scientists identify several different ways that ADHD can manifest in people, along with three different brain profiles</title>
-    <link href="https://healthrankings.co/news/scientists-identify-several-different-ways-that-adhd-can-manifest-in-people-alon.html" rel="alternate" type="text/html"/>
-    <id>https://healthrankings.co/news/scientists-identify-several-different-ways-that-adhd-can-manifest-in-people-alon.html</id>
-    <published>2026-05-17T23:27:16.000Z</published>
-    <updated>2026-05-17T23:27:16.000Z</updated>
-    <summary type="text">Brain scans revealed a hidden and more severe form of ADHD in children, characterized by significant emotional disturbances.</summary>
-  </entry>
-  <entry>
-    <title>The Best Way to Eat Sweet Potatoes for Maximum Vitamin A Absorption, According to Dietitians</title>
-    <link href="https://healthrankings.co/news/the-best-way-to-eat-sweet-potatoes-for-maximum-vitamin-a-absorption-according-to.html" rel="alternate" type="text/html"/>
-    <id>https://healthrankings.co/news/the-best-way-to-eat-sweet-potatoes-for-maximum-vitamin-a-absorption-according-to.html</id>
-    <published>2026-05-17T22:00:00.000Z</published>
-    <updated>2026-05-17T22:00:00.000Z</updated>
-    <summary type="text">Dietitians reveal the best way to prepare and serve sweet potatoes to maximize the amount of vitamin A absorption in the body.</summary>
-  </entry>
-  <entry>
-    <title>In Ebola outbreak, a number of Americans in the Congo believed to have had exposure to suspected cases</title>
-    <link href="https://healthrankings.co/news/in-ebola-outbreak-a-number-of-americans-in-the-congo-believed-to-have-had-exposu.html" rel="alternate" type="text/html"/>
-    <id>https://healthrankings.co/news/in-ebola-outbreak-a-number-of-americans-in-the-congo-believed-to-have-had-exposu.html</id>
-    <published>2026-05-17T21:55:39.000Z</published>
-    <updated>2026-05-17T21:55:39.000Z</updated>
-    <summary type="text">A number of Americans who are in the Congo are believed to have had exposure to suspected cases in the country’s latest Ebola outbreak, sources have told STAT.</summary>
-  </entry>
-  <entry>
-    <title>New Study Challenges What We Know About Consciousness and the Brain</title>
-    <link href="https://healthrankings.co/news/new-study-challenges-what-we-know-about-consciousness-and-the-brain-scitechdaily.html" rel="alternate" type="text/html"/>
-    <id>https://healthrankings.co/news/new-study-challenges-what-we-know-about-consciousness-and-the-brain-scitechdaily.html</id>
-    <published>2026-05-17T20:43:34.000Z</published>
-    <updated>2026-05-17T20:43:34.000Z</updated>
-    <summary type="text">A new study reveals that the brain may continue interpreting language and predicting information even while unconscious under anesthesia.</summary>
-  </entry>
-  <entry>
-    <title>Greek Yogurt vs. Cottage Cheese—Which Protein-Packed Snack Comes Out on Top?</title>
-    <link href="https://healthrankings.co/news/greek-yogurt-vs-cottage-cheese-which-protein-packed-snack-comes-out-on-top-real-.html" rel="alternate" type="text/html"/>
-    <id>https://healthrankings.co/news/greek-yogurt-vs-cottage-cheese-which-protein-packed-snack-comes-out-on-top-real-.html</id>
-    <published>2026-05-17T20:30:00.000Z</published>
-    <updated>2026-05-17T20:30:00.000Z</updated>
-    <summary type="text">Discover the better high-protein snack between Greek yogurt and cottage cheese. Here, nutrition experts reveal which dairy product comes out on top, and why.</summary>
-  </entry>
-  <entry>
-    <title>Polymarket Spreads Sensationalist Garbage About Hantavirus Case in U.S.</title>
-    <link href="https://healthrankings.co/news/polymarket-spreads-sensationalist-garbage-about-hantavirus-case-in-u-s-gizmodo.html" rel="alternate" type="text/html"/>
-    <id>https://healthrankings.co/news/polymarket-spreads-sensationalist-garbage-about-hantavirus-case-in-u-s-gizmodo.html</id>
-    <published>2026-05-17T19:33:51.000Z</published>
-    <updated>2026-05-17T19:33:51.000Z</updated>
-    <summary type="text">They&apos;re certainly not helping prediction markets with credibility.</summary>
   </entry>
 </feed>
