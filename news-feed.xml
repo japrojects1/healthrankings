@@ -5,8 +5,24 @@
   <link href="https://healthrankings.co/healthrankings-news.html" rel="alternate" type="text/html"/>
   <link href="https://healthrankings.co/news-feed.xml" rel="self"/>
   <id>https://healthrankings.co/news-feed.xml#feed</id>
-  <updated>2026-05-23T02:46:19.433Z</updated>
+  <updated>2026-05-23T08:14:37.712Z</updated>
   <generator>HealthRankings generate-sitemap.js</generator>
+  <entry>
+    <title>Measles infections detected at 2 Heber City schools as Utah cases continue to rise</title>
+    <link href="https://healthrankings.co/news/measles-infections-detected-at-2-heber-city-schools-as-utah-cases-continue-to-ri.html" rel="alternate" type="text/html"/>
+    <id>https://healthrankings.co/news/measles-infections-detected-at-2-heber-city-schools-as-utah-cases-continue-to-ri.html</id>
+    <published>2026-05-21T23:04:24.000Z</published>
+    <updated>2026-05-21T23:04:24.000Z</updated>
+    <summary type="text">Health officials urge caution as measles infections hit two schools in Heber City.</summary>
+  </entry>
+  <entry>
+    <title>Nearly 1.2 billion people worldwide are living with mental disorders. The number has been growing</title>
+    <link href="https://healthrankings.co/news/nearly-1-2-billion-people-worldwide-are-living-with-mental-disorders-the-number-.html" rel="alternate" type="text/html"/>
+    <id>https://healthrankings.co/news/nearly-1-2-billion-people-worldwide-are-living-with-mental-disorders-the-number-.html</id>
+    <published>2026-05-21T22:30:54.000Z</published>
+    <updated>2026-05-21T22:30:54.000Z</updated>
+    <summary type="text">Nearly 1.2 billion people had a mental disorder in 2023, a new study has found — reflecting a 95.5% increase since 1990.</summary>
+  </entry>
   <entry>
     <title>Air France flight to Detroit diverted to Canada under Ebola restrictions</title>
     <link href="https://healthrankings.co/news/air-france-flight-to-detroit-diverted-to-canada-under-ebola-restrictions-the-was.html" rel="alternate" type="text/html"/>
@@ -38,6 +54,14 @@
     <published>2026-05-21T20:19:09.000Z</published>
     <updated>2026-05-21T20:19:09.000Z</updated>
     <summary type="text">Two passengers from the cruise ship that had a hantavirus outbreak were blocked by the federal government from leaving the quarantine unit. One says she is being detained against her will.</summary>
+  </entry>
+  <entry>
+    <title>Finding the sleep &apos;sweet spot&apos; could help you live longer, study suggests</title>
+    <link href="https://healthrankings.co/news/finding-the-sleep-sweet-spot-could-help-you-live-longer-study-suggests-fox-news.html" rel="alternate" type="text/html"/>
+    <id>https://healthrankings.co/news/finding-the-sleep-sweet-spot-could-help-you-live-longer-study-suggests-fox-news.html</id>
+    <published>2026-05-21T19:59:06.000Z</published>
+    <updated>2026-05-21T19:59:06.000Z</updated>
+    <summary type="text">A new study in Nature reveals that people who sleep too little or too long show signs of accelerated biological aging and higher disease risk.</summary>
   </entry>
   <entry>
     <title>You Won’t Believe How Much Exercise It Takes to Get ‘Substantial’ Heart Protection</title>
@@ -126,6 +150,14 @@
     <published>2026-05-21T15:33:09.000Z</published>
     <updated>2026-05-21T15:33:09.000Z</updated>
     <summary type="text">Nearly one in eight people in the world lives with a mental disorder, and one person dies by suicide every 43 seconds.</summary>
+  </entry>
+  <entry>
+    <title>Human inflammatory bowel disease-on-a-chip for modelling disease progression, cancer initiation and sex-specific effects</title>
+    <link href="https://healthrankings.co/news/human-inflammatory-bowel-disease-on-a-chip-for-modelling-disease-progression-can.html" rel="alternate" type="text/html"/>
+    <id>https://healthrankings.co/news/human-inflammatory-bowel-disease-on-a-chip-for-modelling-disease-progression-can.html</id>
+    <published>2026-05-21T15:32:11.000Z</published>
+    <updated>2026-05-21T15:32:11.000Z</updated>
+    <summary type="text">Epithelial–stromal interactions drive inflammation, fibrosis, immune recruitment and cancer initiation in human IBD colon-on-a-chip devices, and responses are exacerbated by peristalsis-like movements and pregnancy-associated hormones in female-derived chips.</summary>
   </entry>
   <entry>
     <title>Irisin as a driver of neuroprotection in multiple sclerosis</title>
@@ -360,51 +392,19 @@
     <summary type="text">Brain-wide transcriptomic profiling in mice reveals that reproductive experience remodels the maternal brain by altering dopamine dynamics in the dorsal hippocampal formation, causing dopamine-dependent histone post-translational modifications, and thereby ch…</summary>
   </entry>
   <entry>
+    <title>Wearable robot boosts strength of children with spinal muscular atrophy</title>
+    <link href="https://healthrankings.co/news/wearable-robot-boosts-strength-of-children-with-spinal-muscular-atrophy-nature.html" rel="alternate" type="text/html"/>
+    <id>https://healthrankings.co/news/wearable-robot-boosts-strength-of-children-with-spinal-muscular-atrophy-nature.html</id>
+    <published>2026-05-20T21:14:48.000Z</published>
+    <updated>2026-05-20T21:14:48.000Z</updated>
+    <summary type="text">The device helps muscle recovery in those receiving gene therapy for the rare neuromuscular condition.</summary>
+  </entry>
+  <entry>
     <title>Neural representation of action symbols in primate frontal cortex</title>
     <link href="https://healthrankings.co/news/neural-representation-of-action-symbols-in-primate-frontal-cortex-nature.html" rel="alternate" type="text/html"/>
     <id>https://healthrankings.co/news/neural-representation-of-action-symbols-in-primate-frontal-cortex-nature.html</id>
     <published>2026-05-20T21:14:46.000Z</published>
     <updated>2026-05-20T21:14:46.000Z</updated>
     <summary type="text">A drawing-like task designed to study compositional generalization identifies a specific neural population in the ventral premotor cortex in primates that encodes action symbols.</summary>
-  </entry>
-  <entry>
-    <title>A deep-learning framework reveals whole-body perturbations at cell level</title>
-    <link href="https://healthrankings.co/news/a-deep-learning-framework-reveals-whole-body-perturbations-at-cell-level-nature.html" rel="alternate" type="text/html"/>
-    <id>https://healthrankings.co/news/a-deep-learning-framework-reveals-whole-body-perturbations-at-cell-level-nature.html</id>
-    <published>2026-05-20T21:14:46.000Z</published>
-    <updated>2026-05-20T21:14:46.000Z</updated>
-    <summary type="text">An analysis of diet-induced obesity using MouseMapper—a suite of foundation-model-based deep-learning algorithms—identifies structural alterations of the infraorbital branch of the trigeminal ganglia.</summary>
-  </entry>
-  <entry>
-    <title>Vitamin C May Fight Cancer in a Surprising Way</title>
-    <link href="https://healthrankings.co/news/vitamin-c-may-fight-cancer-in-a-surprising-way-scitechdaily.html" rel="alternate" type="text/html"/>
-    <id>https://healthrankings.co/news/vitamin-c-may-fight-cancer-in-a-surprising-way-scitechdaily.html</id>
-    <published>2026-05-20T20:56:37.000Z</published>
-    <updated>2026-05-20T20:56:37.000Z</updated>
-    <summary type="text">Intravenous vitamin C may help fight cancer and reduce treatment side effects, though it remains experimental. Linus Pauling’s theory was flawed but partly correct.</summary>
-  </entry>
-  <entry>
-    <title>Too little or too much sleep is linked to faster ageing throughout the body</title>
-    <link href="https://healthrankings.co/news/too-little-or-too-much-sleep-is-linked-to-faster-ageing-throughout-the-body-natu.html" rel="alternate" type="text/html"/>
-    <id>https://healthrankings.co/news/too-little-or-too-much-sleep-is-linked-to-faster-ageing-throughout-the-body-natu.html</id>
-    <published>2026-05-20T20:18:45.000Z</published>
-    <updated>2026-05-20T20:18:45.000Z</updated>
-    <summary type="text">A multimodal analysis reveals a ‘U-shaped’ association between sleep duration and biological ageing across various organ systems, with too much or not enough sleep being linked with accelerated organ ageing. The study also shows that biological ageing differe…</summary>
-  </entry>
-  <entry>
-    <title>These are the best knee braces for arthritis, according to orthopedic surgeons</title>
-    <link href="https://healthrankings.co/news/these-are-the-best-knee-braces-for-arthritis-according-to-orthopedic-surgeons-cn.html" rel="alternate" type="text/html"/>
-    <id>https://healthrankings.co/news/these-are-the-best-knee-braces-for-arthritis-according-to-orthopedic-surgeons-cn.html</id>
-    <published>2026-05-20T20:00:00.000Z</published>
-    <updated>2026-05-20T20:00:00.000Z</updated>
-    <summary type="text">I spoke with orthopedic surgeons and doctors to find the best knee braces for arthritis that diminish joint pain and support movement.</summary>
-  </entry>
-  <entry>
-    <title>AI atlas reveals hidden whole-body-damage caused by obesity</title>
-    <link href="https://healthrankings.co/news/ai-atlas-reveals-hidden-whole-body-damage-caused-by-obesity-medical-xpress.html" rel="alternate" type="text/html"/>
-    <id>https://healthrankings.co/news/ai-atlas-reveals-hidden-whole-body-damage-caused-by-obesity-medical-xpress.html</id>
-    <published>2026-05-20T19:20:06.000Z</published>
-    <updated>2026-05-20T19:20:06.000Z</updated>
-    <summary type="text">Obesity affects far more than metabolism and fat storage. It alters immune activity, nerve structure, and tissue organization across multiple organ systems, increasing the risk of diseases including type 2 diabetes, cardiovascular disease, stroke, neuropathy …</summary>
   </entry>
 </feed>
