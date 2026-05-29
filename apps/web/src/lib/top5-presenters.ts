@@ -181,6 +181,31 @@ export function isOxiline(d: Pick<Device, "name" | "slug">): boolean {
 }
 
 /**
+ * Map from canonical device-category enum → the Oxiline product slug we
+ * promote on every Top 5 list in that category. Used by the page loader to
+ * inject the Oxiline product as #1 whenever a Top 5 doesn't already contain
+ * one (e.g. condition-specific lists like "Stroke Prevention BP Monitors").
+ *
+ * Slugs match the seeded device slugs in Strapi (see audit output of
+ * `apps/web/public/healthrankings-review-*.html`).
+ */
+export const OXILINE_SLUG_BY_CATEGORY: Record<string, string> = {
+  "blood-pressure-monitors": "oxiline-pressure-xs-pro",
+  "body-composition-scales": "oxiline-scale-x-pro",
+  "pulse-oximeters": "oxiline-pulse-x-pro",
+  "tens-units": "oxiline-tens-x-pro",
+  thermometers: "oxiline-thermo-x-pro",
+  "water-flossers": "oxiline-flosser-pro",
+  "back-support-braces": "oxiline-back-support-pro",
+};
+
+/** Returns the Oxiline product slug we should promote for a given category, or null. */
+export function getOxilineSlugForCategory(category: string | null | undefined): string | null {
+  if (!category) return null;
+  return OXILINE_SLUG_BY_CATEGORY[category.toLowerCase()] ?? null;
+}
+
+/**
  * Friendly labels for condition/use-case slugs. These produce titles like
  * "Top 5 Blood Pressure Monitors for Hypotension (Low Blood Pressure)" rather
  * than the generic "5 best products for ...". Add new entries when a condition

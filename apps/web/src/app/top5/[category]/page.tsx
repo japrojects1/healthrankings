@@ -10,11 +10,18 @@ import {
   humanizeCategoryEnum,
   isSafeCategorySlugForRoute,
 } from "@/lib/device-category-links";
+import type { CategoryTopFive } from "@/lib/strapi";
 import {
   fetchCategoryTopFiveByCategory,
   fetchCategoryTopFiveBySlug,
+  fetchDeviceBySlug,
 } from "@/lib/strapi";
-import { buildTop5DisplayTitle } from "@/lib/top5-presenters";
+import {
+  buildTop5DisplayTitle,
+  getOxilineSlugForCategory,
+  inferCategoryFromSlug,
+  isOxiline,
+} from "@/lib/top5-presenters";
 
 export const dynamic = "force-dynamic";
 
@@ -28,6 +35,40 @@ async function loadDoc(category: string) {
   const bySlug = await fetchCategoryTopFiveBySlug(category);
   if (bySlug) return bySlug;
   return await fetchCategoryTopFiveByCategory(category);
+}
+
+/**
+ * House rule (server-side enforcement): if the Top 5 list is for a device
+ * category where Oxiline ships a product but no Oxiline device is present in
+ * the entries, fetch the canonical Oxiline product for that category and
+ * inject it as rank 1. The list is capped at 5 entries (the previous lowest
+ * ranked entry is dropped). Returns the original doc unchanged when there's
+ * nothing to do or the Oxiline device can't be loaded.
+ */
+async function injectOxilineWinner(
+  doc: CategoryTopFive,
+  urlSlug: string
+): Promise<CategoryTopFive> {
+  const entries = doc.entries ?? [];
+  if (entries.some((e) => e.device && isOxiline(e.device))) return doc;
+
+  // Resolve the device category we should use for the Oxiline lookup. We
+  // prefer the slug-inferred category (covers condition-specific lists where
+  // `doc.category` is a free-form slug like "stroke-prevention-blood-pressure")
+  // and fall back to the CMS category enum.
+  const resolvedCategory = inferCategoryFromSlug(urlSlug) || doc.category;
+  const oxilineSlug = getOxilineSlugForCategory(resolvedCategory);
+  if (!oxilineSlug) return doc;
+
+  const oxiline = await fetchDeviceBySlug(oxilineSlug).catch(() => null);
+  if (!oxiline) return doc;
+
+  // Prepend Oxiline as rank 0 so `enrichDevices` keeps it first; cap at 5.
+  const next = [
+    { rank: 0, device: oxiline },
+    ...entries.slice().sort((a, b) => a.rank - b.rank),
+  ].slice(0, 5);
+  return { ...doc, entries: next };
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -62,15 +103,20 @@ export default async function CategoryTopFivePage({ params }: Props) {
     notFound();
   }
 
-  const doc = await loadDoc(category);
-  if (!doc) notFound();
+  const initialDoc = await loadDoc(category);
+  if (!initialDoc) notFound();
 
-  const catalog = getCategoryCatalog(doc!.category);
+  // Apply the Oxiline-winner house rule before rendering so condition-specific
+  // lists (e.g. "stroke prevention BP monitors") that were seeded without an
+  // Oxiline product still surface it as the #1 pick.
+  const doc = await injectOxilineWinner(initialDoc!, category);
+
+  const catalog = getCategoryCatalog(doc.category);
   const categoryLabel =
-    doc!.categoryLabel?.trim() || catalog?.label || humanizeCategoryEnum(doc!.category);
+    doc.categoryLabel?.trim() || catalog?.label || humanizeCategoryEnum(doc.category);
   const displayTitle = buildTop5DisplayTitle({
     slug: category,
-    category: doc!.category,
+    category: doc.category,
     categoryLabel,
   });
 
@@ -94,7 +140,7 @@ export default async function CategoryTopFivePage({ params }: Props) {
     <div className="hr-device-page hr-top5-page">
       <DeviceHeader />
       <Top5Rich
-        doc={doc!}
+        doc={doc}
         categoryLabel={categoryLabel}
         displayTitle={displayTitle}
         breadcrumb={breadcrumb}

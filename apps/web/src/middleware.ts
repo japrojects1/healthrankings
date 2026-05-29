@@ -83,6 +83,13 @@ export const config = {
     "/healthrankings-obesity-top5.html",
     "/healthrankings-osteoporosis-body-composition-top5.html",
     "/healthrankings-sleep-apnea-top5.html",
+    // Top 5 pages whose category supports Oxiline injection (auto-promoted to
+    // #1 by the dynamic page even when the original list didn't include one).
+    "/healthrankings-coronary-artery-disease-bp-monitor-top5.html",
+    "/healthrankings-hypotension-blood-pressure-monitor-top5.html",
+    "/healthrankings-post-surgical-rehab-tens-top5.html",
+    "/healthrankings-sports-injuries-tens-top5.html",
+    "/healthrankings-stroke-prevention-blood-pressure-top5.html",
     "/healthrankings-all-arthritis-gloves.html",
     "/healthrankings-all-back-support-braces.html",
     "/healthrankings-all-blood-pressure-monitors.html",
