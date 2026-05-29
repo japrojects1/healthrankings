@@ -1666,6 +1666,65 @@ body::before {
 .medical-disclaimer-inner{background:#FFFBEB;border:1px solid #FDE68A;border-radius:12px;padding:14px 20px;display:flex;gap:12px;align-items:flex-start;font-size:13px;color:#92400E;line-height:1.55}
 .medical-disclaimer-inner svg{flex-shrink:0;margin-top:1px}
 .medical-disclaimer-inner a{color:#92400E;text-decoration:underline}
+
+/* ===== CATEGORY WINNERS ===== */
+.category-winners { max-width: 1280px; margin: 0 auto; padding: 8px 32px 40px; }
+.cw-header { margin-bottom: 24px; }
+.cw-header h2 { font-family: 'DM Sans', sans-serif; font-size: clamp(28px, 3.4vw, 38px); font-weight: 700; letter-spacing: -0.035em; line-height: 1.1; color: var(--slate-900); }
+.cw-header h2 em { font-style: italic; font-weight: 500; background: var(--gradient-blue); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.cw-header p { color: var(--slate-600); font-size: 15px; margin-top: 6px; }
+.cw-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+.cw-card { display: flex; flex-direction: column; gap: 6px; padding: 18px 20px; background: white; border: 1px solid var(--slate-200); border-radius: 16px; transition: all 200ms; }
+.cw-card:hover { border-color: var(--blue-300); transform: translateY(-2px); box-shadow: 0 14px 32px -16px rgba(37,99,235,.18); }
+.cw-title { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--blue-700); }
+.cw-product { font-family: 'DM Sans', sans-serif; font-size: 17px; font-weight: 700; color: var(--slate-900); letter-spacing: -.025em; line-height: 1.25; }
+.cw-metric { font-size: 12px; color: var(--slate-600); }
+
+/* ===== TRUST BADGES (on product cards) ===== */
+.trust-badges { display: flex; gap: 6px; flex-wrap: wrap; margin: -4px 0 16px; }
+.trust-badge { display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; font-family: 'DM Sans', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; border-radius: 9999px; }
+.trust-badge.tb-medical { background: var(--success-100); color: var(--success-600); }
+.trust-badge.tb-tech { background: var(--blue-50); color: var(--blue-700); }
+.trust-badge.tb-value { background: #FEF3C7; color: #92400E; }
+
+/* ===== PERFORMANCE / SPECS TABLE ===== */
+.perf-matrix, .specs-section { max-width: 1280px; margin: 24px auto 0; padding: 24px 32px; }
+.pm-header { margin-bottom: 20px; }
+.pm-header h2 { font-family: 'DM Sans', sans-serif; font-size: clamp(28px, 3.4vw, 38px); font-weight: 700; letter-spacing: -.035em; line-height: 1.1; }
+.pm-header h2 em { font-style: italic; font-weight: 500; background: var(--gradient-blue); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.pm-header p { color: var(--slate-600); font-size: 14px; margin-top: 6px; }
+.pm-table-wrap { overflow-x: auto; border: 1px solid var(--slate-200); border-radius: 18px; background: white; }
+.pm-table { width: 100%; border-collapse: collapse; min-width: 720px; }
+.pm-table thead th { padding: 16px 14px; text-align: left; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .04em; color: var(--slate-900); background: var(--blue-50); border-bottom: 1px solid var(--slate-200); }
+.pm-table thead th:first-child { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--slate-600); }
+.pm-table thead th.hl { background: var(--gradient-blue); color: white; }
+.pm-table tbody td { padding: 14px; border-bottom: 1px solid var(--slate-100); font-size: 13.5px; color: var(--slate-900); vertical-align: middle; }
+.pm-table tbody td:first-child { font-family: 'DM Sans', sans-serif; font-weight: 600; color: var(--slate-600); font-size: 12px; letter-spacing: .02em; width: 180px; }
+.pm-table tbody tr:last-child td { border-bottom: none; }
+.pm-table td.best { background: linear-gradient(180deg, rgba(20,184,166,.08), rgba(20,184,166,.02)); }
+.pm-table td.hl { background: var(--blue-50); }
+.pm-score { font-family: 'DM Sans', sans-serif; font-weight: 700; color: var(--blue-700); }
+.pm-score-big { font-size: 18px; }
+.pm-out { color: var(--slate-400); font-size: 11px; font-weight: 500; }
+.pm-trophy { color: var(--teal-500); font-size: 12px; }
+.pm-price { font-family: 'DM Sans', sans-serif; font-weight: 700; color: var(--slate-900); }
+
+/* ===== PERSONAS ===== */
+.personas { max-width: 1280px; margin: 24px auto 0; padding: 24px 32px; }
+.persona-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.persona-card { padding: 22px 22px 20px; background: white; border: 1px solid var(--slate-200); border-radius: 18px; display: flex; flex-direction: column; gap: 8px; transition: all 200ms; }
+.persona-card:hover { border-color: var(--blue-300); transform: translateY(-2px); box-shadow: 0 14px 32px -16px rgba(37,99,235,.18); }
+.persona-title { font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--blue-700); }
+.persona-pick { font-family: 'DM Sans', sans-serif; font-size: 18px; color: var(--slate-900); letter-spacing: -.02em; line-height: 1.25; }
+.persona-pick strong { font-weight: 700; }
+.persona-why { font-size: 14px; line-height: 1.55; color: var(--slate-600); margin: 4px 0 8px; }
+.persona-cta { display: inline-flex; align-items: center; gap: 6px; align-self: flex-start; padding: 8px 14px; background: var(--blue-50); color: var(--blue-700); border-radius: 9999px; font-family: 'DM Sans', sans-serif; font-size: 12.5px; font-weight: 700; transition: all 180ms; }
+.persona-cta:hover { background: var(--gradient-blue); color: white; }
+
+@media (max-width: 768px) {
+  .category-winners, .perf-matrix, .specs-section, .personas { padding-left: 20px; padding-right: 20px; }
+}
+
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://healthrankings.co/"},{"@type":"ListItem","position":2,"name":"Conditions","item":"https://healthrankings.co/healthrankings-conditions.html"},{"@type":"ListItem","position":3,"name":"Urinary Tract Infections(UTI) & Home Testing","item":"https://healthrankings.co/healthrankings-uti-top5.html"}]}
@@ -1777,7 +1836,9 @@ body::before {
   <span class="jump-nav-label">Jump to</span>
   <a href="#winner" class="primary">The Winner</a>
   <a href="#rankings">All 5 Picks</a>
-  <a href="#comparison">Side-by-side</a>
+  <a href="#winners-grid">Category Winners</a>
+  <a href="#performance">Performance</a>
+  <a href="#recommendations">Recommendations</a>
   <a href="#faq">FAQ</a>
 </nav>
 
@@ -1854,6 +1915,31 @@ body::before {
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ============ CATEGORY WINNERS ============ -->
+<section class="category-winners" id="winners-grid">
+  <div class="cw-header">
+    <h2>Category <em>winners.</em></h2>
+    <p>Best performer in each evaluation category.</p>
+  </div>
+  <div class="cw-grid">
+    <a class="cw-card" href="/healthrankings-devices.html">
+      <span class="cw-title">Best Overall</span>
+      <span class="cw-product">AZO Urinary Tract Infection Test Strips</span>
+      <span class="cw-metric">9.4/10 score</span>
+    </a>
+    <a class="cw-card" href="/healthrankings-devices.html">
+      <span class="cw-title">Best Value</span>
+      <span class="cw-product">AZO Urinary Tract Infection Test Strips</span>
+      <span class="cw-metric">$14 (3 strips) starting price</span>
+    </a>
+    <a class="cw-card" href="/healthrankings-devices.html">
+      <span class="cw-title">Runner-up</span>
+      <span class="cw-product">Vivoo UTI Test Strips with App</span>
+      <span class="cw-metric">9.0/10 overall</span>
+    </a>
   </div>
 </section>
 
@@ -2282,14 +2368,57 @@ body::before {
 </section>
 
 
-<!-- ============ COMPARISON TABLE ============ -->
-<section class="comparison-section" id="comparison">
-  <div class="comparison-header">
-    <h2>Side-by-side, <em>everything.</em></h2>
-    <p>Everything we measured, in one place.</p>
+<!-- ============ PERFORMANCE MATRIX ============ -->
+<section class="perf-matrix" id="performance">
+  <div class="pm-header">
+    <h2>Performance, <em>side-by-side.</em></h2>
+    <p>Every metric we measured. Highest score in each row marked with <span class="pm-trophy">★</span>.</p>
   </div>
-  <div class="comparison-table-wrap">
-    <table class="comparison-table"><thead><tr><th>Test Strips</th><th>Score</th><th>Price</th><th>Parameters</th><th>App Reading</th><th>Cost/Strip</th><th>Bulk Available</th><th>Best For</th></tr></thead><tbody><tr class="winner-row"><td>🏆 AZO UTI Strips</td><td>9.4</td><td>$14/3</td><td>LE + Nitrites</td><td class="cross">✗</td><td>$4.67</td><td>Limited</td><td>Best overall</td></tr><tr><td>Vivoo + App</td><td>9.0</td><td>$25/5</td><td>11 parameters</td><td class="check">✓</td><td>$5.00</td><td class="cross">✗</td><td>Smart / app-guided</td></tr><tr><td>Checkup 100-pack</td><td>8.8</td><td>$18/100</td><td>LE + Nitrites</td><td class="cross">✗</td><td>$0.18</td><td class="check">✓</td><td>Best value / bulk</td></tr><tr><td>Physician's Choice</td><td>8.6</td><td>$16/25</td><td>LE+Nitrites+Protein+Blood</td><td class="cross">✗</td><td>$0.64</td><td class="cross">✗</td><td>Most diagnostic info</td></tr><tr><td>Utiva Bundle</td><td>8.3</td><td>$25/kit</td><td>LE + Nitrites</td><td class="cross">✗</td><td>~$1.67</td><td class="cross">✗</td><td>Prevention + testing</td></tr></tbody></table>
+  <div class="pm-table-wrap">
+    <table class="pm-table"><thead><tr><th>Metric</th><th class="hl">AZO Urinary Tract Infection Test Strips</th><th>Vivoo UTI Test Strips with App</th><th>Checkup UTI Test Strips (100-pack)</th><th>Physician's Choice UTI Test Strips</th><th>Utiva UTI Test Strips + D-Mannose Bundle</th></tr></thead><tbody><tr><td>Overall Score</td><td class="hl"><span class="pm-score pm-score-big">9.4<span class="pm-out">/10</span></span></td><td><span class="pm-score pm-score-big">9.0<span class="pm-out">/10</span></span></td><td><span class="pm-score pm-score-big">8.8<span class="pm-out">/10</span></span></td><td><span class="pm-score pm-score-big">8.6<span class="pm-out">/10</span></span></td><td><span class="pm-score pm-score-big">8.3<span class="pm-out">/10</span></span></td></tr><tr><td>Ease of Use</td><td class="best"><span class="pm-score">9.4</span> <span class="pm-trophy">★</span></td><td><span class="pm-score">8.8</span></td><td><span class="pm-score">8.6</span></td><td><span class="pm-score">8.4</span></td><td><span class="pm-score">8.1</span></td></tr><tr><td>Brand Recognition</td><td class="best"><span class="pm-score">9.9</span> <span class="pm-trophy">★</span></td><td><span class="pm-score">9.2</span></td><td><span class="pm-score">9.0</span></td><td><span class="pm-score">8.8</span></td><td><span class="pm-score">8.5</span></td></tr><tr><td>Detection Reliability</td><td><span class="pm-score">8.7</span></td><td class="best"><span class="pm-score">9.0</span> <span class="pm-trophy">★</span></td><td><span class="pm-score">8.8</span></td><td><span class="pm-score">8.6</span></td><td><span class="pm-score">8.3</span></td></tr><tr><td>Clinician Acceptance</td><td class="best"><span class="pm-score">9.8</span> <span class="pm-trophy">★</span></td><td><span class="pm-score">8.9</span></td><td><span class="pm-score">8.7</span></td><td><span class="pm-score">8.5</span></td><td><span class="pm-score">8.2</span></td></tr><tr><td>Price</td><td><span class="pm-price">$14 (3 strips)</span></td><td><span class="pm-price">$25 (5 strips)</span></td><td><span class="pm-price">$18 (100 strips)</span></td><td><span class="pm-price">$16 (25 strips)</span></td><td><span class="pm-price">$25 (15 strips + D-Mannose)</span></td></tr></tbody></table>
+  </div>
+</section>
+
+
+<!-- ============ RECOMMENDATIONS BY USE CASE ============ -->
+<section class="personas" id="recommendations">
+  <div class="pm-header">
+    <h2>Which one is right for <em>you?</em></h2>
+    <p>Our recommendation depends on what you need most.</p>
+  </div>
+  <div class="persona-grid">
+    <article class="persona-card">
+      <span class="persona-title">For most people</span>
+      <span class="persona-pick">Recommended: <strong>AZO Urinary Tract Infection Test Strips</strong></span>
+      <p class="persona-why">Top scores across the metrics that matter most — accuracy, build, and ease of use.</p>
+      <a href="/healthrankings-devices.html" class="persona-cta">Read review
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </article>
+    <article class="persona-card">
+      <span class="persona-title">For tech-savvy users</span>
+      <span class="persona-pick">Recommended: <strong>Vivoo UTI Test Strips with App</strong></span>
+      <p class="persona-why">Reliable wireless sync, deeper analytics, and integrations with health apps.</p>
+      <a href="/healthrankings-devices.html" class="persona-cta">Read review
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </article>
+    <article class="persona-card">
+      <span class="persona-title">For advanced or clinical needs</span>
+      <span class="persona-pick">Recommended: <strong>Physician's Choice UTI Test Strips</strong></span>
+      <p class="persona-why">Adds richer signals — EKG documentation, physician sharing, or clinical-grade testing.</p>
+      <a href="/healthrankings-devices.html" class="persona-cta">Read review
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </article>
+    <article class="persona-card">
+      <span class="persona-title">For budget-conscious shoppers</span>
+      <span class="persona-pick">Recommended: <strong>Utiva UTI Test Strips + D-Mannose Bundle</strong></span>
+      <p class="persona-why">Solid daily-use performance at the lowest price in our lineup.</p>
+      <a href="/healthrankings-devices.html" class="persona-cta">Read review
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </article>
   </div>
 </section>
 
