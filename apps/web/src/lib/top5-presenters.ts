@@ -4,6 +4,7 @@ import type {
   PerformanceScore,
   SpecRow,
 } from "./strapi";
+import { getCategoryCatalog, humanizeCategoryEnum } from "./device-category-links";
 
 /**
  * Pure presentation helpers for the rich Top-5 page.
@@ -169,6 +170,278 @@ export function inferTrustBadges(d: Device): TrustBadge[] {
   return out.slice(0, 3);
 }
 
+/**
+ * House rule: any Oxiline product is the #1 pick on every Top 5 list it
+ * appears on. Detect by slug or name so it works whether the CMS stores
+ * "Oxiline Pressure X Pro" as the name or `oxiline-pressure-x-pro` as the slug.
+ */
+export function isOxiline(d: Pick<Device, "name" | "slug">): boolean {
+  const hay = `${d.slug || ""} ${d.name || ""}`.toLowerCase();
+  return /\boxiline\b/.test(hay);
+}
+
+/**
+ * Friendly labels for condition/use-case slugs. These produce titles like
+ * "Top 5 Blood Pressure Monitors for Hypotension (Low Blood Pressure)" rather
+ * than the generic "5 best products for ...". Add new entries when a condition
+ * needs custom casing (acronyms, parentheticals, ampersands, possessives).
+ */
+const CONDITION_LABEL_OVERRIDES: Record<string, string> = {
+  hypertension: "Hypertension (High Blood Pressure)",
+  hypotension: "Hypotension (Low Blood Pressure)",
+  afib: "AFib",
+  "atrial-fibrillation": "Atrial Fibrillation (AFib)",
+  copd: "COPD",
+  "long-covid": "Long COVID",
+  sti: "STI",
+  hiv: "HIV",
+  uti: "UTI",
+  ekg: "EKG",
+  ecg: "ECG",
+  pcos: "PCOS",
+  ibs: "IBS",
+  bcaa: "BCAA",
+  "back-pain": "Back Pain",
+  "back-support": "Back Support",
+  "athletic": "Athletes",
+  "anxiety": "Anxiety",
+  "asthma": "Asthma",
+  "arthritis": "Arthritis",
+  "diabetes": "Diabetes",
+  "type1-diabetes": "Type 1 Diabetes",
+  "type-1-diabetes": "Type 1 Diabetes",
+  "type2-diabetes": "Type 2 Diabetes",
+  "obesity": "Obesity",
+  "menopause": "Menopause",
+  "neuropathy": "Neuropathy",
+  "osteoporosis": "Osteoporosis",
+  "bariatric": "Post-Bariatric Surgery",
+  "alzheimers": "Alzheimer's",
+  parkinsons: "Parkinson's",
+  "dementia-alzheimers": "Dementia & Alzheimer's",
+  "alzheimers-dementia": "Alzheimer's & Dementia",
+  "metabolic-syndrome": "Metabolic Syndrome",
+  "insulin-resistance": "Insulin Resistance",
+  "weight-management": "Weight Management",
+  "cognitive-decline": "Cognitive Decline",
+  "cognitive-decline-monitoring": "Cognitive Decline",
+  "heart-failure": "Heart Failure",
+  "sleep-apnea": "Sleep Apnea",
+  "high-cholesterol": "High Cholesterol",
+  cholesterol: "High Cholesterol",
+  "oxidative-stress": "Oxidative Stress",
+  "colorectal-cancer-screening": "Colorectal Cancer Screening",
+  "coronary-artery-disease": "Coronary Artery Disease",
+  alcohol: "Alcohol Testing",
+  pregnancy: "Pregnancy",
+  fertility: "Fertility",
+  "male-fertility": "Male Fertility",
+  ovulation: "Ovulation",
+  "endurance-training": "Endurance Training",
+  "post-surgical-rehab": "Post-Surgical Rehab",
+  "sports-injuries": "Sports Injuries",
+  "stroke-prevention": "Stroke Prevention",
+  "plantar-fasciitis": "Plantar Fasciitis",
+  "fall-detection": "Fall Detection",
+  "ketogenic-diet": "Ketogenic Diet",
+  ketone: "Ketone",
+  glutamine: "Glutamine",
+  creatine: "Creatine",
+  "shiatsu-neck": "Shiatsu Neck",
+  "oral-health": "Oral Health",
+  "drug-test": "Drug Test",
+  "drug-testing": "Drug Testing",
+  "hereditary-genetic-testing": "Hereditary & Genetic",
+  "bcaa-glutamine": "BCAA & Glutamine",
+};
+
+/**
+ * Maps a "pure condition" slug (no device suffix) to its implied device
+ * category enum, so titles like `Top 5 Blood Pressure Monitors for Hypertension`
+ * still work for `/top5/hypertension` even though the slug carries only the
+ * condition name.
+ */
+const CONDITION_TO_CATEGORY: Record<string, string> = {
+  hypertension: "blood-pressure-monitors",
+  hypotension: "blood-pressure-monitors",
+  cholesterol: "home-test-kits",
+  "high-cholesterol": "home-test-kits",
+  hiv: "home-test-kits",
+  uti: "home-test-kits",
+  "sleep-apnea": "pulse-oximeters",
+  obesity: "body-composition-scales",
+  "colorectal-cancer-screening": "home-test-kits",
+  "cognitive-decline-monitoring": "body-composition-scales",
+  "drug-test-kits": "home-test-kits",
+  "ovulation-test-kits": "fertility-reproductive",
+  "hereditary-genetic-testing": "home-test-kits",
+};
+
+/**
+ * Per-category regex patterns used to strip the device suffix from a Top 5
+ * slug so the remainder is the condition/use-case. Patterns are anchored at
+ * end-of-string and tolerate optional plural / extra qualifiers.
+ */
+const CATEGORY_SUFFIX_PATTERNS: Record<string, RegExp[]> = {
+  "blood-pressure-monitors": [/-?(?:blood-pressure-monitors?|bp-monitors?)$/i],
+  "body-composition-scales": [/-?body-composition$/i, /-?(?:smart-)?scales?$/i],
+  "pulse-oximeters": [/-?pulse-oximeters?$/i],
+  "breathing-trainers": [/-?breathing(?:-trainers?)?$/i],
+  "tens-units": [/-?tens(?:-units?)?$/i],
+  thermometers: [/-?thermometers?$/i],
+  "water-flossers": [/-?water-flossers?$/i],
+  "home-test-kits": [/-?home-test(?:-kits?|ing)?$/i],
+  "gps-alert-systems": [/-?gps-alerts?(?:-systems?)?$/i],
+  "massage-devices": [/-?(?:percussion-)?massage(?:-devices?|-guns?)?$/i, /-?massagers?$/i],
+  supplements: [/-?(?:antioxidant-)?supplements?$/i],
+  "fertility-reproductive": [/-?pregnancy-tests?$/i, /-?fertility(?:-reproductive)?$/i],
+  "back-support-braces": [/-?braces?$/i, /-?back-supports?(?:-braces?)?$/i],
+  "arthritis-gloves": [/-?gloves?$/i],
+};
+
+const GENERIC_DEVICE_SUFFIX =
+  /-?(?:monitors?|tests?|trainers?|scales?|systems?|units?|devices?|guns?|kits?|gloves?|braces?|supports?|supplements?|flossers?|thermometers?|oximeters?|breathalyzers?|massagers?|cgm)$/i;
+
+/**
+ * Suffix → canonical device-category enum. Lets us infer the correct device
+ * category label even when `doc.category` in the CMS is set to a free-form
+ * condition-specific slug (e.g. `hypotension-blood-pressure-monitor`).
+ *
+ * Order matters: more specific patterns first.
+ */
+const SUFFIX_TO_CATEGORY: Array<[RegExp, string]> = [
+  [/-?(?:blood-pressure-monitors?|bp-monitors?|blood-pressure)$/i, "blood-pressure-monitors"],
+  [/-?body-composition$/i, "body-composition-scales"],
+  [/-?pulse-oximeters?$/i, "pulse-oximeters"],
+  [/-?breathing(?:-trainers?)?$/i, "breathing-trainers"],
+  [/-?tens(?:-units?)?$/i, "tens-units"],
+  [/-?thermometers?$/i, "thermometers"],
+  [/-?water-flossers?$/i, "water-flossers"],
+  [/-?(?:tooth)?brush(?:es)?$/i, "electric-toothbrushes"],
+  [/-?home-test(?:-kits?|ing)?$/i, "home-test-kits"],
+  [/-?(?:test-)?kits?$/i, "home-test-kits"],
+  [/-?gps-alerts?(?:-systems?)?$/i, "gps-alert-systems"],
+  [/-?fall-detection$/i, "gps-alert-systems"],
+  [/-?(?:percussion-)?massage(?:-devices?|-guns?)?$/i, "massage-devices"],
+  [/-?massagers?$/i, "massage-devices"],
+  [/-?(?:antioxidant-)?supplements?$/i, "supplements"],
+  [/-?pregnancy-tests?$/i, "fertility-reproductive"],
+  [/-?ovulation(?:-monitors?|-tests?|-kits?)?$/i, "fertility-reproductive"],
+  [/-?fertility(?:-reproductive)?$/i, "fertility-reproductive"],
+  [/-?(?:back-support-)?braces?$/i, "back-support-braces"],
+  [/-?foot-supports?$/i, "foot-leg-supports"],
+  [/-?(?:smart-)?scales?$/i, "body-composition-scales"],
+  [/-?gloves?$/i, "arthritis-gloves"],
+  [/-?breathalyzers?$/i, "breathalyzers"],
+  [/-?(?:glucometers?|cgm)$/i, "glucometers-cgm"],
+  [/-?ketone-monitors?$/i, "glucometers-cgm"],
+];
+
+/** Infer the canonical device-category enum from a Top 5 URL slug. */
+export function inferCategoryFromSlug(slug: string | null | undefined): string | null {
+  if (!slug) return null;
+  const lower = slug.toLowerCase();
+  for (const [re, cat] of SUFFIX_TO_CATEGORY) {
+    if (re.test(lower)) return cat;
+  }
+  return null;
+}
+
+function humanizeConditionSlug(slug: string): string {
+  const lower = slug.toLowerCase();
+  if (CONDITION_LABEL_OVERRIDES[lower]) return CONDITION_LABEL_OVERRIDES[lower];
+  return slug
+    .split("-")
+    .map((w) => {
+      const lc = w.toLowerCase();
+      if (CONDITION_LABEL_OVERRIDES[lc]) return CONDITION_LABEL_OVERRIDES[lc];
+      return w.charAt(0).toUpperCase() + w.slice(1);
+    })
+    .join(" ");
+}
+
+/** Strip device-category suffix from `slug` and return the condition label, or null. */
+export function deriveConditionFromSlug(
+  slug: string | null | undefined,
+  category: string | null | undefined
+): string | null {
+  if (!slug) return null;
+  const lower = slug.toLowerCase();
+
+  if (category && lower === category) return null;
+
+  let stripped = lower;
+  const patterns = category ? CATEGORY_SUFFIX_PATTERNS[category] ?? [] : [];
+  for (const re of patterns) {
+    if (re.test(stripped)) {
+      stripped = stripped.replace(re, "");
+      break;
+    }
+  }
+  if (stripped === lower) {
+    stripped = stripped.replace(GENERIC_DEVICE_SUFFIX, "");
+  }
+  stripped = stripped.replace(/^-+|-+$/g, "");
+  if (!stripped || stripped === category) return null;
+  return humanizeConditionSlug(stripped);
+}
+
+/**
+ * Build the H1 + meta title for a Top 5 page in the canonical
+ * "Top 5 [Device Category] for [Condition]" shape. The condition is derived
+ * from the URL slug; if no condition can be detected (e.g. /top5/thermometers)
+ * we fall back to the simpler "Top 5 [Device Category]".
+ *
+ * `slug` here is the dynamic route segment (e.g. "hypotension-blood-pressure-monitor"),
+ * not the device slug. We intentionally ignore legacy CMS `title` values here
+ * because the v1 seed populated them with the old "5 best products for ..."
+ * phrasing; the canonical, condition-aware shape is computed every render.
+ *
+ * Resolution order for the device-category label:
+ *   1. Caller-supplied `categoryLabel` (typically from CMS `categoryLabel`
+ *      or `getCategoryCatalog(doc.category).label`), if it maps to a known
+ *      device enum (avoids using condition-specific labels here).
+ *   2. Slug-inferred device category (e.g. `*-blood-pressure-monitor` →
+ *      "Blood Pressure Monitors"). This is the common case for
+ *      condition-specific Top 5 lists where `doc.category` is a free-form slug.
+ *   3. Whatever caller passed in, as a last resort.
+ */
+export function buildTop5DisplayTitle(args: {
+  slug: string;
+  category: string | null | undefined;
+  categoryLabel: string;
+}): string {
+  const { slug, category, categoryLabel } = args;
+  const lower = (slug || "").toLowerCase();
+
+  // 1. Slug ends with a known device-category suffix → split as
+  //    "[device-category] for [condition]".
+  const inferredFromSuffix = inferCategoryFromSlug(slug);
+  if (inferredFromSuffix) {
+    const catalog = getCategoryCatalog(inferredFromSuffix);
+    const label = catalog?.label || humanizeCategoryEnum(inferredFromSuffix);
+    const condition = deriveConditionFromSlug(slug, inferredFromSuffix);
+    return condition ? `Top 5 ${label} for ${condition}` : `Top 5 ${label}`;
+  }
+
+  // 2. Pure-condition slug (no device suffix) — look up implied device category.
+  const conditionMappedCat = CONDITION_TO_CATEGORY[lower];
+  if (conditionMappedCat) {
+    const catalog = getCategoryCatalog(conditionMappedCat);
+    const label = catalog?.label || humanizeCategoryEnum(conditionMappedCat);
+    return `Top 5 ${label} for ${humanizeConditionSlug(lower)}`;
+  }
+
+  // 3. CMS already gave us a known device-category enum.
+  if (category && getCategoryCatalog(category)) {
+    return `Top 5 ${categoryLabel}`;
+  }
+
+  // 4. Last resort — title-case the slug. Prefer "Top 5 X for Y" if the slug
+  //    has 2+ words; otherwise just "Top 5 [Slug]".
+  return `Top 5 ${humanizeConditionSlug(lower)}`;
+}
+
 export function enrichDevices(top5: CategoryTopFive): EnrichedDevice[] {
   const list: EnrichedDevice[] = [];
   for (const e of top5.entries || []) {
@@ -187,7 +460,16 @@ export function enrichDevices(top5: CategoryTopFive): EnrichedDevice[] {
       badges: inferTrustBadges(d),
     });
   }
+  // Initial sort by CMS-defined rank, then promote Oxiline to #1 and renumber.
   list.sort((a, b) => a.rank - b.rank);
+  const oxilineIdx = list.findIndex(isOxiline);
+  if (oxilineIdx > 0) {
+    const [oxiline] = list.splice(oxilineIdx, 1);
+    list.unshift(oxiline);
+  }
+  list.forEach((d, i) => {
+    d.rank = i + 1;
+  });
   return list;
 }
 

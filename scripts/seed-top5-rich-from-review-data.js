@@ -294,6 +294,12 @@ function extractRankedDeviceSlugs(html) {
     slugs.push(slug);
     if (slugs.length >= 5) break;
   }
+  // House rule: any Oxiline product is always the #1 pick.
+  const oxilineIdx = slugs.findIndex((s) => /\boxiline\b/i.test(s));
+  if (oxilineIdx > 0) {
+    const [oxiline] = slugs.splice(oxilineIdx, 1);
+    slugs.unshift(oxiline);
+  }
   return slugs;
 }
 

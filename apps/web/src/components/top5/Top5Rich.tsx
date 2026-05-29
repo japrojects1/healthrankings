@@ -17,6 +17,12 @@ import {
 type Props = {
   doc: CategoryTopFive;
   categoryLabel: string;
+  /**
+   * The canonical "Top 5 [Device Category] for [Condition]" title. Computed by
+   * the page from the URL slug + category and passed in so the H1, breadcrumb,
+   * and meta tags all share the same source of truth.
+   */
+  displayTitle: string;
   /** Optional pre-rendered breadcrumb home/category links shown above the H1. */
   breadcrumb?: React.ReactNode;
 };
@@ -26,6 +32,38 @@ function starRating(score: number): string {
   let s = "";
   for (let i = 1; i <= 5; i++) s += i <= full ? "★" : "☆";
   return s;
+}
+
+/**
+ * Splits a title into a leading run + accented suffix so the suffix can be
+ * rendered with the italic blue accent. We prefer the "for [condition]" join
+ * (e.g. "Top 5 Blood Pressure Monitors / for Hypotension (Low Blood Pressure)")
+ * since that's the canonical shape; we fall back to splitting after the first
+ * Best/Top/Picks/Rankings connector for legacy or hand-edited titles.
+ */
+function renderTitleWithAccent(title: string): React.ReactNode {
+  const cleaned = title.replace(/\s+/g, " ").trim();
+  const forMatch = cleaned.match(/^(.+?)\s+(for\s+.+)$/i);
+  if (forMatch) {
+    return (
+      <>
+        {forMatch[1]}
+        <br />
+        <em>{forMatch[2]}</em>
+      </>
+    );
+  }
+  const bestMatch =
+    cleaned.match(/^(.*?\b(?:Best|Top|Picks?|Rankings?))\s+(.+)$/i) ||
+    cleaned.match(/^(\S+(?:\s+\S+){0,1})\s+(.+)$/);
+  if (!bestMatch) return cleaned;
+  return (
+    <>
+      {bestMatch[1]}
+      <br />
+      <em>{bestMatch[2]}</em>
+    </>
+  );
 }
 
 function reviewHref(slug: string) {
@@ -161,7 +199,7 @@ function ProductCard({
   );
 }
 
-export function Top5Rich({ doc, categoryLabel, breadcrumb }: Props) {
+export function Top5Rich({ doc, categoryLabel, displayTitle, breadcrumb }: Props) {
   const devices = enrichDevices(doc);
   const winners = pickCategoryWinners(devices);
   const metricRows = buildMetricRows(devices);
@@ -174,7 +212,7 @@ export function Top5Rich({ doc, categoryLabel, breadcrumb }: Props) {
       <div className="hr-top5-rich">
         {breadcrumb}
         <section className="page-intro">
-          <h1>{doc.title || `Best ${categoryLabel}`}</h1>
+          <h1>{renderTitleWithAccent(displayTitle)}</h1>
           {doc.intro ? <p className="intro-lede">{doc.intro}</p> : null}
           <p style={{ color: "#64748B", marginTop: 16 }}>
             No Top 5 entries published yet for <strong>{categoryLabel}</strong>. Add devices to this
@@ -197,15 +235,7 @@ export function Top5Rich({ doc, categoryLabel, breadcrumb }: Props) {
             new Date()
           )}`}
         </div>
-        <h1>
-          {doc.title?.includes("for ") ? (
-            doc.title.replace(/^(.*?)( for [^.]+)$/, (_, a, b) => a + b)
-          ) : (
-            <>
-              The 5 best products for <em>{categoryLabel.toLowerCase()}.</em>
-            </>
-          )}
-        </h1>
+        <h1>{renderTitleWithAccent(displayTitle)}</h1>
         {doc.intro ? <p className="intro-lede">{doc.intro}</p> : null}
 
         <div className="intro-meta">
@@ -257,11 +287,11 @@ export function Top5Rich({ doc, categoryLabel, breadcrumb }: Props) {
               OUR #1 PICK
             </div>
             <h2>
-              The {categoryLabel.toLowerCase()} we&rsquo;d <em>actually recommend.</em>
+              The one we&rsquo;d <em>actually recommend.</em>
             </h2>
             <p className="winner-hero-desc">
-              {(winner.verdictShort || winner.tagline || "").substring(0, 220)}
-              {(winner.verdictShort || winner.tagline || "").length > 220 ? "…" : ""}
+              {(winner.verdictShort || winner.tagline || "").substring(0, 180)}
+              {(winner.verdictShort || winner.tagline || "").length > 180 ? "…" : ""}
             </p>
             <div className="winner-hero-stats">
               <div>

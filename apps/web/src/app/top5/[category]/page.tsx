@@ -14,6 +14,7 @@ import {
   fetchCategoryTopFiveByCategory,
   fetchCategoryTopFiveBySlug,
 } from "@/lib/strapi";
+import { buildTop5DisplayTitle } from "@/lib/top5-presenters";
 
 export const dynamic = "force-dynamic";
 
@@ -36,14 +37,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return { title: "Top 5 | HealthRankings" };
   }
   const doc = await loadDoc(category);
-  const label = humanizeCategoryEnum(category);
-  const fallbackTitle = doc?.title?.trim() || `Top 5 ${label}`;
+  const catalog = getCategoryCatalog(doc?.category);
+  const categoryLabel =
+    doc?.categoryLabel?.trim() || catalog?.label || humanizeCategoryEnum(doc?.category || category);
+  const displayTitle = buildTop5DisplayTitle({
+    slug: category,
+    category: doc?.category,
+    categoryLabel,
+  });
   return {
-    title: doc?.metaTitle?.trim() || `${fallbackTitle} | HealthRankings`,
+    title: doc?.metaTitle?.trim() || `${displayTitle} | HealthRankings`,
     description:
       doc?.metaDescription?.trim() ||
       doc?.subtitle?.trim() ||
-      `Expert-tested top picks in ${label}. Independent rankings on HealthRankings.`,
+      `Expert-tested top picks in ${categoryLabel}. Independent rankings on HealthRankings.`,
   };
 }
 
@@ -61,6 +68,11 @@ export default async function CategoryTopFivePage({ params }: Props) {
   const catalog = getCategoryCatalog(doc!.category);
   const categoryLabel =
     doc!.categoryLabel?.trim() || catalog?.label || humanizeCategoryEnum(doc!.category);
+  const displayTitle = buildTop5DisplayTitle({
+    slug: category,
+    category: doc!.category,
+    categoryLabel,
+  });
 
   const breadcrumb = (
     <nav className="breadcrumb" aria-label="Breadcrumb">
@@ -74,14 +86,19 @@ export default async function CategoryTopFivePage({ params }: Props) {
           <span className="breadcrumb-sep">/</span>
         </>
       ) : null}
-      <span className="breadcrumb-current">{doc!.title || categoryLabel}</span>
+      <span className="breadcrumb-current">{displayTitle}</span>
     </nav>
   );
 
   return (
     <div className="hr-device-page hr-top5-page">
       <DeviceHeader />
-      <Top5Rich doc={doc!} categoryLabel={categoryLabel} breadcrumb={breadcrumb} />
+      <Top5Rich
+        doc={doc!}
+        categoryLabel={categoryLabel}
+        displayTitle={displayTitle}
+        breadcrumb={breadcrumb}
+      />
       <div className="medical-disclaimer">
         <div className="medical-disclaimer-inner">
           <span>

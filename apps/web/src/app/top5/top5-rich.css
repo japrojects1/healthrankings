@@ -55,21 +55,21 @@
 }
 .hr-top5-rich .page-intro h1 {
   font-family: var(--font-dm-sans), "DM Sans", sans-serif;
-  font-size: clamp(40px, 6vw, 72px);
+  font-size: clamp(32px, 4.4vw, 56px);
   font-weight: 700;
-  line-height: 1.02;
-  letter-spacing: -0.04em;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
   color: var(--slate-900);
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   max-width: 900px;
 }
 .hr-top5-rich .page-intro h1 em {
   font-style: italic;
   font-weight: 500;
-  background: linear-gradient(135deg, #3B82F6 0%, #1E40AF 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: #2563EB;
+  /* Reserve right-side breathing room so the slanted glyphs
+     ("f", "t" tail) aren't clipped by the parent's content box. */
+  padding-right: 0.08em;
 }
 .hr-top5-rich .intro-lede {
   font-size: 20px;
@@ -172,26 +172,26 @@
   color: #fff;
 }
 
-/* Winner Hero */
-.hr-top5-rich .winner-hero { max-width: 1280px; margin: 56px auto; padding: 0 32px; }
+/* Winner Hero (compact) */
+.hr-top5-rich .winner-hero { max-width: 1280px; margin: 24px auto 32px; padding: 0 32px; }
 .hr-top5-rich .winner-hero-inner {
   position: relative;
   background: linear-gradient(135deg, #3B82F6 0%, #1E40AF 100%);
-  border-radius: 32px;
-  padding: 48px;
+  border-radius: 24px;
+  padding: 28px 36px;
   overflow: hidden;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 56px;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 32px;
   align-items: center;
 }
 .hr-top5-rich .winner-hero-inner::before {
   content: '';
   position: absolute;
-  top: 40px; right: 40px;
-  width: 280px; height: 280px;
-  background-image: radial-gradient(circle, rgba(20,184,166,.12) 2px, transparent 2px);
-  background-size: 22px 22px;
+  top: 24px; right: 24px;
+  width: 200px; height: 200px;
+  background-image: radial-gradient(circle, rgba(20,184,166,.12) 1.5px, transparent 1.5px);
+  background-size: 18px 18px;
   pointer-events: none;
 }
 .hr-top5-rich .winner-hero-left { color: #fff; position: relative; }
@@ -200,151 +200,155 @@
   align-items: center;
   gap: 8px;
   background: rgba(255,255,255,.15);
-  padding: 6px 14px;
+  padding: 5px 12px;
   border-radius: 9999px;
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 11px;
+  font-weight: 700;
   color: #14B8A6;
-  margin-bottom: 20px;
+  letter-spacing: 0.06em;
+  margin-bottom: 12px;
 }
 .hr-top5-rich .winner-hero h2 {
   font-family: var(--font-dm-sans), "DM Sans", sans-serif;
-  font-size: clamp(32px, 4vw, 48px);
+  font-size: clamp(20px, 2.4vw, 28px);
   font-weight: 700;
-  line-height: 1.05;
-  letter-spacing: -0.035em;
-  margin-bottom: 16px;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  margin-bottom: 10px;
 }
 .hr-top5-rich .winner-hero h2 em { font-style: italic; font-weight: 500; color: #14B8A6; }
 .hr-top5-rich .winner-hero-desc {
-  font-size: 17px;
-  line-height: 1.55;
-  color: rgba(248,250,252,.85);
-  margin-bottom: 28px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(248,250,252,.82);
+  margin-bottom: 16px;
   max-width: 440px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
-.hr-top5-rich .winner-hero-stats { display: flex; gap: 32px; flex-wrap: wrap; }
+.hr-top5-rich .winner-hero-stats { display: flex; gap: 28px; flex-wrap: wrap; }
 .hr-top5-rich .winner-stat-num {
   font-family: var(--font-dm-sans), "DM Sans", sans-serif;
-  font-size: 36px;
+  font-size: 24px;
   font-weight: 700;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.03em;
   line-height: 1;
   color: #14B8A6;
   display: block;
 }
-.hr-top5-rich .winner-stat-num .unit { font-size: 20px; color: rgba(248,250,252,.5); }
+.hr-top5-rich .winner-stat-num .unit { font-size: 15px; color: rgba(248,250,252,.5); }
 .hr-top5-rich .winner-stat-label {
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 600;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: rgba(248,250,252,.6);
-  margin-top: 8px;
+  margin-top: 4px;
   display: block;
 }
 .hr-top5-rich .winner-card {
   background: var(--slate-50);
   color: var(--slate-900);
-  border-radius: 24px;
-  padding: 32px;
+  border-radius: 18px;
+  padding: 22px 24px;
   position: relative;
-  transform: rotate(2deg);
-  box-shadow: 0 30px 60px -20px rgba(37,99,235,.4);
+  box-shadow: 0 18px 40px -16px rgba(37,99,235,.4);
 }
 .hr-top5-rich .winner-badge {
   position: absolute;
-  top: -28px; right: -28px;
-  width: 96px; height: 96px;
+  top: -18px; right: -16px;
+  width: 68px; height: 68px;
   background: #14B8A6;
-  border: 4px solid #1D4ED8;
+  border: 3px solid #1D4ED8;
   border-radius: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  transform: rotate(12deg);
-  box-shadow: 0 10px 30px rgba(0,0,0,.2);
+  transform: rotate(10deg);
+  box-shadow: 0 8px 22px rgba(0,0,0,.18);
   z-index: 2;
 }
 .hr-top5-rich .winner-badge span:first-of-type {
   font-family: var(--font-dm-sans), "DM Sans", sans-serif;
-  font-size: 9px; font-weight: 700; letter-spacing: 0.12em; color: #1E40AF;
+  font-size: 8px; font-weight: 700; letter-spacing: 0.1em; color: #1E40AF;
 }
 .hr-top5-rich .winner-badge span:last-of-type {
   font-family: var(--font-dm-sans), "DM Sans", sans-serif;
-  font-size: 20px; font-weight: 700; color: #1E40AF; letter-spacing: -0.03em;
+  font-size: 14px; font-weight: 700; color: #1E40AF; letter-spacing: -0.02em;
 }
 .hr-top5-rich .winner-rank {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 6px 12px;
+  padding: 4px 10px;
   background: var(--blue-50);
   color: #1E40AF;
   border-radius: 9999px;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
-  letter-spacing: 0.05em;
-  margin-bottom: 16px;
+  letter-spacing: 0.08em;
+  margin-bottom: 10px;
 }
 .hr-top5-rich .winner-product {
   font-family: var(--font-dm-sans), "DM Sans", sans-serif;
-  font-size: 26px;
+  font-size: 19px;
   font-weight: 700;
-  letter-spacing: -0.035em;
-  line-height: 1.1;
-  margin-bottom: 6px;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  margin-bottom: 4px;
 }
-.hr-top5-rich .winner-brand { font-size: 13px; color: var(--slate-600); margin-bottom: 20px; }
+.hr-top5-rich .winner-brand { font-size: 12px; color: var(--slate-600); margin-bottom: 14px; }
 .hr-top5-rich .winner-score-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  padding: 16px 0;
+  gap: 8px 14px;
+  padding: 12px 0;
   border-top: 1px solid var(--slate-200);
   border-bottom: 1px solid var(--slate-200);
-  margin-bottom: 20px;
+  margin-bottom: 14px;
 }
 .hr-top5-rich .winner-score-label {
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
   color: var(--slate-600);
-  margin-bottom: 4px;
+  margin-bottom: 2px;
   display: block;
 }
 .hr-top5-rich .winner-score-value {
   font-family: var(--font-dm-sans), "DM Sans", sans-serif;
   font-weight: 700;
-  font-size: 20px;
-  letter-spacing: -0.02em;
+  font-size: 16px;
+  letter-spacing: -0.01em;
   color: #1D4ED8;
 }
-.hr-top5-rich .winner-score-value .out { color: var(--slate-400); font-size: 12px; font-weight: 500; }
-.hr-top5-rich .winner-bottom { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.hr-top5-rich .winner-score-value .out { color: var(--slate-400); font-size: 11px; font-weight: 500; }
+.hr-top5-rich .winner-bottom { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .hr-top5-rich .winner-price {
   font-family: var(--font-dm-sans), "DM Sans", sans-serif;
-  font-size: 22px; font-weight: 700; letter-spacing: -0.025em;
+  font-size: 18px; font-weight: 700; letter-spacing: -0.02em;
 }
 .hr-top5-rich .winner-price .from {
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 600;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--slate-600);
   display: block;
-  margin-bottom: 2px;
+  margin-bottom: 1px;
 }
 .hr-top5-rich .winner-cta {
-  padding: 12px 20px;
+  padding: 9px 16px;
   background: linear-gradient(135deg, #3B82F6 0%, #1E40AF 100%);
   color: white;
   border-radius: 9999px;
   font-family: var(--font-dm-sans), "DM Sans", sans-serif;
   font-weight: 700;
-  font-size: 13px;
+  font-size: 12px;
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -366,10 +370,8 @@
 .hr-top5-rich .cw-header h2 em {
   font-style: italic;
   font-weight: 500;
-  background: linear-gradient(135deg, #3B82F6 0%, #1E40AF 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: #2563EB;
+  padding-right: 0.08em;
 }
 .hr-top5-rich .cw-header p { color: var(--slate-600); font-size: 15px; margin-top: 6px; }
 .hr-top5-rich .cw-grid {
@@ -449,10 +451,8 @@
 .hr-top5-rich .rankings-header h2 em {
   font-style: italic;
   font-weight: 500;
-  background: linear-gradient(135deg, #3B82F6 0%, #1E40AF 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: #2563EB;
+  padding-right: 0.08em;
 }
 .hr-top5-rich .product-card {
   background: white;
@@ -685,10 +685,8 @@
 .hr-top5-rich .pm-header h2 em {
   font-style: italic;
   font-weight: 500;
-  background: linear-gradient(135deg, #3B82F6 0%, #1E40AF 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: #2563EB;
+  padding-right: 0.08em;
 }
 .hr-top5-rich .pm-header p { color: var(--slate-600); font-size: 14px; margin-top: 6px; }
 .hr-top5-rich .pm-table-wrap {
@@ -823,10 +821,8 @@
 .hr-top5-rich .faq-header h2 em {
   font-style: italic;
   font-weight: 500;
-  background: linear-gradient(135deg, #3B82F6 0%, #1E40AF 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: #2563EB;
+  padding-right: 0.08em;
 }
 .hr-top5-rich .faq-list { display: flex; flex-direction: column; gap: 12px; }
 .hr-top5-rich .faq-item {
@@ -906,7 +902,7 @@
 
 /* Responsive */
 @media (max-width: 1024px) {
-  .hr-top5-rich .winner-hero-inner { grid-template-columns: 1fr; gap: 40px; }
+  .hr-top5-rich .winner-hero-inner { grid-template-columns: 1fr; gap: 24px; }
   .hr-top5-rich .product-card { grid-template-columns: auto 1fr; }
   .hr-top5-rich .product-sidebar { grid-column: 1 / -1; width: 100%; }
 }
@@ -922,10 +918,11 @@
   .hr-top5-rich .related,
   .hr-top5-rich .category-winners,
   .hr-top5-rich .jump-nav { padding-left: 20px; padding-right: 20px; }
-  .hr-top5-rich .winner-hero-inner { padding: 32px 24px; }
+  .hr-top5-rich .winner-hero-inner { padding: 22px 20px; }
   .hr-top5-rich .product-card { padding: 24px; grid-template-columns: auto 1fr; gap: 20px; }
   .hr-top5-rich .product-pros-cons { grid-template-columns: 1fr; }
   .hr-top5-rich .rank-number { width: 56px; height: 56px; font-size: 24px; border-radius: 16px; }
-  .hr-top5-rich .winner-card { transform: rotate(0); padding: 24px; }
-  .hr-top5-rich .winner-badge { width: 76px; height: 76px; top: -20px; right: -16px; }
+  .hr-top5-rich .winner-card { padding: 18px 20px; }
+  .hr-top5-rich .winner-badge { width: 60px; height: 60px; top: -16px; right: -12px; }
+  .hr-top5-rich .winner-hero-stats { gap: 20px; }
 }
