@@ -345,8 +345,10 @@ function categoryFromTop5Filename(name) {
 }
 
 function detectCategoryEnum(htmlSlug) {
-  // Map a top5 filename slug to one of the canonical device-category enum values.
-  // Falls back to using the slug itself (the dynamic page route accepts arbitrary slugs).
+  // Map a top5 filename slug to a device category. Falls back to the slug
+  // itself for condition-specific lists (the `category` Strapi field accepts
+  // any string up to 96 chars, and the dynamic page resolves either by
+  // category enum or by slug).
   const knownCats = [
     "blood-pressure-monitors",
     "body-composition-scales",
@@ -364,19 +366,35 @@ function detectCategoryEnum(htmlSlug) {
   for (const c of knownCats) {
     if (htmlSlug === c || htmlSlug.endsWith("-" + c)) return c;
   }
-  if (/blood-pressure/.test(htmlSlug)) return "blood-pressure-monitors";
-  if (/scale|composition/.test(htmlSlug)) return "body-composition-scales";
-  if (/oximeter|pulse-ox/.test(htmlSlug)) return "pulse-oximeters";
+  // Pattern-based mapping for known condition-specific lists.
+  if (/blood-pressure|hypertension|stroke|cardiac|heart-failure|coronary/.test(htmlSlug))
+    return "blood-pressure-monitors";
+  if (/scale|composition|bariatric|weight-management|obesity|athletic-body/.test(htmlSlug))
+    return "body-composition-scales";
+  if (/oximeter|pulse-ox|asthma|copd-pulse|sleep-apnea/.test(htmlSlug))
+    return "pulse-oximeters";
   if (/thermomet/.test(htmlSlug)) return "thermometers";
-  if (/tens-unit|tens$/.test(htmlSlug)) return "tens-units";
-  if (/water-floss/.test(htmlSlug)) return "water-flossers";
-  if (/test-kit/.test(htmlSlug)) return "home-test-kits";
-  if (/gps-alert|fall-alert/.test(htmlSlug)) return "gps-alert-systems";
-  if (/massage/.test(htmlSlug)) return "massage-devices";
-  if (/supplement|vitamin/.test(htmlSlug)) return "supplements";
-  if (/fertility|ovulat|sperm/.test(htmlSlug)) return "fertility-reproductive";
-  if (/breath/.test(htmlSlug)) return "breathing-trainers";
-  return null;
+  if (/tens|sciatica|arthritis-tens|back-pain|sports-injuries|menstrual-cramp/.test(htmlSlug))
+    return "tens-units";
+  if (/water-floss|electric-toothbrush|toothbrush|oral-health/.test(htmlSlug))
+    return "water-flossers";
+  if (/test-kit|home-testing|sti|hiv|uti|drug-test|colorectal|hereditary|genetic|cancer-screen/.test(htmlSlug))
+    return "home-test-kits";
+  if (/gps-alert|fall-alert|fall-detection|dementia|alzheimer|cognitive|parkinson/.test(htmlSlug))
+    return "gps-alert-systems";
+  if (/massage|percussion|shiatsu|anxiety-massagers/.test(htmlSlug))
+    return "massage-devices";
+  if (/supplement|vitamin|creatine|antioxidant|cholesterol|bcaa|glutamine/.test(htmlSlug))
+    return "supplements";
+  if (/fertility|ovulat|sperm|pregnancy|prenatal|male-fertility/.test(htmlSlug))
+    return "fertility-reproductive";
+  if (/breath|breathalyzer|copd-breathing|anxiety-breathing|endurance-training/.test(htmlSlug))
+    return "breathing-trainers";
+  // Fallback: store the slug itself as the category. The Strapi `category`
+  // attribute is a free-form string; lists like `arthritis-gloves`,
+  // `back-support-braces`, `diabetes-ketone-monitors`, etc. simply use their
+  // own slug here so the page route resolves them.
+  return htmlSlug;
 }
 
 // -------------------- Pipeline --------------------
@@ -498,12 +516,9 @@ async function runTop5Import(base, token, args) {
     const top5Slug = path.basename(filename, ".html").replace(/^healthrankings-/, "");
     const htmlSlug = top5Slug.replace(/-top5$/, "");
     const categoryEnum = detectCategoryEnum(htmlSlug);
-    if (!categoryEnum) {
-      console.log(`Skip ${filename}: could not infer category.`);
-      skipped += 1;
-      continue;
-    }
-    const slug = `${htmlSlug}-top5`;
+    // The dynamic page route /top5/[slug] resolves the URL slug against
+    // the `slug` field, so we use the htmlSlug directly (no -top5 suffix).
+    const slug = htmlSlug;
 
     const title = extractH1(html) || extractTitle(html) || `Top 5 — ${htmlSlug}`;
     const intro = extractIntro(html);

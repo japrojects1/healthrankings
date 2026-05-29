@@ -20,12 +20,13 @@ export const dynamic = "force-dynamic";
 type Props = { params: Promise<{ category: string }> };
 
 async function loadDoc(category: string) {
-  // Allow either `category` enum (e.g. "blood-pressure-monitors") or the
-  // top5 entry's `slug` (e.g. "afib-blood-pressure-monitor") so we can route
-  // both legacy category hubs and condition-specific top5 lists.
-  const byCategory = await fetchCategoryTopFiveByCategory(category);
-  if (byCategory) return byCategory;
-  return await fetchCategoryTopFiveBySlug(category);
+  // Try the entry's `slug` first so condition-specific lists (e.g.
+  // "hypertension", "afib-blood-pressure-monitor") win when their slug
+  // matches the URL exactly. Fall back to the device-category enum so
+  // legacy category hubs like /top5/blood-pressure-monitors still resolve.
+  const bySlug = await fetchCategoryTopFiveBySlug(category);
+  if (bySlug) return bySlug;
+  return await fetchCategoryTopFiveByCategory(category);
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
