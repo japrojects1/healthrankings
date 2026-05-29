@@ -159,7 +159,7 @@ export function DeviceReviewRich({
   const reviewSections = device.reviewSections ?? [];
   const recommendWhen = device.recommendWhen?.trim() || "";
   const passWhen = device.passWhen?.trim() || "";
-  const heroSrc = device.heroImage?.url || null;
+  const heroSrc = device.heroImage?.url || device.heroImageUrl || null;
   const imgUnoptimized =
     Boolean(heroSrc?.startsWith("http")) && !heroSrc?.includes("healthrankings");
   const priceNumber = parsePriceNumber(device.priceText);
@@ -238,7 +238,7 @@ export function DeviceReviewRich({
               {heroSrc ? (
                 <Image
                   src={heroSrc}
-                  alt={device.heroImage?.alternativeText || device.name}
+                  alt={device.heroImage?.alternativeText || `${device.name} product photo`}
                   width={520}
                   height={520}
                   sizes="(max-width: 1024px) 80vw, 320px"

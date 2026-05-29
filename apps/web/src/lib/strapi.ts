@@ -45,6 +45,12 @@ export type Device = {
   whoFor?: string[] | null;
   whoNot?: string[] | null;
   heroImage?: StrapiMedia | null;
+  /**
+   * Optional fallback image URL used when no `heroImage` file has been
+   * uploaded — paste any public image URL (Amazon, manufacturer site, etc.).
+   * The frontend prefers `heroImage` and falls back to this when absent.
+   */
+  heroImageUrl?: string | null;
   gallery?: StrapiMedia[] | null;
 };
 
@@ -326,6 +332,10 @@ function normalizeDevice(row: any): Device {
     whoFor: asStringArray(attrs.whoFor),
     whoNot: asStringArray(attrs.whoNot),
     heroImage,
+    heroImageUrl:
+      typeof attrs.heroImageUrl === "string" && attrs.heroImageUrl.trim()
+        ? attrs.heroImageUrl.trim()
+        : null,
     gallery: galleryNormalized?.length ? galleryNormalized : null,
   };
 }

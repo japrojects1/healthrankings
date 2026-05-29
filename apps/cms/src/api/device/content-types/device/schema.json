@@ -5,7 +5,7 @@
     "singularName": "device",
     "pluralName": "devices",
     "displayName": "Device",
-    "description": "A reviewed device with structured review fields. Upload the primary product photo in Hero image — it appears next to the device name on the review page and on Category Top 5 rankings when this device is listed."
+    "description": "A reviewed device with structured review fields. For the product photo, you can EITHER upload to Hero image (preferred — served via Cloudinary CDN) OR paste a public image URL into Hero image URL (Amazon, manufacturer site, etc.). The frontend prefers the upload and falls back to the URL when no upload exists."
   },
   "options": {
     "draftAndPublish": true
@@ -33,6 +33,10 @@
       "multiple": false,
       "required": false,
       "allowedTypes": ["images"]
+    },
+    "heroImageUrl": {
+      "type": "string",
+      "maxLength": 600
     },
     "gallery": {
       "type": "media",

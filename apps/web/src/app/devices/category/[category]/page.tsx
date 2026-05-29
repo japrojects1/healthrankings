@@ -95,7 +95,7 @@ export default async function DeviceCategoryCatalogPage({ params }: Props) {
           <div className="top5-list">
             {devices.map((dev, idx) => {
               const score10 = ratingToScore10(dev.rating);
-              const thumb = dev.heroImage?.url;
+              const thumb = dev.heroImage?.url || dev.heroImageUrl || undefined;
               const imgUnoptimized =
                 Boolean(thumb?.startsWith("http")) && !thumb?.includes("healthrankings");
               const winner = idx === 0 && score10 != null;
