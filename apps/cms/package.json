@@ -18,6 +18,7 @@
     "@strapi/icons": "2.2.0",
     "@strapi/plugin-cloud": "5.43.0",
     "@strapi/plugin-users-permissions": "5.43.0",
+    "@strapi/provider-upload-cloudinary": "^5.47.0",
     "@strapi/strapi": "5.43.0",
     "jsonwebtoken": "^9.0.2",
     "pg": "8.20.0",
@@ -27,11 +28,11 @@
     "styled-components": "^6.0.0"
   },
   "devDependencies": {
+    "@swc/core": "1.13.20",
     "@types/jsonwebtoken": "^9.0.6",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "@swc/core": "1.13.20",
     "typescript": "^5"
   },
   "overrides": {

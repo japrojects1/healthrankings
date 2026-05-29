@@ -72,6 +72,19 @@ services:
         sync: false
       - key: CATALOG_AI_SECRET
         generateValue: true
+      # Cloudinary upload provider — REQUIRED in production. Render's container
+      # disk is ephemeral, so the default local-filesystem upload provider
+      # silently loses uploaded images on every deploy/restart. Paste the three
+      # secrets from cloudinary.com → Dashboard → Account Details:
+      #   CLOUDINARY_NAME   = Cloud name (short slug, e.g. "healthrankings")
+      #   CLOUDINARY_KEY    = API Key (numeric)
+      #   CLOUDINARY_SECRET = API Secret (long alphanumeric)
+      - key: CLOUDINARY_NAME
+        sync: false
+      - key: CLOUDINARY_KEY
+        sync: false
+      - key: CLOUDINARY_SECRET
+        sync: false
     # Attach `cms.healthrankings.co` after the service is created.
 
 databases:

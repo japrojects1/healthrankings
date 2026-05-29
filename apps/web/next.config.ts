@@ -72,7 +72,12 @@ const nextConfig: NextConfig = {
     },
   ],
   images: {
-    remotePatterns: cmsRemotePatterns(),
+    remotePatterns: [
+      ...cmsRemotePatterns(),
+      // Cloudinary CDN — Strapi uploads land here once CLOUDINARY_* env vars
+      // are set on the CMS service.
+      { protocol: "https", hostname: "res.cloudinary.com", pathname: "/**" },
+    ],
   },
 };
 
