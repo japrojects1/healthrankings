@@ -95,6 +95,22 @@
       "repeatable": true,
       "component": "review.section"
     },
+    "performanceScores": {
+      "type": "component",
+      "repeatable": true,
+      "component": "review.performance-score"
+    },
+    "specs": {
+      "type": "component",
+      "repeatable": true,
+      "component": "review.spec-row"
+    },
+    "whoFor": {
+      "type": "json"
+    },
+    "whoNot": {
+      "type": "json"
+    },
     "sourceHtmlPath": {
       "type": "string",
       "private": true

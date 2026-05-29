@@ -1,13 +1,18 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
-import { legacyAllDevicesPathToCategory, legacyTop5PathToCategory } from "@/lib/device-category-links";
+import { legacyAllDevicesPathToCategory } from "@/lib/device-category-links";
 
 /**
  * Legacy static URLs in /public. Strapi content is served from /articles/[slug]
  * and /devices/[slug]. Use explicit `:slug.html` matchers so single-segment paths
  * (no extra slashes) are matched — `:path*` patterns often miss these.
  *
- * Representative Category Top 5 `.html` URLs rewrite to `/top5/[category]` (CMS-driven).
+ * Any `healthrankings-*-top5.html` URL is rewritten to `/top5/<slug>` where
+ * `<slug>` is the filename minus the `healthrankings-` prefix and `-top5.html`
+ * suffix (e.g. `healthrankings-hypertension-top5.html` → `/top5/hypertension`).
+ * The dynamic page resolves the slug against either the Strapi `category` enum
+ * or the Category Top 5 `slug` field.
+ *
  * Legacy `healthrankings-all-*.html` hubs rewrite to `/devices/category/[slug]` (CMS devices).
  */
 export function middleware(request: NextRequest) {
@@ -23,10 +28,10 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL(`/devices/${device[1]}`, request.url), 308);
   }
 
-  const top5Category = legacyTop5PathToCategory(pathname);
-  if (top5Category) {
+  const top5 = /^\/healthrankings-(.+)-top5\.html$/i.exec(pathname);
+  if (top5) {
     const url = request.nextUrl.clone();
-    url.pathname = `/top5/${top5Category}`;
+    url.pathname = `/top5/${top5[1]}`;
     return NextResponse.rewrite(url);
   }
 
@@ -41,7 +46,9 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  // Must stay in sync with `top5` href values and legacy all-device hubs in `src/lib/device-category-links.ts`.
+  // Must stay in sync with patterns above + legacy all-device hubs in `src/lib/device-category-links.ts`.
+  // Top-5 entries are listed explicitly so we only intercept URLs that have a CMS doc seeded.
+  // Add a new line when you ship a new Category Top 5 in Strapi (after running `npm run seed:top5-rich`).
   matcher: [
     "/healthrankings-article-:slug.html",
     "/healthrankings-review-:slug.html",
@@ -57,6 +64,7 @@ export const config = {
     "/healthrankings-percussion-massage-guns-top5.html",
     "/healthrankings-oxidative-stress-antioxidant-supplements-top5.html",
     "/healthrankings-pregnancy-tests-top5.html",
+    "/healthrankings-afib-blood-pressure-monitor-top5.html",
     "/healthrankings-all-arthritis-gloves.html",
     "/healthrankings-all-back-support-braces.html",
     "/healthrankings-all-blood-pressure-monitors.html",

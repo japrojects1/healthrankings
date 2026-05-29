@@ -9,6 +9,17 @@ export type PerformancePillar = {
   commentary: string;
 };
 
+export type PerformanceScore = {
+  label: string;
+  score: number;   // 0-10
+  width: number;   // 0-100
+};
+
+export type SpecRow = {
+  key: string;
+  value: string;
+};
+
 export type Device = {
   id: number;
   slug: string;
@@ -29,6 +40,10 @@ export type Device = {
   passWhen?: string | null;
   performancePillars?: PerformancePillar[] | null;
   reviewSections?: ReviewSection[] | null;
+  performanceScores?: PerformanceScore[] | null;
+  specs?: SpecRow[] | null;
+  whoFor?: string[] | null;
+  whoNot?: string[] | null;
   heroImage?: StrapiMedia | null;
   gallery?: StrapiMedia[] | null;
 };
@@ -39,13 +54,30 @@ export type Top5Entry = {
   device: Device | null;
 };
 
+export type FaqItem = {
+  question: string;
+  answer: string;
+};
+
+export type RelatedCondition = {
+  name: string;
+  href: string;
+  meta?: string | null;
+};
+
 export type CategoryTopFive = {
   documentId?: string;
   slug: string;
   category: string;
+  categoryLabel?: string | null;
   title: string;
   subtitle?: string | null;
+  intro?: string | null;
+  metaTitle?: string | null;
+  metaDescription?: string | null;
   entries: Top5Entry[];
+  faqs?: FaqItem[] | null;
+  relatedConditions?: RelatedCondition[] | null;
 };
 
 type StrapiMedia = {
@@ -169,6 +201,87 @@ function normalizePerformancePillarsAttr(raw: unknown): PerformancePillar[] | nu
   return out.length ? out : null;
 }
 
+function pickAttrs(row: unknown): Record<string, unknown> {
+  if (row && typeof row === "object") {
+    const r = row as Record<string, unknown>;
+    if (r.attributes && typeof r.attributes === "object") {
+      return r.attributes as Record<string, unknown>;
+    }
+    return r;
+  }
+  return {};
+}
+
+function normalizePerformanceScoresAttr(raw: unknown): PerformanceScore[] | null {
+  const list = unwrapComponentArray(raw);
+  const out: PerformanceScore[] = [];
+  for (const row of list) {
+    const a = pickAttrs(row);
+    const label = String(a?.label ?? "").trim();
+    const score = Number(a?.score);
+    if (!label || !Number.isFinite(score)) continue;
+    let width = Number(a?.width);
+    if (!Number.isFinite(width) || width <= 0) width = Math.round(score * 10);
+    width = Math.round(Math.min(100, Math.max(0, width)));
+    out.push({ label, score: Math.round(score * 10) / 10, width });
+  }
+  return out.length ? out : null;
+}
+
+function normalizeSpecsAttr(raw: unknown): SpecRow[] | null {
+  const list = unwrapComponentArray(raw);
+  const out: SpecRow[] = [];
+  for (const row of list) {
+    const a = pickAttrs(row);
+    const key = String(a?.key ?? "").trim();
+    const value = String(a?.value ?? "").trim();
+    if (!key || !value) continue;
+    out.push({ key, value });
+  }
+  return out.length ? out : null;
+}
+
+function normalizeFaqsAttr(raw: unknown): FaqItem[] | null {
+  const list = unwrapComponentArray(raw);
+  const out: FaqItem[] = [];
+  for (const row of list) {
+    const a = pickAttrs(row);
+    const question = String(a?.question ?? "").trim();
+    const answer = reviewBodyToDisplayString(a?.answer);
+    if (!question || !answer) continue;
+    out.push({ question, answer });
+  }
+  return out.length ? out : null;
+}
+
+function normalizeRelatedConditionsAttr(raw: unknown): RelatedCondition[] | null {
+  const list = unwrapComponentArray(raw);
+  const out: RelatedCondition[] = [];
+  for (const row of list) {
+    const a = pickAttrs(row);
+    const name = String(a?.name ?? "").trim();
+    const href = String(a?.href ?? "").trim();
+    if (!name || !href) continue;
+    out.push({
+      name,
+      href,
+      meta: a?.meta ? String(a.meta).trim() : null,
+    });
+  }
+  return out.length ? out : null;
+}
+
+function asStringArray(raw: unknown): string[] | null {
+  if (!raw) return null;
+  if (Array.isArray(raw)) {
+    const out = raw
+      .map((x) => (typeof x === "string" ? x.trim() : ""))
+      .filter((s) => s.length > 0);
+    return out.length ? out : null;
+  }
+  return null;
+}
+
 function normalizeDevice(row: any): Device {
   const attrs = row.attributes ?? row;
   let galleryList: any[] | null = null;
@@ -185,6 +298,8 @@ function normalizeDevice(row: any): Device {
 
   const reviewSections = normalizeReviewSectionsAttr(attrs.reviewSections);
   const performancePillars = normalizePerformancePillarsAttr(attrs.performancePillars);
+  const performanceScores = normalizePerformanceScoresAttr(attrs.performanceScores);
+  const specs = normalizeSpecsAttr(attrs.specs);
 
   return {
     id: row.id ?? attrs.id,
@@ -206,6 +321,10 @@ function normalizeDevice(row: any): Device {
     passWhen: attrs.passWhen ?? null,
     performancePillars,
     reviewSections,
+    performanceScores,
+    specs,
+    whoFor: asStringArray(attrs.whoFor),
+    whoNot: asStringArray(attrs.whoNot),
     heroImage,
     gallery: galleryNormalized?.length ? galleryNormalized : null,
   };
@@ -213,7 +332,7 @@ function normalizeDevice(row: any): Device {
 
 /** Strapi 5: list media + repeatable components explicitly (populate=* alone can omit components). */
 const DEVICE_DEEP_POPULATE =
-  "populate[heroImage]=true&populate[gallery]=true&populate[reviewSections]=true&populate[performancePillars]=true";
+  "populate[heroImage]=true&populate[gallery]=true&populate[reviewSections]=true&populate[performancePillars]=true&populate[performanceScores]=true&populate[specs]=true";
 
 function appendDevicePopulate(urlWithQuery: string): string {
   return urlWithQuery.includes("?")
@@ -278,8 +397,16 @@ export async function searchPublishedDevices(query: string, limit = 20): Promise
   return rows.map((row) => normalizeDevice(row));
 }
 
-const CATEGORY_TOP5_POPULATE =
-  "populate[entries][populate][device][populate][heroImage]=true&populate[entries][populate][device][populate][gallery]=true&populate[entries][populate][device][populate][reviewSections]=true&populate[entries][populate][device][populate][performancePillars]=true";
+const CATEGORY_TOP5_POPULATE = [
+  "populate[entries][populate][device][populate][heroImage]=true",
+  "populate[entries][populate][device][populate][gallery]=true",
+  "populate[entries][populate][device][populate][reviewSections]=true",
+  "populate[entries][populate][device][populate][performancePillars]=true",
+  "populate[entries][populate][device][populate][performanceScores]=true",
+  "populate[entries][populate][device][populate][specs]=true",
+  "populate[faqs]=true",
+  "populate[relatedConditions]=true",
+].join("&");
 
 function unwrapStrapiRelation(m: any): any {
   if (!m) return null;
@@ -311,9 +438,15 @@ function normalizeCategoryTopFiveRow(row: any): CategoryTopFive {
     documentId: row.documentId ?? attrs.documentId,
     slug: String(attrs.slug ?? ""),
     category: String(attrs.category ?? ""),
+    categoryLabel: attrs.categoryLabel ?? null,
     title: String(attrs.title ?? ""),
     subtitle: attrs.subtitle ?? null,
+    intro: attrs.intro ?? null,
+    metaTitle: attrs.metaTitle ?? null,
+    metaDescription: attrs.metaDescription ?? null,
     entries: list,
+    faqs: normalizeFaqsAttr(attrs.faqs),
+    relatedConditions: normalizeRelatedConditionsAttr(attrs.relatedConditions),
   };
 }
 

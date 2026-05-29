@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_review_faq_items",
+  "info": {
+    "displayName": "FAQ item",
+    "description": "One question/answer pair shown in the Top 5 FAQ section."
+  },
+  "options": {},
+  "attributes": {
+    "question": {
+      "type": "string",
+      "required": true,
+      "maxLength": 240
+    },
+    "answer": {
+      "type": "richtext",
+      "required": true
+    }
+  }
+}

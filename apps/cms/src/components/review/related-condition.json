@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_review_related_conditions",
+  "info": {
+    "displayName": "Related condition",
+    "description": "A related condition or category linked from the Top 5 page footer."
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "maxLength": 80
+    },
+    "href": {
+      "type": "string",
+      "required": true,
+      "maxLength": 240
+    },
+    "meta": {
+      "type": "string",
+      "maxLength": 80
+    }
+  }
+}

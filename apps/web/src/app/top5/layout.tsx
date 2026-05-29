@@ -2,6 +2,7 @@ import { DM_Sans, Inter } from "next/font/google";
 import type { ReactNode } from "react";
 import "../devices/device-shell.css";
 import "./top5-shell.css";
+import "./top5-rich.css";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],

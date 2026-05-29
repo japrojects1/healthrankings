@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_review_performance_scores",
+  "info": {
+    "displayName": "Performance score",
+    "description": "One per-metric score (e.g. Accuracy 9.8/10) used in the Top 5 performance matrix."
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true,
+      "maxLength": 60
+    },
+    "score": {
+      "type": "decimal",
+      "required": true,
+      "min": 0,
+      "max": 10
+    },
+    "width": {
+      "type": "integer",
+      "min": 0,
+      "max": 100
+    }
+  }
+}
