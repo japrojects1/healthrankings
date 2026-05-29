@@ -90,6 +90,7 @@ export const config = {
     "/healthrankings-post-surgical-rehab-tens-top5.html",
     "/healthrankings-sports-injuries-tens-top5.html",
     "/healthrankings-stroke-prevention-blood-pressure-top5.html",
+    "/healthrankings-cpap-machines-top5.html",
     "/healthrankings-all-arthritis-gloves.html",
     "/healthrankings-all-back-support-braces.html",
     "/healthrankings-all-blood-pressure-monitors.html",
@@ -108,5 +109,6 @@ export const config = {
     "/healthrankings-all-tens-units.html",
     "/healthrankings-all-thermometers.html",
     "/healthrankings-all-water-flossers.html",
+    "/healthrankings-all-cpap-machines.html",
   ],
 };

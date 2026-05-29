@@ -56,6 +56,10 @@ const catalog: Record<string, CategoryCatalog> = {
     label: "Fertility & Reproductive",
     href: "/healthrankings-all-fertility-reproductive.html",
   },
+  "cpap-machines": {
+    label: "CPAP Machines",
+    href: "/healthrankings-all-cpap-machines.html",
+  },
 };
 
 /** Representative legacy Top 5 page per device category enum. */
@@ -107,6 +111,10 @@ const top5: Record<string, Top5Callout> = {
   "fertility-reproductive": {
     href: "/healthrankings-pregnancy-tests-top5.html",
     line: "See our best fertility & reproductive health picks — ranked",
+  },
+  "cpap-machines": {
+    href: "/healthrankings-cpap-machines-top5.html",
+    line: "See our best CPAP machines — sleep apnea picks ranked",
   },
 };
 

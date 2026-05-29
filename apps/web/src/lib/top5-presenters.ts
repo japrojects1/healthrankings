@@ -322,10 +322,11 @@ const CATEGORY_SUFFIX_PATTERNS: Record<string, RegExp[]> = {
   "fertility-reproductive": [/-?pregnancy-tests?$/i, /-?fertility(?:-reproductive)?$/i],
   "back-support-braces": [/-?braces?$/i, /-?back-supports?(?:-braces?)?$/i],
   "arthritis-gloves": [/-?gloves?$/i],
+  "cpap-machines": [/-?cpap(?:-machines?)?$/i, /-?(?:auto-)?cpaps?$/i],
 };
 
 const GENERIC_DEVICE_SUFFIX =
-  /-?(?:monitors?|tests?|trainers?|scales?|systems?|units?|devices?|guns?|kits?|gloves?|braces?|supports?|supplements?|flossers?|thermometers?|oximeters?|breathalyzers?|massagers?|cgm)$/i;
+  /-?(?:monitors?|tests?|trainers?|scales?|systems?|units?|devices?|guns?|kits?|gloves?|braces?|supports?|supplements?|flossers?|thermometers?|oximeters?|breathalyzers?|massagers?|machines?|cgm|cpaps?)$/i;
 
 /**
  * Suffix → canonical device-category enum. Lets us infer the correct device
@@ -360,6 +361,8 @@ const SUFFIX_TO_CATEGORY: Array<[RegExp, string]> = [
   [/-?breathalyzers?$/i, "breathalyzers"],
   [/-?(?:glucometers?|cgm)$/i, "glucometers-cgm"],
   [/-?ketone-monitors?$/i, "glucometers-cgm"],
+  [/-?cpap(?:-machines?)?$/i, "cpap-machines"],
+  [/-?(?:auto-)?cpaps?$/i, "cpap-machines"],
 ];
 
 /** Infer the canonical device-category enum from a Top 5 URL slug. */

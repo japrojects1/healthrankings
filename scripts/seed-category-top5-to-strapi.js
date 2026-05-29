@@ -33,6 +33,7 @@ const DEVICE_CATEGORIES = [
   "massage-devices",
   "supplements",
   "fertility-reproductive",
+  "cpap-machines",
   "other",
 ];
 
@@ -49,6 +50,7 @@ const CATEGORY_TITLE = {
   "massage-devices": "Top 5 Massage Devices",
   supplements: "Top 5 Supplement Picks",
   "fertility-reproductive": "Top 5 Fertility & Reproductive Health Devices",
+  "cpap-machines": "Top 5 CPAP Machines",
   other: "Top 5 Devices (Other)",
 };
 

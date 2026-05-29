@@ -368,6 +368,7 @@ function detectCategoryEnum(htmlSlug) {
     "massage-devices",
     "supplements",
     "fertility-reproductive",
+    "cpap-machines",
   ];
   for (const c of knownCats) {
     if (htmlSlug === c || htmlSlug.endsWith("-" + c)) return c;
@@ -396,6 +397,8 @@ function detectCategoryEnum(htmlSlug) {
     return "fertility-reproductive";
   if (/breath|breathalyzer|copd-breathing|anxiety-breathing|endurance-training/.test(htmlSlug))
     return "breathing-trainers";
+  if (/cpap|sleep-apnea-cpap|cpap-machine/.test(htmlSlug))
+    return "cpap-machines";
   // Fallback: store the slug itself as the category. The Strapi `category`
   // attribute is a free-form string; lists like `arthritis-gloves`,
   // `back-support-braces`, `diabetes-ketone-monitors`, etc. simply use their

@@ -21,6 +21,7 @@
     "import:articles": "node scripts/import-articles-to-strapi.js",
     "seed:category-top5": "node scripts/seed-category-top5-to-strapi.js",
     "seed:top5-rich": "node scripts/seed-top5-rich-from-review-data.js",
+    "seed:cpap": "node scripts/seed-cpap-devices-and-top5.js",
     "fix:device-categories": "node scripts/fix-device-categories-in-strapi.js",
     "catalog-ai:health": "node scripts/catalog-ai-check.js health",
     "catalog-ai:dry-run": "node scripts/catalog-ai-check.js dry-run"
