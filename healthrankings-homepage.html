@@ -1944,7 +1944,13 @@ a { color: inherit; text-decoration: none; }
   </div>
 </section>
 
-<!-- ============ REVIEWS ============ -->
+<!-- ============ FEATURED ARTICLES (Worth your time) ============ -->
+<style>
+  /* Anchor variants of the cards: keep the visual identical to the original <article> cards. */
+  a.review-card { display: flex; flex-direction: column; text-decoration: none; color: inherit; }
+  a.review-card .review-title { color: var(--slate-900); }
+  .review-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+</style>
 <section class="section" id="reviews" style="padding-top:24px;">
   <div class="section-inner">
     <div class="section-header">
@@ -1953,78 +1959,150 @@ a { color: inherit; text-decoration: none; }
         <h2>Worth <em>your time.</em></h2>
         <p class="section-intro">Condition guides, wellness articles, and honest product reviews — researched from medical literature, written for real people, and reviewed by healthcare professionals.</p>
       </div>
-      <a href="/healthrankings-devices.html" class="view-all">
-        All reviews
+      <a href="/articles" class="view-all">
+        All articles
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
       </a>
     </div>
 
-    <div class="reviews-grid">
-      <article class="review-card">
+    <!--
+      Cards below are populated dynamically from Strapi by the script at the bottom of this section.
+      To control which articles appear here:
+        1. Open Strapi admin → Content Manager → Articles
+        2. Open any article and toggle "Featured on home" → Save & Publish
+        3. The newest 3 featured articles render here within seconds.
+      If no article is flagged yet, the script falls back to the 3 most recently published articles.
+      The static fallback below also keeps the section clickable if the CMS is unreachable.
+    -->
+    <div class="reviews-grid" data-cms-articles>
+      <a class="review-card" href="/articles/nad-plus-aging-cellular-health-science">
         <div class="review-image">
           <svg width="90" height="90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 0C1.46 6.7 1.33 10.28 4 13l8 8 8-8c2.67-2.72 2.54-6.3.42-8.42z"/></svg>
         </div>
         <div class="review-body">
           <div class="review-meta">
-            <span class="review-category">Condition Guide</span>
-            <span class="review-date">2 days ago</span>
+            <span class="review-category">Wellness</span>
           </div>
-          <h3 class="review-title">Hypertension: understanding your numbers and what they mean</h3>
-          <p class="review-excerpt">Everything you need to know about blood pressure — what causes it, how to read your numbers, lifestyle changes that work, and how to monitor at home.</p>
+          <h3 class="review-title">NAD+ and aging: the science behind cellular health</h3>
+          <p class="review-excerpt">A plain-language guide to how NAD+ keeps cells running, why it drops with age, and what the latest evidence says about boosting it safely.</p>
           <div class="review-author">
             <div class="review-author-avatar">HR</div>
             <div class="review-author-info">
-              <strong>HealthRankings Team</strong>
-              <span>Cardiovascular · 12 min read</span>
+              <strong>HealthRankings Editorial</strong>
+              <span>Wellness · 8 min read</span>
             </div>
           </div>
         </div>
-      </article>
+      </a>
 
-      <article class="review-card">
+      <a class="review-card" href="/articles/glp-1-medications-transforming-lives-beyond-weight-loss">
         <div class="review-image">
           <svg width="90" height="90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
         </div>
         <div class="review-body">
           <div class="review-meta">
             <span class="review-category">Wellness</span>
-            <span class="review-date">5 days ago</span>
           </div>
-          <h3 class="review-title">Living well with diabetes: 6 daily habits backed by science</h3>
-          <p class="review-excerpt">From meal timing to exercise patterns — the lifestyle changes with the strongest evidence for managing blood sugar long-term.</p>
+          <h3 class="review-title">How GLP-1 medications are transforming lives beyond weight loss</h3>
+          <p class="review-excerpt">From diabetes management to heart health, these medications are offering unexpected benefits that extend far beyond their original purpose.</p>
           <div class="review-author">
             <div class="review-author-avatar">HR</div>
             <div class="review-author-info">
-              <strong>HealthRankings Team</strong>
-              <span>Diabetes · 10 min read</span>
+              <strong>HealthRankings Editorial</strong>
+              <span>Medical innovation · 7 min read</span>
             </div>
           </div>
         </div>
-      </article>
+      </a>
 
-      <article class="review-card">
+      <a class="review-card" href="/articles/daily-habits-lower-blood-pressure">
         <div class="review-image">
           <svg width="90" height="90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         </div>
         <div class="review-body">
           <div class="review-meta">
-            <span class="review-category">Product Rankings</span>
-            <span class="review-date">1 week ago</span>
+            <span class="review-category">Cardiovascular</span>
           </div>
-          <h3 class="review-title">The 5 best overnight pulse oximeters for sleep apnea</h3>
-          <p class="review-excerpt">We tested the top overnight oximeters for SpO₂ tracking accuracy, comfort, and battery life. Here are the ones worth buying.</p>
+          <h3 class="review-title">The daily habits that actually lower blood pressure — according to the research</h3>
+          <p class="review-excerpt">We reviewed 30+ clinical studies to find the lifestyle changes with the strongest evidence. Some are obvious, others will surprise you.</p>
           <div class="review-author">
             <div class="review-author-avatar">HR</div>
             <div class="review-author-info">
-              <strong>HealthRankings Team</strong>
-              <span>Sleep · 15 min read</span>
+              <strong>HealthRankings Editorial</strong>
+              <span>Cardiovascular · 8 min read</span>
             </div>
           </div>
         </div>
-      </article>
+      </a>
     </div>
   </div>
 </section>
+<script>
+  /* Populate the "Worth your time" section with featured articles from Strapi. Falls back to the 3 most-recent
+     published if the editor hasn't flagged any yet, and silently keeps the static fallback if the CMS is offline. */
+  (async () => {
+    const grid = document.querySelector('.reviews-grid[data-cms-articles]');
+    if (!grid) return;
+    const CMS = 'https://healthrankings-cms.onrender.com';
+    const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    const metaLine = (x) => [x.topic, x.readTime].filter(Boolean).join(' \u00B7 ');
+    const fallbackPaths = [
+      '<path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 0C1.46 6.7 1.33 10.28 4 13l8 8 8-8c2.67-2.72 2.54-6.3.42-8.42z"/>',
+      '<circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>',
+      '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>'
+    ];
+    const heroSrc = (x) => {
+      const u = (x.heroImage && (x.heroImage.url || (x.heroImage.formats && (x.heroImage.formats.medium || x.heroImage.formats.small || {}).url))) || null;
+      if (!u) return null;
+      return /^https?:\/\//i.test(u) ? u : CMS + u;
+    };
+    const card = (a, i) => {
+      const x = a.attributes || a;
+      const img = heroSrc(x);
+      const inner = img
+        ? `<img src="${esc(img)}" alt="${esc(x.title || '')}" loading="lazy"/>`
+        : `<svg width="90" height="90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">${fallbackPaths[i % 3]}</svg>`;
+      return `
+        <a class="review-card" href="/articles/${esc(x.slug || '')}">
+          <div class="review-image">${inner}</div>
+          <div class="review-body">
+            <div class="review-meta">
+              <span class="review-category">${esc(x.tag || 'Article')}</span>
+            </div>
+            <h3 class="review-title">${esc(x.title || '')}</h3>
+            <p class="review-excerpt">${esc(x.subtitle || x.metaDescription || '')}</p>
+            <div class="review-author">
+              <div class="review-author-avatar">HR</div>
+              <div class="review-author-info">
+                <strong>${esc(x.authorLine || 'HealthRankings Editorial')}</strong>
+                <span>${esc(metaLine(x))}</span>
+              </div>
+            </div>
+          </div>
+        </a>`;
+    };
+    const fetchJson = (url) => fetch(url, { headers: { Accept: 'application/json' }, cache: 'no-store' })
+      .then((r) => (r.ok ? r.json() : { data: [] }))
+      .catch(() => ({ data: [] }));
+    try {
+      const featured = await fetchJson(`${CMS}/api/articles?filters[featuredOnHome][$eq]=true&sort[0]=publishedAt:desc&pagination[pageSize]=3&populate=*&status=published`);
+      let arr = (featured && featured.data) || [];
+      if (arr.length < 3) {
+        const seen = new Set(arr.map((a) => (a.attributes || a).slug));
+        const recent = await fetchJson(`${CMS}/api/articles?sort[0]=publishedAt:desc&pagination[pageSize]=6&populate=*&status=published`);
+        for (const a of (recent && recent.data) || []) {
+          const slug = (a.attributes || a).slug;
+          if (!seen.has(slug)) { arr.push(a); seen.add(slug); }
+          if (arr.length >= 3) break;
+        }
+      }
+      if (arr.length === 0) return;
+      grid.innerHTML = arr.slice(0, 3).map(card).join('');
+    } catch (_) {
+      /* silent fallback to static cards */
+    }
+  })();
+</script>
 
 <!-- ============ NEWSLETTER CTA ============ -->
 <section class="cta-section">

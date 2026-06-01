@@ -56,6 +56,10 @@
     "sourceHtmlPath": {
       "type": "string",
       "private": true
+    },
+    "featuredOnHome": {
+      "type": "boolean",
+      "default": false
     }
   }
 }
