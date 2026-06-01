@@ -1136,7 +1136,12 @@ function render() {
     return matchCat && matchSearch;
   });
 
-  const totalProducts = filtered.reduce((sum, dt) => sum + dt.products.length, 0);
+  // Prefer reviewCatalogCount (set from Strapi by the hydration script below or hardcoded above)
+  // so the page-top total matches each card's "N products reviewed" badge.
+  const totalProducts = filtered.reduce(
+    (sum, dt) => sum + (typeof dt.reviewCatalogCount === 'number' ? dt.reviewCatalogCount : dt.products.length),
+    0
+  );
   document.getElementById('resultsInfo').innerHTML = 
     `Showing <strong>${filtered.length}</strong> device categories · <strong>${totalProducts}</strong> products reviewed`;
 
@@ -1208,6 +1213,72 @@ document.getElementById('deviceSearch').addEventListener('input', function() {
 });
 
 render();
+
+/* Hydrate "products reviewed" counts from Strapi so the page-top total and per-card
+   badges match the real CMS catalog. Static counts above act as a fallback if the CMS
+   is unreachable. Mapping mirrors apps/web/src/lib/device-category-links.ts. */
+(async () => {
+  if (typeof DEVICE_TYPES === 'undefined' || typeof render !== 'function') return;
+  const CMS = 'https://healthrankings-cms.onrender.com';
+  const ALL_PATH_TO_CATEGORY = {
+    '/healthrankings-all-blood-pressure-monitors.html': 'blood-pressure-monitors',
+    '/healthrankings-all-body-composition-monitors.html': 'body-composition-scales',
+    '/healthrankings-all-pulse-oximeters.html': 'pulse-oximeters',
+    '/healthrankings-all-breathing-trainers.html': 'breathing-trainers',
+    '/healthrankings-all-tens-units.html': 'tens-units',
+    '/healthrankings-all-thermometers.html': 'thermometers',
+    '/healthrankings-all-water-flossers.html': 'water-flossers',
+    '/healthrankings-all-home-test-kits.html': 'home-test-kits',
+    '/healthrankings-all-gps-alert-systems.html': 'gps-alert-systems',
+    '/healthrankings-all-massage-devices.html': 'massage-devices',
+    '/healthrankings-all-supplements.html': 'supplements',
+    '/healthrankings-all-fertility-reproductive.html': 'fertility-reproductive',
+    '/healthrankings-all-cpap-machines.html': 'cpap-machines',
+    '/healthrankings-all-arthritis-gloves.html': 'arthritis-gloves',
+    '/healthrankings-all-electric-toothbrushes.html': 'electric-toothbrushes',
+    '/healthrankings-all-back-support-braces.html': 'back-support-braces',
+    '/healthrankings-all-fitness-recovery.html': 'fitness-recovery',
+    '/healthrankings-all-foot-leg-supports.html': 'foot-leg-supports',
+    '/healthrankings-all-glucometers-cgm.html': 'glucometers-cgm',
+  };
+  async function fetchPage(page) {
+    const url = `${CMS}/api/devices?fields[0]=category&pagination[page]=${page}&pagination[pageSize]=100&status=published`;
+    const r = await fetch(url, { headers: { Accept: 'application/json' }, cache: 'no-store' });
+    if (!r.ok) return { data: [], meta: {} };
+    return r.json();
+  }
+  try {
+    const counts = {};
+    const tally = (rows) => {
+      for (const a of rows || []) {
+        const cat = (a.attributes || a).category;
+        if (cat) counts[cat] = (counts[cat] || 0) + 1;
+      }
+    };
+    const first = await fetchPage(1);
+    tally(first.data);
+    const pageCount = (first.meta && first.meta.pagination && first.meta.pagination.pageCount) || 1;
+    if (pageCount > 1) {
+      const more = await Promise.all(
+        Array.from({ length: pageCount - 1 }, (_, i) => fetchPage(i + 2))
+      );
+      for (const m of more) tally(m.data);
+    }
+    let mutated = false;
+    for (const dt of DEVICE_TYPES) {
+      const cat = ALL_PATH_TO_CATEGORY[(dt.allPage || '').toLowerCase()];
+      if (!cat) continue;
+      const real = counts[cat];
+      if (typeof real === 'number' && real >= 1 && real !== dt.reviewCatalogCount) {
+        dt.reviewCatalogCount = real;
+        mutated = true;
+      }
+    }
+    if (mutated) render();
+  } catch (_) {
+    /* keep static counts */
+  }
+})();
 </script>
 </body>
 </html>
