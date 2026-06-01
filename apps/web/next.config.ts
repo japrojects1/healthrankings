@@ -42,6 +42,16 @@ function cmsRemotePatterns() {
 }
 
 const nextConfig: NextConfig = {
+  // Serve the homepage HTML at "/" without an extra redirect hop. Without this
+  // rewrite, app/page.tsx had to redirect "/" → "/healthrankings-homepage.html",
+  // creating a redirect chain (bare-domain → www/ → /healthrankings-homepage.html)
+  // that hurts SEO. With the rewrite, the URL stays "/" and the static homepage
+  // file from /public is served directly.
+  rewrites: async () => ({
+    beforeFiles: [{ source: "/", destination: "/healthrankings-homepage.html" }],
+    afterFiles: [],
+    fallback: [],
+  }),
   headers: async () => [
     {
       source: "/articles/:slug",

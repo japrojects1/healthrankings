@@ -1,7 +1,10 @@
 const fs = require('fs');
 const path = require('path');
 
-const DOMAIN = 'https://healthrankings.co';
+// Use the canonical (www) host so sitemap entries match the canonical tags
+// emitted by scripts/seo-pass.js and the dynamic Next.js pages. Sending Google
+// the bare-domain URLs forces a redirect hop on every crawl.
+const DOMAIN = 'https://www.healthrankings.co';
 const dir = path.resolve(__dirname, '..');
 
 function mtimeIsoDay(filePath) {

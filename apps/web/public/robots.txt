@@ -1,8 +1,8 @@
 # Google: add property at https://search.google.com/search-console — Sitemaps → submit:
-#   https://healthrankings.co/sitemap.xml
+#   https://www.healthrankings.co/sitemap.xml
 # Optional: ping is not required; Search Console is the supported path.
 
 User-agent: *
 Allow: /
 
-Sitemap: https://healthrankings.co/sitemap.xml
+Sitemap: https://www.healthrankings.co/sitemap.xml

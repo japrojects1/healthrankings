@@ -12,6 +12,15 @@ import {
   isSafeCategorySlugForRoute,
 } from "@/lib/device-category-links";
 import { fetchPublishedDevicesByCategory } from "@/lib/strapi";
+import {
+  SITE,
+  DEFAULT_OG,
+  breadcrumb,
+  canonical,
+  collectionPage,
+  itemList,
+  renderJsonLd,
+} from "@/lib/seo-jsonld";
 import "../../../top5/top5-shell.css";
 
 export const dynamic = "force-dynamic";
@@ -30,9 +39,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return { title: "Devices | HealthRankings" };
   }
   const label = getCategoryCatalog(category)?.label ?? humanizeCategoryEnum(category);
+  const title = `All ${label} Tested & Reviewed | HealthRankings`;
+  const description = `Browse every ${label.toLowerCase()} we have reviewed — scores, summaries, and full expert write-ups.`;
+  const url = canonical(`/devices/category/${category}`);
   return {
-    title: `All ${label} Tested & Reviewed | HealthRankings`,
-    description: `Browse every ${label.toLowerCase()} we have reviewed — scores, summaries, and full expert write-ups.`,
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      type: "website",
+      url,
+      title,
+      description,
+      siteName: "HealthRankings",
+      images: [{ url: DEFAULT_OG }],
+    },
+    twitter: { card: "summary_large_image", title, description, images: [DEFAULT_OG] },
   };
 }
 
@@ -49,8 +71,29 @@ export default async function DeviceCategoryCatalogPage({ params }: Props) {
   const categoryLabel = catalog?.label ?? humanizeCategoryEnum(category);
   const top5 = getCategoryTop5Callout(category);
 
+  const url = canonical(`/devices/category/${category}`);
+  const breadcrumbBlock = breadcrumb([
+    { name: "Home", url: `${SITE}/` },
+    { name: "Devices", url: `${SITE}/healthrankings-devices.html` },
+    { name: categoryLabel, url },
+  ]);
+  const description = `All reviewed ${categoryLabel.toLowerCase()} on HealthRankings, with full scores and write-ups.`;
+  const collectionBlock = collectionPage(`All ${categoryLabel} | HealthRankings`, url, description);
+  const itemListBlock = itemList(
+    `All ${categoryLabel}`,
+    url,
+    devices.map((d) => ({
+      name: d.name,
+      url: `${SITE}/devices/${d.slug}`,
+      image: d.heroImage?.url || d.heroImageUrl || null,
+    })),
+  );
+
   return (
     <div className="hr-device-page hr-top5-page">
+      <script {...renderJsonLd(breadcrumbBlock)} />
+      <script {...renderJsonLd(collectionBlock)} />
+      {devices.length > 0 ? <script {...renderJsonLd(itemListBlock)} /> : null}
       <DeviceHeader />
 
       <nav className="breadcrumb" aria-label="Breadcrumb">
@@ -115,7 +158,7 @@ export default async function DeviceCategoryCatalogPage({ params }: Props) {
                     {thumb ? (
                       <Image
                         src={thumb}
-                        alt=""
+                        alt={dev.name}
                         width={160}
                         height={160}
                         sizes="80px"

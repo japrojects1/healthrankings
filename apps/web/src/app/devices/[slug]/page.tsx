@@ -11,6 +11,14 @@ import {
 import { DeviceHeader } from "@/components/device/DeviceHeader";
 import { ArticleFooter } from "@/components/article/ArticleFooter";
 import { DeviceReviewRich } from "@/components/device/DeviceReviewRich";
+import {
+  SITE,
+  DEFAULT_OG,
+  breadcrumb,
+  canonical,
+  productReview,
+  renderJsonLd,
+} from "@/lib/seo-jsonld";
 
 export const dynamic = "force-dynamic";
 
@@ -28,9 +36,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     (lead ? `${lead.slice(0, 165)}${lead.length > 165 ? "…" : ""}` : "") ||
     device.verdictShort ||
     `${device.name} — independent expert review on HealthRankings.`;
+  const description = desc.length > 165 ? `${desc.slice(0, 162)}…` : desc;
+  const url = canonical(`/devices/${slug}`);
+  const image = device.heroImage?.url || device.heroImageUrl || DEFAULT_OG;
+  const title = `${device.name} Review | ${catLabel} | HealthRankings`;
   return {
-    title: `${device.name} Review | ${catLabel} | HealthRankings`,
-    description: desc.length > 165 ? `${desc.slice(0, 162)}…` : desc,
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      type: "article",
+      url,
+      title,
+      description,
+      siteName: "HealthRankings",
+      images: [{ url: image }],
+    },
+    twitter: { card: "summary_large_image", title, description, images: [image] },
   };
 }
 
@@ -53,7 +75,7 @@ export default async function DevicePage({ params }: Props) {
     siblings = null;
   }
 
-  const breadcrumb = (
+  const breadcrumbNav = (
     <nav className="breadcrumb" aria-label="Breadcrumb">
       <Link href="/">Home</Link>
       <span className="breadcrumb-sep">/</span>
@@ -69,13 +91,34 @@ export default async function DevicePage({ params }: Props) {
     </nav>
   );
 
+  const url = canonical(`/devices/${slug}`);
+  const heroForSchema = device.heroImage?.url || device.heroImageUrl || null;
+  const breadcrumbItems = [
+    { name: "Home", url: `${SITE}/` },
+    { name: "Devices", url: `${SITE}/healthrankings-devices.html` },
+  ];
+  if (catalog) breadcrumbItems.push({ name: catalog.label, url: `${SITE}${catalog.href}` });
+  breadcrumbItems.push({ name: device.name, url });
+  const breadcrumbBlock = breadcrumb(breadcrumbItems);
+  const productBlock = productReview({
+    name: device.name,
+    description: device.tagline || device.verdictShort || device.reviewLead || null,
+    url,
+    image: heroForSchema,
+    ratingScore10: device.rating ?? null,
+    reviewBody: device.verdictShort || device.reviewLead || null,
+    reviewerName: device.reviewerAttribution || "HealthRankings Editorial",
+  });
+
   return (
     <div className="hr-device-page">
+      <script {...renderJsonLd(breadcrumbBlock)} />
+      <script {...renderJsonLd(productBlock)} />
       <DeviceHeader />
       <DeviceReviewRich
         device={device}
         categoryLabel={categoryLabel}
-        breadcrumb={breadcrumb}
+        breadcrumb={breadcrumbNav}
         siblings={siblings}
         top5Href={top5Callout?.href ?? null}
       />

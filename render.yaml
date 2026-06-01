@@ -5,7 +5,7 @@ services:
     name: healthrankings-web
     runtime: node
     plan: starter
-    buildCommand: npm ci --include=dev && npm run copy:static && npm run build:web
+    buildCommand: npm ci --include=dev && npm run seo:pass && npm run generate:sitemap && npm run copy:static && npm run build:web
     startCommand: npm run start:web
     envVars:
       # Ensure devDependencies are installed during build (Next needs TypeScript tooling).

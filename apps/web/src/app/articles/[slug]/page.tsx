@@ -6,6 +6,14 @@ import { unstable_noStore as noStore } from "next/cache";
 import { fetchArticleBySlug } from "@/lib/articles-strapi";
 import { ArticleHeader } from "@/components/article/ArticleHeader";
 import { ArticleFooter } from "@/components/article/ArticleFooter";
+import {
+  SITE,
+  DEFAULT_OG,
+  article as articleSchema,
+  breadcrumb,
+  canonical,
+  renderJsonLd,
+} from "@/lib/seo-jsonld";
 
 export const dynamic = "force-dynamic";
 
@@ -21,11 +29,25 @@ function formatArticleDate(iso?: string | null): string | null {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   noStore();
   const { slug } = await params;
-  const article = await fetchArticleBySlug(slug);
-  if (!article) return { title: "Article" };
+  const a = await fetchArticleBySlug(slug);
+  if (!a) return { title: "Article" };
+  const url = canonical(`/articles/${slug}`);
+  const image = a.heroImage?.url || DEFAULT_OG;
+  const description = a.metaDescription || a.subtitle || undefined;
   return {
-    title: `${article.title} | HealthRankings`,
-    description: article.metaDescription || article.subtitle || undefined,
+    title: `${a.title} | HealthRankings`,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      type: "article",
+      url,
+      title: a.title,
+      description,
+      siteName: "HealthRankings",
+      images: [{ url: image }],
+      publishedTime: a.publishedDate || undefined,
+    },
+    twitter: { card: "summary_large_image", title: a.title, description, images: [image] },
   };
 }
 
@@ -40,8 +62,26 @@ export default async function ArticlePage({ params }: Props) {
   const heroSrc = heroFromCms || heroFallback;
   const dateLabel = formatArticleDate(article.publishedDate);
 
+  const url = canonical(`/articles/${slug}`);
+  const heroForSchema = heroFromCms || (heroFromCms ? heroFromCms : `${SITE}${heroFallback}`);
+  const breadcrumbBlock = breadcrumb([
+    { name: "Home", url: `${SITE}/` },
+    { name: "Articles", url: `${SITE}/articles` },
+    { name: article.title, url },
+  ]);
+  const articleBlock = articleSchema({
+    headline: article.title,
+    description: article.metaDescription || article.subtitle || null,
+    url,
+    image: heroForSchema,
+    datePublished: article.publishedDate || null,
+    authorName: article.authorLine || null,
+  });
+
   return (
     <div className="hr-article-page">
+      <script {...renderJsonLd(breadcrumbBlock)} />
+      <script {...renderJsonLd(articleBlock)} />
       <ArticleHeader />
 
       <div className="breadcrumb-bar">

@@ -22,6 +22,15 @@ import {
   inferCategoryFromSlug,
   isOxiline,
 } from "@/lib/top5-presenters";
+import {
+  SITE,
+  DEFAULT_OG,
+  article as articleSchema,
+  breadcrumb as breadcrumbSchema,
+  canonical,
+  itemList,
+  renderJsonLd,
+} from "@/lib/seo-jsonld";
 
 export const dynamic = "force-dynamic";
 
@@ -86,12 +95,27 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     category: doc?.category,
     categoryLabel,
   });
+  const title = doc?.metaTitle?.trim() || `${displayTitle} | HealthRankings`;
+  const description =
+    doc?.metaDescription?.trim() ||
+    doc?.subtitle?.trim() ||
+    `Expert-tested top picks in ${categoryLabel}. Independent rankings on HealthRankings.`;
+  const url = canonical(`/top5/${category}`);
+  const winner = doc?.entries?.slice().sort((a, b) => a.rank - b.rank)[0]?.device ?? null;
+  const image = winner?.heroImage?.url || winner?.heroImageUrl || DEFAULT_OG;
   return {
-    title: doc?.metaTitle?.trim() || `${displayTitle} | HealthRankings`,
-    description:
-      doc?.metaDescription?.trim() ||
-      doc?.subtitle?.trim() ||
-      `Expert-tested top picks in ${categoryLabel}. Independent rankings on HealthRankings.`,
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      type: "article",
+      url,
+      title,
+      description,
+      siteName: "HealthRankings",
+      images: [{ url: image }],
+    },
+    twitter: { card: "summary_large_image", title, description, images: [image] },
   };
 }
 
@@ -120,7 +144,7 @@ export default async function CategoryTopFivePage({ params }: Props) {
     categoryLabel,
   });
 
-  const breadcrumb = (
+  const breadcrumbNav = (
     <nav className="breadcrumb" aria-label="Breadcrumb">
       <Link href="/">Home</Link>
       <span className="breadcrumb-sep">/</span>
@@ -136,14 +160,48 @@ export default async function CategoryTopFivePage({ params }: Props) {
     </nav>
   );
 
+  const url = canonical(`/top5/${category}`);
+  const sortedEntries = (doc.entries ?? []).slice().sort((a, b) => a.rank - b.rank);
+  const breadcrumbItems = [
+    { name: "Home", url: `${SITE}/` },
+    { name: "Conditions", url: `${SITE}/healthrankings-conditions.html` },
+  ];
+  if (catalog) breadcrumbItems.push({ name: catalog.label, url: `${SITE}${catalog.href}` });
+  breadcrumbItems.push({ name: displayTitle, url });
+  const breadcrumbBlock = breadcrumbSchema(breadcrumbItems);
+  const itemListBlock = itemList(
+    displayTitle,
+    url,
+    sortedEntries
+      .map((e) => e.device)
+      .filter((d): d is NonNullable<typeof d> => Boolean(d))
+      .map((d) => ({
+        name: d.name,
+        url: `${SITE}/devices/${d.slug}`,
+        image: d.heroImage?.url || d.heroImageUrl || null,
+      })),
+    doc.metaDescription || doc.subtitle || null,
+  );
+  const winner = sortedEntries[0]?.device ?? null;
+  const heroForSchema = winner?.heroImage?.url || winner?.heroImageUrl || null;
+  const articleBlock = articleSchema({
+    headline: displayTitle,
+    description: doc.metaDescription || doc.subtitle || null,
+    url,
+    image: heroForSchema,
+  });
+
   return (
     <div className="hr-device-page hr-top5-page">
+      <script {...renderJsonLd(breadcrumbBlock)} />
+      <script {...renderJsonLd(itemListBlock)} />
+      <script {...renderJsonLd(articleBlock)} />
       <DeviceHeader />
       <Top5Rich
         doc={doc}
         categoryLabel={categoryLabel}
         displayTitle={displayTitle}
-        breadcrumb={breadcrumb}
+        breadcrumb={breadcrumbNav}
       />
       <div className="medical-disclaimer">
         <div className="medical-disclaimer-inner">

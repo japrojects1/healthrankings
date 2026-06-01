@@ -6,6 +6,15 @@ import { unstable_noStore as noStore } from "next/cache";
 import { fetchPublishedArticles, type Article } from "@/lib/articles-strapi";
 import { ArticleHeader } from "@/components/article/ArticleHeader";
 import { ArticleFooter } from "@/components/article/ArticleFooter";
+import {
+  SITE,
+  DEFAULT_OG,
+  breadcrumb,
+  canonical,
+  collectionPage,
+  itemList,
+  renderJsonLd,
+} from "@/lib/seo-jsonld";
 import "./articles-index.css";
 
 /** Article (with a resolved hero source) — null when no image is available. */
@@ -33,10 +42,28 @@ async function resolveHero(article: Article): Promise<string | null> {
 
 export const dynamic = "force-dynamic";
 
+const ARTICLES_DESCRIPTION =
+  "Health guides, wellness tips, and honest insights — written by our team, reviewed by medical professionals, and built around the conditions that affect your daily life.";
+const ARTICLES_URL = canonical("/articles");
+
 export const metadata: Metadata = {
   title: "Articles & Guides | HealthRankings",
-  description:
-    "Health guides, wellness tips, and honest insights — written by our team, reviewed by medical professionals, and built around the conditions that affect your daily life.",
+  description: ARTICLES_DESCRIPTION,
+  alternates: { canonical: ARTICLES_URL },
+  openGraph: {
+    type: "website",
+    url: ARTICLES_URL,
+    title: "Articles & Guides | HealthRankings",
+    description: ARTICLES_DESCRIPTION,
+    siteName: "HealthRankings",
+    images: [{ url: DEFAULT_OG }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Articles & Guides | HealthRankings",
+    description: ARTICLES_DESCRIPTION,
+    images: [DEFAULT_OG],
+  },
 };
 
 /** Map a free-form CMS tag string to one of the predefined card classes. */
@@ -169,8 +196,30 @@ export default async function ArticlesIndexPage() {
   const featured = enriched[0] ?? null;
   const rest = enriched.slice(featured ? 1 : 0);
 
+  const breadcrumbBlock = breadcrumb([
+    { name: "Home", url: `${SITE}/` },
+    { name: "Articles", url: ARTICLES_URL },
+  ]);
+  const collectionBlock = collectionPage(
+    "Articles & Guides | HealthRankings",
+    ARTICLES_URL,
+    ARTICLES_DESCRIPTION,
+  );
+  const itemListBlock = itemList(
+    "HealthRankings articles",
+    ARTICLES_URL,
+    enriched.slice(0, 50).map((a) => ({
+      name: a.title,
+      url: `${SITE}/articles/${a.slug}`,
+      image: a.resolvedHeroSrc || null,
+    })),
+  );
+
   return (
     <div className="hr-articles-index hr-article-page">
+      <script {...renderJsonLd(breadcrumbBlock)} />
+      <script {...renderJsonLd(collectionBlock)} />
+      <script {...renderJsonLd(itemListBlock)} />
       <ArticleHeader />
 
       <section className="page-hero">
