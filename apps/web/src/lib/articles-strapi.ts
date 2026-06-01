@@ -83,6 +83,24 @@ export async function fetchArticleBySlug(slug: string): Promise<Article | null> 
   return normalizeArticle(first);
 }
 
+/** All published articles, newest first (publishedDate desc, createdAt desc fallback). */
+export async function fetchPublishedArticles(limit = 100): Promise<Article[]> {
+  const u = new URL(strapiBase('/api/articles'));
+  u.searchParams.set('populate', '*');
+  u.searchParams.set('status', 'published');
+  u.searchParams.set('sort[0]', 'publishedDate:desc');
+  u.searchParams.set('sort[1]', 'createdAt:desc');
+  u.searchParams.set('pagination[pageSize]', String(Math.min(200, Math.max(1, limit))));
+  const res = await fetch(u.toString(), {
+    cache: 'no-store',
+    headers: { Accept: 'application/json' },
+  });
+  if (!res.ok) return [];
+  const json = (await res.json()) as { data?: Record<string, unknown>[] };
+  const rows = json?.data || [];
+  return rows.map((row) => normalizeArticle(row));
+}
+
 /** Case-insensitive title or slug match; Strapi Draft & Publish: published only. */
 export async function searchPublishedArticles(query: string, limit = 20): Promise<Article[]> {
   const term = query.trim().slice(0, 120);

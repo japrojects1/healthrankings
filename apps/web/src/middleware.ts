@@ -18,6 +18,14 @@ import { legacyAllDevicesPathToCategory } from "@/lib/device-category-links";
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
+  // Legacy /healthrankings-articles.html → CMS-driven /articles index.
+  // Rewrite (not redirect) so existing inbound links keep their canonical URL.
+  if (/^\/healthrankings-articles\.html$/i.test(pathname)) {
+    const url = request.nextUrl.clone();
+    url.pathname = "/articles";
+    return NextResponse.rewrite(url);
+  }
+
   const article = /^\/healthrankings-article-(.+)\.html$/i.exec(pathname);
   if (article) {
     return NextResponse.redirect(new URL(`/articles/${article[1]}`, request.url), 308);
@@ -50,6 +58,7 @@ export const config = {
   // Top-5 entries are listed explicitly so we only intercept URLs that have a CMS doc seeded.
   // Add a new line when you ship a new Category Top 5 in Strapi (after running `npm run seed:top5-rich`).
   matcher: [
+    "/healthrankings-articles.html",
     "/healthrankings-article-:slug.html",
     "/healthrankings-review-:slug.html",
     "/healthrankings-hypertension-top5.html",

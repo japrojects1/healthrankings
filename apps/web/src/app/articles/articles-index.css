@@ -1,0 +1,413 @@
+/* Scoped to the dynamic /articles index — mirrors healthrankings-articles.html visuals. */
+.hr-articles-index {
+  --blue-50: #eff6ff;
+  --blue-100: #dbeafe;
+  --blue-200: #bfdbfe;
+  --blue-300: #93c5fd;
+  --blue-400: #60a5fa;
+  --blue-600: #2563eb;
+  --blue-700: #1d4ed8;
+  --blue-800: #1e40af;
+  --teal-50: #f0fdfa;
+  --teal-100: #ccfbf1;
+  --teal-600: #0d9488;
+  --slate-50: #f8fafc;
+  --slate-100: #f1f5f9;
+  --slate-200: #e2e8f0;
+  --slate-300: #cbd5e1;
+  --slate-400: #94a3b8;
+  --slate-500: #64748b;
+  --slate-600: #475569;
+  --slate-700: #334155;
+  --slate-900: #0f172a;
+  background: #ffffff;
+  color: var(--slate-900);
+  font-family: var(--font-inter), 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.hr-articles-index * {
+  box-sizing: border-box;
+}
+
+.hr-articles-index a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ===== PAGE HERO ===== */
+.hr-articles-index .page-hero {
+  padding: 64px 32px 48px;
+  background: linear-gradient(180deg, #ffffff 0%, var(--slate-50) 100%);
+}
+.hr-articles-index .page-hero-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: center;
+}
+.hr-articles-index .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: var(--blue-50);
+  color: var(--blue-700);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 9999px;
+  margin-bottom: 18px;
+}
+.hr-articles-index .eyebrow-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--blue-600);
+}
+.hr-articles-index .page-hero h1 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(40px, 6vw, 64px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  color: var(--slate-900);
+  margin: 0 0 18px;
+}
+.hr-articles-index .page-hero h1 em {
+  font-style: italic;
+  color: var(--blue-700);
+  padding-right: 0.08em;
+}
+.hr-articles-index .page-hero p {
+  max-width: 720px;
+  margin: 0 auto;
+  font-size: 17px;
+  color: var(--slate-600);
+  line-height: 1.6;
+}
+
+/* ===== FEATURED ARTICLE ===== */
+.hr-articles-index .featured-hero {
+  padding: 16px 32px 0;
+}
+.hr-articles-index .featured-hero-card {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 0;
+  max-width: 1280px;
+  margin: 0 auto;
+  background: white;
+  border: 1px solid var(--slate-200);
+  border-radius: 24px;
+  overflow: hidden;
+  transition: all 280ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.hr-articles-index .featured-hero-card:hover {
+  border-color: var(--blue-300);
+  box-shadow: 0 24px 60px -16px rgba(37, 99, 235, 0.18);
+  transform: translateY(-2px);
+}
+.hr-articles-index .featured-hero-image {
+  position: relative;
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.hr-articles-index .featured-hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hr-articles-index .featured-hero-tag {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  padding: 5px 12px;
+  border-radius: 9999px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.96);
+  color: var(--blue-700);
+}
+.hr-articles-index .featured-hero-body {
+  padding: 40px 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.hr-articles-index .featured-hero-body .label {
+  display: inline-block;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--blue-600);
+  margin-bottom: 14px;
+}
+.hr-articles-index .featured-hero-body h2 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(22px, 3vw, 30px);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  color: var(--slate-900);
+  margin: 0 0 14px;
+}
+.hr-articles-index .featured-hero-body p {
+  font-size: 15px;
+  color: var(--slate-600);
+  line-height: 1.6;
+  margin: 0 0 22px;
+}
+.hr-articles-index .featured-hero-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 13px;
+  color: var(--slate-500);
+  margin-bottom: 18px;
+}
+.hr-articles-index .featured-hero-meta .author {
+  font-weight: 600;
+  color: var(--slate-700);
+}
+.hr-articles-index .featured-hero-body .read-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--blue-700);
+  transition: gap 200ms;
+}
+.hr-articles-index .featured-hero-card:hover .read-link {
+  gap: 10px;
+}
+
+/* ===== GRID ===== */
+.hr-articles-index .articles-section {
+  padding: 56px 32px 32px;
+}
+.hr-articles-index .articles-section-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.hr-articles-index .articles-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.hr-articles-index .articles-section-header h2 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--slate-900);
+  margin: 0;
+}
+.hr-articles-index .articles-section-header .count {
+  font-size: 13px;
+  color: var(--slate-500);
+}
+.hr-articles-index .articles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+.hr-articles-index .article-card {
+  background: white;
+  border: 1px solid var(--slate-200);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+}
+.hr-articles-index .article-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--blue-300);
+  box-shadow: 0 16px 40px -12px rgba(37, 99, 235, 0.12);
+}
+.hr-articles-index .article-card-image {
+  height: 160px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hr-articles-index .article-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hr-articles-index .article-card-image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hr-articles-index .article-card-image-placeholder svg {
+  width: 56px;
+  height: 56px;
+  opacity: 0.35;
+  color: rgba(15, 23, 42, 0.5);
+}
+.hr-articles-index .article-card-tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.hr-articles-index .tag-wellness {
+  background: rgba(240, 253, 250, 0.95);
+  color: var(--teal-600);
+}
+.hr-articles-index .tag-condition {
+  background: rgba(239, 246, 255, 0.95);
+  color: var(--blue-700);
+}
+.hr-articles-index .tag-tips {
+  background: rgba(248, 250, 252, 0.95);
+  color: var(--slate-700);
+}
+.hr-articles-index .tag-nutrition {
+  background: rgba(255, 251, 235, 0.95);
+  color: #b45309;
+}
+.hr-articles-index .tag-mental {
+  background: rgba(245, 243, 255, 0.95);
+  color: #6d28d9;
+}
+.hr-articles-index .tag-fitness {
+  background: rgba(236, 253, 245, 0.95);
+  color: #047857;
+}
+.hr-articles-index .tag-respiratory {
+  background: rgba(240, 253, 250, 0.95);
+  color: #0e7490;
+}
+.hr-articles-index .article-card-body {
+  padding: 18px 20px 16px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.hr-articles-index .article-card-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  color: var(--slate-900);
+  margin: 0 0 8px;
+}
+.hr-articles-index .article-card-excerpt {
+  font-size: 13px;
+  color: var(--slate-600);
+  line-height: 1.55;
+  margin: 0 0 14px;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.hr-articles-index .article-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 12px;
+  border-top: 1px solid var(--slate-100);
+  font-size: 11px;
+  color: var(--slate-400);
+}
+.hr-articles-index .article-card-read {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 600;
+  color: var(--blue-600);
+  transition: gap 200ms;
+}
+.hr-articles-index .article-card:hover .article-card-read {
+  gap: 8px;
+}
+
+/* Tag-coloured fallback gradient on the image area */
+.hr-articles-index .grad-blue {
+  background: linear-gradient(135deg, #eff6ff 0%, #bfdbfe 100%);
+}
+.hr-articles-index .grad-teal {
+  background: linear-gradient(135deg, #f0fdfa 0%, #99f6e4 100%);
+}
+.hr-articles-index .grad-warm {
+  background: linear-gradient(135deg, #fffbeb 0%, #fde68a 100%);
+}
+.hr-articles-index .grad-purple {
+  background: linear-gradient(135deg, #f5f3ff 0%, #ddd6fe 100%);
+}
+.hr-articles-index .grad-green {
+  background: linear-gradient(135deg, #ecfdf5 0%, #a7f3d0 100%);
+}
+.hr-articles-index .grad-slate {
+  background: linear-gradient(135deg, #f8fafc 0%, #cbd5e1 100%);
+}
+.hr-articles-index .grad-rose {
+  background: linear-gradient(135deg, #fff1f2 0%, #fecdd3 100%);
+}
+
+/* Empty state */
+.hr-articles-index .articles-empty {
+  max-width: 720px;
+  margin: 24px auto;
+  padding: 32px;
+  text-align: center;
+  background: var(--slate-50);
+  border: 1px dashed var(--slate-300);
+  border-radius: 16px;
+  color: var(--slate-600);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .hr-articles-index .articles-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .hr-articles-index .featured-hero-card {
+    grid-template-columns: 1fr;
+  }
+  .hr-articles-index .featured-hero-image {
+    min-height: 260px;
+  }
+}
+@media (max-width: 640px) {
+  .hr-articles-index .articles-grid {
+    grid-template-columns: 1fr;
+  }
+  .hr-articles-index .page-hero {
+    padding: 40px 20px 28px;
+  }
+  .hr-articles-index .featured-hero,
+  .hr-articles-index .articles-section {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}

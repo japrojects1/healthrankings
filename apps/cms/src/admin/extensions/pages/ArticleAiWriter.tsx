@@ -16,7 +16,10 @@ export default function ArticleAiWriter() {
   const [brief, setBrief] = useState('');
   const [tone, setTone] = useState('');
   const [previewOnly, setPreviewOnly] = useState(true);
-  const [publish, setPublish] = useState(false);
+  // Default to publishing immediately when the editor turns preview off — saving
+  // a draft is the rarer path and was the most common cause of "I generated an
+  // article but it doesn't show on the site".
+  const [publish, setPublish] = useState(true);
   const [generateHeroImage, setGenerateHeroImage] = useState(false);
   const [output, setOutput] = useState('');
   const [loading, setLoading] = useState(false);
@@ -97,7 +100,7 @@ export default function ArticleAiWriter() {
             </Typography>
             <Typography variant="omega" textColor="neutral600">
               Describe what the piece should cover; the model drafts title, SEO fields, and a full HTML body (same rendering as imported articles).
-              Preview first, then turn off preview to save a Strapi draft (or publish in one step).
+              Preview first to review the draft. When you turn preview off, the article publishes immediately and shows up on /articles within seconds — uncheck &ldquo;Publish immediately&rdquo; if you want a draft instead.
             </Typography>
           </Flex>
 
@@ -133,8 +136,11 @@ export default function ArticleAiWriter() {
                     const on = v === true;
                     setPreviewOnly(on);
                     if (on) {
-                      setPublish(false);
                       setGenerateHeroImage(false);
+                    } else {
+                      // Re-enable publish-by-default whenever the editor turns
+                      // preview off (matches the initial default).
+                      setPublish(true);
                     }
                   }}
                 />
