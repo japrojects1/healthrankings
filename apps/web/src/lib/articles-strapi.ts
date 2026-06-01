@@ -83,13 +83,20 @@ export async function fetchArticleBySlug(slug: string): Promise<Article | null> 
   return normalizeArticle(first);
 }
 
-/** All published articles, newest first (publishedDate desc, createdAt desc fallback). */
+/**
+ * All published articles, newest first.
+ * Sort priority: Strapi `publishedAt` (always set when published) → custom
+ * `publishedDate` (may be null on manually-published entries) → `createdAt`.
+ * This guarantees a brand-new publish lands at position #1 even if the editor
+ * never filled in the optional `publishedDate` field.
+ */
 export async function fetchPublishedArticles(limit = 100): Promise<Article[]> {
   const u = new URL(strapiBase('/api/articles'));
   u.searchParams.set('populate', '*');
   u.searchParams.set('status', 'published');
-  u.searchParams.set('sort[0]', 'publishedDate:desc');
-  u.searchParams.set('sort[1]', 'createdAt:desc');
+  u.searchParams.set('sort[0]', 'publishedAt:desc');
+  u.searchParams.set('sort[1]', 'publishedDate:desc');
+  u.searchParams.set('sort[2]', 'createdAt:desc');
   u.searchParams.set('pagination[pageSize]', String(Math.min(200, Math.max(1, limit))));
   const res = await fetch(u.toString(), {
     cache: 'no-store',
