@@ -54,6 +54,107 @@ async function uniqueArticleSlug(strapi: Core.Strapi, baseRaw: string): Promise<
   return `${base}-${Date.now().toString(36)}`;
 }
 
+/**
+ * Persist a fully-resolved article draft to Strapi (with optional hero generation).
+ * Used by both the generate-and-save path and the publish-from-preview path.
+ */
+async function persistArticleDraft(
+  strapi: Core.Strapi,
+  draftData: Record<string, unknown>,
+  opts: {
+    publish: boolean;
+    generateHeroImage: boolean;
+    title: string;
+    subtitle?: string;
+    visualHint: string;
+    resolvedSlug: string;
+  }
+): Promise<Record<string, unknown>> {
+  const { publish, generateHeroImage, title, subtitle, visualHint, resolvedSlug } = opts;
+
+  let heroImageFileId: number | undefined;
+  if (generateHeroImage) {
+    const openaiKey = String(process.env.OPENAI_API_KEY || '').trim();
+    if (!openaiKey) {
+      return {
+        ok: false,
+        error:
+          'generateHeroImage is enabled but OPENAI_API_KEY is not set on the CMS server. Add the key to generate and upload a hero image (OpenAI Images API).',
+        slug: resolvedSlug,
+        article: draftData,
+      };
+    }
+    const visualPrompt = buildArticleHeroVisualPrompt(title, subtitle, visualHint);
+    const img = await generateHeroImagePngWithOpenAI({ apiKey: openaiKey, visualPrompt });
+    if (img.ok === false) {
+      return { ok: false, error: img.error, slug: resolvedSlug, article: draftData };
+    }
+    try {
+      const up = await uploadImageBufferAsStrapiMedia(strapi, {
+        buffer: img.buffer,
+        filenameBase: `${resolvedSlug}-hero`,
+        alternativeText: title,
+        mimetype: img.mimeHint,
+      });
+      heroImageFileId = up.id;
+    } catch (e: any) {
+      return {
+        ok: false,
+        error: e?.message || String(e),
+        slug: resolvedSlug,
+        article: draftData,
+      };
+    }
+  }
+
+  const dataWithHero = {
+    ...draftData,
+    ...(typeof heroImageFileId === 'number' ? { heroImage: heroImageFileId } : {}),
+  } as Record<string, unknown>;
+
+  try {
+    const doc = await strapi.documents('api::article.article').create({
+      data: dataWithHero,
+      ...(publish ? { status: 'published' as const } : {}),
+    });
+    const documentId = String((doc as any).documentId || '');
+
+    if (typeof heroImageFileId === 'number' && documentId) {
+      const attrs = (doc as any)?.heroImage ?? (doc as any)?.hero_image;
+      const linked =
+        attrs &&
+        (typeof attrs.id === 'number' ||
+          (attrs.data && typeof attrs.data.id === 'number') ||
+          (Array.isArray(attrs) && attrs[0]?.id));
+      if (!linked) {
+        await strapi.documents('api::article.article').update({
+          documentId,
+          // Strapi generated Input types omit some media write shapes; runtime accepts file id.
+          data: { heroImage: heroImageFileId } as never,
+        });
+      }
+    }
+
+    return {
+      ok: true,
+      previewOnly: false,
+      publish,
+      documentId,
+      slug: resolvedSlug,
+      article: draftData,
+      ...(typeof heroImageFileId === 'number' ? { heroImageFileId } : {}),
+    };
+  } catch (e: any) {
+    return {
+      ok: false,
+      error: e?.message || String(e),
+      slug: resolvedSlug,
+      article: draftData,
+      ...(typeof heroImageFileId === 'number' ? { heroImageFileId } : {}),
+    };
+  }
+}
+
 export async function runArticleAiGenerate(
   strapi: Core.Strapi,
   rawBody: ArticleAiGenerateBody | unknown
@@ -148,87 +249,84 @@ export async function runArticleAiGenerate(
     };
   }
 
-  let heroImageFileId: number | undefined;
-  if (generateHeroImage) {
-    const openaiKey = String(process.env.OPENAI_API_KEY || '').trim();
-    if (!openaiKey) {
-      return {
-        ok: false,
-        error:
-          'generateHeroImage is enabled but OPENAI_API_KEY is not set on the CMS server. Add the key to generate and upload a hero image (OpenAI Images API).',
-        slug: resolvedSlug,
-        article: draftData,
-      };
-    }
-    const visualPrompt = buildArticleHeroVisualPrompt(title, subtitle, brief);
-    const img = await generateHeroImagePngWithOpenAI({ apiKey: openaiKey, visualPrompt });
-    if (img.ok === false) {
-      return { ok: false, error: img.error, slug: resolvedSlug, article: draftData };
-    }
-    try {
-      const up = await uploadImageBufferAsStrapiMedia(strapi, {
-        buffer: img.buffer,
-        filenameBase: `${resolvedSlug}-hero`,
-        alternativeText: title,
-        mimetype: img.mimeHint,
-      });
-      heroImageFileId = up.id;
-    } catch (e: any) {
-      return {
-        ok: false,
-        error: e?.message || String(e),
-        slug: resolvedSlug,
-        article: draftData,
-      };
-    }
-  }
+  const result = await persistArticleDraft(strapi, draftData, {
+    publish,
+    generateHeroImage,
+    title,
+    subtitle,
+    visualHint: brief,
+    resolvedSlug,
+  });
+  return {
+    ...result,
+    llmProvider: llm.provider,
+    model: llm.model,
+  };
+}
 
-  const dataWithHero = {
-    ...draftData,
-    ...(typeof heroImageFileId === 'number' ? { heroImage: heroImageFileId } : {}),
-  } as Record<string, unknown>;
+/**
+ * Body for POST /api/article-ai/publish — publish an article using fields the
+ * editor already previewed, without re-running the LLM. This is what the admin
+ * "Publish this draft" button calls after a successful preview.
+ */
+export type ArticleAiPublishBody = {
+  title?: string;
+  slug?: string;
+  subtitle?: string;
+  tag?: string;
+  topic?: string;
+  metaDescription?: string;
+  readTime?: string;
+  authorLine?: string;
+  body?: string;
+  /** When true, also generate a DALL·E hero image (requires OPENAI_API_KEY). */
+  generateHeroImage?: boolean;
+  /** Optional visual hint for hero prompt — defaults to subtitle / title. */
+  heroVisualHint?: string;
+};
 
-  try {
-    const doc = await strapi.documents('api::article.article').create({
-      data: dataWithHero,
-      ...(publish ? { status: 'published' as const } : {}),
-    });
-    const documentId = String((doc as any).documentId || '');
+export async function runArticleAiPublishFromFields(
+  strapi: Core.Strapi,
+  rawBody: ArticleAiPublishBody | unknown
+): Promise<Record<string, unknown>> {
+  const body = (rawBody && typeof rawBody === 'object' ? rawBody : {}) as ArticleAiPublishBody;
+  const title = String(body.title || '').trim();
+  const bodyHtml = String(body.body || '').trim();
+  if (!title) return { ok: false, error: 'title is required.' };
+  if (!bodyHtml) return { ok: false, error: 'body is required.' };
 
-    if (typeof heroImageFileId === 'number' && documentId) {
-      const attrs = (doc as any)?.heroImage ?? (doc as any)?.hero_image;
-      const linked =
-        attrs &&
-        (typeof attrs.id === 'number' ||
-          (attrs.data && typeof attrs.data.id === 'number') ||
-          (Array.isArray(attrs) && attrs[0]?.id));
-      if (!linked) {
-        await strapi.documents('api::article.article').update({
-          documentId,
-          // Strapi generated Input types omit some media write shapes; runtime accepts file id.
-          data: { heroImage: heroImageFileId } as never,
-        });
-      }
-    }
+  const slugBase = String(body.slug || '').trim() || slugifyName(title);
+  const resolvedSlug = await uniqueArticleSlug(strapi, slugBase);
 
-    return {
-      ok: true,
-      previewOnly: false,
-      publish,
-      llmProvider: llm.provider,
-      model: llm.model,
-      documentId,
-      slug: resolvedSlug,
-      article: draftData,
-      ...(typeof heroImageFileId === 'number' ? { heroImageFileId } : {}),
-    };
-  } catch (e: any) {
-    return {
-      ok: false,
-      error: e?.message || String(e),
-      slug: resolvedSlug,
-      article: draftData,
-      ...(typeof heroImageFileId === 'number' ? { heroImageFileId } : {}),
-    };
-  }
+  const subtitle = String(body.subtitle || '').trim() || undefined;
+  const tag = String(body.tag || '').trim() || undefined;
+  const topic = String(body.topic || '').trim() || undefined;
+  const metaDescription = clampMetaDescription(
+    String(body.metaDescription || '').trim() || subtitle || title
+  );
+  const readTime = String(body.readTime || '').trim() || undefined;
+  const authorLine = String(body.authorLine || '').trim() || undefined;
+  const today = new Date().toISOString().slice(0, 10);
+
+  const draftData = {
+    title,
+    slug: resolvedSlug,
+    ...(subtitle ? { subtitle } : {}),
+    ...(tag ? { tag } : {}),
+    ...(topic ? { topic } : {}),
+    metaDescription,
+    ...(readTime ? { readTime } : {}),
+    ...(authorLine ? { authorLine } : {}),
+    body: bodyHtml,
+    publishedDate: today,
+  };
+
+  return persistArticleDraft(strapi, draftData, {
+    publish: true,
+    generateHeroImage: Boolean(body.generateHeroImage),
+    title,
+    subtitle,
+    visualHint: String(body.heroVisualHint || subtitle || title),
+    resolvedSlug,
+  });
 }

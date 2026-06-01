@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import {
   Box,
   Button,
@@ -10,6 +10,19 @@ import {
   Textarea,
 } from '@strapi/design-system';
 import { getFetchClient, useNotification } from '@strapi/strapi/admin';
+
+/** The shape the /article-ai/generate endpoint returns inside `article`. */
+type PreviewedArticle = {
+  title?: string;
+  slug?: string;
+  subtitle?: string;
+  tag?: string;
+  topic?: string;
+  metaDescription?: string;
+  readTime?: string;
+  authorLine?: string;
+  body?: string;
+};
 
 export default function ArticleAiWriter() {
   const { toggleNotification } = useNotification();
@@ -23,6 +36,16 @@ export default function ArticleAiWriter() {
   const [generateHeroImage, setGenerateHeroImage] = useState(false);
   const [output, setOutput] = useState('');
   const [loading, setLoading] = useState(false);
+  const [publishingPreview, setPublishingPreview] = useState(false);
+  /** Held draft from the most recent successful preview, ready to publish in one click. */
+  const [previewedArticle, setPreviewedArticle] = useState<PreviewedArticle | null>(null);
+  const [previewedSlug, setPreviewedSlug] = useState<string | null>(null);
+
+  const previewSummary = useMemo(() => {
+    if (!previewedArticle) return null;
+    const title = (previewedArticle.title || '').trim();
+    return title ? title : `(slug: ${previewedSlug || 'unknown'})`;
+  }, [previewedArticle, previewedSlug]);
 
   const run = async () => {
     if (brief.trim().length < 20) {
@@ -46,28 +69,35 @@ export default function ArticleAiWriter() {
 
     setLoading(true);
     setOutput('');
+    setPreviewedArticle(null);
+    setPreviewedSlug(null);
     try {
       const { post } = getFetchClient();
       const res = await post('/api/article-ai/generate', body);
       setOutput(JSON.stringify(res.data, null, 2));
-      const saved = res.data?.previewOnly === false && res.data?.ok === true;
-      const withHero = saved && typeof res.data?.heroImageFileId === 'number';
+      const data = res.data || {};
+      const ok = data.ok !== false;
+      if (ok && data.previewOnly === true && data.article && typeof data.article === 'object') {
+        setPreviewedArticle(data.article as PreviewedArticle);
+        setPreviewedSlug(typeof data.slug === 'string' ? data.slug : null);
+      }
+      const saved = data.previewOnly === false && ok;
+      const withHero = saved && typeof data.heroImageFileId === 'number';
       toggleNotification({
-        type: res.data?.ok === false ? 'danger' : 'success',
-        title:
-          res.data?.ok === false
-            ? 'Article AI returned an error'
-            : previewOnly
-              ? 'Preview ready'
-              : saved
-                ? publish
-                  ? withHero
-                    ? 'Article published with hero image'
-                    : 'Article published'
-                  : withHero
-                    ? 'Draft created with hero image'
-                    : 'Draft article created'
-                : 'Done',
+        type: !ok ? 'danger' : 'success',
+        title: !ok
+          ? 'Article AI returned an error'
+          : previewOnly
+            ? 'Preview ready — click Publish this draft to save it'
+            : saved
+              ? publish
+                ? withHero
+                  ? 'Article published with hero image'
+                  : 'Article published'
+                : withHero
+                  ? 'Draft created with hero image'
+                  : 'Draft article created'
+              : 'Done',
       });
     } catch (e: any) {
       const msg =
@@ -90,6 +120,54 @@ export default function ArticleAiWriter() {
     }
   };
 
+  const publishPreview = async () => {
+    if (!previewedArticle) return;
+    const body: Record<string, unknown> = {
+      ...previewedArticle,
+      generateHeroImage,
+      heroVisualHint: brief.trim() || previewedArticle.subtitle || previewedArticle.title,
+    };
+    setPublishingPreview(true);
+    try {
+      const { post } = getFetchClient();
+      const res = await post('/api/article-ai/publish', body);
+      setOutput(JSON.stringify(res.data, null, 2));
+      const data = res.data || {};
+      const ok = data.ok !== false;
+      const withHero = ok && typeof data.heroImageFileId === 'number';
+      toggleNotification({
+        type: ok ? 'success' : 'danger',
+        title: ok
+          ? withHero
+            ? 'Article published with hero image'
+            : 'Article published — visit /articles to see it'
+          : 'Publish failed',
+      });
+      if (ok) {
+        setPreviewedArticle(null);
+        setPreviewedSlug(null);
+      }
+    } catch (e: any) {
+      const msg =
+        e?.response?.data?.error?.message ||
+        e?.response?.data?.message ||
+        e?.message ||
+        'Request failed';
+      toggleNotification({
+        type: 'danger',
+        title: 'Publish failed',
+        message: String(msg),
+      });
+      try {
+        setOutput(JSON.stringify(e?.response?.data ?? { error: String(msg) }, null, 2));
+      } catch {
+        setOutput(String(msg));
+      }
+    } finally {
+      setPublishingPreview(false);
+    }
+  };
+
   return (
     <Main>
       <Box padding={8} maxWidth={960}>
@@ -99,8 +177,10 @@ export default function ArticleAiWriter() {
               Article AI writer
             </Typography>
             <Typography variant="omega" textColor="neutral600">
-              Describe what the piece should cover; the model drafts title, SEO fields, and a full HTML body (same rendering as imported articles).
-              Preview first to review the draft. When you turn preview off, the article publishes immediately and shows up on /articles within seconds — uncheck &ldquo;Publish immediately&rdquo; if you want a draft instead.
+              Describe what the piece should cover; the model drafts title, SEO fields, and a full HTML body
+              (same rendering as imported articles). Preview first to review the draft, then click
+              &ldquo;Publish this draft&rdquo; to push it live to <code>/articles</code> without
+              regenerating. Or turn off preview to publish in one step.
             </Typography>
           </Flex>
 
@@ -138,8 +218,6 @@ export default function ArticleAiWriter() {
                     if (on) {
                       setGenerateHeroImage(false);
                     } else {
-                      // Re-enable publish-by-default whenever the editor turns
-                      // preview off (matches the initial default).
                       setPublish(true);
                     }
                   }}
@@ -167,21 +245,51 @@ export default function ArticleAiWriter() {
                 <Checkbox
                   id="hero-image"
                   checked={generateHeroImage}
-                  disabled={previewOnly}
                   onCheckedChange={(v) => setGenerateHeroImage(v === true)}
                 />
-                <Typography variant="omega" textColor={previewOnly ? 'neutral500' : undefined}>
+                <Typography variant="omega">
                   Generate hero image (OpenAI DALL·E; requires OPENAI_API_KEY on the server)
                 </Typography>
               </Flex>
             </Box>
           </Flex>
 
-          <Flex gap={2}>
-            <Button variant="default" onClick={run} loading={loading} disabled={loading}>
+          <Flex gap={2} wrap="wrap">
+            <Button variant="default" onClick={run} loading={loading} disabled={loading || publishingPreview}>
               Run
             </Button>
+            <Button
+              variant="success-light"
+              onClick={publishPreview}
+              loading={publishingPreview}
+              disabled={!previewedArticle || loading || publishingPreview}
+            >
+              Publish this draft
+            </Button>
           </Flex>
+
+          {previewedArticle ? (
+            <Box
+              padding={4}
+              background="success100"
+              hasRadius
+              style={{ border: '1px solid #a7f3d0' }}
+            >
+              <Flex direction="column" gap={1}>
+                <Typography variant="pi" fontWeight="bold" textColor="success700">
+                  Preview ready to publish
+                </Typography>
+                <Typography variant="omega" textColor="neutral800">
+                  {previewSummary}
+                </Typography>
+                <Typography variant="pi" textColor="neutral600">
+                  Slug:&nbsp;<code>{previewedSlug || '—'}</code> · Click{' '}
+                  <strong>Publish this draft</strong> to save it to Strapi as published. The
+                  article appears at <code>/articles</code> within seconds.
+                </Typography>
+              </Flex>
+            </Box>
+          ) : null}
 
           <Field.Root name="out">
             <Field.Label>Response JSON</Field.Label>

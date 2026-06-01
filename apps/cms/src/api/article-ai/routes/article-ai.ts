@@ -19,6 +19,16 @@ export default {
       },
     },
     {
+      method: 'POST',
+      path: '/publish',
+      handler: 'article-ai.publish',
+      config: {
+        policies: [],
+        middlewares: [],
+        auth: false,
+      },
+    },
+    {
       method: 'GET',
       path: '/health',
       handler: 'article-ai.health',

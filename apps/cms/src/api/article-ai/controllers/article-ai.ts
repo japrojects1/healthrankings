@@ -1,13 +1,26 @@
 import type { Core } from '@strapi/strapi';
 import { assertCatalogAiAccess } from '../../../catalog-ai/auth-guard';
 import { resolveCatalogAiLlm } from '../../../catalog-ai/llm-config';
-import { runArticleAiGenerate } from '../../../article-ai/handler';
+import { runArticleAiGenerate, runArticleAiPublishFromFields } from '../../../article-ai/handler';
 
 export default ({ strapi }: { strapi: Core.Strapi }) => ({
   async generate(ctx: any) {
     if (!assertCatalogAiAccess(strapi, ctx)) return;
     const body = ctx.request.body;
     const result = await runArticleAiGenerate(strapi, body);
+    const ok = result.ok !== false;
+    ctx.status = ok ? 200 : 400;
+    ctx.body = result;
+  },
+
+  /**
+   * Publish a previously-previewed article without re-running the LLM.
+   * Body matches the `article` object returned by /generate?previewOnly=true.
+   */
+  async publish(ctx: any) {
+    if (!assertCatalogAiAccess(strapi, ctx)) return;
+    const body = ctx.request.body;
+    const result = await runArticleAiPublishFromFields(strapi, body);
     const ok = result.ok !== false;
     ctx.status = ok ? 200 : 400;
     ctx.body = result;
