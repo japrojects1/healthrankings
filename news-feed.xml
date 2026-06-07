@@ -5,7 +5,7 @@
   <link href="https://www.healthrankings.co/healthrankings-news.html" rel="alternate" type="text/html"/>
   <link href="https://www.healthrankings.co/news-feed.xml" rel="self"/>
   <id>https://www.healthrankings.co/news-feed.xml#feed</id>
-  <updated>2026-06-07T03:38:23.769Z</updated>
+  <updated>2026-06-07T08:52:46.239Z</updated>
   <generator>HealthRankings generate-sitemap.js</generator>
   <entry>
     <title>Congo outbreak could rival the largest Ebola epidemic on record, CDC warns</title>
@@ -14,6 +14,14 @@
     <published>2026-06-06T00:04:14.000Z</published>
     <updated>2026-06-06T00:04:14.000Z</updated>
     <summary type="text">In one worst-case scenario projected, more than 20,000 cases would occur within three months if only 1 in 5 infected people are identified and isolated within two days.</summary>
+  </entry>
+  <entry>
+    <title>Learning to Cook Could Lower Your Dementia Risk By 70%, New Study Says</title>
+    <link href="https://www.healthrankings.co/news/learning-to-cook-could-lower-your-dementia-risk-by-70-new-study-says-eatingwell.html" rel="alternate" type="text/html"/>
+    <id>https://www.healthrankings.co/news/learning-to-cook-could-lower-your-dementia-risk-by-70-new-study-says-eatingwell.html</id>
+    <published>2026-06-05T22:10:31.000Z</published>
+    <updated>2026-06-05T22:10:31.000Z</updated>
+    <summary type="text">Home cooking just once a week may help lower dementia risk, new research shows. Learn the brain health benefits and simple ways to get started.</summary>
   </entry>
   <entry>
     <title>Senior NIH official pushes MAHA strategy to skeptical ADA audience</title>
@@ -174,6 +182,14 @@
     <published>2026-06-05T05:30:00.000Z</published>
     <updated>2026-06-05T05:30:00.000Z</updated>
     <summary type="text">Lone star ticks that carry alpha gal syndrome have taken over the summer playground of presidents and celebrities.</summary>
+  </entry>
+  <entry>
+    <title>The biggest collagen study yet reveals what actually works</title>
+    <link href="https://www.healthrankings.co/news/the-biggest-collagen-study-yet-reveals-what-actually-works-sciencedaily.html" rel="alternate" type="text/html"/>
+    <id>https://www.healthrankings.co/news/the-biggest-collagen-study-yet-reveals-what-actually-works-sciencedaily.html</id>
+    <published>2026-06-05T05:29:27.000Z</published>
+    <updated>2026-06-05T05:29:27.000Z</updated>
+    <summary type="text">A major review of nearly 8,000 participants found that collagen supplements can improve skin health and ease osteoarthritis symptoms, especially when taken consistently over longer periods. Researchers also found modest benefits for muscle and tendon health. …</summary>
   </entry>
   <entry>
     <title>Ebola Pioneer Peter Piot on How Worried the World Should Be</title>
@@ -390,21 +406,5 @@
     <published>2026-06-04T17:00:00.000Z</published>
     <updated>2026-06-04T17:00:00.000Z</updated>
     <summary type="text">Health experts emphasize early detection and prevention as tick activity increases statewide.</summary>
-  </entry>
-  <entry>
-    <title>Measles Outbreak in a Child Care Facility — Lubbock, Texas, March–April 2025</title>
-    <link href="https://www.healthrankings.co/news/measles-outbreak-in-a-child-care-facility-lubbock-texas-march-april-2025-centers.html" rel="alternate" type="text/html"/>
-    <id>https://www.healthrankings.co/news/measles-outbreak-in-a-child-care-facility-lubbock-texas-march-april-2025-centers.html</id>
-    <published>2026-06-04T16:58:27.000Z</published>
-    <updated>2026-06-04T16:58:27.000Z</updated>
-    <summary type="text">This report describes eight confirmed measles cases linked to a child care facility in Lubbock, Texas.</summary>
-  </entry>
-  <entry>
-    <title>Whey Protein Doesn&apos;t Lead to More Muscle in Older Adults, Study Finds</title>
-    <link href="https://www.healthrankings.co/news/whey-protein-doesn-t-lead-to-more-muscle-in-older-adults-study-finds-verywell-he.html" rel="alternate" type="text/html"/>
-    <id>https://www.healthrankings.co/news/whey-protein-doesn-t-lead-to-more-muscle-in-older-adults-study-finds-verywell-he.html</id>
-    <published>2026-06-04T16:30:00.000Z</published>
-    <updated>2026-06-04T16:30:00.000Z</updated>
-    <summary type="text">A new study found whey protein alone may not improve muscle strength in older adults. Here&apos;s what actually works to stay strong as you age.</summary>
   </entry>
 </feed>
