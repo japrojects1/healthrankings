@@ -5,7 +5,7 @@
   <link href="https://www.healthrankings.co/healthrankings-news.html" rel="alternate" type="text/html"/>
   <link href="https://www.healthrankings.co/news-feed.xml" rel="self"/>
   <id>https://www.healthrankings.co/news-feed.xml#feed</id>
-  <updated>2026-06-27T02:51:44.563Z</updated>
+  <updated>2026-06-27T08:32:31.807Z</updated>
   <generator>HealthRankings generate-sitemap.js</generator>
   <entry>
     <title>Grotesque ‘zombie squirrels’ with oozing warts spotted roaming through US backyards</title>
@@ -14,6 +14,14 @@
     <published>2026-06-26T01:13:00.000Z</published>
     <updated>2026-06-26T01:13:00.000Z</updated>
     <summary type="text">“What is going on with the squirrels lately?! This is the third one I’ve seen looking like this, and it’s honestly freaking me out,” one user posted on Facebook.</summary>
+  </entry>
+  <entry>
+    <title>Jamestown Canyon virus detected in Charlotte</title>
+    <link href="https://www.healthrankings.co/news/jamestown-canyon-virus-detected-in-charlotte-wcax.html" rel="alternate" type="text/html"/>
+    <id>https://www.healthrankings.co/news/jamestown-canyon-virus-detected-in-charlotte-wcax.html</id>
+    <published>2026-06-25T23:43:00.000Z</published>
+    <updated>2026-06-25T23:43:00.000Z</updated>
+    <summary type="text">For the second year in a row, testing has confirmed a human case of the mosquito-borne illness Jamestown Canyon virus.</summary>
   </entry>
   <entry>
     <title>Serious statin side effects on muscles are extremely rare, new research confirms</title>
@@ -54,6 +62,14 @@
     <published>2026-06-25T19:00:00.000Z</published>
     <updated>2026-06-25T19:00:00.000Z</updated>
     <summary type="text">Kristen Bell loves this high-protein cottage cheese bowl, which you can make with a handful of pantry ingredients. Learn how simple it is to make.</summary>
+  </entry>
+  <entry>
+    <title>Which diet — and exact foods — are great for preventing dementia: study</title>
+    <link href="https://www.healthrankings.co/news/which-diet-and-exact-foods-are-great-for-preventing-dementia-study-new-york-post.html" rel="alternate" type="text/html"/>
+    <id>https://www.healthrankings.co/news/which-diet-and-exact-foods-are-great-for-preventing-dementia-study-new-york-post.html</id>
+    <published>2026-06-25T18:16:00.000Z</published>
+    <updated>2026-06-25T18:16:00.000Z</updated>
+    <summary type="text">A new study suggests one pattern of eating could greatly reduce your dementia risk.</summary>
   </entry>
   <entry>
     <title>Only People Who TRULY, GENUINELY Have Their Life Together Can Pass This 30-Question Adulting Quiz</title>
@@ -390,21 +406,5 @@
     <published>2026-06-24T22:00:49.000Z</published>
     <updated>2026-06-24T22:00:49.000Z</updated>
     <summary type="text">For a long time, one number did a great deal of work in popular accounts of human biology. Ten to one: for every cell that was genetically yours, ten bacteria were along for the ride, making you, in some loosely held sense, more microbial than human. The figu…</summary>
-  </entry>
-  <entry>
-    <title>Beware ‘the narrowing’ — doctor warns it can steal your strength as you age</title>
-    <link href="https://www.healthrankings.co/news/beware-the-narrowing-doctor-warns-it-can-steal-your-strength-as-you-age-new-york.html" rel="alternate" type="text/html"/>
-    <id>https://www.healthrankings.co/news/beware-the-narrowing-doctor-warns-it-can-steal-your-strength-as-you-age-new-york.html</id>
-    <published>2026-06-24T21:29:00.000Z</published>
-    <updated>2026-06-24T21:29:00.000Z</updated>
-    <summary type="text">If you’re an older adult, you’ve probably fallen into the trap one doctor calls “the narrowing.”</summary>
-  </entry>
-  <entry>
-    <title>US ends hantavirus outbreak response with no answers on draconian quarantines</title>
-    <link href="https://www.healthrankings.co/news/us-ends-hantavirus-outbreak-response-with-no-answers-on-draconian-quarantines-ar.html" rel="alternate" type="text/html"/>
-    <id>https://www.healthrankings.co/news/us-ends-hantavirus-outbreak-response-with-no-answers-on-draconian-quarantines-ar.html</id>
-    <published>2026-06-24T21:28:39.000Z</published>
-    <updated>2026-06-24T21:28:39.000Z</updated>
-    <summary type="text">We still don&apos;t know why RFK Jr. overruled CDC expert to order strict quarantines.</summary>
   </entry>
 </feed>
