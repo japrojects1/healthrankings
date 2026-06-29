@@ -5,7 +5,7 @@
   <link href="https://www.healthrankings.co/healthrankings-news.html" rel="alternate" type="text/html"/>
   <link href="https://www.healthrankings.co/news-feed.xml" rel="self"/>
   <id>https://www.healthrankings.co/news-feed.xml#feed</id>
-  <updated>2026-06-29T03:38:21.459Z</updated>
+  <updated>2026-06-29T10:52:22.933Z</updated>
   <generator>HealthRankings generate-sitemap.js</generator>
   <entry>
     <title>Arizona health officials investigate suspected pneumonic plague case</title>
@@ -14,6 +14,14 @@
     <published>2026-06-27T21:22:00.000Z</published>
     <updated>2026-06-27T21:22:00.000Z</updated>
     <summary type="text">Yavapai County Community Health Services said Friday that a county resident is thought to have contracted the infection.</summary>
+  </entry>
+  <entry>
+    <title>New magic mushroom makes users see tiny ‘gnome’ people — scientists have no idea how it’s doing that</title>
+    <link href="https://www.healthrankings.co/news/new-magic-mushroom-makes-users-see-tiny-gnome-people-scientists-have-no-idea-how.html" rel="alternate" type="text/html"/>
+    <id>https://www.healthrankings.co/news/new-magic-mushroom-makes-users-see-tiny-gnome-people-scientists-have-no-idea-how.html</id>
+    <published>2026-06-27T19:51:00.000Z</published>
+    <updated>2026-06-27T19:51:00.000Z</updated>
+    <summary type="text">Magic mushrooms? You have gnome idea.</summary>
   </entry>
   <entry>
     <title>Infectious Information 6/27/2026</title>
@@ -182,6 +190,14 @@
     <published>2026-06-27T10:30:00.000Z</published>
     <updated>2026-06-27T10:30:00.000Z</updated>
     <summary type="text">Drugmakers are working on a potential new shot to prevent the tick-borne illness. How might it fare in the era of vaccine skepticism?</summary>
+  </entry>
+  <entry>
+    <title>“An agonising way to die: it causes whole body convulsions, and the victim is painfully and horribly aware…”</title>
+    <link href="https://www.healthrankings.co/news/an-agonising-way-to-die-it-causes-whole-body-convulsions-and-the-victim-is-painf.html" rel="alternate" type="text/html"/>
+    <id>https://www.healthrankings.co/news/an-agonising-way-to-die-it-causes-whole-body-convulsions-and-the-victim-is-painf.html</id>
+    <published>2026-06-27T10:03:00.000Z</published>
+    <updated>2026-06-27T10:03:00.000Z</updated>
+    <summary type="text">Also called the Asian vomit button tree, the strychnine tree contains one of nature’s deadliest poisons, famously featured in many mystery novels.</summary>
   </entry>
   <entry>
     <title>Weekend reads: A tsunami of misleading medical studies; retraction calls cancer therapy timing into question; a closer look at Max Planck’s retractions</title>
@@ -390,21 +406,5 @@
     <published>2026-06-26T16:35:43.000Z</published>
     <updated>2026-06-26T16:35:43.000Z</updated>
     <summary type="text">Hundreds of outbreaks tied to harmful marine algae and other sources have been reported in the U.S. since 2011, a new CDC report finds.</summary>
-  </entry>
-  <entry>
-    <title>Common Laxative May Help Reverse Depression-Related Brain Fog</title>
-    <link href="https://www.healthrankings.co/news/common-laxative-may-help-reverse-depression-related-brain-fog-scitechdaily.html" rel="alternate" type="text/html"/>
-    <id>https://www.healthrankings.co/news/common-laxative-may-help-reverse-depression-related-brain-fog-scitechdaily.html</id>
-    <published>2026-06-26T15:53:35.000Z</published>
-    <updated>2026-06-26T15:53:35.000Z</updated>
-    <summary type="text">A common constipation drug could have an unexpected benefit for people recovering from depression.</summary>
-  </entry>
-  <entry>
-    <title>Mosquitos carrying West Nile virus found in three Twin Cities counties</title>
-    <link href="https://www.healthrankings.co/news/mosquitos-carrying-west-nile-virus-found-in-three-twin-cities-counties-star-trib.html" rel="alternate" type="text/html"/>
-    <id>https://www.healthrankings.co/news/mosquitos-carrying-west-nile-virus-found-in-three-twin-cities-counties-star-trib.html</id>
-    <published>2026-06-26T15:27:10.000Z</published>
-    <updated>2026-06-26T15:27:10.000Z</updated>
-    <summary type="text">The samples were found on June 17 at one location in Hennepin County, two in Ramsey and one in Dakota County, the Metropolitan Mosquito Control District said.</summary>
   </entry>
 </feed>
