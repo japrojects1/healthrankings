@@ -5,8 +5,24 @@
   <link href="https://www.healthrankings.co/healthrankings-news.html" rel="alternate" type="text/html"/>
   <link href="https://www.healthrankings.co/news-feed.xml" rel="self"/>
   <id>https://www.healthrankings.co/news-feed.xml#feed</id>
-  <updated>2026-06-30T09:29:03.908Z</updated>
+  <updated>2026-06-30T14:13:23.849Z</updated>
   <generator>HealthRankings generate-sitemap.js</generator>
+  <entry>
+    <title>America&apos;s lifespan has doubled since 1776 — experts reveal what changed</title>
+    <link href="https://www.healthrankings.co/news/america-s-lifespan-has-doubled-since-1776-experts-reveal-what-changed-fox-news.html" rel="alternate" type="text/html"/>
+    <id>https://www.healthrankings.co/news/america-s-lifespan-has-doubled-since-1776-experts-reveal-what-changed-fox-news.html</id>
+    <published>2026-06-29T11:00:23.000Z</published>
+    <updated>2026-06-29T11:00:23.000Z</updated>
+    <summary type="text">U.S. life expectancy has doubled since 1776 thanks to vaccines, antibiotics, sanitation and clean water that reduced infectious disease deaths.</summary>
+  </entry>
+  <entry>
+    <title>AI may spot deadly heart risk in a routine ECG</title>
+    <link href="https://www.healthrankings.co/news/ai-may-spot-deadly-heart-risk-in-a-routine-ecg-fox-news.html" rel="alternate" type="text/html"/>
+    <id>https://www.healthrankings.co/news/ai-may-spot-deadly-heart-risk-in-a-routine-ecg-fox-news.html</id>
+    <published>2026-06-29T10:32:48.000Z</published>
+    <updated>2026-06-29T10:32:48.000Z</updated>
+    <summary type="text">UC Berkeley researchers trained AI to detect hidden warning signs of sudden cardiac death in routine ECG tests, according to a new study published in Nature.</summary>
+  </entry>
   <entry>
     <title>Column | What a gastroenterologist wants you to know about bidets</title>
     <link href="https://www.healthrankings.co/news/column-what-a-gastroenterologist-wants-you-to-know-about-bidets-the-washington-p.html" rel="alternate" type="text/html"/>
@@ -32,6 +48,22 @@
     <summary type="text">In the early 2000s you were more three times more likely to be assaulted in Scotland than in the US, but the country now ranks among some of the safest in the world.</summary>
   </entry>
   <entry>
+    <title>People are taking allergy and heartburn pills for PMS. Could it work?</title>
+    <link href="https://www.healthrankings.co/news/people-are-taking-allergy-and-heartburn-pills-for-pms-could-it-work-npr.html" rel="alternate" type="text/html"/>
+    <id>https://www.healthrankings.co/news/people-are-taking-allergy-and-heartburn-pills-for-pms-could-it-work-npr.html</id>
+    <published>2026-06-29T09:00:00.000Z</published>
+    <updated>2026-06-29T09:00:00.000Z</updated>
+    <summary type="text">Can the mix really help with premenstrual woes? Theoretically, the link between histamine and hormones could explain why the trendy DIY treatment seems to help some women.</summary>
+  </entry>
+  <entry>
+    <title>Millions take omega-3 fish oil for brain health but a new study found no benefit</title>
+    <link href="https://www.healthrankings.co/news/millions-take-omega-3-fish-oil-for-brain-health-but-a-new-study-found-no-benefit.html" rel="alternate" type="text/html"/>
+    <id>https://www.healthrankings.co/news/millions-take-omega-3-fish-oil-for-brain-health-but-a-new-study-found-no-benefit.html</id>
+    <published>2026-06-29T07:20:54.000Z</published>
+    <updated>2026-06-29T07:20:54.000Z</updated>
+    <summary type="text">Fish oil supplements successfully delivered omega-3s to the brain, but a two-year study found no meaningful benefits for memory, cognition, or Alzheimer’s-related brain changes. The results challenge the idea that fish oil pills can help prevent Alzheimer’s a…</summary>
+  </entry>
+  <entry>
     <title>Neuroscientists long believed you are born with all the neurons you will ever have — in 2025, researchers found newly formed neurons in the brains of adults as old as 78, overturning decades of settled thinking</title>
     <link href="https://www.healthrankings.co/news/neuroscientists-long-believed-you-are-born-with-all-the-neurons-you-will-ever-ha.html" rel="alternate" type="text/html"/>
     <id>https://www.healthrankings.co/news/neuroscientists-long-believed-you-are-born-with-all-the-neurons-you-will-ever-ha.html</id>
@@ -46,6 +78,14 @@
     <published>2026-06-28T23:30:00.000Z</published>
     <updated>2026-06-28T23:30:00.000Z</updated>
     <summary type="text">For years, vitamin D and calcium tablets have enjoyed an almost magical reputation. A certain age arrives, knees begin to ache, or a health check-up mentions &quot;weak bones,&quot; and the small white tablets often become part of the daily routine. Many people take th…</summary>
+  </entry>
+  <entry>
+    <title>KosAbility: Ticks and TBDs increasing while a new vaccine offers hope for those who will use it</title>
+    <link href="https://www.healthrankings.co/news/kosability-ticks-and-tbds-increasing-while-a-new-vaccine-offers-hope-for-those-w.html" rel="alternate" type="text/html"/>
+    <id>https://www.healthrankings.co/news/kosability-ticks-and-tbds-increasing-while-a-new-vaccine-offers-hope-for-those-w.html</id>
+    <published>2026-06-28T23:00:00.000Z</published>
+    <updated>2026-06-28T23:00:00.000Z</updated>
+    <summary type="text">The likelihood of encountering ticks and new reasons to avoid ticks are higher than ever this year and the news media is paying attention. In one week, I saw a variety of news stories warning us that…</summary>
   </entry>
   <entry>
     <title>Some medications can make it harder for your body to handle extreme heat, experts say</title>
@@ -86,6 +126,14 @@
     <published>2026-06-28T18:00:00.000Z</published>
     <updated>2026-06-28T18:00:00.000Z</updated>
     <summary type="text">New research suggests a vital therapy for menopausal women could significantly improve bone density — a crucial health factor for aging women.</summary>
+  </entry>
+  <entry>
+    <title>Common pesticide linked to more than double the risk of Parkinson’s disease</title>
+    <link href="https://www.healthrankings.co/news/common-pesticide-linked-to-more-than-double-the-risk-of-parkinson-s-disease-scie.html" rel="alternate" type="text/html"/>
+    <id>https://www.healthrankings.co/news/common-pesticide-linked-to-more-than-double-the-risk-of-parkinson-s-disease-scie.html</id>
+    <published>2026-06-28T17:37:46.000Z</published>
+    <updated>2026-06-28T17:37:46.000Z</updated>
+    <summary type="text">Scientists at UCLA have linked long-term exposure to the pesticide chlorpyrifos with a sharply increased risk of Parkinson’s disease. People exposed to the chemical near their homes were more than twice as likely to develop the condition. Laboratory studies s…</summary>
   </entry>
   <entry>
     <title>A Dietitian Shares 4 Creatine Benefits for Women as They Age</title>
@@ -358,53 +406,5 @@
     <published>2026-06-27T21:00:03.000Z</published>
     <updated>2026-06-27T21:00:03.000Z</updated>
     <summary type="text">A University of Alberta research team has designed a promising alternative for treating antimicrobial-resistant infections, a pressing global health issue. In a paper recently published in Cell Biomaterials, the team describes preclinical testing results for …</summary>
-  </entry>
-  <entry>
-    <title>New magic mushroom makes users see tiny ‘gnome’ people — scientists have no idea how it’s doing that</title>
-    <link href="https://www.healthrankings.co/news/new-magic-mushroom-makes-users-see-tiny-gnome-people-scientists-have-no-idea-how.html" rel="alternate" type="text/html"/>
-    <id>https://www.healthrankings.co/news/new-magic-mushroom-makes-users-see-tiny-gnome-people-scientists-have-no-idea-how.html</id>
-    <published>2026-06-27T19:51:00.000Z</published>
-    <updated>2026-06-27T19:51:00.000Z</updated>
-    <summary type="text">Magic mushrooms? You have gnome idea.</summary>
-  </entry>
-  <entry>
-    <title>Infectious Information 6/27/2026</title>
-    <link href="https://www.healthrankings.co/news/infectious-information-6-27-2026-daily-kos.html" rel="alternate" type="text/html"/>
-    <id>https://www.healthrankings.co/news/infectious-information-6-27-2026-daily-kos.html</id>
-    <published>2026-06-27T19:40:09.000Z</published>
-    <updated>2026-06-27T19:40:09.000Z</updated>
-    <summary type="text">Vaccines and antibodies forge ahead despite certain idiocies. Including a new ACIP charter that de-emphasizes vaccines?! Ebola cases were near 900 on the 18th. They topped 1000 on the 22nd.</summary>
-  </entry>
-  <entry>
-    <title>Brooke Burke says &apos;menopause can be sexy&apos;—here’s why</title>
-    <link href="https://www.healthrankings.co/news/brooke-burke-says-menopause-can-be-sexy-here-s-why-usa-today.html" rel="alternate" type="text/html"/>
-    <id>https://www.healthrankings.co/news/brooke-burke-says-menopause-can-be-sexy-here-s-why-usa-today.html</id>
-    <published>2026-06-27T19:35:00.000Z</published>
-    <updated>2026-06-27T19:35:00.000Z</updated>
-    <summary type="text">Brain fog, fatigue and more: Brooke Burke details her menopause journey and the Hone Health tools that helped her feel like herself again.</summary>
-  </entry>
-  <entry>
-    <title>Scratching that bug bite might feel good at first but science explains why it&apos;s a bad idea</title>
-    <link href="https://www.healthrankings.co/news/scratching-that-bug-bite-might-feel-good-at-first-but-science-explains-why-it-s-.html" rel="alternate" type="text/html"/>
-    <id>https://www.healthrankings.co/news/scratching-that-bug-bite-might-feel-good-at-first-but-science-explains-why-it-s-.html</id>
-    <published>2026-06-27T19:28:31.000Z</published>
-    <updated>2026-06-27T19:28:31.000Z</updated>
-    <summary type="text">You&apos;ve likely heard it since childhood: Don&apos;t scratch that bug bite or rash, you&apos;ll make it worse. But why would something that feels so good be bad?</summary>
-  </entry>
-  <entry>
-    <title>Few sunscreens meet safety standards, new report says</title>
-    <link href="https://www.healthrankings.co/news/few-sunscreens-meet-safety-standards-new-report-says-kcra.html" rel="alternate" type="text/html"/>
-    <id>https://www.healthrankings.co/news/few-sunscreens-meet-safety-standards-new-report-says-kcra.html</id>
-    <published>2026-06-27T19:04:00.000Z</published>
-    <updated>2026-06-27T19:04:00.000Z</updated>
-    <summary type="text">Need to stock up on sunscreen? Few choices on store shelves today are both safe and effective, according to an annual report.</summary>
-  </entry>
-  <entry>
-    <title>Scientists discover what triggers belly fat as we age</title>
-    <link href="https://www.healthrankings.co/news/scientists-discover-what-triggers-belly-fat-as-we-age-sciencedaily.html" rel="alternate" type="text/html"/>
-    <id>https://www.healthrankings.co/news/scientists-discover-what-triggers-belly-fat-as-we-age-sciencedaily.html</id>
-    <published>2026-06-27T18:58:37.000Z</published>
-    <updated>2026-06-27T18:58:37.000Z</updated>
-    <summary type="text">Aging may trigger the appearance of specialized stem cells that supercharge the body&amp;apos;s ability to create new belly fat. The discovery reveals a potential biological driver of middle-age weight gain and a promising target for future anti-obesity treatment…</summary>
   </entry>
 </feed>
