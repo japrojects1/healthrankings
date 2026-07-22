@@ -39,6 +39,7 @@ export function ArticleHeader() {
           <nav className="nav">
             <Link href="/healthrankings-conditions.html">Conditions</Link>
             <Link href="/healthrankings-devices.html">Devices</Link>
+            <Link href="/healthrankings-supplements.html">Supplements</Link>
             <Link href="/healthrankings-articles.html" className="active">
               Articles
             </Link>
@@ -108,6 +109,9 @@ export function ArticleHeader() {
           </Link>
           <Link href="/healthrankings-devices.html" onClick={() => setOpen(false)}>
             Devices
+          </Link>
+          <Link href="/healthrankings-supplements.html" onClick={() => setOpen(false)}>
+            Supplements
           </Link>
           <Link href="/healthrankings-articles.html" className="active" onClick={() => setOpen(false)}>
             Articles

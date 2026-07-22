@@ -44,6 +44,7 @@ export function DeviceHeader() {
             <Link href="/healthrankings-devices.html" className="active">
               Devices
             </Link>
+            <Link href="/healthrankings-supplements.html">Supplements</Link>
             <Link href="/healthrankings-drugs.html">Drugs A–Z</Link>
             <Link href="/healthrankings-articles.html">Articles</Link>
             <Link href="/healthrankings-news.html">Health News</Link>
@@ -111,6 +112,9 @@ export function DeviceHeader() {
           </Link>
           <Link href="/healthrankings-devices.html" className="active" onClick={() => setOpen(false)}>
             Devices
+          </Link>
+          <Link href="/healthrankings-supplements.html" onClick={() => setOpen(false)}>
+            Supplements
           </Link>
           <Link href="/healthrankings-drugs.html" onClick={() => setOpen(false)}>
             Drugs A–Z
