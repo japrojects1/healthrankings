@@ -20,11 +20,14 @@ export type SpecRow = {
   value: string;
 };
 
+export type ProductType = "device" | "supplement";
+
 export type Device = {
   id: number;
   slug: string;
   name: string;
   category?: string;
+  productType?: ProductType;
   priceText?: string | null;
   rating?: number | null;
   affiliateUrl?: string | null;
@@ -75,6 +78,7 @@ export type CategoryTopFive = {
   documentId?: string;
   slug: string;
   category: string;
+  productType?: ProductType;
   categoryLabel?: string | null;
   title: string;
   subtitle?: string | null;
@@ -288,6 +292,10 @@ function asStringArray(raw: unknown): string[] | null {
   return null;
 }
 
+function normalizeProductType(value: unknown): ProductType {
+  return String(value ?? "").trim().toLowerCase() === "supplement" ? "supplement" : "device";
+}
+
 function normalizeDevice(row: any): Device {
   const attrs = row.attributes ?? row;
   let galleryList: any[] | null = null;
@@ -312,6 +320,7 @@ function normalizeDevice(row: any): Device {
     slug: attrs.slug,
     name: attrs.name,
     category: attrs.category,
+    productType: normalizeProductType(attrs.productType),
     priceText: attrs.priceText ?? null,
     rating: attrs.rating != null ? Number(attrs.rating) : null,
     affiliateUrl: attrs.affiliateUrl ?? null,
@@ -448,6 +457,7 @@ function normalizeCategoryTopFiveRow(row: any): CategoryTopFive {
     documentId: row.documentId ?? attrs.documentId,
     slug: String(attrs.slug ?? ""),
     category: String(attrs.category ?? ""),
+    productType: normalizeProductType(attrs.productType),
     categoryLabel: attrs.categoryLabel ?? null,
     title: String(attrs.title ?? ""),
     subtitle: attrs.subtitle ?? null,
@@ -463,6 +473,28 @@ function normalizeCategoryTopFiveRow(row: any): CategoryTopFive {
 export async function fetchCategoryTopFives(): Promise<CategoryTopFive[]> {
   const url = strapiUrl(
     `/api/category-top-fives?${CATEGORY_TOP5_POPULATE}&sort=category:asc&status=published`
+  );
+  const res = await fetch(url, {
+    cache: 'no-store',
+    headers: { Accept: 'application/json' },
+  });
+  if (!res.ok) return [];
+  const json = await res.json();
+  const rows = json?.data || [];
+  return rows.map(normalizeCategoryTopFiveRow);
+}
+
+/**
+ * Published Category Top 5s for a given product kind ('supplement' powers the /supplements hub,
+ * 'device' the /devices hub). Rows are normalized and sorted by category.
+ */
+export async function fetchCategoryTopFivesByProductType(
+  productType: ProductType
+): Promise<CategoryTopFive[]> {
+  const url = strapiUrl(
+    `/api/category-top-fives?filters[productType][$eq]=${encodeURIComponent(
+      productType
+    )}&${CATEGORY_TOP5_POPULATE}&sort=category:asc&status=published`
   );
   const res = await fetch(url, {
     cache: 'no-store',

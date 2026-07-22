@@ -22,6 +22,12 @@
       "required": true,
       "maxLength": 96
     },
+    "productType": {
+      "type": "enumeration",
+      "enum": ["device", "supplement"],
+      "default": "device",
+      "required": false
+    },
     "title": {
       "type": "string",
       "required": true

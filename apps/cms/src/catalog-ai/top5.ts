@@ -1,5 +1,5 @@
 import type { Core } from '@strapi/strapi';
-import { CATEGORY_TOP5_TITLE } from './constants';
+import { CATEGORY_TOP5_TITLE, normalizeProductType, type ProductType } from './constants';
 
 function deviceSortKey(rating: unknown): number {
   if (rating == null || Number.isNaN(Number(rating))) return -1;
@@ -16,14 +16,15 @@ export type Top5RefreshResult =
  */
 export async function refreshPublishedCategoryTopFive(
   strapi: Core.Strapi,
-  category: string
+  category: string,
+  productType?: ProductType
 ): Promise<Top5RefreshResult> {
   const rows = await strapi.db.query('api::device.device').findMany({
     where: {
       category,
       publishedAt: { $notNull: true },
     },
-    select: ['documentId', 'slug', 'rating', 'name'],
+    select: ['documentId', 'slug', 'rating', 'name', 'productType'],
     limit: 100,
   });
 
@@ -59,6 +60,11 @@ export async function refreshPublishedCategoryTopFive(
   const title = CATEGORY_TOP5_TITLE[category] || `Top 5 — ${category}`;
   const subtitle = 'Highest-rated picks in this category on HealthRankings.';
 
+  // Prefer the explicit productType from the caller; otherwise derive it from the
+  // ranked devices (default 'device') so the Top 5 lands on the right public hub.
+  const resolvedProductType: ProductType =
+    productType ?? normalizeProductType(top.find((d: any) => d?.productType)?.productType);
+
   const entries = top.map((d: any, i: number) => ({
     rank: i + 1,
     device: { connect: [{ documentId: String(d.documentId) }] },
@@ -68,6 +74,7 @@ export async function refreshPublishedCategoryTopFive(
     data: {
       slug,
       category,
+      productType: resolvedProductType,
       title,
       subtitle,
       entries,

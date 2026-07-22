@@ -13,6 +13,7 @@ import { getFetchClient, useNotification } from '@strapi/strapi/admin';
 import {
   DEVICE_CATEGORY_ENUM,
   MIN_CATEGORY_HINT_LENGTH,
+  PRODUCT_TYPES,
   isValidDeviceCategorySlug,
 } from '../../../catalog-ai/constants';
 
@@ -23,6 +24,7 @@ type DiscoverPreviewRow = { name: string; slug: string };
 export default function CatalogAiGenerator() {
   const { toggleNotification } = useNotification();
   const [categorySelect, setCategorySelect] = useState<string>(DEVICE_CATEGORY_ENUM[0]);
+  const [productType, setProductType] = useState<(typeof PRODUCT_TYPES)[number]>('device');
   const [customSlug, setCustomSlug] = useState('');
   const [categoryHint, setCategoryHint] = useState('');
   const [discoverModels, setDiscoverModels] = useState(false);
@@ -77,6 +79,7 @@ export default function CatalogAiGenerator() {
       refreshTop5: false,
       replaceExistingDevices: false,
       publishDevices,
+      productType,
       categoryHint: categoryHint.trim(),
     };
 
@@ -169,6 +172,7 @@ export default function CatalogAiGenerator() {
       refreshTop5,
       replaceExistingDevices: replaceExisting,
       publishDevices,
+      productType,
     };
     if (categoryHint.trim()) {
       body.categoryHint = categoryHint.trim();
@@ -250,6 +254,7 @@ export default function CatalogAiGenerator() {
       refreshTop5,
       replaceExistingDevices: replaceExisting,
       publishDevices,
+      productType,
     };
     if (categoryHint.trim()) {
       body.categoryHint = categoryHint.trim();
@@ -307,6 +312,26 @@ export default function CatalogAiGenerator() {
               Content Manager. The manual list is for typing names yourself without discovery.
             </Typography>
           </Flex>
+
+          <Field.Root name="productType">
+            <Field.Label>Product type</Field.Label>
+            <Box paddingTop={1}>
+              <select
+                style={{ width: '100%', maxWidth: 480, padding: '8px 10px', borderRadius: 4 }}
+                value={productType}
+                onChange={(e) => setProductType(e.target.value as (typeof PRODUCT_TYPES)[number])}
+              >
+                {PRODUCT_TYPES.map((t) => (
+                  <option key={t} value={t}>
+                    {t === 'supplement' ? 'Supplement (shows on /supplements)' : 'Device (shows on /devices)'}
+                  </option>
+                ))}
+              </select>
+            </Box>
+            <Field.Hint>
+              Choose <strong>Supplement</strong> to make this category and its Top 5 appear on the public Supplements hub.
+            </Field.Hint>
+          </Field.Root>
 
           <Field.Root name="category">
             <Field.Label>Category slug</Field.Label>

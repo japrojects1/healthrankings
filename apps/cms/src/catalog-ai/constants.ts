@@ -17,6 +17,15 @@ export const DEVICE_CATEGORY_ENUM = [
 
 export type DeviceCategoryEnum = (typeof DEVICE_CATEGORY_ENUM)[number];
 
+/** Product kind stored on each device / Category Top 5, used to split the public "Devices" vs "Supplements" hubs. */
+export const PRODUCT_TYPES = ['device', 'supplement'] as const;
+export type ProductType = (typeof PRODUCT_TYPES)[number];
+
+export function normalizeProductType(value: unknown): ProductType {
+  const t = String(value ?? '').trim().toLowerCase();
+  return t === 'supplement' ? 'supplement' : 'device';
+}
+
 /** Kebab-case slug: segments of lowercase letters/digits. */
 const CATEGORY_SLUG_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 

@@ -6,8 +6,9 @@ import { SiteSearchDialog } from "@/components/site/SiteSearchDialog";
 
 /**
  * Matches legacy healthrankings-review-*.html header (nav order + blue “rankings” word).
+ * `active` controls which top-nav item is highlighted (defaults to "devices").
  */
-export function DeviceHeader() {
+export function DeviceHeader({ active = "devices" }: { active?: "devices" | "supplements" }) {
   const [open, setOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
 
@@ -41,10 +42,18 @@ export function DeviceHeader() {
           </Link>
           <nav className="nav">
             <Link href="/healthrankings-conditions.html">Conditions</Link>
-            <Link href="/healthrankings-devices.html" className="active">
+            <Link
+              href="/healthrankings-devices.html"
+              className={active === "devices" ? "active" : undefined}
+            >
               Devices
             </Link>
-            <Link href="/healthrankings-supplements.html">Supplements</Link>
+            <Link
+              href="/healthrankings-supplements.html"
+              className={active === "supplements" ? "active" : undefined}
+            >
+              Supplements
+            </Link>
             <Link href="/healthrankings-drugs.html">Drugs A–Z</Link>
             <Link href="/healthrankings-articles.html">Articles</Link>
             <Link href="/healthrankings-news.html">Health News</Link>
@@ -110,10 +119,18 @@ export function DeviceHeader() {
           <Link href="/healthrankings-conditions.html" onClick={() => setOpen(false)}>
             Conditions
           </Link>
-          <Link href="/healthrankings-devices.html" className="active" onClick={() => setOpen(false)}>
+          <Link
+            href="/healthrankings-devices.html"
+            className={active === "devices" ? "active" : undefined}
+            onClick={() => setOpen(false)}
+          >
             Devices
           </Link>
-          <Link href="/healthrankings-supplements.html" onClick={() => setOpen(false)}>
+          <Link
+            href="/healthrankings-supplements.html"
+            className={active === "supplements" ? "active" : undefined}
+            onClick={() => setOpen(false)}
+          >
             Supplements
           </Link>
           <Link href="/healthrankings-drugs.html" onClick={() => setOpen(false)}>

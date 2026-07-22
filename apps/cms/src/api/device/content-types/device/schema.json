@@ -28,6 +28,12 @@
       "default": "other",
       "maxLength": 96
     },
+    "productType": {
+      "type": "enumeration",
+      "enum": ["device", "supplement"],
+      "default": "device",
+      "required": false
+    },
     "heroImage": {
       "type": "media",
       "multiple": false,

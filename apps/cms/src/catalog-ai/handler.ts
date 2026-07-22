@@ -4,6 +4,8 @@ import {
   MAX_DEVICES_PER_REQUEST,
   MIN_CATEGORY_HINT_LENGTH,
   isValidDeviceCategorySlug,
+  normalizeProductType,
+  type ProductType,
 } from './constants';
 import { slugifyName } from './slugify';
 import { anthropicMessagesJson } from './anthropic-client';
@@ -38,6 +40,11 @@ export type CatalogAiGenerateBody = {
    * When false or omitted: creates **draft** devices (Strapi Draft & Publish) — you must publish in the CMS for them to go live.
    */
   publishDevices?: boolean;
+  /**
+   * Product kind for the created rows: 'device' (default) or 'supplement'. Supplements surface on the
+   * dynamic /supplements hub; devices on the /devices hub. Also stamped onto the refreshed Category Top 5.
+   */
+  productType?: string;
 };
 
 type RowResult =
@@ -85,7 +92,8 @@ async function createReviewRows(
   categoryHint: string | undefined,
   sliced: Array<{ name: string; slug: string }>,
   replaceExistingDevices: boolean,
-  publishDevices: boolean
+  publishDevices: boolean,
+  productType: ProductType
 ): Promise<RowResult[]> {
   const results: RowResult[] = [];
   const hint = String(categoryHint || '').trim() || undefined;
@@ -167,6 +175,7 @@ async function createReviewRows(
       slug,
       name: item.name,
       category,
+      productType,
       rating,
       pros,
       cons,
@@ -246,6 +255,7 @@ export async function runCatalogAiGenerate(
   const refreshTop5 = Boolean(body.refreshTop5);
   const replaceExistingDevices = Boolean(body.replaceExistingDevices);
   const publishDevices = Boolean(body.publishDevices);
+  const productType = normalizeProductType(body.productType);
 
   let discoverMeta:
     | {
@@ -294,6 +304,7 @@ export async function runCatalogAiGenerate(
       refreshTop5,
       replaceExistingDevices,
       publishDevices,
+      productType,
     };
   }
 
@@ -315,6 +326,7 @@ export async function runCatalogAiGenerate(
       refreshTop5,
       replaceExistingDevices,
       publishDevices,
+      productType,
     };
   }
 
@@ -355,12 +367,13 @@ export async function runCatalogAiGenerate(
     categoryHintRaw || undefined,
     sliced,
     replaceExistingDevices,
-    publishDevices
+    publishDevices,
+    productType
   );
 
   let top5: Record<string, unknown> | undefined;
   if (refreshTop5) {
-    top5 = await refreshPublishedCategoryTopFive(strapi, category);
+    top5 = await refreshPublishedCategoryTopFive(strapi, category, productType);
   }
 
   return {
@@ -369,6 +382,7 @@ export async function runCatalogAiGenerate(
     discoverModels,
     category,
     publishDevices,
+    productType,
     llmProvider: llm.provider,
     model: llm.model,
     truncated,

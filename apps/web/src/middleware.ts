@@ -26,6 +26,13 @@ export function middleware(request: NextRequest) {
     return NextResponse.rewrite(url);
   }
 
+  // /healthrankings-supplements.html → CMS-driven /supplements hub (same pattern as articles).
+  if (/^\/healthrankings-supplements\.html$/i.test(pathname)) {
+    const url = request.nextUrl.clone();
+    url.pathname = "/supplements";
+    return NextResponse.rewrite(url);
+  }
+
   const article = /^\/healthrankings-article-(.+)\.html$/i.exec(pathname);
   if (article) {
     return NextResponse.redirect(new URL(`/articles/${article[1]}`, request.url), 308);
@@ -59,6 +66,7 @@ export const config = {
   // Add a new line when you ship a new Category Top 5 in Strapi (after running `npm run seed:top5-rich`).
   matcher: [
     "/healthrankings-articles.html",
+    "/healthrankings-supplements.html",
     "/healthrankings-article-:slug.html",
     "/healthrankings-review-:slug.html",
     "/healthrankings-hypertension-top5.html",
