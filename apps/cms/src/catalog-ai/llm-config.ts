@@ -15,8 +15,8 @@ export function resolveCatalogAiLlm(): ResolvedCatalogLlm {
   const openaiKey = String(process.env.OPENAI_API_KEY || '').trim();
 
   const anthropicModel =
-    String(process.env.ANTHROPIC_MODEL || 'claude-sonnet-4-20250514').trim() ||
-    'claude-sonnet-4-20250514';
+    String(process.env.ANTHROPIC_MODEL || 'claude-sonnet-4-6').trim() ||
+    'claude-sonnet-4-6';
   const openaiModel =
     String(process.env.OPENAI_MODEL || 'gpt-4o-mini').trim() || 'gpt-4o-mini';
 
